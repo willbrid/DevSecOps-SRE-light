@@ -30,17 +30,17 @@ Les Objectifs de la Culture DevOps :
 
 Méthode traditionnelle - Qu'est-ce qui s'est mal passé ?
 
-- Dev et Ops sont des boîtes noires l'un par rapport à l'autre, ce qui conduit à pointer du doigt :
+- Dev et Ops sont des boîtes noires l'un par rapport à l'autre, ce qui conduit à pointer du doigt : <br>
 --- Parce que Ops est une boîte noire, les développeurs ne leur font pas vraiment confiance <br>
 --- Et Ops ne fait pas vraiment confiance aux développeurs <br>
-- Dev et Ops ont des priorités différentes, ce qui les oppose :
+- Dev et Ops ont des priorités différentes, ce qui les oppose : <br>
 --- Les opérations considèrent les développeurs comme brisant la stabilité <br>
 --- Les développeurs voient les opérations comme un obstacle à la livraison de leur code <br>
-- Même s'ils VEULENT travailler ensemble :
+- Même s'ils VEULENT travailler ensemble : <br>
 --- Le développement est mesuré par la livraison de fonctionnalités, ce qui signifie le déploiement de modifications <br>
 --- L'exploitation est mesurée par la disponibilité, mais les modifications nuisent à la stabilité. <br>
 
-Inconvénients des méthodes traditionnelles :
+Inconvénients des méthodes traditionnelles : <br>
 - Les "boîtes noires" conduisent à pointer du doigt
 - Un processus long signifie un temps de mise sur le marché lent
 - Le manque d'automatisation signifie que des éléments tels que les builds et les déploiements sont incohérents
@@ -60,21 +60,21 @@ Comme tout est automatisé, il est beaucoup plus facile à déployer tout en gar
 
 DevOps – Qu'est-ce qui s'est bien passé ? <br>
 
-- Dev et Ops ont travaillé ensemble pour créer un moyen robuste de modifier le code rapidement et de manière fiable :
+- Dev et Ops ont travaillé ensemble pour créer un moyen robuste de modifier le code rapidement et de manière fiable : <br>
 --- Dev et Ops ont travaillé ensemble pour donner la priorité à la fois à la rapidité de livraison et à la stabilité
-- L'automatisation a conduit à la cohérence :
+- L'automatisation a conduit à la cohérence : <br>
 --- La création, les tests et le déploiement se sont déroulés de la même manière à chaque fois <br>
 --- La création, les tests et le déploiement se sont déroulés beaucoup plus rapidement et plus souvent
-- Une bonne surveillance, ainsi qu'un processus de déploiement rapide, garantissaient que les problèmes pouvaient être résolus avant même que les utilisateurs ne les remarquent :
+- Une bonne surveillance, ainsi qu'un processus de déploiement rapide, garantissaient que les problèmes pouvaient être résolus avant même que les utilisateurs ne les remarquent : <br>
 --- Dev et Ops ont travaillé ensemble dès le départ pour créer de bons processus <br>
 --- Même si un changement de code a causé un problème, les utilisateurs ont connu peu ou pas de temps d'arrêt. <br>
 
 Pourquoi faire du DevOps ?
-- Des équipes plus heureuses :
+- Des équipes plus heureuses : <br>
 --- Les employés techniques ont tendance à être plus heureux avec DevOps qu'avec des méthodes traditionnelles <br>
 --- Plus de temps à innover et moins de temps à éteindre les incendies <br>
 --- Les développeurs n'ont pas l'impression de devoir se battre pour diffuser leur travail <br>
 --- Les responsables des opérations n'ont pas à se battre contre les développeurs pour maintenir la stabilité du système
-- Clients plus satisfaits :
+- Clients plus satisfaits : <br>
 --- DevOps vous permet d'offrir rapidement aux clients les fonctionnalités qu'ils souhaitent <br>
 --- Et vous n'avez pas à sacrifier la stabilité pour le faire !
