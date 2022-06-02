@@ -10,8 +10,6 @@
 
 - Les outils d'automatisation de la construction diffèrent souvent selon les langages de programmation et les frameworks utilisés, mais ils ont un point commun : l'automatisation !
 
-<br>
-
 ## À quoi ressemble l'automatisation de la construction ?
 
 - Habituellement, l'automatisation de la construction ressemble à l'exécution d'un outil de ligne de commande qui construit du code à l'aide de fichiers de configuration et/ou de scripts traités comme faisant partie du code source.
