@@ -4,20 +4,20 @@
 
 - Infrastructure en tant que code (IaC) : gérez et provisionnez l'infrastructure via le code et l'automatisation.
 
-- Avec l'infrastructure en tant que code, au lieu de faire les choses manuellement, nous utilisons l'automatisation et le code pour créer et modifier :
+- Avec l'infrastructure en tant que code, au lieu de faire les choses manuellement, nous utilisons l'automatisation et le code pour créer et modifier : <br>
 --- Les serveurs <br>
 --- Instances <br>
 --- Environnements <br>
 --- Conteneurs <br>
---- Autres infrastructures <br>
+--- Autres infrastructures
 
 ## À quoi ressemble l'infrastructure en tant que code ?
 
-- Sans infrastructure en tant que code, nous pourrions :
+- Sans infrastructure en tant que code, nous pourrions : <br>
 --- ssh dans un hôte <br>
 --- Émettre une série de commandes pour effectuer le changement
 
-- Avec l'infrastructure en tant que code :
+- Avec l'infrastructure en tant que code : <br>
 --- Modifier certains fichiers de code ou de configuration pouvant être utilisés avec un outil d'automatisation pour effectuer des modifications <br>
 --- Les pousser dans un serveur de contrôle des sources <br>
 --- Utiliser un outil d'automatisation pour appliquer les modifications définies dans le code et/ou les fichiers de configuration
