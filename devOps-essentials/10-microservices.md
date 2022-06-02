@@ -22,7 +22,7 @@
 --- Un service de coordonnées clients <br>
 --- Un service d'authentification <br>
 --- Un service de demande d'adoption d'animaux de compagnie <br>
---- Un service de traitement des paiements <br>
+--- Un service de traitement des paiements
 
 - Chacun d'eux a sa propre base de code et un processus d'exécution distinct (ou des processus). Ils peuvent tous être construits, déployés et mis à l'échelle séparément.
 
