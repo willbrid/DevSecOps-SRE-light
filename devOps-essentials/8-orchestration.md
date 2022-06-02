@@ -28,3 +28,15 @@
 --- Lorsque la charge diminue à nouveau, l'outil fait tourner les ressources supplémentaires vers le bas, les libérant pour être utilisées par autre chose <br>
 
 --- Tout cela se passe pendant que l'ingénieur prend du café
+
+## Pourquoi faire de l'orchestration ?
+
+- Évolutivité – Les ressources peuvent être rapidement augmentées ou réduites pour répondre à l'évolution des besoins.
+
+- Stabilité – Les outils d'automatisation peuvent répondre automatiquement pour résoudre les problèmes avant que les utilisateurs ne les voient.
+
+- Gagnez du temps – Certaines tâches et flux de travail peuvent être automatisés, libérant ainsi du temps pour les ingénieurs.
+
+- Libre-service – L'orchestration peut être utilisée pour offrir des ressources aux clients en libre-service.
+
+- Aperçu granulaire de l'utilisation des ressources – Les outils d'orchestration donnent une meilleure idée du nombre de ressources utilisées par quels logiciels, services ou clients.
