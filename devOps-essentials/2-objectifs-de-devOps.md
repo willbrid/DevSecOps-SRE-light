@@ -50,7 +50,7 @@ Avec le DevOps : <br>
 - Les développeurs écrivent du code
 - La validation du code déclenche la création, l'intégration et les tests automatisés
 - L'assurance qualité peut mettre la main dessus presque immédiatement
-- Une fois prêt, lancez un déploiement automatisé en production
+- Une fois prêt, lancer un déploiement automatisé en production
 Comme tout est automatisé, il est beaucoup plus facile à déployer tout en gardant la stabilité
 - Les déploiements peuvent se produire beaucoup plus fréquemment, mettant les fonctionnalités entre les mains des clients plus rapidement
 - Oh non! Le dernier déploiement a cassé quelque chose en production !
@@ -76,5 +76,5 @@ Pourquoi faire du DevOps ?
 --- Les développeurs n'ont pas l'impression de devoir se battre pour diffuser leur travail <br>
 --- Les responsables des opérations n'ont pas à se battre contre les développeurs pour maintenir la stabilité du système
 - Clients plus satisfaits : <br>
---- DevOps vous permet d'offrir rapidement aux clients les fonctionnalités qu'ils souhaitent <br>
---- Et vous n'avez pas à sacrifier la stabilité pour le faire !
+--- DevOps nous permet d'offrir rapidement aux clients les fonctionnalités qu'ils souhaitent <br>
+--- Et nous n'avons pas à sacrifier la stabilité pour le faire !
