@@ -1,6 +1,6 @@
 # Automatisation de la construction
 
-## Qu'est-ce que l'automatisation du construction?
+## Qu'est-ce que l'automatisation de la construction ?
 
 - automatisation de la construction: automatisation du processus de préparation du code pour le déploiement dans un environnement réel.
 
