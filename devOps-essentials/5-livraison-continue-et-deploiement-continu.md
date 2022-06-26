@@ -17,7 +17,7 @@ permanence le code dans un état déployable
 
 - Certaines entreprises qui effectuent un déploiement continu effectuent un déploiement en production plusieurs fois par jour
 
--  Il n'y a pas de norme quant à la fréquence de déploiement, mais en général, plus vous déployez souvent, mieux c'est !
+-  Il n'y a pas de norme quant à la fréquence de déploiement, mais en général, plus nous déployons souvent, mieux c'est !
 
 - Avec le déploiement continu, les déploiements en production sont routiniers et courants. Ils ne sont pas un grand événement effrayant.
 
