@@ -78,3 +78,7 @@ Pourquoi faire du DevOps ?
 - Clients plus satisfaits : <br>
 --- DevOps nous permet d'offrir rapidement aux clients les fonctionnalités qu'ils souhaitent <br>
 --- Et nous n'avons pas à sacrifier la stabilité pour le faire !
+
+<br>
+
+![definition_devops](./images/definition_devops.png)
