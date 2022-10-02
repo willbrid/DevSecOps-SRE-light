@@ -11,6 +11,8 @@
 --- Conteneurs <br>
 --- Autres infrastructures
 
+![iac](./images/iac.png)
+
 ## À quoi ressemble l'infrastructure en tant que code ?
 
 - Sans infrastructure en tant que code, nous pourrions : <br>
@@ -35,3 +37,5 @@
 - Auto-documentation - Avec IaC, les modifications apportées à l'infrastructure se documentent dans une certaine mesure. La façon dont un serveur est configuré peut être visualisée dans le contrôle de source, plutôt que de se demander qui s'est connecté au serveur et a fait quelque chose.
 
 - Simplifier la complexité – Les infrastructures complexes peuvent être mises en place rapidement une fois qu'elles sont définies en tant que code. Un groupe de plusieurs serveurs interdépendants peut être provisionné à la demande.
+
+![iac_tools](./images/iac_tools.png)
