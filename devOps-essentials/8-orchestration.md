@@ -40,3 +40,7 @@
 - Libre-service – L'orchestration peut être utilisée pour offrir des ressources aux clients en libre-service.
 
 - Aperçu granulaire de l'utilisation des ressources – Les outils d'orchestration donnent une meilleure idée du nombre de ressources utilisées par quels logiciels, services ou clients.
+
+<br>
+
+![orchestration_tools](./images/orchestration_tools.png)
