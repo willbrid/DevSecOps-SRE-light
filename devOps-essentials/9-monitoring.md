@@ -36,3 +36,7 @@
 - Visibilité entre les équipes – De bons outils de surveillance fournissent des données utiles aux développeurs et aux responsables des opérations sur les performances du code en production.
 
 - Réponse automatisée - Les données de surveillance peuvent être utilisées parallèlement à l'orchestration pour fournir des réponses automatisées aux événements, telles que la récupération automatisée après des pannes.
+
+<br>
+
+![monitoring_tools](./images/monitoring_tools.png)
