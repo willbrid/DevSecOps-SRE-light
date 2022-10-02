@@ -10,7 +10,9 @@
 
 - Fusionner tout le temps peut représenter beaucoup de travail, alors pour éviter cela il doit être automatisé !
 
-![ci](./images/ci.png)
+![ci_1](./images/ci_1.png)
+
+![ci_2](./images/ci_2.png)
 
 ## Pourquoi faire de l'Intégration Continue ?
 
