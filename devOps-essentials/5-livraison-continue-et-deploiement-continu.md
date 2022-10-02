@@ -9,6 +9,8 @@ permanence le code dans un état déployable
 
 - Certains utilisent indifféremment les termes livraison continue et déploiement continu, ou utilisent simplement l'abréviation CD.
 
+![cdelivery](./images/cdelivery.png)
+
 ## Qu'est-ce que le déploiement continu ?
 
 - Déploiement continu : la pratique consistant à déployer fréquemment de petites modifications de code en production
@@ -20,6 +22,8 @@ permanence le code dans un état déployable
 -  Il n'y a pas de norme quant à la fréquence de déploiement, mais en général, plus nous déployons souvent, mieux c'est !
 
 - Avec le déploiement continu, les déploiements en production sont routiniers et courants. Ils ne sont pas un grand événement effrayant.
+
+![cdeployment](./images/cdeployment.png)
 
 ## À quoi ressemblent la livraison continue et le déploiement continu ?
 
