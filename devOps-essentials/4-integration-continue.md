@@ -10,6 +10,8 @@
 
 - Fusionner tout le temps peut représenter beaucoup de travail, alors pour éviter cela il doit être automatisé !
 
+![ci](./images/ci.png)
+
 ## Pourquoi faire de l'Intégration Continue ?
 
 - Détection précoce de certains types de bogues. Si le code ne se compile pas ou si un test automatisé échoue, les développeurs sont avertis et peuvent le corriger immédiatement. Plus ces bugs sont détectés tôt, plus ils sont faciles à corriger !
@@ -21,3 +23,7 @@
 - Rend les tests continus possibles - Étant donné que le code peut toujours être exécuté, les testeurs QA peuvent mettre la main dessus tout au long du processus de développement, pas seulement à la fin.
 
 - Encourage les bonnes pratiques de codage. Les commits fréquents encouragent un code simple et modulaire.
+
+<br>
+
+![ci_tools](./images/ci_tools.png)
