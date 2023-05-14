@@ -12,8 +12,6 @@
 
 ![ci_1](./images/ci_1.png)
 
-![ci_2](./images/ci_2.png)
-
 ## Pourquoi faire de l'Intégration Continue ?
 
 - Détection précoce de certains types de bogues. Si le code ne se compile pas ou si un test automatisé échoue, les développeurs sont avertis et peuvent le corriger immédiatement. Plus ces bugs sont détectés tôt, plus ils sont faciles à corriger !
