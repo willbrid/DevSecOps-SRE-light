@@ -4,25 +4,25 @@ Ce dépôt GitHub regroupe des ressources et des exemples pratiques **DevOps** e
 
 ### Contenus
 
-1. **devops-essential**
+1. **devops-essential** <br>
 Contient des guides et des ressources essentielles pour vous familiariser avec les principes fondamentaux de DevOps.
 
-2. **docker**
+2. **docker** <br>
 Explorez les configurations Docker et les bonnes pratiques pour la conteneurisation d'applications.
 
-3. **haute-disponibilite**
+3. **haute-disponibilite** <br>
 Découvrez les meilleures pratiques pour la conception et la mise en œuvre de solutions à haute disponibilité.
 
-4. **jenkins**
+4. **jenkins** <br>
 Guides et configurations pour Jenkins, un serveur d'intégration continue populaire.
 
-5. **iac**
+5. **iac** <br>
 Infrastructure as Code (IaC) : exemples et modèles pour provisionner et gérer l'infrastructure de manière automatisée.
 
-6. **kubernetes**
+6. **kubernetes** <br>
 Ressources pour comprendre et déployer des applications sur Kubernetes, un orchestrateur de conteneurs.
 
-7. **observabilite**
+7. **observabilite** <br>
 Pratiques et outils pour garantir la visibilité et la compréhension des systèmes en production.
 
 ### Mises à Jour et Provisionnement Continu
