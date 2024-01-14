@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hue-music  
+  labels:
+    app: music
+    service: music
+spec:
+  containers:
+    - name: hue-music
+      image: busybox
+      readinessProbe:
+        exec:
+          command:
+            - /usr/local/bin/checker
+            - --full-check
+            - --data-service=hue-multimedia-service
+        initialDelaySeconds: 60
+        timeoutSeconds: 5

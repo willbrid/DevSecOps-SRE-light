@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hue-music  
+  labels:
+    app: music
+    service: music
+spec:
+  containers:
+    - name: hue-music
+      image: busybox
+      livenessProbe:
+        httpGet:
+          path: /pulse
+          port: 8888
+          httpHeaders:
+            - name: X-Custom-Header
+              value: ItsAlive
+        initialDelaySeconds: 30
+        timeoutSeconds: 1

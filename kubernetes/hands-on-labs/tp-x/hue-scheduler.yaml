@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hue-scheduler
+spec:
+  containers:
+    - image: willbrid.registry:5000/hue-global-listener:1.0
+      name: hue-global-listener
+      volumeMounts:
+        - mountPath: /notifications
+          name: shared-volume
+    - image: willbrid.registry:5000/hue-job-scheduler:1.0
+      name: hue-job-listener
+      volumeMounts:
+        - mountPath: /incoming
+          name: shared-volume 
+  volumes:
+    - name: shared-volume
+      emptyDir: {}                     

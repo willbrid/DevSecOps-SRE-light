@@ -1,0 +1,13 @@
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: dir-pv
+spec:
+  storageClassName: dir
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/tmp/data"
