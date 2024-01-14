@@ -1,0 +1,7 @@
+# Fragments primaires et répliques
+
+OpenSearch divise les index en fragments pour une distribution uniforme sur les nœuds d'un cluster. Par exemple, un index de 400 Go peut être trop volumineux pour être géré par un seul nœud de notre cluster, mais divisé en dix fragments, chacune de 40 Go, OpenSearch peut répartir les partitions sur dix nœuds et travailler avec chaque partition individuellement.
+<br><br>
+Par défaut, OpenSearch crée un fragment réplique pour chaque fragment primaire. Si nous divisons notre index en dix fragments, par exemple, OpenSearch crée également dix fragments de réplique. Ces fragments de réplique agissent comme des sauvegardes en cas de défaillance d'un nœud (OpenSearch distribue les fragments de réplique à des nœuds différents de leurs fragments principaux correspondants), mais ils améliorent également la vitesse et le taux à laquelle le cluster peut traiter les demandes de recherche. Nous pouvons spécifier plusieurs répliques par index pour une charge de travail intensive en recherche.
+<br><br>
+Bien qu'il s'agisse d'un élément d'un index OpenSearch, chaque fragment est en fait un index Lucene complet. Ce détail est important, car chaque instance de Lucene est un processus en cours d'exécution qui consomme du processeur et de la mémoire. Plus de fragments n'est pas nécessairement mieux. Le fractionnement d'un index de 400 Go en 1 000 fragments, par exemple, exercerait une pression inutile sur notre cluster. Une bonne règle de base consiste à conserver une taille de partition entre **10** et **50 Go**.
