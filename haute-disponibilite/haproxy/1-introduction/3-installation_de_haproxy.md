@@ -8,7 +8,7 @@ sudo yum -y install haproxy
 
 - Configurons SELinux pour HAProxy
 
-Nous devons définir haproxy_connect_any sur 1 pour faire fonctionner HAProxy :
+Nous devons définir **haproxy_connect_any** sur **1** pour faire fonctionner HAProxy :
 
 ```
 sudo setsebool -P haproxy_connect_any 1
@@ -203,7 +203,7 @@ sudo systemctl status haproxy
 
 - Configurons SELinux pour HAProxy
 
-Nous devons définir haproxy_connect_any sur 1 pour faire fonctionner HAProxy :
+Nous devons définir **haproxy_connect_any** sur **1** pour faire fonctionner HAProxy :
 ```
 sudo setsebool -P haproxy_connect_any 1
 ```
