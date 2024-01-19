@@ -22,7 +22,7 @@ Ce dépôt GitHub regroupe des ressources et des exemples pratiques **DevOps** e
 
 Les contenus de ce dépôt seront régulièrement mis à jour pour refléter les dernières pratiques DevOps et les évolutions technologiques.
 
-### Liens Utiles
+### Références
 
 - [acloud guru](https://learn.acloud.guru/)
 - [Jenkins Documentation](https://www.jenkins.io/doc/)
