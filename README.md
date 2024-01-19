@@ -24,7 +24,7 @@ Les contenus de ce dépôt seront régulièrement mis à jour pour refléter les
 
 ### Références
 
-- [acloud guru](https://learn.acloud.guru/)
+- [Acloud Guru](https://learn.acloud.guru/)
 - [Jenkins Documentation](https://www.jenkins.io/doc/)
 - [Kubernetes Documentation](https://kubernetes.io/docs/home/)
 - [Docker Documentation](https://docs.docker.com/)
