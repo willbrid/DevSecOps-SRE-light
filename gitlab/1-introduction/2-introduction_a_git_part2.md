@@ -111,3 +111,54 @@ Pour poursuivre notre fusion, nous devons d'abord résoudre le **conflit de fusi
 - les outils graphiques Git tels que **Sourcetree** ou **Sublime Merge**
 - les commandes Git et un éditeur de code tel que **vscode**.
 - l'outil graphique intégré de résolution des conflits de fusion de GitLab
+
+### Synchronisation des copies locales et distantes des référentiels
+
+- Affichons des informations détaillées sur les référentiels distants associés à notre référentiel Git local. 
+
+```
+git remote --verbose
+```
+
+--- La première ligne montre l'URL que le référentiel utilise pour récupérer les modifications (**fetch**) depuis le référentiel distant. <br>
+--- La deuxième ligne montre l'URL que le référentiel utilise pour pousser (**push**) les modifications vers le référentiel distant.
+
+- Clonons notre référentiel distant
+
+Nous supposerons que nous avons notre référentiel distant **miam-miam-food** à l'adresse **https://gitlab.local/willbrid/miam-miam-food**
+
+```
+mkdir code && cd code
+```
+
+```
+git clone https://gitlab.local/willbrid/miam-miam-food
+```
+
+- Poussons une branche locale **login-feature** vers le référentiel distant
+
+```
+git push --set-upstream origin login-feature
+```
+
+- Récupérons les informations de changement effectué sur une branche
+
+```
+git fetch
+```
+
+- Récupérons les nouvelles modifications effectué sur la branche **login-feature** sur le référentiel distant
+
+```
+git switch login-feature
+```
+
+```
+git pull
+```
+
+- Vérifions si notre branche locale **login-feature** est derrière la copie de la branche **login-feature** du référentiel distant
+
+```
+git status
+```
