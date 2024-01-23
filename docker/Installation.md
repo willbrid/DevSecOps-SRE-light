@@ -1,21 +1,17 @@
-# Installation spécifique sur les os centos7 et ubuntu18.04
-## Installation de docker sur centos 7
-**Installer les packages requis**
+# Installation spécifique et multiplatforme
 
-```
-sudo yum install -y device-mapper-persistent-data lvm2
-```
+### Installation de docker sur rocky linux 8
 
 **Ajouter le référentiel Docker CE**
 
 ```
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
 **Installer les packages Docker CE**
 
 ```
-sudo yum install -y docker-ce docker-ce-cli containerd.io
+sudo dnf install -y docker-ce docker-ce-cli containerd.io
 ```
 
 **Démarrer et activer le service Docker**
@@ -41,8 +37,8 @@ Nous pouvons tester notre installation Docker en exécutant un simple conteneur.
 docker run busybox
 ```
 
+### Installation de docker sur Ubuntu 20.04
 
-## Installation de docker sur Ubuntu 18.04
 **Installer les packages requis**
 
 ```
@@ -88,9 +84,8 @@ Nous pouvons tester notre installation Docker en exécutant un simple conteneur.
 docker run hello-world
 ```
 
+### Installation multiplatforme de docker
 
-
-# Installation multiplatforme de docker
 **Télécharger le script sh**
 
 ```
@@ -116,3 +111,8 @@ sudo usermod -a -G docker <user>
 sudo systemctl start docker
 sudo systemctl enable docker
 ```
+
+
+**Source**:
+- [docker-engine-install](https://docs.docker.com/engine/install/)
+- [docker-doc-install](https://docs.docker.com/engine/install/centos/)
