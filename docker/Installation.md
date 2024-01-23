@@ -113,6 +113,6 @@ sudo systemctl enable docker
 ```
 
 
-**Référence**:
+**Références**:
 - [docker-engine-install](https://docs.docker.com/engine/install/)
 - [docker-doc-install](https://docs.docker.com/engine/install/centos/)
