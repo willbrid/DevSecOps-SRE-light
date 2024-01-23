@@ -1,4 +1,5 @@
 # Namespaces et Cgroups
+
 **Espaces de noms (Namespaces)** : une technologie liée à Linux qui isole les processus en partitionnant les ressources qui leur sont disponibles. Les espaces de noms empêchent les processus d'interférer les uns avec les autres. Docker exploite les espaces de noms pour isoler les ressources des conteneurs.<br>
 
 Quelques espaces de noms utilisés par Docker :
@@ -11,4 +12,6 @@ Quelques espaces de noms utilisés par Docker :
 <br>
 
 **Groupes de contrôle (cgroups)** : les groupes de contrôle limitent les processus à un ensemble spécifique de ressources. Docker utilise des cgroups pour appliquer des règles relatives à l'utilisation des ressources par les conteneurs, telles que la limitation de la mémoire ou de l'utilisation du processeur.<br>
-Lien: https://docs.docker.com/engine/security/userns-remap/
+
+**Référence** :
+- [security-userns-remap](https://docs.docker.com/engine/security/userns-remap/)

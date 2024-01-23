@@ -1,4 +1,5 @@
 # Introduction à Docker Swarm
+
 Docker Swarm : une solution de gestion de cluster fournie avec Docker. Il nous permet de créer et de gérer un cluster de serveurs Docker.<br>
 Manager : Un serveur dans un Swarm qui contrôle le cluster Swarm et délègue le travail aux workers. <br>
 Worker: un serveur dans le Swarm qui exécute les charges de travail du conteneur.<br>
@@ -47,6 +48,7 @@ docker node ls
 Tous les nœuds doivent apparaître dans la liste, y compris le manager.
 
 ## Sauvegarde et restauration Docker Swarm
+
 - Sauvegardons les données du cluster Swarm
 
 Sur le noeud manager, stoppons le démon docker :

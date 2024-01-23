@@ -1,4 +1,5 @@
 # Gestion des images
+
 Voici quelques commandes clés pour la gestion des images : <br>
 
 - Liste les images sur le système
@@ -21,7 +22,7 @@ docker image inspect IMAGE
 docker image inspect IMAGE --format "format"
 ```
 
-Exemple :
+**Exemple** :
 ```
 docker image inspect nginx:1.14.0 --format "{{.Architecture}}"
 docker image inspect nginx:1.14.0 --format "{{.Architecture}} {{.Os}}"
@@ -46,7 +47,7 @@ docker image prune
 - Docker ne fournit pas de méthode officielle pour transformer une image multicouche en une seule couche. Nous pouvons contourner ce problème en exécutant un conteneur à partir de l'image, en exportant le système de fichiers du conteneur, puis en important ces données en tant que nouvelle image.
 <br>
 
-Exemple :
+**Exemple** :
 1. Configurons un nouveau répertoire de projet pour créer une image de base :
 ```
 cd ~/

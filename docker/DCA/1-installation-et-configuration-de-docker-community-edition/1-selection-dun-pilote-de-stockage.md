@@ -1,4 +1,5 @@
 # Sélection d'un pilote de stockage
+
 Pilote de stockage : un pilote enfichable qui gère le stockage interne des conteneurs. <br>
 Actuellement, le pilote par défaut pour les systèmes Rocky Linux 8, CentOS et Ubuntu est *overlay2* . <br>
 Le pilote de stockage *devicemapper* est parfois utilisé sur les systèmes CentOS/RedHat, en particulier dans les anciennes versions de Docker.
@@ -9,6 +10,7 @@ docker info | grep "Storage"
 ```
 
 ## Utilisation d'une option du démon docker pour définir le pilote de stockage
+
 Une façon de sélectionner un autre pilote de stockage consiste à transmettre l'indicateur *--storage-driver* au démon Docker. <br>
 Par exemple, nous pouvons modifier le fichier d'unité *systemd* de Docker : /usr/lib/systemd/system/docker.service . N'oublions pas d'ajouter l'indicateur *--storage-driver \<nom du pilote\>* à l'appel à dockerd .
 ```
@@ -26,6 +28,7 @@ sudo systemctl restart docker
 ```
 
 ## Utilisation du fichier de configuration du démon pour définir le pilote de stockage
+
 Nous pouvons également définir explicitement le pilote de stockage à l'aide du fichier de configuration du démon. C'est la méthode recommandée par Docker. <br>
 Notons que nous ne pouvons pas faire cela et passer l'indicateur *--storage-driver* au démon en même temps :
 ```

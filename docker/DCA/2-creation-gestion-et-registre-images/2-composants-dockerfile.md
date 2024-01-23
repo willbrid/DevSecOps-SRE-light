@@ -1,7 +1,9 @@
 # Les composants d'un Dockerfile
+
 Dockerfile : un fichier qui définit une série de directives et est utilisé pour créer une image.
 
-Un exemple de Dockerfile :
+**Exemple de Dockerfile** :
+
 ```
 # Simple nginx image
 FROM ubuntu:bionic
@@ -11,12 +13,14 @@ RUN apt-get update && apt-get install -y nginx=$NGINX_VERSION
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
-Construire une image avec ce dockerfile :
+**Construire une image avec ce dockerfile** :
+
 ```
 docker build -t TAG_NAME DOCKERFILE_LOCATION
 ```
 
-Quelques directives Dockerfile : <br>
+**Quelques directives Dockerfile** :
+
 - **FROM** : Spécifie l'image de base à partir de laquelle construire.
 
 - **ENV** : définit les variables d'environnement qui sont visibles dans les étapes de construction ultérieures ainsi que pendant l'exécution du conteneur.
@@ -39,9 +43,9 @@ Remarque : cela ne publie pas réellement les ports.
 - **STOPSIGNAL** : Définit un signal personnalisé qui sera utilisé pour arrêter le processus du conteneur.
 
 - **HEALTHCHECK** : Définit une commande qui sera utilisée par le démon Docker pour vérifier si le conteneur est sain.
-<br>
 
-Exemple :
+**Exemple** :
+
 ```
 vi Dockerfile
 ```
@@ -61,8 +65,10 @@ docker image ls
 ```
 
 Construction en plusieurs étapes (Multi-Stage Build) : une construction à partir d'un Dockerfile avec plusieurs directives FROM. Il est utilisé pour copier sélectivement les fichiers dans l'étape finale, en gardant l'image résultante aussi petite que possible.
-<br>
-Exemple :
+
+
+**Exemple** :
+
 ```
 vi Dockerfile
 ```
