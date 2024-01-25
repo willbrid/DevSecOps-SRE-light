@@ -33,3 +33,6 @@ Les contenus de ce dépôt seront régulièrement mis à jour pour refléter les
 - [Docker Documentation](https://docs.docker.com/)
 - [Prometheus Documentation](https://prometheus.io/docs/introduction/overview/)
 - [Thanos Documentation](https://thanos.io/tip/thanos/getting-started.md/)
+- [Grafana Documentation](https://grafana.com/docs/)
+- [Opensearch Documentation](https://opensearch.org/docs/latest/intro/)
+- [Haproxy Documentation](https://docs.haproxy.org/)
