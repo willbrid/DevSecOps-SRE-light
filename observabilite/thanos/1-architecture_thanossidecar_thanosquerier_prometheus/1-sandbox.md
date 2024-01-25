@@ -6,7 +6,7 @@ Supposons que nous souhaiterons mettre en place une architecture intégrant **pr
 - dans le cluster **B**, 2 répliques du couple serveur Prometheus et serveur thanos sidecar dont nous illustrerons avec 4 conteneurs (2 instances prometheus et 2 instances de thanos sidecar) dans un serveur.
 - dans la zone **Admin**, un serveur thanos querier dont nous illustrerons avec un conteneur dans un serveur
 
-![architecture_thanossidecar_thanosquerier_prometheus.png](../images/architecture_thanossidecar_thanosquerier_prometheus.png)
+<img src="../images/architecture_thanossidecar_thanosquerier_prometheus.png" alt="architecture_thanossidecar_thanosquerier_prometheus.png" width="520" height="520" />
 
 Nous utiliserons **vagrant** avec **virtualbox 7.0** depuis une machine hôte **ubuntu 20.04**. Nous suivons les étapes ci-dessous pour provisionner nos 3 serveurs.
 
