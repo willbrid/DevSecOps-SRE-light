@@ -7,7 +7,9 @@ Supposons que nous souhaiterons mettre en place une architecture intégrant **pr
 - **thanos querier** : il permettra de lire les nouvelles données de prometheus depuis le composant **thanos sidecar** et les anciennes données de prometheus depuis le composant **thanos store gateway**
 - **thanos compactor** : c'est un composant essentiel qui fonctionne sur un seul bucket de stockage d'objets pour compacter, sous-échantillonner et appliquer la rétention aux blocs TSDB contenus à l'intérieur, rendant ainsi les requêtes sur les données historiques plus efficaces. Il crée des agrégats d'anciennes métriques (basées sur les règles). Il est également responsable du sous-échantillonnage des données, en effectuant un sous-échantillonnage de 5 minutes après 40 heures et un sous-échantillonnage d'une heure après 10 jours.
 
+<p align="center">
 <img src="../images/sous_echantillonnage_et_conservation_illimitee_des_metriques_pour_prometheus.png" alt="sous_echantillonnage_et_conservation_illimitee_des_metriques_pour_prometheus.png" width="520" height="520" />
+</p>
 
 Pour accomplir cette architecture ci-dessus, nous aurons besoin de 3 serveurs : 
 - un serveur de stockage (**srv-storage**) hébergeant 3 services : service de stockage **s3 minio**, service **thanos gateway** et service **thanos compactor**
