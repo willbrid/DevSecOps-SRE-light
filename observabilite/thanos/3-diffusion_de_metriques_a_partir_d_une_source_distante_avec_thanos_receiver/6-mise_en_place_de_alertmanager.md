@@ -254,5 +254,5 @@ podman container stop node_exporter
 Nous nous connectons sur l'interface web de **roundcubemail** avec le compte **admin@monitoring.local** et nous remarquerons un mail d'alerte.
 
 <p align="center">
-<img src="../images/alertmanager_mail.png" alt="alertmanager_mail.png" width="700" height="520" />
+<img src="../images/alertmanager_mail.png" alt="alertmanager_mail.png" width="750" height="520" />
 </p>

@@ -8,7 +8,7 @@ Supposons que nous souhaiterons mettre en place une architecture intégrant **pr
 - **thanos compactor** : c'est un composant essentiel qui fonctionne sur un seul bucket de stockage d'objets pour compacter, sous-échantillonner et appliquer la rétention aux blocs TSDB contenus à l'intérieur, rendant ainsi les requêtes sur les données historiques plus efficaces. Il crée des agrégats d'anciennes métriques (basées sur les règles). Il est également responsable du sous-échantillonnage des données, en effectuant un sous-échantillonnage de 5 minutes après 40 heures et un sous-échantillonnage d'une heure après 10 jours.
 
 <p align="center">
-<img src="../images/diffusion_de_metriques_depuis_une_source_distante_avec_thanos_receiver.png" alt="diffusion_de_metriques_depuis_une_source_distante_avec_thanos_receiver.png" width="520" height="520" />
+<img src="../images/diffusion_de_metriques_depuis_une_source_distante_avec_thanos_receiver.png" alt="diffusion_de_metriques_depuis_une_source_distante_avec_thanos_receiver.png" width="620" height="520" />
 </p>
 
 Pour accomplir cette architecture ci-dessus, nous aurons besoin de 3 serveurs : 

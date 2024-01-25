@@ -7,7 +7,7 @@ Supposons que nous souhaiterons mettre en place une architecture intégrant **pr
 - dans la zone **Admin**, un serveur thanos querier dont nous illustrerons avec un conteneur dans un serveur
 
 <p align="center">
-<img src="../images/architecture_thanossidecar_thanosquerier_prometheus.png" alt="architecture_thanossidecar_thanosquerier_prometheus.png" width="520" height="520" />
+<img src="../images/architecture_thanossidecar_thanosquerier_prometheus.png" alt="architecture_thanossidecar_thanosquerier_prometheus.png" width="620" height="520" />
 </p>
 
 Nous utiliserons **vagrant** avec **virtualbox 7.0** depuis une machine hôte **ubuntu 20.04**. Nous suivons les étapes ci-dessous pour provisionner nos 3 serveurs.
