@@ -10,7 +10,7 @@ Supposons que nous souhaiterons mettre en place une architecture **ci/cd** avec 
 <img src="../images/gitlab-devops.png" alt="gitlab-devops.png" width="620" height="520" />
 </p>
 
-Nous utiliserons **vagrant** avec **virtualbox 7.0** depuis une machine hôte **ubuntu 20.04**. Nous suivons les étapes ci-dessous pour provisionner nos 5 serveurs.
+Nous utiliserons **vagrant** avec **virtualbox 7.0** depuis une machine hôte **ubuntu 20.04**. Nous suivons les étapes ci-dessous pour provisionner nos 4 serveurs.
 
 
 ```
