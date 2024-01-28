@@ -2,7 +2,7 @@
 
 Ici nous installerons un cluster kubernetes à un seul noeud avec **kind** et un serveur de messagerie avec **mailserver/docker-mailserver**.
 
-### Mise en place de notre cluster kubernetes à un seul avec kind sur le serveur kubernetes
+### Mise en place de notre cluster kubernetes à un seul noeud avec kind sur le serveur kubernetes
 
 ##### Installation de kind
 
