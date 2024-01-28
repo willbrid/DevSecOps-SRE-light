@@ -88,6 +88,8 @@ sudo tar Czxvf /usr/local containerd-1.7.6-linux-amd64.tar.gz
 ```
 wget https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
 sudo mv containerd.service /usr/lib/systemd/system/
+sudo chown root:root /usr/lib/systemd/system/containerd.service
+sudo restorecon /usr/lib/systemd/system/containerd.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now containerd
 sudo systemctl status containerd
