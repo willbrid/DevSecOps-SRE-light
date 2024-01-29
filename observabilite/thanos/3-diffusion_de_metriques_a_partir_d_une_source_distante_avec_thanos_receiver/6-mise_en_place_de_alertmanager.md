@@ -103,7 +103,7 @@ sudo firewall-cmd --permanent --add-port=1025/tcp --add-port=8080/tcp
 sudo firewall-cmd --reload
 ```
 
-Nous accédons l'interface web du serveur roundcubemail via l'url : **http://thanos-querier-s3.local:8080/** et nous saisissons les paramètres d'authentification de notre compte créé plus haut :
+Nous accédons à l'interface web du serveur roundcubemail via l'url : **http://thanos-querier-s3.local:8080/** et nous saisissons les paramètres d'authentification de notre compte créé plus haut :
 
 ```
 Login : alertmanager@monitoring.local
