@@ -28,10 +28,8 @@ systemctl enable --now --user podman.socket
 ```
 
 ```
-export DOCKER_HOST="unix:///var/run/user/1000/podman/podman.sock"
+export DOCKER_HOST="unix:///var/run/user/$(id -u)/podman/podman.sock"
 ```
-
-où est la valeur issue de la commande **id -u**
 
 - Démarrons **docker-mailserver**
 
