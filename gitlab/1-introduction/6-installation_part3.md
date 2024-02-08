@@ -37,12 +37,15 @@ version: '3.6'
 services:
   gitlab:
     image: docker.io/gitlab/gitlab-ce:16.8.1-ce.0
+    user: root
     name: gitlab
     restart: always
     hostname: 'gitlab.willbrid.com'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'https://gitlab.willbrid.com:8443'
+        gitlab_rails['time_zone'] = 'Africa/Douala'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
         gitlab_rails['initial_root_password'] = 'SuperSecret'
         gitlab_rails['smtp_enable'] = true
         gitlab_rails['smtp_address'] = 'mail.willbrid.com'
@@ -53,20 +56,23 @@ services:
         gitlab_rails['smtp_enable_starttls_auto'] = false
         gitlab_rails['smtp_ssl'] = false
         gitlab_rails['smtp_force_ssl'] = false
+        nginx['listen_https'] = true
         nginx['redirect_http_to_https'] = true
         letsencrypt['enable'] = false
         nginx['ssl_certificate'] = "/etc/gitlab/ssl/willbrid.com.crt"
         nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/willbrid.com.key"
+        nginx['listen_port'] = 8443
         registry['enable'] = true
+        registry_nginx['listen_https'] = true
+        registry_nginx['listen_port'] = 5050
         registry_nginx['redirect_http_to_https'] = true
         registry_external_url 'https://gitlab.willbrid.com:5050'
         gitlab_rails['registry_path'] = "/var/opt/registry"
         registry_nginx['ssl_certificate'] = "/etc/gitlab/ssl/willbrid.com.crt"
         registry_nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/willbrid.com.key"
     ports:
-      - '8080:80'
-      - '8443:443'
-      - '2222:22'
+      - '8443:8443'
+      - '2222:2222'
       - '5050:5050'
     volumes:
       - '$GITLAB_HOME/config:/etc/gitlab:z'
