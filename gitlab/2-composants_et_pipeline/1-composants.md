@@ -64,3 +64,51 @@ Nous pouvons également consulter une liste de problèmes au niveau du **groupe*
 
 Les types de **tâches** que les problèmes peuvent représenter : **ajouter une fonctionnalité**, **correction d'un bug**, **rédiger des tests automatisés**
 **mettre en place une base de données**, **configurer un outil que toute l'équipe pourra utiliser**, **rechercher des options techniques**, **réfléchir à des solutions à un problème**, **planifier un événement**, **sonder l'équipe sur ses préférences en matière de normes de codage**, **signaler et gérer un incident de sécurité**, **proposer une idée de nouveau produit ou de nouvelle fonctionnalité**, **poser une question sur laquelle n'importe qui peut donner son opinion**, **demander des modèles de T-shirts pour une prochaine sortie d'entreprise**.
+
+### Activation des pratiques DevOps avec le flux GitLab
+
+Tout en travaillant sur l'application **Mymbolo**, nous décidons d'ajouter une fonctionnalité qui permet d'authentifier les utilisateurs prestataire. Voici toutes les étapes prescrites par le flux GitLab pour faire exister cette fonctionnalité :
+
+1- Dans le projet mobile du groupe **Mymbolo**, nous créons un problème intitulé **authentifier les utilisateurs prestataire**, en laissant tous les champs de métadonnées vides.
+
+2- Dans la section de discussion du problème, nous mentionnons deux personnes qui, selon nous, pourraient avoir des opinions sur la question de savoir si cette fonctionnalité est une bonne idée.
+
+3- Ces deux personnes ajoutent des réponses à la section de discussion. On laisse juste un emoji du pouce levé. L’autre exprime son soutien à l’idée mais demande si l’application doit également **authentifier les utilisateurs clients**.
+
+4- Nous décidons que **authentifier les utilisateurs clients** est une bonne idée, mais nous ne sommes pas sûr. Nous faisons un autre problème intitulé **Question : devons-nous authentifier les utilisateurs clients ?** Nous mettons ce problème de côté pour le traiter plus tard et nous concentrons à nouveau sur le problème **authentifier les utilisateurs prestataire**, car nous sommes convaincu que les prestataires doivent avoir un compte.
+
+5- Lors d'une réunion de planification à l'échelle de l'équipe, le groupe décide d'attribuer au problème une pondération de **8**, ce qui signifie que pour notre équipe, cela devrait représenter une tâche d'une semaine. Nous attribuons le problème à un développeur back-end nommé **willbrid** et nous définissons son champ de date d'échéance sur 2 semaines à compter d'aujourd'hui.
+
+6- **willbrid** applique une étiquette **Status::In Progress** avec une portée et une étiquette Back-end sans portée au problème. Cela aidera l’équipe à savoir si le problème est sur la bonne voie et à comprendre qui en est responsable.
+
+7- **willbrid** crée une branche temporaire appelée **authentifier-utilisateurs-prestataire** pour conserver ses commits.
+
+8- **willbrid** crée une demande de fusion intitulée **Brouillon : authentifier les utilisateurs prestataire**. Il charge ses coéquipiers **Alice** et **Bob** d'examiner la demande de fusion. Ils n’ont encore rien à faire puisque **willbrid** n’a ajouté aucun code à la branche du MR.
+
+9- Maintenant que **willbrid** a configuré les éléments : le problème, la branche et la demande de fusion, il commence à coder.
+
+10- Après avoir terminé un petit morceau de code testable, il le valide dans sa branche.
+
+11- **willbrid** consulte le MR pour voir les résultats des tests automatisés, des analyses de qualité du code, des analyses de licence et des analyses de sécurité exécutées sur son premier commit. Ils ne signalent aucun problème, alors il célèbre la fête.
+
+12- **Alice** et **Bob** reçoivent des notifications par e-mail indiquant que **willbrid** a transmis du code au MR. Ils examinent le MR et examinent ses modifications. Tous deux ajoutent quelques commentaires sur les parties de son code qu'ils aiment et sur les parties qui peuvent être améliorées.
+
+13- Certaines des suggestions semblent erronées à **willbrid**, c'est pourquoi il ajoute des commentaires dans la section de discussion du MR expliquant son point de vue. Il continue d'en parler jusqu'à ce qu'ils parviennent tous à un accord sur la façon dont il doit procéder. **willbrid** ajoute un nouveau commit avec les correctifs convenus.
+
+14- Une fois de plus, **willbrid** regarde dans le MR pour voir les résultats des tests et analyses automatisés par rapport à son dernier commit. L'une des analyses de sécurité souligne une vulnérabilité qu'il a involontairement introduite. Il ajoute rapidement un nouveau commit qui corrige la vulnérabilité. Les analyses s'exécutent à nouveau sur ce code fixe, et cette fois tout se passe bien.
+
+15- **willbrid** reçoit l'avis favorable d'**Alice** et de **Bob** sur tout le code qu'il a engagé jusqu'à présent, son travail est donc terminé. Il supprime l'étiquette Back-end, ajoute une étiquette Front-end et réattribue le problème à un ingénieur front-end nommé **George**.
+
+16- **George** écrit du code frontend et ajoute quelques commits à la même branche de la fonctionnalité que **willbrid** utilisait. Chaque commit déclenche une nouvelle série de tests et d'analyses automatisés, et chacun est examiné par Alice et Bob.
+
+17- **George** se rend compte que le travail prend du retard, il ajoute donc une étiquette **à risque** au problème original. Le responsable du développement répond à cela en affectant un autre développeur frontend nommé **Helen** pour aider **George**.
+
+18- Le cycle de validation, puis de révision, puis d'inspection, de test et d'analyse automatisés se poursuit pendant quelques tours supplémentaires jusqu'à ce que **George** et **Helen** terminent la fonctionnalité. Ils suppriment l’étiquette **à risque**. **Alice** et **Bob** sont satisfaits du code et ajoutent tous deux des emojis de pouce levé à la discussion.
+
+19- **George** supprime **Draft : du titre du problème**, indiquant qu'il considère le code prêt à être fusionné.
+
+20- **George** mentionne les équipes de sécurité et d'assurance qualité dans la discussion du MR afin qu'elles puissent l'approuver. En attendant, les règles d’approbation du projet Mobile empêchent la fusion du MR.
+
+21- Un membre de l'équipe de sécurité et deux membres de l'équipe d'assurance qualité marquent le MR comme **« approuvé »**. Cela réactive le bouton de fusion du MR. Avec une grande joie et un sentiment d'accomplissement, **George** supprime les étiquettes **Front-end** et **Status::In Progress** et clique sur le bouton de fusion du MR.
+
+22- Toute l'équipe sort dans un pub pour faire la fête et mange une quantité inconfortable de pizza.
