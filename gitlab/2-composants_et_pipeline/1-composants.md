@@ -65,7 +65,7 @@ Nous pouvons également consulter une liste de problèmes au niveau du **groupe*
 Les types de **tâches** que les problèmes peuvent représenter : **ajouter une fonctionnalité**, **correction d'un bug**, **rédiger des tests automatisés**
 **mettre en place une base de données**, **configurer un outil que toute l'équipe pourra utiliser**, **rechercher des options techniques**, **réfléchir à des solutions à un problème**, **planifier un événement**, **sonder l'équipe sur ses préférences en matière de normes de codage**, **signaler et gérer un incident de sécurité**, **proposer une idée de nouveau produit ou de nouvelle fonctionnalité**, **poser une question sur laquelle n'importe qui peut donner son opinion**, **demander des modèles de T-shirts pour une prochaine sortie d'entreprise**.
 
-### Activation des pratiques DevOps avec le flux GitLab
+### Activation des pratiques DevOps avec le workflow GitLab
 
 Tout en travaillant sur l'application **Mymbolo**, nous décidons d'ajouter une fonctionnalité qui permet d'authentifier les utilisateurs prestataire. Voici toutes les étapes prescrites par le flux GitLab pour faire exister cette fonctionnalité :
 
