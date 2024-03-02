@@ -39,7 +39,6 @@ services:
     image: docker.io/gitlab/gitlab-ce:16.8.1-ce.0
     user: root
     name: gitlab
-    restart: always
     hostname: 'gitlab.willbrid.com'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
@@ -85,6 +84,28 @@ services:
 
 ```
 podman-compose up -d
+```
+
+- Activons le démarrage automatique de Gitlab au démarrage du serveur
+
+```
+SYSTEMD_USER_DIR=$HOME/.config/systemd/user
+```
+
+```
+mkdir -p "$SYSTEMD_USER_DIR"
+```
+
+```
+podman generate systemd -t 5 -n gitlab > "$SYSTEMD_USER_DIR"/gitlab.service
+```
+
+```
+systemctl --user daemon-reload
+```
+
+```
+systemctl --user enable gitlab.service
 ```
 
 - Autorisons les ports 8443 et 5050 sur le serveur **gitlab**
