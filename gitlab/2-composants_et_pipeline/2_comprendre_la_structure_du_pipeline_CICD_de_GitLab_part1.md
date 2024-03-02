@@ -66,6 +66,6 @@ L'autre chose que CD peut signifier est le **déploiement continu**. C'est la m�
 Un pipeline CD, qu'il implémente une livraison continue ou un déploiement continu, doit parfois conditionner le code de notre projet sous une forme déployable avant de pouvoir être déployé. <br>
 Bien entendu, il existe des cas où aucun emballage n’est requis. Certains projets dotés de stratégies de déploiement simples peuvent déployer un ensemble de fichiers libres et non empaquetés.
 
-### GitLab Runners
+### Exécuteurs GitLab
 
-Un pipeline CI/CD n'est qu'une série de commandes exécutées par un robot, où ces commandes effectuent des tâches liées à la création, à la vérification et au déploiement de logiciels. Les **GitLab Runners** sont les robots qui exécutent ces commandes. Techniquement parlant, un **GitLab Runner** est un petit programme auquel l'instance GitLab envoie des commandes à exécuter.
+Un pipeline CI/CD n'est qu'une série de commandes exécutées par un robot, où ces commandes effectuent des tâches liées à la création, à la vérification et au déploiement de logiciels. Les **exécuteurs GitLab** sont les robots qui exécutent ces commandes. Techniquement parlant, un **exécuteur GitLab** est un petit programme auquel l'instance GitLab envoie des commandes à exécuter.
