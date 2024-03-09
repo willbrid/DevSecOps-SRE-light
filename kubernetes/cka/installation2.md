@@ -5,28 +5,34 @@ Dans cette section nous mettrons en place un cluster k8s à 4 noeuds avec podman
 **Hypothèse**: On supposera que l'environnement **sandbox** est déjà mis en place pour **Rocky linux 8**. <br>
 [Mise en place de la Sandbox](https://github.com/willbrid/kubernetes-light/blob/main/cka/sandbox.md)
 
-## Configuration du hostname et du fichier hosts
+### Configuration du hostname et du fichier hosts
+
 **Sur le nœud master (k8s-control)**
+
 ```
 sudo hostnamectl set-hostname k8s-control
 ```
 
 **Sur le nœud worker 1 (k8s-worker1)**
+
 ```
 sudo hostnamectl set-hostname k8s-worker1
 ```
 
 **Sur le nœud worker 2 (k8s-worker2)**
+
 ```
 sudo hostnamectl set-hostname k8s-worker2
 ```
 
 **Sur le nœud worker 3 (k8s-worker3)**
+
 ```
 sudo hostnamectl set-hostname k8s-worker2
 ```
 
-**Configuration du fichier hosts**<br>
+**Configuration du fichier hosts**
+
 Sur tous les nœuds, configurez le fichier hosts pour permettre à tous les nœuds de se joindre à l'aide de ces noms d'hôte.
 ```
 sudo vi /etc/hosts
@@ -40,21 +46,26 @@ Sur tous les nœuds, ajoutez ce qui suit à la fin du fichier. Vous devrez fourn
 192.168.56.90   k8s-worker3
 ```
 
-## Configuration de base sur tous les noeuds
+### Configuration de base sur tous les noeuds
+
 **Mettons à jour selinux en mode permissive**
+
 ```
 sudo setenforce 0
 sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/sysconfig/selinux
 ```
 
 **Désactivation du swap**
+
 ```
 sudo swapoff -a
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
 
-## Installation et configuration de containerd sur tous les noeuds
+### Installation et configuration de containerd sur tous les noeuds
+
 **Configuration des modules kernel : overlay et br_netfilter pour containerd**
+
 ```
 cat << EOF | sudo tee /etc/modules-load.d/containerd.conf
 overlay
@@ -66,6 +77,7 @@ sudo modprobe br_netfilter
 ```
 
 **Activation du routage des paquets et permission de la communication par pont entre conteneurs**
+
 ```
 cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
 net.bridge.bridge-nf-call-iptables = 1
@@ -77,6 +89,16 @@ sudo sysctl --system
 ```
 
 **Installation et configuration de containerd avec runc** <br>
+
+--- Ajoutons les répertoires **/usr/local/bin** et **/usr/local/sbin** à la variable d'environnement **$PATH**
+
+```
+echo 'PATH="$PATH:/usr/local/bin:/usr/local/sbin"' >> /etc/environment
+```
+
+```
+source /etc/environment
+```
 
 --- installation de containerd
 
@@ -111,48 +133,6 @@ sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/c
 sudo systemctl restart containerd
 ```
 
-**Installation et configuration de crictl version 1.28.0** (https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md) <br>
-
-**crictl** fournit une CLI pour les environnements d'exécution de conteneurs compatibles CRI. Cela permet aux développeurs d'exécution CRI, de déboguer leur environnement d'exécution sans avoir besoin de configurer les composants Kubernetes.
-
-```
-VERSION="v1.28.0"
-curl -L https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-${VERSION}-linux-amd64.tar.gz --output crictl-${VERSION}-linux-amd64.tar.gz
-sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
-rm -f crictl-$VERSION-linux-amd64.tar.gz
-```
-
-Configurons **crictl** afin qu'il utilise l'environnement d'exécution de conteneur **containerd**
-
-```
-sudo vi /etc/crictl.yaml
-```
-
-```
-runtime-endpoint: unix:///var/run/containerd/containerd.sock
-image-endpoint: unix:///var/run/containerd/containerd.sock
-timeout: 10
-debug: true
-```
-
-Permettons au binaire installé dans le repertoire **/usr/local/bin** d'être exécuté avec **sudo** depuis un utilisateur non root
-
-```
-sudo visudo
-```
-
-```
-...
-Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
-...
-```
-
-Testons notre installation de **crictl** en exécutant
-
-```
-sudo crictl image ls
-```
-
 ## Configuration du parefeu firewall-cmd pour autoriser les ports de k8s
 
 **Sur le noeud master**
@@ -179,7 +159,8 @@ sudo firewall-cmd --reload
 
 Cette configuration de parefeu est basée sur la liste de ports par défaut des composants de k8s dont vous pouvez consulter via ce lien : [k8s-ports-and-protocols](https://kubernetes.io/docs/reference/ports-and-protocols/) .
 
-## Installation du cluster k8s
+### Installation du cluster k8s
+
 **Ajout du repo k8s sur tous les noeuds**
 ```
 sudo vi /etc/yum.repos.d/kubernetes.repo
@@ -188,12 +169,11 @@ sudo vi /etc/yum.repos.d/kubernetes.repo
 ```
 [kubernetes]
 name=Kubernetes
-baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-$basearch
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.25.0/rpm/
 enabled=1
 gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-exclude=kubelet kubeadm kubectl
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.25.0/rpm/repodata/repomd.xml.key
+exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
 ```
 
 La dernière ligne avec le mot *exclude* permet d'empêcher la mise à jour des packages *kubelet*, *kubeadm* et *kubectl*.<br>
@@ -212,17 +192,42 @@ sudo dnf --showduplicates list kubectl --disableexcludes=kubernetes
 Dans notre cas, à partir des résultats de la commande ci-dessus, nous avons décidé d'installer la version 1.25.0-0 de chaque package.
 
 **Installation des packages *kubelet*, *kubeadm* et *kubectl* sur tous les noeuds**
+
 ```
 sudo dnf install -y kubelet-1.25.0 kubeadm-1.25.0 kubectl-1.25.0 --disableexcludes=kubernetes
 ```
 
+**Configuration de cri-tools**
+
+La commande d'installation de *kubelet*, *kubeadm* et *kubectl*, installera aussi le binaire **crictl** de **cri-tools**. <br>
+Configurons **crictl** afin qu'il utilise l'environnement d'exécution de conteneur **containerd**
+
+```
+sudo vi /etc/crictl.yaml
+```
+
+```
+runtime-endpoint: unix:///var/run/containerd/containerd.sock
+image-endpoint: unix:///var/run/containerd/containerd.sock
+timeout: 10
+debug: true
+```
+
+Testons notre installation de **crictl** en exécutant
+
+```
+sudo crictl image ls
+```
+
 **Démarrage et activation du kubelet sur tous les noeuds**
+
 ```
 sudo systemctl enable kubelet
 sudo systemctl start kubelet
 ```
 
-**Initialisation du cluster sur le noeud master**<br>
+**Initialisation du cluster sur le noeud master**
+
 Sur le nœud master (k8s-control) uniquement, initialisons le cluster et configurons l'accès kubectl.
 ```
 sudo kubeadm init --pod-network-cidr 172.16.0.0/16 --apiserver-advertise-address 192.168.56.87 --kubernetes-version 1.25.0
@@ -244,7 +249,8 @@ kubectl get nodes
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 ```
 
-**Ajout des noeuds worker au cluster**<br>
+**Ajout des noeuds worker au cluster**
+
 L'on peut obtenir la commande de jointure avec la commande :
 ```
 kubeadm token create --print-join-command
