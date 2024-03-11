@@ -93,11 +93,15 @@ sudo sysctl --system
 --- Ajoutons les répertoires **/usr/local/bin** et **/usr/local/sbin** à la variable d'environnement **$PATH**
 
 ```
-echo 'PATH="$PATH:/usr/local/bin:/usr/local/sbin"' >> /etc/environment
+sudo vi /etc/profile.d/usr_local_bin_path_setting.sh
 ```
 
 ```
-source /etc/environment
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin
+```
+
+```
+sudo source /etc/profile.d/usr_local_bin_path_setting.sh
 ```
 
 --- installation de containerd
