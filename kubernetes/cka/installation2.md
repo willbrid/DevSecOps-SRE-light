@@ -140,6 +140,7 @@ sudo systemctl restart containerd
 ## Configuration du parefeu firewall-cmd pour autoriser les ports de k8s
 
 **Sur le noeud master**
+
 ```
 sudo firewall-cmd --permanent --add-port=6443/tcp
 sudo firewall-cmd --permanent --add-port=2379-2380/tcp
@@ -154,6 +155,7 @@ sudo firewall-cmd --reload
 L'on remplacera *@ip-worker* dans la commande d'option *--add-rich-rule* par chacune des adresses ip des workers. Donc cette commande devrait être éxécutée trois fois pour chacun de nos trois workers : *192.168.56.88*, *192.168.56.89* et *192.168.56.90* . Elle permet d'autoriser l'accès au conteneur à partir d'un autre nœud.
 
 **Sur les noeuds worker**
+
 ```
 sudo firewall-cmd --permanent --add-port=10250/tcp
 sudo firewall-cmd --permanent --add-port=30000-32767/tcp
@@ -166,6 +168,7 @@ Cette configuration de parefeu est basée sur la liste de ports par défaut des 
 ### Installation du cluster k8s
 
 **Ajout du repo k8s sur tous les noeuds**
+
 ```
 sudo vi /etc/yum.repos.d/kubernetes.repo
 ```
