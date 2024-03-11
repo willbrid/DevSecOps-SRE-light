@@ -148,11 +148,8 @@ sudo firewall-cmd --permanent --add-port=10250/tcp
 sudo firewall-cmd --permanent --add-port=10251/tcp
 sudo firewall-cmd --permanent --add-port=10252/tcp
 sudo firewall-cmd --add-masquerade --permanent
-sudo firewall-cmd --zone=public --permanent --add-rich-rule 'rule family=ipv4 source address=@ip-worker/32 accept'
 sudo firewall-cmd --reload
 ```
-
-L'on remplacera *@ip-worker* dans la commande d'option *--add-rich-rule* par chacune des adresses ip des workers. Donc cette commande devrait être éxécutée trois fois pour chacun de nos trois workers : *192.168.56.88*, *192.168.56.89* et *192.168.56.90* . Elle permet d'autoriser l'accès au conteneur à partir d'un autre nœud.
 
 **Sur les noeuds worker**
 
