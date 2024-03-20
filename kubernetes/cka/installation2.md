@@ -88,7 +88,7 @@ EOF
 sudo sysctl --system
 ```
 
-**Installation et configuration de containerd avec runc** <br>
+**Installation et configuration de containerd**
 
 --- Ajoutons les répertoires **/usr/local/bin** et **/usr/local/sbin** à la variable d'environnement **$PATH**
 
@@ -119,13 +119,6 @@ sudo restorecon /usr/lib/systemd/system/containerd.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now containerd
 sudo systemctl status containerd
-```
-
---- installation de **runc**
-
-```
-wget https://github.com/opencontainers/runc/releases/download/v1.1.9/runc.amd64
-sudo install -m 755 runc.amd64 /usr/local/sbin/runc
 ```
 
 --- configuration de **containerd** avec prise en charge du **cgroup**
