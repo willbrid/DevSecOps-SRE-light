@@ -226,6 +226,7 @@ sudo systemctl start kubelet
 **Initialisation du cluster sur le noeud master**
 
 Sur le nœud master (k8s-control) uniquement, initialisons le cluster et configurons l'accès kubectl.
+
 ```
 sudo kubeadm init --pod-network-cidr 172.16.0.0/16 --apiserver-advertise-address 192.168.56.87 --kubernetes-version 1.25.0
 mkdir -p $HOME/.kube
@@ -236,6 +237,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 NB: Ici 172.16.0.0/16 sera la plage du réseau privé de notre cluster.<br>
 
 Nous pouvons vérifier si le cluster fonctionne :
+
 ```
 kubectl get nodes
 ```
@@ -249,6 +251,7 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 **Ajout des noeuds worker au cluster**
 
 L'on peut obtenir la commande de jointure avec la commande :
+
 ```
 kubeadm token create --print-join-command
 ```
