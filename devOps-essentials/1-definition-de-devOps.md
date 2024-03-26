@@ -1,6 +1,7 @@
 # Qu'est-ce que DevOps ?
 
-## Définition
+### Définition
+
 DevOps = Dev (Development) + Ops (Operations) <br>
 
 Cette définition de Wikipedia est un bon point de départ : <br>
@@ -19,7 +20,8 @@ Cette définition de Wikipedia est un bon point de départ : <br>
 - DevOps n'est PAS un produit
 - DevOps n'est PAS un titre de poste
 
-## Une brève histoire de DevOps
+### Une brève histoire de DevOps
+
 - DevOps est né du mouvement de développement logiciel Agile
 - Agile cherche à développer des logiciels en petits cycles fréquents afin de fournir rapidement des fonctionnalités aux clients et de répondre rapidement à l'évolution des objectifs commerciaux
 - DevOps et Agile vont souvent de pair

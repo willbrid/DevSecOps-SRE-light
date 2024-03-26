@@ -1,8 +1,9 @@
 # Les objectifs de DevOps
+
 La culture DevOps concerne la collaboration entre Dev et Ops.<br>
 Sous la séparation traditionnelle entre Dev et Ops, Dev et Ops ont des objectifs différents et opposés : <br>
-- dev : vitesse de livraison des applications
-- ops : stabilité des applications
+- **dev** : vitesse de livraison des applications
+- **ops** : stabilité des applications
 
 Avec DevOps, Dev et Ops travaillent ensemble et partagent les mêmes objectifs : vitesse de livraison des applications et stabilité des applications. <br><br>
 
@@ -78,7 +79,3 @@ Pourquoi faire du DevOps ?
 - Clients plus satisfaits : <br>
 --- DevOps nous permet d'offrir rapidement aux clients les fonctionnalités qu'ils souhaitent <br>
 --- Et nous n'avons pas à sacrifier la stabilité pour le faire !
-
-<br>
-
-![definition_devops](./images/definition_devops.png)

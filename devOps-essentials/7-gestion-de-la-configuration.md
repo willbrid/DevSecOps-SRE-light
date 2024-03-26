@@ -1,6 +1,6 @@
 # Gestion de la configuration
 
-## Qu'est-ce que la gestion des configurations ?
+### Qu'est-ce que la gestion des configurations ?
 
 - Gestion de la configuration : maintenir et modifier l'état des éléments d'infrastructure de manière cohérente, maintenable et stable.
 
@@ -10,7 +10,7 @@
 
 - L'infrastructure en tant que code est très bénéfique pour la gestion de la configuration.
 
-## À quoi ressemble la gestion de la configuration ?
+### À quoi ressemble la gestion de la configuration ?
 
 Voici un exemple : 
 
@@ -22,7 +22,7 @@ Voici un exemple :
 
 - La gestion de la configuration consiste à gérer votre configuration quelque part en dehors des serveurs eux-mêmes.
 
-## Pourquoi faire de la gestion de configuration ?
+### Pourquoi faire de la gestion de configuration ?
 
 - Gain de temps – Il faut moins de temps pour modifier la configuration.
 

@@ -33,7 +33,3 @@
 - L'automatisation de la construction est **portable**. La construction peut être effectuée de la même manière sur n'importe quelle machine. Tous les membres de l'équipe peuvent compiler sur leur machine, ainsi que sur un serveur de construction partagé. Le code issu de la construction ne dépend pas de personnes ou de machines spécifiques.
 
 - L'automatisation de la construction est plus **fiable**. Il y aura moins de problèmes causés par de mauvaises constructions.
-
-<br>
-
-![build_tools](./images/build_tools.png)

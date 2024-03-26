@@ -1,6 +1,6 @@
 # Orchestration
 
-## Qu'est-ce que l'orchestration ?
+### Qu'est-ce que l'orchestration ?
 
 - Orchestration : automatisation qui prend en charge les processus et les flux de travail, tels que le provisionnement des ressources
 
@@ -10,7 +10,7 @@
 --- Le conducteur n'a pas besoin de contrôler chaque détail <br>
 --- Les musiciens (automatisation) sont capables d'interpréter leur morceau avec seulement un peu de conseils.
 
-## À quoi ressemble l'orchestration ?
+### À quoi ressemble l'orchestration ?
 
 - Voici un exemple :
 
@@ -29,7 +29,7 @@
 
 --- Tout cela se passe pendant que l'ingénieur prend du café
 
-## Pourquoi faire de l'orchestration ?
+### Pourquoi faire de l'orchestration ?
 
 - Évolutivité – Les ressources peuvent être rapidement augmentées ou réduites pour répondre à l'évolution des besoins.
 
@@ -40,7 +40,3 @@
 - Libre-service – L'orchestration peut être utilisée pour offrir des ressources aux clients en libre-service.
 
 - Aperçu granulaire de l'utilisation des ressources – Les outils d'orchestration donnent une meilleure idée du nombre de ressources utilisées par quels logiciels, services ou clients.
-
-<br>
-
-![orchestration_tools](./images/orchestration_tools.png)

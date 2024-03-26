@@ -1,6 +1,6 @@
 # Microservices
 
-## Que sont les microservices ?
+### Que sont les microservices ?
 
 - Microservices : une architecture de microservice divise une application en une collection de petits services faiblement couplés.
 
@@ -10,9 +10,9 @@
 
 - Les microservices sont faiblement couplés : différents microservices interagissent les uns avec les autres à l'aide d'API stables et bien définies. Cela signifie qu'ils sont indépendants les uns des autres.
 
-![traditional-silos1](./images/microservice-vs-monolithic.png)
+![microservice-vs-monolithic](./images/microservice-vs-monolithic.png)
 
-## À quoi ressemblent les microservices ?
+### À quoi ressemblent les microservices ?
 
 - Il existe de nombreuses façons de structurer et d'organiser une architecture de microservices
 
@@ -26,7 +26,7 @@
 
 - Chacun d'eux a sa propre base de code et un processus d'exécution distinct (ou des processus). Ils peuvent tous être construits, déployés et mis à l'échelle séparément.
 
-## Pourquoi utiliser les Microservices ?
+### Pourquoi utiliser les Microservices ?
 
 - Modularité – Les microservices encouragent la modularité. Dans les applications monolithiques, les éléments individuels deviennent étroitement couplés et la complexité augmente. Finalement, il est très difficile de changer quoi que ce soit sans casser quelque chose
 

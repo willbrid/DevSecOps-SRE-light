@@ -1,6 +1,6 @@
 # Livraison continue et déploiement continu
 
-## Qu'est-ce que la livraison continue ?
+### Qu'est-ce que la livraison continue ?
 
 - Livraison continue (CD) : la pratique consistant à maintenir en 
 permanence le code dans un état déployable
@@ -9,9 +9,7 @@ permanence le code dans un état déployable
 
 - Certains utilisent indifféremment les termes livraison continue et déploiement continu, ou utilisent simplement l'abréviation CD.
 
-![cdelivery](./images/cdelivery.png)
-
-## Qu'est-ce que le déploiement continu ?
+### Qu'est-ce que le déploiement continu ?
 
 - Déploiement continu : la pratique consistant à déployer fréquemment de petites modifications de code en production
 
@@ -23,9 +21,7 @@ permanence le code dans un état déployable
 
 - Avec le déploiement continu, les déploiements en production sont routiniers et courants. Ils ne sont pas un grand événement effrayant.
 
-![cdeployment](./images/cdeployment.png)
-
-## À quoi ressemblent la livraison continue et le déploiement continu ?
+### À quoi ressemblent la livraison continue et le déploiement continu ?
 
 - Chaque version du code passe par une série d'étapes telles que la construction automatisée, les tests automatisés et les tests d'acceptation manuels. Le résultat de ce processus est un artefact ou un package pouvant être déployé.
 
@@ -37,7 +33,7 @@ permanence le code dans un état déployable
 
 - Personne ne saisit son bureau par peur lors d'un déploiement, même si le déploiement cause un problème.
 
-## Pourquoi faire de la livraison continue et du déploiement continu ?
+### Pourquoi faire de la livraison continue et du déploiement continu ?
 
 - Mise sur le marché plus rapide - Mettre les fonctionnalités entre les mains des clients plus rapidement plutôt que d'attendre un long processus de déploiement qui ne se produit pas souvent.
 
