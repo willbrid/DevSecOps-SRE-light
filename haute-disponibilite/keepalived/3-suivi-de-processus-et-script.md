@@ -1,12 +1,10 @@
 # Suivi de processus et script
 
-## Suivi de processus
+### Suivi de processus
 
 L'une des configurations **Keepalived** les plus courantes consiste à suivre un processus sur le serveur pour déterminer la santé de l'hôte. Par exemple, nous pouvons configurer une paire de serveurs Web hautement disponibles et déclencher un basculement si **Apache** cesse de s'exécuter sur l'un d'entre eux.
-<br>
-Keepalived facilite cela grâce à ses directives de configuration **track_process**. 
-<br>
-<br>
+**Keepalived** facilite cela grâce à ses directives de configuration **track_process**. 
+
 Pour cette configuration, nous partirons de la section précédente sur **2-configuration-de-base.md**, nous installerons apache2, puis nous configurons le suivi du processus **httpd** avec un poids de 10.
 
 - Installation et simple configuration d'apache sur chaque serveur
@@ -126,10 +124,10 @@ serveur secondaire srv2
 ip addr show | grep enp0s8
 ```
 
-## Suivi de script
+### Suivi de script
 
 Keepalived a également la capacité d'exécuter un script arbitraire pour déterminer la santé d'un hôte. Pour cet exemple : un script qui renvoie 0 indiquera le succès, tandis qu'un script qui renvoie autre chose indiquera que l'instance Keepalived doit entrer dans l'état d'erreur.
-<br>
+
 Le script à configurer sur chaque serveur **srv1** et **srv2** est un simple ping vers le serveur DNS Google **8.8.8.8**.
 
 ```
@@ -253,7 +251,7 @@ En supprimant la règle la VIP va réapparaître sur le serveur **srv1**.
 iptables -D OUTPUT -d 8.8.8.8 -j DROP
 ```
 
-## Script de notification
+### Script de notification
 
 Keepalived fournit plusieurs directives de notification pour appeler uniquement des scripts sur des états particuliers (**notify_master**, **notify_backup**, etc.). Nous prendrons l'exemple sur la directive de **notify**. Lorsqu'un script dans la directive **notify** est appelé, il reçoit quatre arguments supplémentaires (après tous les arguments passés au script lui-même).
 

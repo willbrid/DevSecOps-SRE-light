@@ -8,7 +8,7 @@ Cela peut sembler étrange que nous utilisions un protocole conçu pour les rout
 <br>
 Il convient également de savoir que **Keepalived** fournit plus qu'une simple implémentation VRRP. **Keepalived** a également la possibilité de configurer des serveurs virtuels IP Linux pour l'équilibrage de charge.
 
-## Fonctionnement du protocole VRRP
+### Fonctionnement du protocole VRRP
 
 Le comportement de VRRP est spécifié par RFC 3768 (version 2) et RFC 5798 (version 3).
 <br>
@@ -18,7 +18,7 @@ Une fois qu'un maître est établi, tous les autres serveurs écoutent les messa
 <br>
 Lorsqu'un maître se connecte pour la première fois et prend le contrôle d'une adresse IP, il diffuse un ARP gratuit. Ce message informe les autres serveurs du réseau de l'adresse MAC associée au VIP afin qu'ils puissent adresser correctement leur trafic au niveau de la couche 2. Il accélère également le basculement du VIP : les hôtes n'ont pas à attendre que leurs temporisateurs ARP expirent et peuvent mettre simplement à jour leurs tables ARP avec l'adresse MAC correcte pour l'hôte qui possède le VIP.
 
-## Format de paquet
+### Format de paquet
 
 Si nous jetons un coup d'œil à la structure des paquets d'une annonce VRRP à l'aide de Wireshark, nous remarquerons que les adresses de destination Ethernet et IP sont des adresses de multidiffusion. Le trafic de multidiffusion, est envoyé à plusieurs hôtes sur un réseau qui "écoutent" cette adresse de multidiffusion. La plupart des réseaux évitent une configuration multidiffusion complexe, de sorte que le trafic multidiffusion pour VRRP deviendra un trafic de diffusion sur le segment de réseau local et ira à tous les hôtes.
 <br>
