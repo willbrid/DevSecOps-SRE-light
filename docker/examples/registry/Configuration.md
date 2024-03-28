@@ -2,7 +2,8 @@
 
 NB: On supposera que la configuration sera faite sur un serveur de domaine **example.com** où docker est déjà installé.
 
-## Création des crédentials du registre
+### Création des crédentials du registre
+
 **Création du répertoire registry et auth**
 
 ```
@@ -15,7 +16,8 @@ mkdir -p ~/registry/auth
 docker run --entrypoint htpasswd registry:2.7.0 -Bbn login password > ~/registry/auth/htpasswd
 ```
 
-## Génération d'un certificat auto-signé
+### Génération d'un certificat auto-signé
+
 Générez un certificat auto-signé. Lors de la génération du certificat, vous pouvez laisser les autres invites vides, à l'exception de l'invite du 
 **Common Name**. Pour l'invite du **Common Name**, mettez le nom d'hôte public du serveur de registre : dans notre cas **example.com** .
 
@@ -24,7 +26,7 @@ mkdir ~/registry/certs
 openssl req -newkey rsa:4096 -nodes -sha256 -keyout ~/registry/certs/example.com.key -x509 -days 365 -out ~/registry/certs/example.com.crt
 ```
 
-## Exécutez le registre avec l'authentification et TLS activés
+### Exécution de l'installation du registre avec authentification et activation TLS
 
 ```
 docker run -d -p 443:443 --restart=always --name registry \
