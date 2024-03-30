@@ -1,6 +1,6 @@
 # Configuration de la protection contre les attaques DDoS
 
-## Faire face aux attaques
+### Faire face aux attaques
 
 Les types communs d'attaques :
 
@@ -8,7 +8,7 @@ Les types communs d'attaques :
 - **slowloris** : requêtes lentes - lier les connexions
 - **caractéristiques statiques** : ACLs - blocage par adresse IP
 
-## Qu'est ce qu'un reverse-proxy ?
+### Qu'est ce qu'un reverse-proxy ?
 
 Un reverse-proxy, habituellement placé en amont des serveurs internes, permet aux utilisateurs d'Internet d'accéder à ces serveurs internes.
 
@@ -19,7 +19,7 @@ Un reverse-proxy, habituellement placé en amont des serveurs internes, permet a
 ----- rejeter les requêtes malveillantes <br>
 ----- empêcher la communication directe avec les serveurs internes
 
-## Comment est faite la protection contre les attaques DDoS sur Haproxy ?
+### Comment est faite la protection contre les attaques DDoS sur Haproxy ?
 
 Quelle est la différence entre le HTTP et le TCP load balancing ?
 

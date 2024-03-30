@@ -1,6 +1,6 @@
 # Installation de Haproxy sous rocky linux 8
 
-## Installation via le référentiel de rocky linux 8
+### Installation via le référentiel de rocky linux 8
 
 ```
 sudo yum -y install haproxy
@@ -14,7 +14,7 @@ Nous devons définir **haproxy_connect_any** sur **1** pour faire fonctionner HA
 sudo setsebool -P haproxy_connect_any 1
 ```
 
-## Installation via la méthode compilée
+### Installation via la méthode compilée
 
 Ici, nous installerons Haproxy version **LTS 2.6**. Afin de compiler HAProxy, nous devons nous assurer que quelques packages des référentiels standard sont installés. L'un des packages requis se trouve dans le référentiel **powertools**. 
 
@@ -208,4 +208,4 @@ Nous devons définir **haproxy_connect_any** sur **1** pour faire fonctionner HA
 sudo setsebool -P haproxy_connect_any 1
 ```
 
-NB : C'est cette version (**2.6.12**) de HAProxy que nous allons utiliser tout au long de notre parcours.
+**NB :** C'est cette version (**2.6.12**) de HAProxy que nous allons utiliser tout au long de notre parcours.

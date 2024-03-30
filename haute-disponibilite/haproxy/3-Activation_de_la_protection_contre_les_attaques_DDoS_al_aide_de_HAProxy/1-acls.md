@@ -4,7 +4,7 @@ Une ACL HAProxy nous permet de définir des règles personnalisées pour bloquer
 <br>
 Les listes de contrôle d'accès, ou ACL, dans HAProxy nous permettent de tester diverses conditions et d'effectuer une action donnée en fonction de ces tests. Ces conditions couvrent à peu près tous les aspects d'une requête ou d'une réponse, tels que la recherche de chaînes ou de motifs, la vérification des adresses IP d'où elles proviennent, les taux de requêtes récents (via stick tables), le statut TLS, etc. acheminer les décisions, rediriger les requêtes, renvoyer des réponses statiques et bien plus encore. Les ACL de HAProxy adoptent l'utilisation d'opérateurs logiques (AND, OR, NOT) pour former des conditions plus complexes.
 
-## Formater une ACL
+### Formater une ACL
 
 Il existe deux manières de spécifier une ACL : une ACL nommée et une ACL anonyme ou en ligne.
 
@@ -93,7 +93,7 @@ http-request deny if evil !{ src 192.168.56.0/24 }
 
 Cela bloquera la requête si le chemin commence ou se termine par **/evil**, mais uniquement pour les clients qui ne se trouvent pas dans le sous-réseau **192.168.56.0/24** .
 
-## Extractions
+### Extractions
 
 Une source d'informations dans HAProxy est connue sous le nom de **extraction**. Celles-ci permettent aux ACL d'obtenir une information avec laquelle travailler.
 
@@ -109,7 +109,7 @@ Voici quelques-unes les plus couramment utilisées.
 
 - **ssl_fc** : Un booléen qui renvoie vrai si la connexion a été établie via SSL et que HAProxy le déchiffre localement
 
-## Convertisseurs
+### Convertisseurs
 
 Les convertisseurs sont séparés par des virgules des extractions, ou d'autres convertisseurs, et peuvent être enchaînés plusieurs fois.
 
@@ -133,7 +133,7 @@ il existe une grande variété de convertisseurs dont les plus couramment utilis
 
 - **map** : Recherche l'échantillon dans le fichier spécifié et affiche la valeur résultante
 
-## Indicateurs
+### Indicateurs
 
 Nous pouvons placer plusieurs indicateurs dans une seule ACL.
 
@@ -151,7 +151,7 @@ Voici quelques-uns des plus couramment utilisés :
 
 - **-m** : spécifie le type de correspondance.
 
-## Méthodes de correspondance
+### Méthodes de correspondance
 
 Nous avons maintenant un échantillon de convertisseurs et d'extractions, tels que le chemin d'URL demandé via **path**, et quelque chose à comparer via le chemin codé en dur **/evil**. Pour comparer le premier au second, nous pouvons utiliser l'une des nombreuses méthodes de correspondance. <br>
 Voici quelques méthodes de correspondance couramment utilisées :

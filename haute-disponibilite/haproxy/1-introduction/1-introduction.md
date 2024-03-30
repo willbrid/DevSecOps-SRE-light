@@ -2,7 +2,8 @@
 
 HAProxy, qui signifie High Availability Proxy, est un logiciel open source TCP/HTTP Load Balancer et une solution de proxy qui peut être exécuté sur Linux, macOS et FreeBSD. Son utilisation la plus courante consiste à améliorer les performances et la fiabilité d'un environnement de serveur en répartissant la charge de travail sur plusieurs serveurs (par exemple, Web, application, base de données). Il est utilisé dans de nombreux environnements de haut niveau, notamment : GitHub, Imgur, Instagram et Twitter.
 
-## Terminologie HAProxy
+### Terminologie HAProxy
+
 De nombreux termes et concepts sont importants pour discuter de l'équilibrage de charge et du proxy. <br>
 
 - Access Control List (ACL)
@@ -46,7 +47,8 @@ La ligne **mode http** spécifie que le proxy de couche 7 sera utilisé.
 L'option **check** à la fin des directives de serveur spécifie que des vérifications de l'état doivent être effectuées sur ces serveurs principaux.
 
 
-## Types d'équilibrage de charge
+### Types d'équilibrage de charge
+
 Les types de base d'équilibrage de charge : <br>
 
 - **Pas d'équilibrage de charge**
@@ -85,7 +87,7 @@ Cela configure une interface nommée **http**, qui gère tout le trafic entrant 
 **default_backend web-backend** spécifie que tout le reste du trafic sera transmis au **web-backend**.
 
 
-## Algorithmes d'équilibrage de charge
+### Algorithmes d'équilibrage de charge
 
 L'algorithme d'équilibrage de charge utilisé détermine quel serveur, dans un backend, sera sélectionné lors de l'équilibrage de charge. HAProxy offre plusieurs options pour les algorithmes. En plus de l'algorithme d'équilibrage de charge, les serveurs peuvent se voir attribuer un paramètre de poids pour manipuler la fréquence à laquelle le serveur est sélectionné, par rapport aux autres serveurs.
 <br>
@@ -104,12 +106,13 @@ L'alogrithme **leastconn** sélectionne le serveur avec le moins de connexions. 
 Cela sélectionne le serveur à utiliser en fonction d'un hachage de l'adresse IP source à partir de laquelle les utilisateurs font des demandes. Cette méthode garantit que les mêmes utilisateurs se connecteront aux mêmes serveurs.
 
 
-## Sessions persistantes
+### Sessions persistantes
 
 Certaines applications nécessitent qu'un utilisateur continue de se connecter au même serveur principal. Cela peut être réalisé via des sessions persistantes, en utilisant le paramètre **appsession** dans le backend qui le nécessite.
 
 
-## Bilan de santé
+### Bilan de santé
+
 HAProxy utilise des vérifications de l'état pour déterminer si un serveur principal est disponible pour traiter les demandes. Cela évite d'avoir à supprimer manuellement un serveur du backend s'il devient indisponible. La vérification de l'état par défaut consiste à essayer d'établir une connexion TCP au serveur.
 <br>
 Si un serveur échoue à une vérification de l'état et ne peut donc pas répondre aux demandes, il est automatiquement désactivé dans le backend et le trafic ne lui sera pas transféré tant qu'il ne redeviendra pas sain. Si tous les serveurs d'un backend échouent, le service deviendra indisponible jusqu'à ce qu'au moins un de ces serveurs backend redevienne sain.
@@ -119,7 +122,7 @@ Pour certains types de backends, comme les serveurs de base de données, la vér
 Le serveur Web Nginx peut également être utilisé comme serveur proxy autonome ou équilibreur de charge, et est souvent utilisé conjointement avec HAProxy pour ses capacités de mise en cache et de compression.
 
 
-## La haute disponibilité
+### La haute disponibilité
 
 Les configurations d'équilibrage de charge des couches 4 et 7 utilisent toutes deux un équilibreur de charge pour diriger le trafic vers l'un des nombreux serveurs principaux. Cependant, notre équilibreur de charge est un point de défaillance unique dans ces configurations ; s'il tombe en panne ou est submergé de demandes, cela peut entraîner une latence élevée ou des temps d'arrêt pour notre service.
 <br>
