@@ -33,6 +33,19 @@ vi Vagrantfile
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+$script = <<-SCRIPT
+goBinPath="/etc/profile.d/go_bin_path_setting.sh"
+if [[ ":$PATH:" != *":/usr/local/go/bin:"* ]]; then
+  echo "Go is not installed, installation in progress..."
+  wget -q https://go.dev/dl/go1.21.7.linux-amd64.tar.gz 2>&1
+  tar -C /usr/local -xzf go1.21.7.linux-amd64.tar.gz
+  echo 'export PATH=$PATH:/usr/local/go/bin' > $goBinPath
+fi
+if [ -f "$goBinPath" ]; then
+  source $goBinPath
+fi
+SCRIPT
+
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -64,6 +77,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "gitlab-runner" do |gtr|
     gtr.vm.hostname = "gitlab-runner"
     gtr.vm.network :private_network, ip: "192.168.56.171"
+    gtr.trigger.after :up do |trigger|
+      trigger.run_remote = { inline: $script, privileged: true }
+    end
   end
 
   # Serveur kubernetes.
