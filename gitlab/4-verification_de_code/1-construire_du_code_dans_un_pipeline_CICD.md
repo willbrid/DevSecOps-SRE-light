@@ -90,7 +90,7 @@ compilation:
   stage: build
   script:
     - mkdir -p $OUTPUT_NAME
-    - podman run --rm -v $OUTPUT_NAME:/build:z -v "$PWD":/tmp:z -w /tmp docker.io/library/golang:1.21.9 go build -o /build ./...
+    - go build -o $OUTPUT_NAME ./...
   artifacts:
     paths:
       - $OUTPUT_NAME
