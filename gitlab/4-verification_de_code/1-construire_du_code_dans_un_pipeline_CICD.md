@@ -15,7 +15,7 @@ Toutes les tâches suivantes s'effectueront depuis notre machine hôte **Ubuntu 
 --- donnons le nom de notre project : **sortAndTotal** <br>
 --- choisissons le groupe **root** <br>
 --- décochons la case **Initialize repository with a README** <br>
----  cliquons sur le bouton **Create project**
+--- cliquons sur le bouton **Create project**
 
 Notre projet **sortAndTotal** est créé.
 
