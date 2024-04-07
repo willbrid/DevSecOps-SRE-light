@@ -44,6 +44,18 @@ compilation:
       - $OUTPUT_NAME
 ```
 
+```
+git add .gitlab-ci.yml
+```
+
+```
+git commit -m "feat: update pipeline for code quality job"
+```
+
+```
+git push --set-upstream origin main
+```
+
 Nous avons inclus le template **Code-Quality.gitlab-ci.yml** natif à Gitlab au niveau global. Nous avons aussi défini les tags au niveau global afin qu'elle soit réutilisée automatiquement au niveau de chaque tâche.
 
 Une fois le pipeline exécuté, la page de détails du pipeline comprendra un nouvel onglet appelé **Code Quality**, qui révèle les résultats de l'analyse de la qualité du code.
