@@ -62,7 +62,7 @@ Mot de passe : SuperSecret
 ```
 
 <p align="center">
-<img src="../images/init-gitlab-project.png" alt="init-gitlab-project.png" width="620" height="520" />
+<img src="../images/init-gitlab-project.png" alt="init-gitlab-project.png" width="800" height="520" />
 </p>
 
 
