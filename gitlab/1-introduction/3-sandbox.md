@@ -40,6 +40,7 @@ if [[ ":$PATH:" != *":/usr/local/go/bin:"* ]]; then
   wget -q https://go.dev/dl/go1.21.7.linux-amd64.tar.gz 2>&1
   tar -C /usr/local -xzf go1.21.7.linux-amd64.tar.gz
   echo 'export PATH=$PATH:/usr/local/go/bin' > $goBinPath
+  rm go1.21.7.linux-amd64.tar.gz
 fi
 if [ -f "$goBinPath" ]; then
   source $goBinPath
