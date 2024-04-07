@@ -34,16 +34,39 @@ vi Vagrantfile
 # vi: set ft=ruby :
 
 $script = <<-SCRIPT
+goVersion="1.21.7"
+gotestsumVersion="1.11.0"
 goBinPath="/etc/profile.d/go_bin_path_setting.sh"
+usrLocalBinPathSetting="/etc/profile.d/usr_local_bin_path_setting.sh"
+
+mkdir -p /usr/local/bin
+
+# Ajout dans le $PATH des repertoires d'installation des binaires Go et Gotestsum
 if [[ ":$PATH:" != *":/usr/local/go/bin:"* ]]; then
-  echo "Go is not installed, installation in progress..."
-  wget -q https://go.dev/dl/go1.21.7.linux-amd64.tar.gz 2>&1
-  tar -C /usr/local -xzf go1.21.7.linux-amd64.tar.gz
   echo 'export PATH=$PATH:/usr/local/go/bin' > $goBinPath
-  rm go1.21.7.linux-amd64.tar.gz
-fi
-if [ -f "$goBinPath" ]; then
   source $goBinPath
+fi
+if [[ ":$PATH:" != *":/usr/local/bin:"* ]]; then
+  echo 'export PATH=$PATH:/usr/local/bin' > $usrLocalBinPathSetting
+  source $usrLocalBinPathSetting
+fi
+
+# Installation du binaire go
+if ! command -v go &> /dev/null; then
+  echo "Go is not installed, installation in progress..."
+  wget -q https://go.dev/dl/go$goVersion.linux-amd64.tar.gz 2>&1
+  tar -C /usr/local -xzf go$goVersion.linux-amd64.tar.gz
+  rm -f go$goVersion.linux-amd64.tar.gz
+fi
+
+# Installation du binaire gotestsum
+if ! command -v gotestsum &> /dev/null; then
+  echo "Gotestsum is not installed, installation in progress..."
+  GOTESTSUM_TMP="$(mktemp -dt gotestsum-installer-XXXXXXX)"
+  wget -q -P $GOTESTSUM_TMP https://github.com/gotestyourself/gotestsum/releases/download/v$gotestsumVersion/gotestsum_$gotestsumVersion_linux_amd64.tar.gz
+  tar Czxvf $GOTESTSUM_TMP $GOTESTSUM_TMP/gotestsum_$gotestsumVersion_linux_amd64.tar.gz
+  mv $GOTESTSUM_TMP/gotestsum /usr/local/bin
+  rm -rf $GOTESTSUM_TMP
 fi
 SCRIPT
 
