@@ -155,7 +155,7 @@ sudo vi /etc/systemd/system/haproxy.service
 
 ```
 [Unit]
-Description=HAProxy 2.6.12
+Description=HAProxy 2.8.9
 After=syslog.target network.target
 
 [Service]
