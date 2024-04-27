@@ -1,4 +1,4 @@
-# Installation de Jenkins (version 2.36) sur Rocky linux 8.6
+# Installation de Jenkins (version 2.36) sur Rocky linux 8.9
 
 Nous installerons la version stable de jenkins 2.
 
