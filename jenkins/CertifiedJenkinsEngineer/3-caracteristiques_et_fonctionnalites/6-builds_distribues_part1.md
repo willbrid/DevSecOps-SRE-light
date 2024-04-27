@@ -1,7 +1,7 @@
 # Builds distribués [Partie1]
 
 Dans cette partie, nous allons configurer les agents statiques : un agent statique via les crédentials : login et mot de passe, et un autre agent statique par clé ssh.
-<br>
+
 Comme préréquis, certains dépendances seront nécessaires sur ces agents : java et git
 
 ```
@@ -14,7 +14,7 @@ sudo yum-config-manager --enable epel
 sudo yum install git java-11-openjdk -y
 ```
 
-## Création d'un agent via login et mot de passe
+### Création d'un agent via login et mot de passe
 
 - Connectons-nous au serveur **agent1**
 
@@ -65,7 +65,7 @@ Si tout se passe bien alors, nous verrons notre agent synchronisé.
 
 ![jenkins_job62.png](../../images/jenkins_job62.png)
 
-## Création d'un agent par clé ssh
+### Création d'un agent par clé ssh
 
 - Connectons-nous au serveur **agent2**
 
@@ -96,7 +96,7 @@ mkdir /home/jenkins/jenkins_agent2
 - Configurons notre noeud agent2 sur la master jenkins
 
 Naviguons sur **Tableau de bord > Administrer Jenkins > Gérer les nœuds**, puis cliquons sur **Créer un noeud**. Donnons-lui un nom (agent2), sélectionnons l'option **agent permanent** et cliquons sur **créer**. Nous renseignons les informations du noeud **agent2** similaire à celui du noeud **agent1** sauf la méthode d'authentification qui sera par clé ssh.
-<br>
+
 Nous créeons un répertoire **.ssh** au niveau du répertoire **/home/jenkins** et cd dans le répertoire.
 
 ```
@@ -137,7 +137,7 @@ Si tout se passe bien alors, nous verrons notre agent synchronisé.
 
 ![jenkins_job65.png](../../images/jenkins_job65.png)
 
-## Testons nos agents jenkins
+### Testons nos agents jenkins
 
 Pour tester nos agents jenkins, nous configurons un simple job script shell (**testagent**) qui utilise notre agent (par exemple **agent2**).
 

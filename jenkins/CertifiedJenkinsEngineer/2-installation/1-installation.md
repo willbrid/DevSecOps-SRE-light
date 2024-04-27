@@ -71,14 +71,13 @@ f6606cf00ea44b02902f88af0e1db178
 ```
 
 Il sera différent pour une autre installation et nous ne devons pas la divulguer.
-<br>
 
 Après avoir déverrouillé Jenkins, la page **Personnaliser Jenkins** apparaît. 
 
 ![jenkins_installation2.png](../../images/jenkins_installation2.png)
 
 Ici, nous pouvons installer n'importe quel nombre de plugins utiles dans le cadre de notre configuration initiale.
-<br>
+
 Cliquons sur l'une des deux options affichées :
 
 - Installer les plugins suggérés - pour installer l'ensemble de plugins recommandé, basé sur les cas d'utilisation les plus courants.

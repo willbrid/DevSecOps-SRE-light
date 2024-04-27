@@ -4,7 +4,8 @@
 
 Un gestionnaire de code source est un logiciel utilisé pour suivre les modifications du code. <br>
 Les changements de code, les révisions, sont horodatés et incluent l'identité de la personne qui a effectué le changement. <br>
-Les modifications peuvent être suivies ou annulées si nécessaire. Les versions du code peuvent être comparées, stockées et fusionnées avec d'autres versions. <br>
+Les modifications peuvent être suivies ou annulées si nécessaire. Les versions du code peuvent être comparées, stockées et fusionnées avec d'autres versions.
+
 Quelques exemples sont git, subversion, mercurial et perforce. <br>
 Les scm basés sur le cloud tels que Git-hub ou Gitlab peuvent être exploités en tant que référentiels hors site pour le code. <br>
 Les changelogs jenkins sont utilisés pour suivre les changements dans les builds.
@@ -23,5 +24,5 @@ Il permet de maintenir les configurations de la machine dans le contrôle de sou
 - Stratégies de branchement et de fusion
 
 ce sont les méthodes d'extraction et d'archivage du code dans le contrôle de code source de telle manière qu'une source de vérité est déterminée.
-<br>
+
 Un référentiel est déterminé comme étant la source de vérité. Les modifications conflictuelles sont résolues en faveur de cette source.

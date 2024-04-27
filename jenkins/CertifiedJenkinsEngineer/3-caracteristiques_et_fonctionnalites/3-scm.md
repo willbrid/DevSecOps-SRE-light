@@ -1,6 +1,6 @@
 # Gestion des codes sources (github)
 
-## Lancer un build de script shell à partir d'un référentiel github
+### Lancer un build de script shell à partir d'un référentiel github
 
 En utilisant les notions précédentes sur les jobs(1-jobs.md), nous allons ici créer un dossier **sourced** (depuis le **Tableau de bord**) où nous allons créer un job via le script shell, nommé **scmjob** permettant d'éxécuter le script **testscript.sh** provenant de notre référentiel : **https://github.com/willbrid/script_shell_for_testing_jenkins**
 <br>
@@ -21,7 +21,7 @@ Une fois que nous lançons le build de notre job **scmjob**, nous verrons en **s
 
 ![jenkins_job35.png](../../images/jenkins_job35.png)
 
-## Lancer un build de script shell à partir d'un webhook écoutant les commit sur un référentiel github
+### Lancer un build de script shell à partir d'un webhook écoutant les commit sur un référentiel github
 
 De prime abord, nous allons configurer jenkins afin de définir les paramètres d'authentification sur notre référentiel github. Pour cela nous naviguons sur **Tableau de bord** > **Administrer Jenkins** > **Configurer le système**.
 <br>

@@ -10,7 +10,8 @@ Jenkins expose une interaction api rest en envoyant des méthodes rest à l'url 
 curl jenkins:8080/jobs/jobname/buildnumber. -user username:password
 ```
 
-**Pourquoi utiliser l'api** 
+**Pourquoi utiliser l'api**
+
 - L'api permet de créer des jobs de manière programmatique. Une fois le job défini en tant que code, il peut être vérifié dans la source, versionné et géré. 
 
 - Les job peuvent être copiés et ainsi, une fois qu'un pipeline a été standardisé, il peut être reproduit sans configuration manuelle.

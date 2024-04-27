@@ -1,6 +1,6 @@
 # Build
 
-## Lancer un build automatiquement après un autre build
+### Lancer un build automatiquement après un autre build
 
 En utilisant les notions précédentes sur les jobs(1-jobs.md), nous allons ici créer un dossier **triggers** (depuis le **Tableau de bord**) où nous allons créer un premier job via le script shell, nommé **echo1** permettant d'éxécuter la commande :
 
@@ -30,7 +30,7 @@ Si nous lançons le build du job **echo1**, nous constaterons via sa page **Sort
 
 ![jenkins_job29.png](../../images/jenkins_job29.png)
 
-## Lancer un build d'un job défini via un script bash
+### Lancer un build d'un job défini via un script bash
 
 Nous pouvons définir un job script en mentionnant un script bash comme contenu. Nous créeons pour cela un dossier **scripted**, puis un job **totalPrice** via un script qui calcule le prix total d'un produit avec pour quantité **qte** et pour prix unitaire **uprice**. Ces variables seront paramétrées dans la définition de notre job.
 

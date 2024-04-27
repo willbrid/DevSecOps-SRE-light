@@ -9,7 +9,7 @@ L'API distante peut être utilisée pour faire des choses comme :
 - déclencher un nouveau build
 - créer/copier des jobs
 
-## Récupération du jeton crumb
+### Récupération du jeton crumb
 
 Naviguons sur **Tableau de bord > Administrer Jenkins > Configurer la sécurité globale**, puis sous la section **CSRF Protection** assurons que l'option **Crumb Issuer** est par défaut configuré.
 <br>
@@ -29,7 +29,7 @@ Les options **--user** et **--password** permettent de préciser le login et le 
 echo $CRUMB
 ```
 
-## Ajout d'un token d'api pour notre utilisateur 
+### Ajout d'un token d'api pour notre utilisateur 
 
 Naviguons sur **Tableau de bord > Utilisateurs**, une interface s'ouvre avec la liste des utilisateurs. Sélectionnons notre utilisateurs et cliquons sur le menu **Configurer**. 
 <br>
@@ -37,7 +37,7 @@ Au niveau de la section **Jeton d'API (token)**, ajoutons un token en mettant un
 
 ![jenkins_job81.png](../../images/jenkins_job81.png)
 
-## Déclenchement un build d'un job
+### Déclenchement un build d'un job
 
 Nous pouvons déclencher un build de notre job **testDynamicAgent** directement accessible depuis le menu **Tableau de bord** en utilisant la commande
 
@@ -54,7 +54,7 @@ curl -I -X POST http://willbrid:TOKEN_GENERE@IP_MASTER:8080/job/testDynamicAgent
 
 Si tout se passe bien, nous verrons le build de notre job qui se déclenche.
 
-## Récupération des informations d'un job
+### Récupération des informations d'un job
 
 Pour récupérer les informations sur un job, par exemple notre job **scmjob** (job se trouvant dans le dossier **sourced**) sous le path : **/job/sourced/job/scmjob/**, nous exécutons la commande
 
@@ -64,7 +64,7 @@ curl -X GET http://willbrid:TOKEN_GENERE@IP_MASTER:8080/job/sourced/job/scmjob/c
 
 Cette commande sauvegardera les configurations de notre job dans le fichier **jobconfig.xml**.
 
-## Créer un job à partir des configurations d'un autre job
+### Créer un job à partir des configurations d'un autre job
 
 Précédemment nous avons sauvegardé les configurations de notre job **scmjob** dans le fichier **jobconfig.xml**. Nous utiliserons ce fichier pour créer un nouveau job **scmjob2** sous le path **/job/scripted/** du dossier **scripted**.
 

@@ -1,5 +1,5 @@
 # Concepts de pipeline
-## Définition
+### Définition
 
 **Jenkins Pipeline** est une suite de plugins qui prend en charge la mise en œuvre et l'intégration de pipelines de livraison continue dans Jenkins.
 <br><br>
@@ -21,7 +21,8 @@ La création d'un fichier **Jenkinsfile** et sa validation dans le contrôle de 
 
 Bien que la syntaxe de définition d'un pipeline, soit dans l'interface utilisateur Web, soit avec un fichier **Jenkinsfile**, est la même, il est généralement considéré comme une bonne pratique de définir le pipeline dans un fichier **Jenkinsfile** et de l'enregistrer dans le contrôle de code source.
 
-## Syntaxe déclarative et syntaxe de pipeline scripté
+### Syntaxe déclarative et syntaxe de pipeline scripté
+
 Un fichier **Jenkinsfile** peut être écrit en utilisant deux types de syntaxe : déclarative et scriptée.
 
 Les pipelines déclaratifs et scriptés sont construits fondamentalement différemment. Le **Pipeline déclarative** est une fonctionnalité plus récente de Jenkins Pipeline qui :
@@ -32,7 +33,8 @@ Les pipelines déclaratifs et scriptés sont construits fondamentalement différ
 
 Cependant, de nombreux composants syntaxiques individuels (ou "étapes") écrits dans un fichier **Jenkinsfile** sont communs aux pipelines déclaratifs et scriptés.
 
-## Pourquoi Pipeline ?
+### Pourquoi Pipeline ?
+
 Jenkins est, fondamentalement, un moteur d'automatisation qui prend en charge un certain nombre de modèles d'automatisation. Pipeline ajoute un ensemble puissant d'outils d'automatisation à Jenkins, prenant en charge des cas d'utilisation allant de la simple intégration continue aux pipelines de CD complets. En modélisant une série de tâches connexes, les utilisateurs peuvent tirer parti des nombreuses fonctionnalités de Pipeline :
 
 - Code : les pipelines sont implémentés dans le code et généralement vérifiés dans le contrôle des sources, ce qui donne aux équipes la possibilité de modifier, de réviser et d'itérer sur leur pipeline de livraison.
@@ -47,7 +49,8 @@ Jenkins est, fondamentalement, un moteur d'automatisation qui prend en charge un
 
 ![building_cd_pipelines1.png](../../images/building_cd_pipelines1.png)
 
-## Syntaxe de pipeline
+### Syntaxe de pipeline
+
 Les concepts suivants sont des aspects clés de Jenkins Pipeline, qui sont étroitement liés à la syntaxe Pipeline.
 
 - Pipeline (**Pipeline**)
@@ -74,12 +77,13 @@ sh 'make'
 ```
 Lorsqu'un plugin étend le Pipeline DSL, cela signifie généralement que le plugin a implémenté une nouvelle étape.
 
-## Présentation de la syntaxe du pipeline
+### Présentation de la syntaxe du pipeline
+
 Les squelettes de code Pipeline suivants illustrent les différences fondamentales entre la syntaxe de pipeline déclarative et la syntaxe de pipeline scripté.
 <br>
 Sachons que **stage** et **step** sont des éléments communs à la fois à la syntaxe déclarative et scriptée.
 
-#### Fondamentaux du pipeline déclaratif
+###### Fondamentaux du pipeline déclaratif
 
 Dans la syntaxe déclarative du pipeline, le bloc de pipeline définit tout le travail effectué tout au long de notre pipeline.
 
@@ -115,7 +119,7 @@ pipeline {
 (6) : Définit l'étape "Deploy". <br>
 (7) : Effectuez certaines étapes liées à l'étape "Deploy".
 
-#### Fondamentaux du pipeline scripté
+###### Fondamentaux du pipeline scripté
 
 Dans la syntaxe du pipeline scripté, un ou plusieurs blocs de nœuds effectuent le travail de base tout au long du pipeline. Bien que ce ne soit pas une exigence obligatoire de la syntaxe Scripted Pipeline, confiner le travail de notre Pipeline à l'intérieur d'un bloc de nœuds fait deux choses :
 

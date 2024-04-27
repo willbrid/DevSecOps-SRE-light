@@ -1,6 +1,6 @@
 # Jobs
 
-## Création d'un dossier 
+### Création d'un dossier 
 
 Pour créer un dossier, sur l'espace d'accueil, nous cliquons sur "nouveau Item".
 
@@ -14,7 +14,7 @@ Une fenêtre s'ouvre où nous allons insérer le nom d'affichage du dossier **mo
 
 ![jenkins_job3.png](../../images/jenkins_job3.png)
 
-## Création d'un job
+### Création d'un job
 
 Nous pouvons créer simple un job depuis la racine de jenkins. Pour cela nous cliquons sur **Tableau de bord**, puis sur **nouveau item**. Une page s'ouvre où nous allons renseigner le nom du job **monjob**, puis choisir l'option **construire un projet free-style** .
 
@@ -36,7 +36,7 @@ Ainsi en ouvrant notre dossier **mondossier**, nous verrons notre job dans la li
 
 ![jenkins_job8.png](../../images/jenkins_job8.png)
 
-## Création d'un sous dossier
+### Création d'un sous dossier
 
 Nous pouvons créer un sous dossier **phpdossier** du dossier **mondossier** de la même manière que nous avons fait pour le dossier **mondossier** à condition de se situer d'abord sur l'interface détails de notre dossier **mondossier** via la navigation sur **Tableau de bord** > **mondossier** .
 
@@ -46,7 +46,7 @@ Après création du sous dossier, nous afficherons ce qui sur l'interface de not
 
 ![jenkins_job10.png](../../images/jenkins_job10.png)
 
-## Création d'un job **shell command** dans notre sous dossier **phpdossier**
+### Création d'un job **shell command** dans notre sous dossier **phpdossier**
 
 Dans notre sous dossier **phpdossier**, nous pouvons créer un job **testShellJob** de la même manière que nous avons fait depuis notre dossier racine.
 
@@ -70,7 +70,7 @@ Nous pouvons le résultat d'un buil spécifique en cliquant sur l'item choisi de
 
 ![jenkins_job16.png](../../images/jenkins_job16.png)
 
-## Edition d'un job (testShellJob)
+### Edition d'un job (testShellJob)
 
 Nous pouvons modifier notre job **testShellJob** en configurant la possibilité d'affichage les dates dans notre sortie console et de rediriger notre commande shell dans un **fichier test.txt**. <br>
 Pour cela nous nous redirigeons sur la page détails de notre job, puis nous cliquons sur **Configure** .

@@ -11,9 +11,9 @@ Pour créer un utilisateur sur jenkins, nous naviguons sur **Tableau de bord > A
 - Configurer la stratégie d'autorisation globale
 
 Par défaut après installation de jenkins, tous les utilisateurs créés ont toutes les autorisations comme l'administrateur. Nous allons configurer la **stratégie d'autorisation matricielle basée sur les projets** qui permet d'attribuer des privilèges précis aux utilisateurs de jenkins. 
-<br>
+
 Pour configurer cette stratégie, nous naviguons sur **Tableau de bord > Administrer Jenkins > Configurer la sécurité globale**. Au niveau de la section **Autorisations**, nous choisissons l'option intitulé : **stratégie d'autorisation matricielle basée sur les projets**, puis nous validons.
-<br>
+
 Si nous nous connectons avec l'utilisateur précédemment créé alors nous n'aurons aucun droit d'accès sur tous les objets de jenkins.
 
 ![jenkins_job86.png](../../images/jenkins_job86.png)
