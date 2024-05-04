@@ -113,13 +113,15 @@ NB: Les deux configurations de **keepalived** sur chaque serveur (srv1 et srv2) 
 - Test de notre configuration
 
 Pour tester notre configuration, nous pouvons stopper **apache** sur le serveur principal et vérifier que la VIP bascule vers le serveur secondaire.
-<br>
-serveur principal srv1
+
+**serveur principal srv1**
+
 ```
 sudo systemctl stop httpd
 ```
 
-serveur secondaire srv2
+**serveur secondaire srv2**
+
 ```
 ip addr show | grep enp0s8
 ```
@@ -236,8 +238,6 @@ Le bloc vrrp_script a quelques directives uniques :
 - **timeout** : combien de temps attendre le retour du script (5 secondes).
 - **rise** : combien de fois le script doit être renvoyé avec succès pour que l'hôte soit considéré comme « sain ». Dans cet exemple, le script doit réussir 3 fois. Cela permet d'éviter une condition de «battement» où un seul échec (ou succès) fait basculer rapidement l'état Keepalived d'avant en arrière.
 - **fall** : combien de fois le script doit échouer (ou expirer) pour que l'hôte soit considéré comme "malsain". Cela fonctionne comme l'inverse de la directive de **rise**.
-
-<br>
 
 Nous pouvons tester cette configuration en forçant le script à échouer. Dans l'exemple ci-dessous, nous ajoutons une règle **iptables** sur le serveur **srv1** qui empêche la communication avec **8.8.8.8**. Cela va provoquer l'échec du bilan de santé et la disparition du VIP après quelques secondes sur le serveur **srv1**. 
 
