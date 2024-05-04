@@ -1,4 +1,4 @@
-# Installation de grafana 8.4.2 sur Rocky linux 8
+# Installation de grafana 10.4.2 sur Rocky linux 8
 
 Dans ce tutoriel, nous allons installer grafana et ajouter la source de données de **prometheus**.
 
@@ -7,11 +7,11 @@ Dans ce tutoriel, nous allons installer grafana et ajouter la source de données
 - Nous téléchargeons et installons le binaire de grafana
 
 ```
-wget https://dl.grafana.com/oss/release/grafana-8.4.2-1.x86_64.rpm
-sudo yum install grafana-8.4.2-1.x86_64.rpm
+wget https://dl.grafana.com/oss/release/grafana-10.4.2-1.x86_64.rpm
+sudo yum install grafana-10.4.2-1.x86_64.rpm
 ```
 
-- Nous activons et demarrons grafana
+- Nous activons et démarrons grafana
 
 ```
 sudo systemctl enable grafana-server
@@ -25,7 +25,7 @@ sudo firewall-cmd --permanent --add-port=3000/tcp
 sudo firewall-cmd --reload
 ```
 
-- Nous accédons à l'interface ui via http://grafana_IP:3000
+- Nous accédons à l'interface ui via http://192.168.56.240:3000
 
 ### Ajout de la source Prometheus à Grafana
 
