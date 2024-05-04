@@ -1,5 +1,59 @@
 # Installation spécifique et multiplatforme depuis Ubuntu 20.04
 
+### Installation du bac à sable
+
+Nous utiliserons **vagrant** avec **virtualbox 7.0** depuis une machine hôte **ubuntu 20.04**. Nous suivons les étapes ci-dessous pour provisionner notre serveur qui contiendra notre installation **docker**.
+
+```
+cd ~ && mkdir ubuntu-docker
+```
+
+```
+cd ubuntu-docker
+```
+
+```
+wget https://download.virtualbox.org/virtualbox/7.0.12/VBoxGuestAdditions_7.0.12.iso
+```
+
+```
+vi Vagrantfile
+```
+
+```
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vbguest.auto_update = false
+  config.vbguest.no_remote = true
+  config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.12.iso"
+
+  # General Vagrant VM configuration.
+  config.vm.box = "geerlingguy/ubuntu2004"
+  config.vm.box_version = "1.0.4"
+  config.ssh.insert_key = false
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.provider :virtualbox do |v|
+    v.memory = 4096
+    v.cpus = 2
+    v.linked_clone = true
+  end
+
+  # Serveur Ubuntu 20.04.
+  config.vm.define "srv-ubuntu-docker" do |srv|
+    srv.vm.hostname = "srv-ubuntu-docker"
+    srv.vm.network :private_network, ip: "192.168.56.250"
+  end
+end
+```
+
+```
+vagrant up
+```
+
 ### Installation de docker sur Ubuntu 20.04
 
 **Installer les packages requis**
