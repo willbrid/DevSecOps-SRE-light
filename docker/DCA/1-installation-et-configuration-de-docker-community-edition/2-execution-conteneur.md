@@ -1,6 +1,6 @@
 # Exécution d'un conteneur
 
-## *Docker Run* : quelques commandes et processus clés
+### *Docker Run* : quelques commandes et processus clés
 
 Pour lancer un container : 
 
@@ -57,7 +57,7 @@ Ci-après un exemple complet :
 docker run -d --name nginx --restart unless-stopped -p 8080:80 --memory 500M --memory-reservation 256M nginx
 ```
 
-## Gestion des conteneurs
+### Gestion des conteneurs
 
 Certaines des commandes de gestion des conteneurs en cours d'exécution :
 
