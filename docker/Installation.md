@@ -1,41 +1,4 @@
-# Installation spécifique et multiplatforme
-
-### Installation de docker sur rocky linux 8
-
-**Ajouter le référentiel Docker CE**
-
-```
-sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
-```
-
-**Installer les packages Docker CE**
-
-```
-sudo dnf install -y docker-ce docker-ce-cli containerd.io
-```
-
-**Démarrer et activer le service Docker**
-
-```
-sudo systemctl start docker
-sudo systemctl enable docker
-```
-
-**Ajouter un utilisateur au groupe docker**
-
-Pour accorder à un utilisateur l'autorisation d'exécuter des commandes Docker, ajoutez l'utilisateur au groupe Docker. L'utilisateur aura accès à Docker après sa prochaine connexion.
-
-```
-sudo usermod -a -G docker <user>
-```
-
-**Tester l'installation de docker**
-
-Nous pouvons tester notre installation Docker en exécutant un simple conteneur.
-
-```
-docker run busybox
-```
+# Installation spécifique et multiplatforme depuis Ubuntu 20.04
 
 ### Installation de docker sur Ubuntu 20.04
 
