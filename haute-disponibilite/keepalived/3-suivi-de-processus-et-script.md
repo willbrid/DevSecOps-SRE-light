@@ -5,7 +5,7 @@
 L'une des configurations **Keepalived** les plus courantes consiste à suivre un processus sur le serveur pour déterminer la santé de l'hôte. Par exemple, nous pouvons configurer une paire de serveurs Web hautement disponibles et déclencher un basculement si **Apache** cesse de s'exécuter sur l'un d'entre eux.
 **Keepalived** facilite cela grâce à ses directives de configuration **track_process**. 
 
-Pour cette configuration, nous partirons de la section précédente sur **2-configuration-de-base.md**, nous installerons apache2, puis nous configurons le suivi du processus **httpd** avec un poids de 10.
+Pour cette configuration, nous partirons de la section précédente sur [2-configuration-de-base.md](./2-configuration-de-base.md), nous installerons apache2, puis nous configurons le suivi du processus **httpd** avec un poids de 10.
 
 - Installation et simple configuration d'apache sur chaque serveur
 
