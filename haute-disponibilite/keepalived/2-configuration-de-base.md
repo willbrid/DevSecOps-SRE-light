@@ -103,7 +103,7 @@ vrrp_instance VI_1 {
     state MASTER
     interface enp0s8
     virtual_router_id 52
-    priority 255
+    priority 150
     advert_int 1
     unicast_src_ip 192.168.56.4 # adresse IP de la master
     unicast_peer {
@@ -145,7 +145,7 @@ vrrp_instance VI_1 {
     state BACKUP
     interface enp0s8
     virtual_router_id 52
-    priority 254
+    priority 100
     advert_int 1
     unicast_src_ip 192.168.56.5 # adresse IP du serveur secondaire 
     unicast_peer {
