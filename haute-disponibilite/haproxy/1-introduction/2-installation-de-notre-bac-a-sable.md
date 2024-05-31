@@ -1,14 +1,17 @@
 # Installation de notre bac-à-sable
 
 Nous pouvons utiliser des conteneurs Podman pour explorer nos concepts d'équilibrage de charge en utilisant un seul hôte avec notre OS rocky linux 8.
-<br>
+
 Nous utiliserons **vagrant** et **virtualbox** pour provisionner notre serveur avec la box vagrant **willbrid/rockylinux8**.
 
 - installons nos deux machines virtuelles **client** (haproxy-client -> 192.168.56.7) et **server** (haproxy-server -> 192.168.56.8) grâce à notre fichier vagrantfile
 
 ```
-mkdir ~/haproxy-test
-cd ~/haproxy-test
+mkdir -p $HOME/haproxy-test && cd $HOME/haproxy-test
+```
+
+```
+wget https://download.virtualbox.org/virtualbox/7.0.12/VBoxGuestAdditions_7.0.12.iso
 ```
 
 ```
@@ -24,10 +27,11 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.auto_update = false
   config.vbguest.no_remote = true
-  config.vbguest.iso_path = "./VBoxGuestAdditions_6.1.38.iso"
+  config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.12.iso"
   
   # General Vagrant VM configuration.
   config.vm.box = "willbrid/rockylinux8"
+  config.vm.box_version = "0.0.2"
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.provider :virtualbox do |v|
