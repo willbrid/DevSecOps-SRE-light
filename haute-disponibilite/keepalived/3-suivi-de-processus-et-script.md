@@ -39,14 +39,14 @@ sudo vi keepalived.conf
 ```
 vrrp_track_process track_apache {
     process httpd
-    weight 10
+    weight -50
 }
 
 vrrp_instance VI_1 {
     state MASTER
     interface enp0s8
     virtual_router_id 52
-    priority 244
+    priority 150
     advert_int 1
     unicast_src_ip 192.168.56.4 # adresse IP de la master
     unicast_peer {
@@ -78,14 +78,14 @@ sudo vi keepalived.conf
 ```
 vrrp_track_process track_apache {
     process httpd
-    weight 10
+    weight 30
 }
 
 vrrp_instance VI_1 {
     state BACKUP
     interface enp0s8
     virtual_router_id 52
-    priority 244
+    priority 100
     advert_int 1
     unicast_src_ip 192.168.56.5 # adresse IP du serveur secondaire 
     unicast_peer {
@@ -108,7 +108,7 @@ vrrp_instance VI_1 {
 sudo systemctl restart keepalived
 ```
 
-NB: Les deux configurations de **keepalived** sur chaque serveur (srv1 et srv2) doivent avoir la même priorité par exemple 244. De ce fait la priorité totale pour chaque serveur sera 244 + 10 (poids apache). Ainsi lorsque le processus apache s'arrête sur un serveur alors sa priorité totale diminue par la perte du poids d'apache et ainsi le trafic est basculé sur le serveur ayant la plus grande priorité.
+NB: Le serveur Master à la priorité **150** et le Backup a la priorité **100**. De ce fait la priorité totale pour le serveur Master sera **150** et celle du serveur Backup sera **100 + 30** (poids apache du Backup), puisque le processus apache est en exécution. Ainsi lorsque le processus apache s'arrête sur le serveur Master alors sa priorité totale diminue de **150 - 50** par la perte du poids d'apache et ainsi le trafic est basculé sur le serveur ayant la plus grande priorité qui est le Backup.
 
 - Test de notre configuration
 
