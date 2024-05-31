@@ -1,6 +1,18 @@
 # Configuration de base
 
-Nous supposerons cette topologie via notre fichier vagrantfile :
+Nous supposerons cette topologie via notre fichier **Vagrantfile** :
+
+```
+mkdir $HOME/actif-passif-with-keepalived && cd $HOME/actif-passif-with-keepalived
+```
+
+```
+wget https://download.virtualbox.org/virtualbox/7.0.12/VBoxGuestAdditions_7.0.12.iso
+```
+
+```
+vi Vagrantfile
+```
 
 ```
 # -*- mode: ruby -*-
@@ -9,10 +21,13 @@ Nous supposerons cette topologie via notre fichier vagrantfile :
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vbguest.installer_options = { running_kernel_modules: ["vboxguest"] }
-  config.vbguest.auto_update = true
+  config.vbguest.auto_update = false
+  config.vbguest.no_remote = true
+  config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.12.iso"
+
   # General Vagrant VM configuration.
   config.vm.box = "willbrid/rockylinux8"
+  config.vm.box_version = "0.0.2"
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.provider :virtualbox do |v|
@@ -22,36 +37,40 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Server 1.
   config.vm.define "srv1" do |app|
-    app.vm.hostname = "srv1.test"
+    app.vm.hostname = "srv1-test"
     app.vm.network :private_network, ip: "192.168.56.4"
   end
 
   # Server 2. 
   config.vm.define "srv2" do |app|
-    app.vm.hostname = "srv2.test"
+    app.vm.hostname = "srv2-test"
     app.vm.network :private_network, ip: "192.168.56.5"
   end
 end
 ```
 
+```
+vagrant up
+```
+
 Deux serveurs : srv1 -> 192.168.56.4 et srv2 -> 192.168.56.5
 
-- Installation de keepalived **2.2.7** sur chaque serveur
+- Installation de keepalived **2.3.1** sur chaque serveur
 
 ```
 sudo yum install -y gcc openssl-devel libnl3-devel
 ```
 
 ```
-wget https://www.keepalived.org/software/keepalived-2.2.7.tar.gz
+wget https://www.keepalived.org/software/keepalived-2.3.1.tar.gz
 ```
 
 ```
-tar -xvf keepalived-2.2.7.tar.gz
+tar -xvf keepalived-2.3.1.tar.gz
 ```
 
 ```
-cd keepalived-2.2.7
+cd keepalived-2.3.1
 ```
 
 ```
