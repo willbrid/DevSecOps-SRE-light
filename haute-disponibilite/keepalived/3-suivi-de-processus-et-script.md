@@ -167,7 +167,7 @@ vrrp_instance VI_1 {
     state MASTER
     interface enp0s8
     virtual_router_id 52
-    priority 244
+    priority 150
     advert_int 1
     unicast_src_ip 192.168.56.4 # adresse IP de la master
     unicast_peer {
@@ -209,7 +209,7 @@ vrrp_instance VI_1 {
     state BACKUP
     interface enp0s8
     virtual_router_id 52
-    priority 244
+    priority 100
     advert_int 1
     unicast_src_ip 192.168.56.5 # adresse IP du serveur secondaire 
     unicast_peer {
@@ -232,7 +232,7 @@ vrrp_instance VI_1 {
 sudo systemctl restart keepalived
 ```
 
-Le bloc vrrp_script a quelques directives uniques :
+Le bloc **vrrp_script** a quelques directives uniques :
 
 - **interval**: fréquence d'exécution du script (1 seconde).
 - **timeout** : combien de temps attendre le retour du script (5 secondes).
@@ -245,7 +245,7 @@ Nous pouvons tester cette configuration en forçant le script à échouer. Dans 
 iptables -I OUTPUT -d 8.8.8.8 -j DROP
 ```
 
-En supprimant la règle la VIP va réapparaître sur le serveur **srv1**.
+En supprimant la règle, la VIP va réapparaître sur le serveur **srv1**.
 
 ```
 iptables -D OUTPUT -d 8.8.8.8 -j DROP
@@ -295,7 +295,7 @@ vrrp_instance VI_1 {
     state MASTER
     interface enp0s8
     virtual_router_id 52
-    priority 244
+    priority 150
     advert_int 1
     unicast_src_ip 192.168.56.4 # adresse IP de la master
     unicast_peer {
@@ -338,7 +338,7 @@ vrrp_instance VI_1 {
     state BACKUP
     interface enp0s8
     virtual_router_id 52
-    priority 244
+    priority 100
     advert_int 1
     unicast_src_ip 192.168.56.5 # adresse IP du serveur secondaire 
     unicast_peer {
