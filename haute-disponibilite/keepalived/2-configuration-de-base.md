@@ -3,7 +3,7 @@
 Nous supposerons cette topologie via notre fichier **Vagrantfile** :
 
 ```
-mkdir $HOME/actif-passif-with-keepalived && cd $HOME/actif-passif-with-keepalived
+mkdir $HOME/active-passive-with-keepalived && cd $HOME/active-passive-with-keepalived
 ```
 
 ```
