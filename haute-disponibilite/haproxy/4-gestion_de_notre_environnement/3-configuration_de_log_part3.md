@@ -12,21 +12,24 @@ sudo vi /etc/logrotate.d/haproxy
 /var/log/haproxy*.log {
     daily
     rotate 365
+    copytruncate
     missingok
     notifempty
-    compress
     size 300M
+    compress
     delaycompress
     sharedscripts
     postrotate
-        systemctl reload rsyslog.service > /dev/null 2>&1 || true
+        systemctl restart rsyslog.service > /dev/null 2>&1 || true
     endscript
 }
 ```
 
---- **daily** : indique que la rotation des journaux doit se produire une fois par jour. Cela signifie que chaque jour, un nouveau fichier journal est créé et l'ancien fichier est renommé avec une extension de date. <br>
+--- **daily** indique que la rotation des journaux doit se produire une fois par jour. Cela signifie que chaque jour, un nouveau fichier journal est créé et l'ancien fichier est renommé avec une extension de date. <br>
 
 --- **rotate 365** indique que jusqu'à 365 fichiers journaux peuvent être conservés, au-delà de cela, les fichiers les plus anciens seront supprimés. <br>
+
+--- **copytruncate** demande à logrotate de créer d'abord une copie du fichier journal d'origine, puis de supprimer le contenu du fichier d'origine afin de réduire sa taille (c'est-à-dire de le tronquer). Ce comportement est moins perturbateur que la directive **create** dans la mesure où il permet une écriture continue et ininterrompue dans le fichier d'origine. <br>
 
 --- **missingok** signifie que si le fichier journal n'existe pas, il ne doit pas y avoir d'erreur et la rotation du journal doit continuer. <br>
 
@@ -40,7 +43,7 @@ sudo vi /etc/logrotate.d/haproxy
 
 --- **sharedscripts** indique que les scripts postrotation et prerotation ne doivent être exécutés qu'une seule fois pour l'ensemble des fichiers journaux concernés. <br>
 
---- **postrotate** contient les commandes à exécuter après la rotation des journaux. Dans ce cas, la commande "systemctl reload rsyslog.service" est utilisée pour recharger le service rsyslog afin qu'il commence à écrire dans le nouveau fichier journal. <br>
+--- **postrotate** contient les commandes à exécuter après la rotation des journaux. Dans ce cas, la commande **"systemctl restart rsyslog.service"** est utilisée pour redémarrer le service rsyslog afin qu'il commence à écrire dans le nouveau fichier journal. <br>
 
 --- **endscript** indique la fin du script de postrotation.
 
