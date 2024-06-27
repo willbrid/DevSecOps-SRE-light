@@ -3,12 +3,9 @@
 La haute disponibilité amènera votre configuration Zabbix au niveau supérieur en nous assurant que si l'un de vos serveurs Zabbix rencontre des problèmes, un autre prendra le relais.
 Une grande chose à propos de cette implémentation est qu'elle prend en charge un moyen propriétaire simple de mettre un à plusieurs serveurs Zabbix dans un cluster. Un excellent moyen de nous assurer que notre surveillance reste actif à tout moment (ou du moins autant que possible).
 
-<br>
-
 ## configuration du HA sur les deux serveurs
 
 Nous allons utilisons notre 2ème serveur **srv-lab2** pour configurer une autre instance de zabbix. Pour il suffira de suivre la démarche faite précédemment pour la configuration du service zabbix sur le serveur **srv-lab1** avec quelques détails.
-<br>
 
 Sur le serveur **srv-lab2**, nous procédons comme suit :
 
@@ -75,9 +72,10 @@ dnf install zabbix-web-mysql zabbix-nginx-conf
 systemctl enable nginx php-fpm
 systemctl restart zabbix-server nginx php-fpm
 ```
-Nous configurons **nginx** pour prendre en charge notre serveur interface web zabbix (**srv-lab2**) comme nous l'avons fait pour le serveur  **srv-lab1** <br> 
+Nous configurons **nginx** pour prendre en charge notre serveur interface web zabbix (**srv-lab2**) comme nous l'avons fait pour le serveur  **srv-lab1**.
+
 Nous accédons à l'interface web via l'IP du serveur **srv-lab2** et nous faisons les dernières configurations comme nous l'avons fait avec le serveur **srv-lab1**
-<br><br>
+
 Nous ajoutons la configuration de haute disponibilité de zabbix sur le serveur **srv-lab1** et redemarrons son service **zabbix-server**
 
 ```
@@ -120,14 +118,14 @@ vim /etc/keepalived/keepalived.conf
 ```
 vrrp_track_process chk_nginx_service {
   process nginx
-  weight 10
+  weight -50
 }
 
 vrrp_instance ZBX_1 {
   state MASTER
   interface enp0s8
   virtual_router_id 51
-  priority 244
+  priority 150
   advert_int 1
 
   unicast_src_ip 192.168.56.37 
@@ -159,14 +157,14 @@ vim /etc/keepalived/keepalived.conf
 ```
 vrrp_track_process chk_nginx_service {
   process nginx
-  weight 10
+  weight 30
 }
 
 vrrp_instance ZBX_1 {
   state BACKUP
   interface enp0s8
   virtual_router_id 51
-  priority 243
+  priority 100
   advert_int 1
 
   unicast_src_ip 192.168.56.34 
