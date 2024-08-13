@@ -52,9 +52,10 @@ podman run -d --net=host \
     -v $HOME/prom-data:/prometheus:z \
     -u root \
     --name prometheus-0-CL-A \
-    quay.io/prometheus/prometheus:v2.38.0 \
+    quay.io/prometheus/prometheus:v2.53.2 \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.tsdb.retention.time=1000d \
+    --storage.tsdb.wal-compression \
     --storage.tsdb.path=/prometheus \
     --storage.tsdb.max-block-duration=2h \
     --storage.tsdb.min-block-duration=2h \

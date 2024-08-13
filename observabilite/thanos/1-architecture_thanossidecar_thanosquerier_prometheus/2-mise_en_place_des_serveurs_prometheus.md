@@ -1,6 +1,6 @@
 # Mise en place des 3 serveurs prometheus
 
-Nous allons mettre en place 3 serveurs prometheus. Nous avons un serveur Prometheus dans un cluster **A**. Nous avons 2 répliques de serveurs Prometheus dans un cluster **B** qui récupère les mêmes cibles.
+Nous allons mettre en place 3 serveurs prometheus (**prometheus version LTS 2.53**). Nous avons un serveur Prometheus dans un cluster **A**. Nous avons 2 répliques de serveurs Prometheus dans un cluster **B** qui récupère les mêmes cibles.
 
 ### Création des fichiers de configuration de nos 3 serveurs
 
@@ -95,9 +95,13 @@ podman run -d --net=host \
     -v $HOME/prometheus0_A_data:/prometheus:z \
     -u root \
     --name prometheus-0-A \
-    quay.io/prometheus/prometheus:v2.38.0 \
+    quay.io/prometheus/prometheus:v2.53.2 \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.tsdb.path=/prometheus \
+    --storage.tsdb.wal-compression \
+    --storage.tsdb.retention.time=12h \
+    --storage.tsdb.max-block-duration=2h \
+    --storage.tsdb.min-block-duration=2h \
     --web.listen-address=:9090 \
     --web.external-url=http://prometheusA.local:9090 \
     --web.enable-lifecycle \
@@ -127,9 +131,13 @@ podman run -d --net=host \
     -v $HOME/prometheus0_B_data:/prometheus:z \
     -u root \
     --name prometheus-0-B \
-    quay.io/prometheus/prometheus:v2.38.0 \
+    quay.io/prometheus/prometheus:v2.53.2 \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.tsdb.path=/prometheus \
+    --storage.tsdb.wal-compression \
+    --storage.tsdb.retention.time=12h \
+    --storage.tsdb.max-block-duration=2h \
+    --storage.tsdb.min-block-duration=2h \
     --web.listen-address=:9091 \
     --web.external-url=http://prometheusB.local:9091 \
     --web.enable-lifecycle \
@@ -142,9 +150,13 @@ podman run -d --net=host \
     -v $HOME/prometheus1_B_data:/prometheus:z \
     -u root \
     --name prometheus-1-B \
-    quay.io/prometheus/prometheus:v2.38.0 \
+    quay.io/prometheus/prometheus:v2.53.2 \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.tsdb.path=/prometheus \
+    --storage.tsdb.wal-compression \
+    --storage.tsdb.retention.time=12h \
+    --storage.tsdb.max-block-duration=2h \
+    --storage.tsdb.min-block-duration=2h \
     --web.listen-address=:9092 \
     --web.external-url=http://prometheusB.local:9092 \
     --web.enable-lifecycle \

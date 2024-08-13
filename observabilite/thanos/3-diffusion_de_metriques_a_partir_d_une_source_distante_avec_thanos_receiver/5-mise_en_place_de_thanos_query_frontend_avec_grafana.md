@@ -2,6 +2,8 @@
 
 Notre but ici sera de déployer et configurer le composant **thanos query frontend** devant le composant **thanos querier** afin que nous puissions mettre en cache les réponses aux requêtes. Pour la mise en cache, nous utiliserons l'outil **redis**.
 
+**NB: Version de thanos -> 0.36**
+
 ### Mise en place de redis sur le serveur srv-zoneAdmin
 
 - Créeons le repertoire de données de **redis**
@@ -54,7 +56,7 @@ config:
 podman run -d --net=host \
     -v $HOME/frontend.yml:/etc/thanos/frontend.yml:z \
     --name query-frontend \
-    quay.io/thanos/thanos:v0.28.0 \
+    quay.io/thanos/thanos:v0.36.0 \
     query-frontend \
     --http-address 0.0.0.0:9090 \
     --query-frontend.compress-responses \

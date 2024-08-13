@@ -2,6 +2,8 @@
 
 Nous allons configurer un serveur Prometheus qui téléchargera ses données vers notre composant **thanos receiver**.
 
+**NB: Version de prometheus -> 2.53.2**
+
 ### Mise en place d'un service node-exporter sur le serveur srv-monitoring
 
 Nous installons un service **node-exporter** sur le serveur **srv-monitoring** qui permettra à prometheus de superviser notre serveur **srv-monitoring**.
@@ -54,7 +56,7 @@ podman run -d --net=host \
     -v $HOME/prom-data:/prometheus:z \
     -u root \
     --name prometheus-0-CL-A \
-    quay.io/prometheus/prometheus:v2.38.0 \
+    quay.io/prometheus/prometheus:v2.53.2 \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.tsdb.retention.time=1d \
     --storage.tsdb.path=/prometheus \
@@ -118,7 +120,7 @@ podman run -d --net=host \
     -v $HOME/prom-data:/prometheus:z \
     -u root \
     --name prometheus-0-CL-A \
-    quay.io/prometheus/prometheus:v2.38.0 \
+    quay.io/prometheus/prometheus:v2.53.2 \
     --enable-feature=agent \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.agent.path=/prometheus \

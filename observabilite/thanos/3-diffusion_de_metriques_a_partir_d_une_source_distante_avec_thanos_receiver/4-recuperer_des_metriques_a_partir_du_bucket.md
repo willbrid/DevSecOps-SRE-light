@@ -2,6 +2,8 @@
 
 Le composant **thanos Gateway** implémente l'API Store au-dessus des données historiques dans un bucket de stockage d'objets. Il agit principalement comme une passerelle API et n'a donc pas besoin de quantités importantes d'espace disque local. Il conserve une petite quantité d'informations sur tous les blocs distants sur le disque local et les synchronise avec le bucket. Ces données peuvent généralement être supprimées en toute sécurité lors des redémarrages, au prix d'un temps de démarrage plus long.
 
+**NB: Version de thanos -> 0.36**
+
 ### Mise en place du composant thanos Gateway sur le serveur srv-storage
 
 - Nous installons notre composant **thanos Gateway**
@@ -10,7 +12,7 @@ Le composant **thanos Gateway** implémente l'API Store au-dessus des données h
 podman run -d --net=host \
     -v $HOME/bucket_storage.yaml:/etc/thanos/minio-bucket.yaml:z \
     --name store-gateway \
-    quay.io/thanos/thanos:v0.28.0 \
+    quay.io/thanos/thanos:v0.36.0 \
     store \
     --objstore.config-file /etc/thanos/minio-bucket.yaml \
     --http-address 0.0.0.0:19091 \
@@ -32,7 +34,7 @@ sudo firewall-cmd --reload
 podman run -d --net=host \
     -v $HOME/bucket_storage.yaml:/etc/thanos/minio-bucket.yaml:z \
     --name thanos-compact \
-    quay.io/thanos/thanos:v0.28.0 \
+    quay.io/thanos/thanos:v0.36.0 \
     compact \
     --wait --wait-interval 30s \
     --consistency-delay 0s \
@@ -49,7 +51,7 @@ Pour vérifier si le compacteur fonctionne correctement, nous pouvons consulter 
 ```
 podman run -d --net=host \
    --name querier \
-   quay.io/thanos/thanos:v0.28.0 \
+   quay.io/thanos/thanos:v0.36.0 \
    query \
    --http-address 0.0.0.0:9091 \
    --query.replica-label replica \

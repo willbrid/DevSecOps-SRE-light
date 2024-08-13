@@ -2,7 +2,9 @@
 
 Sur le serveur **srv-storage**, nous allons installer notre service **s3 minio** avec notre composant **thanos receiver**. 
 
-### Mise en place du stockage s3 minio sur le serveur srv-storage
+**NB: Version de thanos -> 0.36**
+
+### Mise en place du stockage s3 (version 2024-08-03T04-33-23Z.fips) minio sur le serveur srv-storage
 
 ```
 mkdir -p $HOME/minio
@@ -15,7 +17,7 @@ podman run -d --name minio \
      -p 9090:9090 \ 
      -e "MINIO_ROOT_USER=admin" \
      -e "MINIO_ROOT_PASSWORD=verysecurepassword" \
-     quay.io/minio/minio:RELEASE.2023-12-14T18-51-57Z.fips \
+     quay.io/minio/minio:RELEASE.2024-08-03T04-33-23Z.fips \
      server /data --console-address ":9090"
 ```
 
@@ -85,7 +87,7 @@ config:
   secret_key: "sm7sZGmWWDgLSpB32uWwIHpTTvam1fAPbr4g02PN"
 ```
 
-Avec **config.endpoint** nous indiquons l'adresse et le port de notre serveur s3. Avec **access_key** et **secret_key** nous indiquons la clé d'accès précédemment créée.
+Avec **config.endpoint**, nous indiquons l'adresse et le port de notre serveur s3. Avec **access_key** et **secret_key** nous indiquons la clé d'accès précédemment créée.
 
 - Nous installons notre composant **thanos receiver**
 
@@ -99,7 +101,7 @@ podman run -d --net=host \
     -v $HOME/receive-data:/receive-data:z \
     --name receiver \
     -u root \
-    quay.io/thanos/thanos:v0.28.0 \
+    quay.io/thanos/thanos:v0.36.0 \
     receive \
     --tsdb.path "/receive-data" \
     --grpc-address 192.168.56.160:10907 \

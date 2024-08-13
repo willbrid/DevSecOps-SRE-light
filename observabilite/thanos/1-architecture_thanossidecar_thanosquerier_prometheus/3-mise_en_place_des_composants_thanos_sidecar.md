@@ -1,4 +1,4 @@
-# Mise en place des composants Thanos Sidecar
+# Mise en place des composants Thanos Sidecar (version 0.36)
 
 Le composant **Thanos sidecar** doit être déployé avec **Prometheus**. Le composant **Thanos sidecar** a plusieurs fonctionnalités :
 
@@ -14,7 +14,7 @@ podman run -d --net=host \
     -v $HOME/prometheus0_A.yml:/etc/prometheus/prometheus.yml:z \
     --name prometheus-0-sidecar-A \
     -u root \
-    quay.io/thanos/thanos:v0.28.0 \
+    quay.io/thanos/thanos:v0.36.0 \
     sidecar \
     --http-address 0.0.0.0:19090 \
     --grpc-address 0.0.0.0:19190 \
@@ -29,7 +29,7 @@ podman run -d --net=host \
     -v $HOME/prometheus0_B.yml:/etc/prometheus/prometheus.yml:z \
     --name prometheus-0-sidecar-B \
     -u root \
-    quay.io/thanos/thanos:v0.28.0 \
+    quay.io/thanos/thanos:v0.36.0 \
     sidecar \
     --http-address 0.0.0.0:19091 \
     --grpc-address 0.0.0.0:19191 \
@@ -42,7 +42,7 @@ podman run -d --net=host \
     -v $HOME/prometheus1_B.yml:/etc/prometheus/prometheus.yml:z \
     --name prometheus-1-sidecar-B \
     -u root \
-    quay.io/thanos/thanos:v0.28.0 \
+    quay.io/thanos/thanos:v0.36.0 \
     sidecar \
     --http-address 0.0.0.0:19092 \
     --grpc-address 0.0.0.0:19192 \

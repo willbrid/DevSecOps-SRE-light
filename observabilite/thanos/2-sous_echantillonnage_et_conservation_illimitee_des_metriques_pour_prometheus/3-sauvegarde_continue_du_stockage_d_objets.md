@@ -2,7 +2,9 @@
 
 Prometheus, lors du scraping des données, regroupe initialement tous les échantillons en mémoire et WAL (on-disk write-head-log). Ce n'est qu'après 2-3 heures qu'il "compacte" les données sur le disque sous la forme d'un bloc TSDB de 2 heures. C'est pourquoi nous devons toujours interroger Prometheus pour obtenir les données les plus récentes, mais dans l'ensemble, grâce à ce changement, nous pouvons maintenir la rétention de Prometheus au minimum. Il est recommandé de conserver Prometheus dans ce cas pendant au moins 6 heures, afin de disposer d'un tampon sûr pour un événement potentiel de partition réseau.
 
-### Mise en place du stockage s3 minio sur le serveur srv-storage
+**NB: Version de thanos -> 0.36**
+
+### Mise en place du stockage s3 minio (version 2024-08-03T04-33-23Z.fips) sur le serveur srv-storage
 
 ```
 mkdir -p $HOME/minio
@@ -15,7 +17,7 @@ podman run -d --name minio \
      -p 9090:9090 \ 
      -e "MINIO_ROOT_USER=admin" \
      -e "MINIO_ROOT_PASSWORD=verysecurepassword" \
-     quay.io/minio/minio:RELEASE.2023-12-14T18-51-57Z.fips \
+     quay.io/minio/minio:RELEASE.2024-08-03T04-33-23Z.fips \
      server /data --console-address ":9090"
 ```
 
@@ -95,7 +97,7 @@ podman run -d --net=host \
     -v $HOME/prom-data:/prometheus:z \
     --name prometheus-0-CL-A-sidecar \
     -u root \
-    quay.io/thanos/thanos:v0.28.0 \
+    quay.io/thanos/thanos:v0.36.0 \
     sidecar \
     --tsdb.path /prometheus \
     --objstore.config-file /etc/thanos/minio-bucket.yaml \

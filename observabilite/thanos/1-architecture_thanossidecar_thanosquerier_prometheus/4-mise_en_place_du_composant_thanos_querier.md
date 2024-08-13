@@ -2,6 +2,8 @@
 
 Nous installerons **thanos Querier** sur le serveur **srv-zoneAdmin** qui utilisera nos composants **thanos sidecars** et permettra d'interroger toutes les métriques à partir d'un seul endroit.
 
+**NB: Version de thanos -> 0.36**
+
 - Le composant **thanos Querier** est essentiellement un moteur **PromQL Prometheus** qui récupère les données de n'importe quel service qui implémente **thanos StoreAPI**. Cela signifie que **thanos Querier** expose l'API Prometheus HTTP v1 pour interroger les données dans un langage PromQL commun. Cela permet la compatibilité avec Grafana ou d'autres consommateurs de l'API de Prometheus.
 
 - Le composant **thanos Querier** est capable de dédupliquer les données **StoreAPI** qui se trouvent dans le même groupe **HA**.
@@ -35,7 +37,7 @@ Sur le serveur **srv-zoneAdmin**
 ```
 podman run -d --net=host \
     --name querier \
-    quay.io/thanos/thanos:v0.28.0 \
+    quay.io/thanos/thanos:v0.36.0 \
     query \
     --http-address 0.0.0.0:29090 \
     --query.replica-label replica \
