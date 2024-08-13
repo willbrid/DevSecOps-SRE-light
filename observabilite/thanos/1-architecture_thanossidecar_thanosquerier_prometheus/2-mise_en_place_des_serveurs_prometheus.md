@@ -1,6 +1,8 @@
 # Mise en place des 3 serveurs prometheus
 
-Nous allons mettre en place 3 serveurs prometheus (**prometheus version LTS 2.53**). Nous avons un serveur Prometheus dans un cluster **A**. Nous avons 2 répliques de serveurs Prometheus dans un cluster **B** qui récupère les mêmes cibles.
+Nous allons mettre en place 3 serveurs prometheus. Nous avons un serveur Prometheus dans un cluster **A**. Nous avons 2 répliques de serveurs Prometheus dans un cluster **B** qui récupère les mêmes cibles.
+
+**NB: Version de prometheus -> LTS 2.53**
 
 ### Création des fichiers de configuration de nos 3 serveurs
 

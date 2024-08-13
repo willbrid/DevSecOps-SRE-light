@@ -1,9 +1,11 @@
-# Mise en place des composants Thanos Sidecar (version 0.36)
+# Mise en place des composants Thanos Sidecar
 
 Le composant **Thanos sidecar** doit être déployé avec **Prometheus**. Le composant **Thanos sidecar** a plusieurs fonctionnalités :
 
 - Il expose les métriques Prometheus en tant que **Thanos StoreAPI** commune. **StoreAPI** est une API gRPC générique permettant aux composants Thanos de récupérer des métriques à partir de divers systèmes et backends.
 - Il est capable de surveiller la configuration et les règles Prometheus (alertes ou enregistrements) et de notifier Prometheus pour les rechargements dynamiques.
+
+**NB: Version de thanos -> 0.36**
 
 ### Installation d'un composant Thanos sidecar sur chacun de nos serveurs prometheus
 
