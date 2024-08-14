@@ -1,8 +1,9 @@
-# Installation d'un cluster k8s version 1.25 sur Rocky linux 8
+# Installation d'un cluster k8s version 1.30 avec cri-o sur Rocky linux 8
 
 Dans cette section nous mettrons en place un cluster k8s à 4 noeuds avec podman.
 
-**Hypothèse**: On supposera que l'environnement **sandbox** est déjà mis en place pour **Rocky linux 8**. <br>
+**Hypothèse**: On supposera que l'environnement **sandbox** est déjà mis en place pour **Rocky linux 8**.
+
 [Mise en place de la Sandbox](https://github.com/willbrid/kubernetes-light/blob/main/cka/sandbox.md)
 
 ### Configuration du hostname et du fichier hosts
@@ -62,72 +63,32 @@ sudo swapoff -a
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
 
-### Installation et configuration de containerd sur tous les noeuds
+### Mise en place des préréquis pour l'exécuteur de conteneur cri-o version 1.30
 
-**Configuration des modules kernel : overlay et br_netfilter pour containerd**
+**Configuration du module kernel br_netfilter pour cri-o**
 
 ```
-cat << EOF | sudo tee /etc/modules-load.d/containerd.conf
-overlay
+cat << EOF | sudo tee /etc/modules-load.d/cri-o.conf
 br_netfilter
 EOF
 
-sudo modprobe overlay
 sudo modprobe br_netfilter
 ```
 
 **Activation du routage des paquets et permission de la communication par pont entre conteneurs**
 
 ```
-cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
-net.bridge.bridge-nf-call-iptables = 1
+cat <<EOF | sudo tee /etc/sysctl.d/cri-o.conf
 net.ipv4.ip_forward = 1
-net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 
 sudo sysctl --system
 ```
 
-**Installation et configuration de containerd**
-
---- Ajoutons les répertoires **/usr/local/bin** et **/usr/local/sbin** à la variable d'environnement **$PATH**
+**Installation de container-selinux**
 
 ```
-sudo vi /etc/profile.d/usr_local_bin_path_setting.sh
-```
-
-```
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin
-```
-
-```
-sudo source /etc/profile.d/usr_local_bin_path_setting.sh
-```
-
---- installation de containerd
-
-```
-wget https://github.com/containerd/containerd/releases/download/v1.7.6/containerd-1.7.6-linux-amd64.tar.gz
-sudo tar Czxvf /usr/local containerd-1.7.6-linux-amd64.tar.gz
-```
-
-```
-wget https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
-sudo mv containerd.service /usr/lib/systemd/system/
-sudo chown root:root /usr/lib/systemd/system/containerd.service
-sudo restorecon /usr/lib/systemd/system/containerd.service
-sudo systemctl daemon-reload
-sudo systemctl enable --now containerd
-sudo systemctl status containerd
-```
-
---- configuration de **containerd** avec prise en charge du **cgroup**
-
-```
-sudo mkdir -p /etc/containerd
-sudo containerd config default | sudo tee /etc/containerd/config.toml
-sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
-sudo systemctl restart containerd
+sudo dnf install -y container-selinux
 ```
 
 ## Configuration du parefeu firewall-cmd pour autoriser les ports de k8s
@@ -166,51 +127,32 @@ sudo vi /etc/yum.repos.d/kubernetes.repo
 ```
 [kubernetes]
 name=Kubernetes
-baseurl=https://pkgs.k8s.io/core:/stable:/v1.25.0/rpm/
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/
 enabled=1
 gpgcheck=1
-gpgkey=https://pkgs.k8s.io/core:/stable:/v1.25.0/rpm/repodata/repomd.xml.key
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key
 exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
 ```
 
-La dernière ligne avec le mot *exclude* permet d'empêcher la mise à jour des packages *kubelet*, *kubeadm* et *kubectl*.<br>
-L'on met à jour la liste des packages :
-```
-sudo dnf upgrade -y
-```
+L'on pourra vérifier les versions disponibles pour *1.30* de chacun des packages *kubelet*, *kubeadm*, *kubectl* et *cri-o* :
 
-L'on pourra vérifier les versions disponibles pour *1.25* de chacun des packages *kubelet*, *kubeadm* et *kubectl* :
 ```
 sudo dnf --showduplicates list kubelet --disableexcludes=kubernetes
 sudo dnf --showduplicates list kubeadm --disableexcludes=kubernetes
 sudo dnf --showduplicates list kubectl --disableexcludes=kubernetes
 ```
 
-Dans notre cas, à partir des résultats de la commande ci-dessus, nous avons décidé d'installer la version 1.25.0-0 de chaque package.
-
-**Installation des packages *kubelet*, *kubeadm* et *kubectl* sur tous les noeuds**
+**Installation des packages *kubelet*, *kubeadm*, *kubectl* et *cri-o* sur tous les noeuds**
 
 ```
-sudo dnf install -y kubelet-1.25.0 kubeadm-1.25.0 kubectl-1.25.0 --disableexcludes=kubernetes
+sudo dnf install -y kubelet kubeadm kubectl cri-o --disableexcludes=kubernetes
 ```
 
 **Configuration de cri-tools**
 
-La commande d'installation de *kubelet*, *kubeadm* et *kubectl*, installera aussi le binaire **crictl** de **cri-tools**. <br>
-Configurons **crictl** afin qu'il utilise l'environnement d'exécution de conteneur **containerd**
+La commande d'installation de *kubelet*, *kubeadm*, *kubectl* et *cri-o* installera aussi le binaire **crictl** de **cri-tools**.
 
-```
-sudo vi /etc/crictl.yaml
-```
-
-```
-runtime-endpoint: unix:///var/run/containerd/containerd.sock
-image-endpoint: unix:///var/run/containerd/containerd.sock
-timeout: 10
-debug: true
-```
-
-Testons notre installation de **crictl** en exécutant
+Testons l'installation de **crictl** en exécutant
 
 ```
 sudo crictl image ls
@@ -219,8 +161,7 @@ sudo crictl image ls
 **Démarrage et activation du kubelet sur tous les noeuds**
 
 ```
-sudo systemctl enable kubelet
-sudo systemctl start kubelet
+sudo systemctl enable --now kubelet
 ```
 
 **Initialisation du cluster sur le noeud master**
@@ -228,13 +169,13 @@ sudo systemctl start kubelet
 Sur le nœud master (k8s-control) uniquement, initialisons le cluster et configurons l'accès kubectl.
 
 ```
-sudo kubeadm init --pod-network-cidr 172.16.0.0/16 --apiserver-advertise-address 192.168.56.87 --kubernetes-version 1.25.0
+sudo kubeadm init --pod-network-cidr 172.16.0.0/16 --apiserver-advertise-address 192.168.56.87 --kubernetes-version 1.30
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-NB: Ici 172.16.0.0/16 sera la plage du réseau privé de notre cluster.<br>
+NB: Ici **172.16.0.0/16** sera la plage du réseau privé de notre cluster.
 
 Nous pouvons vérifier si le cluster fonctionne :
 
