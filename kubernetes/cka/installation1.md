@@ -1,8 +1,9 @@
-# Installation d'un cluster k8s version 1.25 sur ubuntu server 20.04
+# Installation d'un cluster k8s version 1.30 avec containerd sur ubuntu server 22.04
 
 Dans cette section nous mettrons en place un cluster k8s à 4 noeuds avec containerd.
 
-**Hypothèse**: On supposera que l'environnement **sandbox** est déjà mis en place. <br>
+**Hypothèse**: On supposera que l'environnement **sandbox** est déjà mis en place.
+
 [Mise en place de la Sandbox](https://github.com/willbrid/kubernetes-light/blob/main/cka/sandbox.md)
 
 ### Configuration du hostname et du fichier hosts
@@ -81,15 +82,15 @@ sudo sysctl --system
 --- installation de containerd
 
 ```
-wget https://github.com/containerd/containerd/releases/download/v1.7.6/containerd-1.7.6-linux-amd64.tar.gz
-sudo tar Czxvf /usr/local containerd-1.7.6-linux-amd64.tar.gz
+wget https://github.com/containerd/containerd/releases/download/v1.7.20/containerd-1.7.20-linux-amd64.tar.gz
+sudo tar Czxvf /usr/local containerd-1.7.20-linux-amd64.tar.gz
 ```
 
 ```
 wget https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
-sudo mv containerd.service /usr/lib/systemd/system/
-sudo chown root:root /usr/lib/systemd/system/containerd.service
-sudo restorecon /usr/lib/systemd/system/containerd.service
+sudo mkdir -p /usr/local/lib/systemd/system
+sudo mv containerd.service /usr/local/lib/systemd/system/
+sudo chown root:root /usr/local/lib/systemd/system/containerd.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now containerd
 sudo systemctl status containerd
@@ -118,18 +119,26 @@ sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 Sur tous les noeuds, il faudrait installer les packages kubeadm, kubelet, et kubectl.
 
 ```
-sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl gpg
-
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.25/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+sudo apt-get update
 ```
 
 ```
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.25/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+```
+
+```
+sudo mkdir -p /etc/apt/keyrings
+
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+```
+
+```
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
 ```
 sudo apt-get update
-sudo apt-get install -y kubelet=1.25.0-00 kubeadm=1.25.0-00 kubectl=1.25.0-00
+sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
@@ -140,7 +149,7 @@ NB: La dernière commande avec **apt-mark** permet de désactiver la mise à jou
 Sur le nœud master (**k8s-control**) uniquement, initialisons le cluster et configurons l'accès kubectl.
 
 ```
-sudo kubeadm init --pod-network-cidr 172.16.0.0/16 --apiserver-advertise-address 192.168.56.87 --kubernetes-version 1.25.0
+sudo kubeadm init --pod-network-cidr 172.16.0.0/16 --apiserver-advertise-address 192.168.56.87 --kubernetes-version 1.30
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
