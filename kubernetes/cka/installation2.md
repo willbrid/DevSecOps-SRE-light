@@ -63,7 +63,7 @@ sudo swapoff -a
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
 
-### Mise en place des préréquis pour l'exécuteur de conteneur cri-o version 1.30
+### Installation de l'exécuteur de conteneur cri-o version 1.30
 
 **Configuration du module kernel br_netfilter pour cri-o**
 
@@ -89,6 +89,26 @@ sudo sysctl --system
 
 ```
 sudo dnf install -y container-selinux
+```
+
+**Installation de cri-o version 1.30**
+
+```
+sudo vi /etc/yum.repos.d/cri-o.repo
+```
+
+```
+[cri-o]
+name=CRI-O
+baseurl=https://pkgs.k8s.io/addons:/cri-o:/stable:/1.30/rpm/
+enabled=1
+gpgcheck=1
+gpgkey=https://pkgs.k8s.io/addons:/cri-o:/stable:/1.30/rpm/repodata/repomd.xml.key
+exclude=cri-o
+```
+
+```
+sudo dnf install -y cri-o --disableexcludes=cri-o
 ```
 
 ## Configuration du parefeu firewall-cmd pour autoriser les ports de k8s
@@ -134,7 +154,7 @@ gpgkey=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key
 exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
 ```
 
-L'on pourra vérifier les versions disponibles pour *1.30* de chacun des packages *kubelet*, *kubeadm*, *kubectl* et *cri-o* :
+L'on pourra vérifier les versions disponibles pour *1.30* de chacun des packages *kubelet*, *kubeadm* et *kubectl* :
 
 ```
 sudo dnf --showduplicates list kubelet --disableexcludes=kubernetes
@@ -142,17 +162,30 @@ sudo dnf --showduplicates list kubeadm --disableexcludes=kubernetes
 sudo dnf --showduplicates list kubectl --disableexcludes=kubernetes
 ```
 
-**Installation des packages *kubelet*, *kubeadm*, *kubectl* et *cri-o* sur tous les noeuds**
+**Installation des packages *kubelet*, *kubeadm* et *kubectl* sur tous les noeuds**
 
 ```
-sudo dnf install -y kubelet kubeadm kubectl cri-o --disableexcludes=kubernetes
+sudo dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 ```
 
 **Configuration de cri-tools**
 
-La commande d'installation de *kubelet*, *kubeadm*, *kubectl* et *cri-o* installera aussi le binaire **crictl** de **cri-tools**.
+La commande d'installation de *kubelet*, *kubeadm* et *kubectl* installera aussi le binaire **crictl** de **cri-tools**.
 
-Testons l'installation de **crictl** en exécutant
+- Configurons **crictl** afin qu'il utilise l'environnement d'exécution de conteneur **cri-o**.
+
+```
+sudo vi /etc/crictl.yaml
+```
+
+```
+runtime-endpoint: unix:///var/run/crio/crio.sock
+image-endpoint: unix:///var/run/crio/crio.sock
+timeout: 10
+debug: true
+```
+
+- Testons l'installation de **crictl** en exécutant
 
 ```
 sudo crictl image ls
