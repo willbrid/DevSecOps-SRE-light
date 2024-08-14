@@ -12,7 +12,7 @@ mkdir ~/kubernetes
 cd ~/kubernetes
 ```
 
-## Pour Ubuntu 20.04 (box : geerlingguy/ubuntu2004 version 1.0.4)
+## Pour Ubuntu 22.04 (box : generic/ubuntu2204 version 4.3.12)
 
 ```
 mkdir ~/kubernetes/ubuntu
@@ -36,8 +36,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.12.iso"
 
   # General Vagrant VM configuration.
-  config.vm.box = "geerlingguy/ubuntu2004"
-  config.vm.box_version = "1.0.4"
+  config.vm.box = "generic/ubuntu2204"
+  config.vm.box_version = "4.3.12"
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.provider :virtualbox do |v|
@@ -85,7 +85,7 @@ end
 vagrant up
 ```
 
-## Pour Rocky linux 8 (box : geerlingguy/rockylinux8 version 1.0.1)
+## Pour Rocky linux 8 (box : willbrid/rockylinux8 version 0.0.2)
 
 ```
 mkdir ~/kubernetes/rocky
@@ -109,8 +109,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.12.iso"
 
   # General Vagrant VM configuration.
-  config.vm.box = "geerlingguy/rockylinux8"
-  config.vm.box_version = "1.0.1"
+  config.vm.box = "willbrid/rockylinux8"
+  config.vm.box_version = "0.0.2"
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.provider :virtualbox do |v|
