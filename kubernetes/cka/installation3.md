@@ -91,7 +91,10 @@ echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.i
 ```
 sudo apt-get update
 sudo apt-get install -y cri-o
+sudo apt-mark hold cri-o
 ```
+
+NB: La dernière commande avec **apt-mark** permet de désactiver la mise à jour automatique du package cri-o.
 
 ```
 sudo systemctl start crio.service
