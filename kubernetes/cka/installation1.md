@@ -149,7 +149,7 @@ NB: La dernière commande avec **apt-mark** permet de désactiver la mise à jou
 Sur le nœud master (**k8s-control**) uniquement, initialisons le cluster et configurons l'accès kubectl.
 
 ```
-sudo kubeadm init --pod-network-cidr 172.16.0.0/16 --apiserver-advertise-address 192.168.56.87 --kubernetes-version 1.30
+sudo kubeadm init --pod-network-cidr 172.16.0.0/16 --apiserver-advertise-address 192.168.56.87 --kubernetes-version 1.30.4
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
@@ -157,7 +157,17 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 L'option **--apiserver-advertise-address** permet de choisir l'adresse IP sur laquelle le serveur API écoutera.
 
-NB: Ici **172.16.0.0/16** sera la plage du réseau privé de notre cluster. <br>
+NB: Ici **172.16.0.0/16** sera la plage du réseau privé de notre cluster. La version exacte de kubernetes **1.30.4** mentionnée dans la commande d'initialisation du cluster peut être obtenue avec la commande :
+
+```
+kubectl version
+```
+
+```
+# Exemple de résultat
+Client Version: v1.30.4
+...
+```
 
 Nous pouvons vérifier si le cluster fonctionne.
 
