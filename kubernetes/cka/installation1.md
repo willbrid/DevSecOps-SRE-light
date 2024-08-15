@@ -1,6 +1,6 @@
 # Installation d'un cluster k8s version 1.30 avec containerd sur ubuntu server 22.04
 
-Dans cette section nous mettrons en place un cluster k8s à 4 noeuds avec containerd.
+Dans cette section nous mettrons en place un cluster k8s à 4 noeuds avec **containerd**.
 
 **Hypothèse**: On supposera que l'environnement **sandbox** est déjà mis en place.
 
@@ -120,9 +120,6 @@ Sur tous les noeuds, il faudrait installer les packages kubeadm, kubelet, et kub
 
 ```
 sudo apt-get update
-```
-
-```
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
 ```
 
@@ -142,7 +139,7 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
-NB: La dernière commande avec **apt-mark** permet de désactiver la mise à jour des packages kubelet kubeadm et kubectl.
+NB: La dernière commande avec **apt-mark** permet de désactiver la mise à jour automatique des packages kubelet kubeadm et kubectl.
 
 ### Initialisation du cluster
 
