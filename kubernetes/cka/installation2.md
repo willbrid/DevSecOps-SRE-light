@@ -53,7 +53,7 @@ Sur tous les nœuds, ajoutez ce qui suit à la fin du fichier. Vous devrez fourn
 
 ```
 sudo setenforce 0
-sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/sysconfig/selinux
+sudo sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/sysconfig/selinux
 ```
 
 **Désactivation du swap**
@@ -100,10 +100,10 @@ sudo vi /etc/yum.repos.d/cri-o.repo
 ```
 [cri-o]
 name=CRI-O
-baseurl=https://pkgs.k8s.io/addons:/cri-o:/stable:/1.30/rpm/
+baseurl=https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.30/rpm/
 enabled=1
 gpgcheck=1
-gpgkey=https://pkgs.k8s.io/addons:/cri-o:/stable:/1.30/rpm/repodata/repomd.xml.key
+gpgkey=https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.30/rpm/repodata/repomd.xml.key
 exclude=cri-o
 ```
 
@@ -111,16 +111,20 @@ exclude=cri-o
 sudo dnf install -y cri-o --disableexcludes=cri-o
 ```
 
+```
+sudo systemctl start crio.service
+```
+
+```
+sudo systemctl enable crio.service
+```
+
 ## Configuration du parefeu firewall-cmd pour autoriser les ports de k8s
 
 **Sur le noeud master**
 
 ```
-sudo firewall-cmd --permanent --add-port=6443/tcp
-sudo firewall-cmd --permanent --add-port=2379-2380/tcp
-sudo firewall-cmd --permanent --add-port=10250/tcp
-sudo firewall-cmd --permanent --add-port=10251/tcp
-sudo firewall-cmd --permanent --add-port=10252/tcp
+sudo firewall-cmd --permanent --add-port={6443/tcp,2379-2380/tcp,10250/tcp,10257/tcp,10259/tcp}
 sudo firewall-cmd --add-masquerade --permanent
 sudo firewall-cmd --reload
 ```
@@ -128,8 +132,7 @@ sudo firewall-cmd --reload
 **Sur les noeuds worker**
 
 ```
-sudo firewall-cmd --permanent --add-port=10250/tcp
-sudo firewall-cmd --permanent --add-port=30000-32767/tcp
+sudo firewall-cmd --permanent --add-port={10250/tcp,10256/tcp,30000-32767/tcp}
 sudo firewall-cmd --add-masquerade --permanent
 sudo firewall-cmd --reload
 ```
@@ -170,22 +173,9 @@ sudo dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
 **Configuration de cri-tools**
 
-La commande d'installation de *kubelet*, *kubeadm* et *kubectl* installera aussi le binaire **crictl** de **cri-tools**.
+La commande d'installation de *kubelet*, *kubeadm* et *kubectl* installera aussi le binaire **crictl** de **cri-tools** qui s'intégrera automatiquement avec **cri-o**.
 
-- Configurons **crictl** afin qu'il utilise l'environnement d'exécution de conteneur **cri-o**.
-
-```
-sudo vi /etc/crictl.yaml
-```
-
-```
-runtime-endpoint: unix:///var/run/crio/crio.sock
-image-endpoint: unix:///var/run/crio/crio.sock
-timeout: 10
-debug: true
-```
-
-- Testons l'installation de **crictl** en exécutant
+Testons l'installation de **crictl** en exécutant
 
 ```
 sudo crictl image ls
@@ -202,13 +192,23 @@ sudo systemctl enable --now kubelet
 Sur le nœud master (k8s-control) uniquement, initialisons le cluster et configurons l'accès kubectl.
 
 ```
-sudo kubeadm init --pod-network-cidr 172.16.0.0/16 --apiserver-advertise-address 192.168.56.87 --kubernetes-version 1.30
+sudo kubeadm init --pod-network-cidr 172.16.0.0/16 --apiserver-advertise-address 192.168.56.87 --kubernetes-version 1.30.4
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-NB: Ici **172.16.0.0/16** sera la plage du réseau privé de notre cluster.
+**NB**: Ici **172.16.0.0/16** sera la plage du réseau privé de notre cluster. La version exacte de kubernetes **1.30.4** mentionnée dans la commande d'initialisation du cluster peut être obtenue avec la commande :
+
+```
+kubectl version
+```
+
+```
+# Exemple de résultat
+Client Version: v1.30.4
+...
+```
 
 Nous pouvons vérifier si le cluster fonctionne :
 
