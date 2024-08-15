@@ -1,6 +1,6 @@
 # Installation d'un cluster k8s version 1.30 avec cri-o sur Rocky linux 8
 
-Dans cette section nous mettrons en place un cluster k8s à 4 noeuds avec podman.
+Dans cette section nous mettrons en place un cluster k8s à 4 noeuds avec **cri-o**.
 
 **Hypothèse**: On supposera que l'environnement **sandbox** est déjà mis en place pour **Rocky linux 8**.
 
