@@ -1,0 +1,19 @@
+---
+- hosts: multi
+  become: no
+
+  tasks:
+  - name: Add a global environment variable
+    lineinfile:
+      dest: /etc/environment
+      regexp: '^REPLICA=1'
+      line: "REPLICA=1"
+    become: yes
+
+  - name: Get the value of the environment variable added
+    shell: 'source /etc/environment && echo $REPLICA'
+    register: replica
+
+  - name: Print the value of the environment variable
+    debug:
+      msg: "The variable is {{ replica.stdout }}"

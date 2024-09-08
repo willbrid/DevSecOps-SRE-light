@@ -1,0 +1,21 @@
+---
+- hosts: multi
+  become: yes
+
+  vars:
+    proxy_state: present
+
+  tasks:
+  - name: Configure system proxy
+    lineinfile:
+      dest: /etc/environment
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+      state: "{{ proxy_state }}"
+    with_items:
+    - regexp: "^http_proxy="
+      line: "http_proxy=''" # Add a http url from a proxy web server
+    - regexp: "^https_proxy="
+      line: "https_proxy=''" # Add a https url from a proxy web server
+    - regexp: "^ftp_proxy="
+      line: "ftp_proxy=''" # Add a http url from a proxy ftp server

@@ -1,0 +1,15 @@
+---
+- hosts: multi
+  become: no
+
+  vars:
+    proxy_vars:
+      http_proxy: "" # Add a http url from a proxy web server
+      https_proxy: "" # Add a https url from a proxy web server
+
+  tasks:
+  - name: Download docker script installation
+    get_url:
+      url: https://get.docker.com 
+      dest: /tmp/get-docker.sh
+    environment: proxy_vars

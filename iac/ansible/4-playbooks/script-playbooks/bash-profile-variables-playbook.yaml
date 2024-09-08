@@ -1,0 +1,18 @@
+---
+- hosts: multi
+  become: no
+
+  tasks:
+  - name: Add an environment variable to the remote user shell
+    lineinfile:
+      dest: ~/.bash_profile
+      regexp: '^CLUSTER='
+      line: "CLUSTER=prod"
+
+  - name: Get the value of the environment variable added
+    shell: 'source ~/.bash_profile && echo $CLUSTER'
+    register: clustername
+
+  - name: Print the value of the environment variable
+    debug:
+      msg: "The variable is {{ clustername.stdout }}"
