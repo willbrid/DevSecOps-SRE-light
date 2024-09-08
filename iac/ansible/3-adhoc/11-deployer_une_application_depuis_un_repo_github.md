@@ -12,6 +12,7 @@ Le module **git** d'Ansible nous permet de spécifier une **branche**, un **tag*
 Pour forcer Ansible à mettre à jour la copie extraite, nous avons passé **update=yes** . Les options repo et dest permettent d'indiquer le référentiel git et la destination de sauvegarde des fichiers de l'application.
 
 - Ensuite, exécutons le script shell **update.sh** de l'application
+
 ```
 ansible app -b -a "/opt/myapp/update.sh"
 ```
