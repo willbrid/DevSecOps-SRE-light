@@ -2,8 +2,6 @@
 
 Le nombre de serveurs gérés par un administrateur individuel a considérablement augmenté au cours de la dernière décennie, d'autant plus que la virtualisation et l'utilisation croissante des applications cloud sont devenues monnaie courante. En conséquence, les administrateurs ont dû trouver de nouvelles façons de gérer les serveurs de manière rationalisée. Chaque jour, un administrateur système a de nombreuses tâches :
 
-Le nombre de serveurs gérés par un administrateur individuel a considérablement augmenté au cours de la dernière décennie, d'autant plus que la virtualisation et l'utilisation croissante des applications cloud sont devenues monnaie courante. En conséquence, les administrateurs ont dû trouver de nouvelles façons de gérer les serveurs de manière rationalisée. Chaque jour, un administrateur système a de nombreuses tâches :
-
 - appliquer des correctifs et des mises à jour via **dnf** , **apt** et d'autres **gestionnaires de packages**.
 - vérifier l'utilisation des ressources (espace disque, mémoire, CPU, espace d'échange, réseau).
 - vérifier les fichiers journaux.
