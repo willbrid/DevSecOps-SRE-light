@@ -8,6 +8,10 @@ mkdir ~/ansible-test
 cd ~/ansible-test
 ```
 
+```
+wget https://download.virtualbox.org/virtualbox/7.0.12/VBoxGuestAdditions_7.0.12.iso
+```
+
 - Créeons un fichier **Vagrantfile** et insérons le contenu de notre infrastructure
 
 ```
@@ -23,10 +27,11 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.auto_update = false
   config.vbguest.no_remote = true
-  config.vbguest.iso_path = "./VBoxGuestAdditions_6.1.38.iso"
+  config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.12.iso"
   
   # General Vagrant VM configuration.
   config.vm.box = "willbrid/rockylinux8"
+  config.vm.box_version = "0.0.2"
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.provider :virtualbox do |v|
@@ -55,7 +60,6 @@ end
 ```
 
 Ce fichier **Vagrantfile** définit les trois serveurs que nous voulons gérer et donne à chacun un nom d'hôte unique, un nom de machine (pour VirtualBox) et une adresse IP. Les 3 serveurs ont tous une RAM de 512 Mo avec le système rockylinux8.6 provenant du vagrant box **willbrid/rockylinux8** .
-<br>
 
 - Entrons la commande permettant à Vagrant de construire les trois machines virtuelles.
 
