@@ -59,7 +59,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 end
 ```
 
-Ce fichier **Vagrantfile** définit les trois serveurs que nous voulons gérer et donne à chacun un nom d'hôte unique, un nom de machine (pour VirtualBox) et une adresse IP. Les 3 serveurs ont tous une RAM de 512 Mo avec le système rockylinux8.6 provenant du vagrant box **willbrid/rockylinux8** .
+Ce fichier **Vagrantfile** définit les trois serveurs que nous voulons gérer et donne à chacun un nom d'hôte unique, un nom de machine (pour VirtualBox) et une adresse IP. Les 3 serveurs ont tous une RAM de 512 Mo avec le système **rockylinux8.9** provenant du vagrant box **willbrid/rockylinux8** .
 
 - Entrons la commande permettant à Vagrant de construire les trois machines virtuelles.
 
