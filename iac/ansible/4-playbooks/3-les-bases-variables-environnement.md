@@ -50,7 +50,7 @@ Linux peut également lire les variables d'environnement globales ajoutées à *
 
 ```
 ---
-  - name: Add a global environment variable.
+  - name: Add a global environment variable
     lineinfile:
       dest: /etc/environment
       regexp: '^ENV_VAR='
@@ -58,7 +58,7 @@ Linux peut également lire les variables d'environnement globales ajoutées à *
     become: yes  
 ```
 
-Si notre application nécessite de nombreuses variables d'environnement, nous pouvons envisager d'utiliser **copy** ou **template** avec un fichier local au lieu d'utiliser **lineinfile** avec une longue liste d'éléments. <br><br>
+Si notre application nécessite de nombreuses variables d'environnement, nous pouvons envisager d'utiliser **copy** ou **template** avec un fichier local au lieu d'utiliser **lineinfile** avec une longue liste d'éléments.
 
 Nous pouvons également définir une variable d'environnement pour une seule tâche, en utilisant l'option **environment** pour cette tâche (par exemple défini une variable d'environnement **http_proxy** avec le module **get_url**).
 
@@ -66,7 +66,7 @@ Nous pouvons également définir une variable d'environnement pour une seule tâ
 ---
   - name: Download a file, using example-proxy as a proxy.
     get_url:
-      url: http://www.example.com/file.tar.gz
+      url: https://get.docker.com
       dest: ~/Downloads/
     environment:
       http_proxy: http://example-proxy:80/
@@ -84,7 +84,7 @@ Si nous avons de nombreuses tâches qui nécessitent un proxy ou une autre varia
   tasks:
   - name: Download a file, using example-proxy as a proxy.
     get_url:
-      url: http://www.example.com/file.tar.gz
+      url: https://get.docker.com
       dest: ~/Downloads/
     environment: proxy_vars
 ```
@@ -93,9 +93,11 @@ Si un proxy doit être défini à l'échelle du système (comme c'est le cas der
 
 ```
 ---
-  proxy_state: present
+  vars:
+    proxy_state: present
   
-  - name: Configure the proxy.
+  tasks:
+  - name: Configure the proxy
     lineinfile:
       dest: /etc/environment
       regexp: "{{ item.regexp }}"
@@ -113,5 +115,5 @@ Si un proxy doit être défini à l'échelle du système (comme c'est le cas der
 Nous pouvons tester les variables d'environnement distantes à l'aide de la commande ansible :
 
 ```
-ansible test -m shell -a 'echo $TEST'
+ansible multi -m shell -a 'echo $ENV_VAR'
 ```
