@@ -78,6 +78,7 @@ Nous pouvons par exemple d'abord consulter le contenu d'une variable avant de l'
 Ensuite nous pouvons accéder à l'adresse IP de chaque serveur.
 
 ```
+---
 - hosts: multi
   become: no
 
