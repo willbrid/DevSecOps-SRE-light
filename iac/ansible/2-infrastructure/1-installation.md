@@ -35,7 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.provider :virtualbox do |v|
-    v.memory = 512
+    v.memory = 1024
     v.linked_clone = true
   end
 
@@ -59,7 +59,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 end
 ```
 
-Ce fichier **Vagrantfile** définit les trois serveurs que nous voulons gérer et donne à chacun un nom d'hôte unique, un nom de machine (pour VirtualBox) et une adresse IP. Les 3 serveurs ont tous une RAM de 512 Mo avec le système **rockylinux8.9** provenant du vagrant box **willbrid/rockylinux8** .
+Ce fichier **Vagrantfile** définit les trois serveurs que nous voulons gérer et donne à chacun un nom d'hôte unique, un nom de machine (pour VirtualBox) et une adresse IP. Les 3 serveurs ont tous une RAM de 1024 Mo avec le système **rockylinux8.9** provenant du vagrant box **willbrid/rockylinux8** .
 
 - Entrons la commande permettant à Vagrant de construire les trois machines virtuelles.
 
