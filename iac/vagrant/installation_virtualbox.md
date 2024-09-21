@@ -1,6 +1,6 @@
 # Installation de virtual 7.0
 
-Dans ce tutoriel, nous allons installer virtualbox version **7.0** (précisément **7.0.12**) sous **Ubuntu 20.04**.
+Dans ce tutoriel, nous allons installer virtualbox version **7.0** sous **Ubuntu desktop 22.04**.
 
 - Ajoutons la ligne suivante à notre **/etc/apt/sources.list**
 
@@ -9,7 +9,7 @@ sudo vi /etc/apt/sources.list
 ```
 
 ```
-deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian focal contrib
+deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian jammy contrib
 ```
 
 - Ajoutons la clé publique Oracle de vérification des signatures :
@@ -22,7 +22,7 @@ wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --d
 
 ```
 sudo apt-get update
-sudo apt-get install virtualbox-7.0 virtualbox-dkms
+sudo apt-get install virtualbox-7.0
 ```
 
 - Installons VirtualBox Extension Pack
@@ -33,24 +33,24 @@ Assurons-nous de télécharger la version Extension Pack qui correspond à la ve
 vboxmanage -v | cut -dr -f1
 ```
 
-Cette commande renverra le numéro de version dans un format similaire à **7.0.12**. Avec ces informations, nous pouvons procéder au téléchargement du pack d'extension approprié à l'aide de la commande
+Cette commande renverra le numéro de version dans un format similaire à **7.0.20**. Avec ces informations, nous pouvons procéder au téléchargement du pack d'extension approprié à l'aide de la commande
 
 ```
 cd ~
 ```
 
 ```
-wget https://download.virtualbox.org/virtualbox/7.0.12/Oracle_VM_VirtualBox_Extension_Pack-7.0.12.vbox-extpack
+wget https://download.virtualbox.org/virtualbox/7.0.20/Oracle_VM_VirtualBox_Extension_Pack-7.0.20.vbox-extpack
 ```
 
 Pour installer le pack d'extension que nous venons de télécharger, utilisons la commande **vboxmanage**
 
 ```
-sudo vboxmanage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-7.0.12.vbox-extpack
+sudo vboxmanage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-7.0.20.vbox-extpack
 ```
 
 L'option **--replace** permet de remplacer l'installation existante.
-<br>
+
 Pour valider la version du Pack d'extension que nous avons installé, utilisons la commande suivante
 
 ```
