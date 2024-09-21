@@ -1,8 +1,8 @@
-# Installation multiplatforme depuis Ubuntu 22.04
+# Installation multiplatforme sur Ubuntu server 22.04
 
 ### Installation du bac à sable
 
-Nous utiliserons **vagrant** avec **virtualbox 7.0** depuis une machine hôte **ubuntu 22.04**. Nous suivons les étapes ci-dessous pour provisionner notre serveur qui contiendra notre installation **docker**.
+Nous utiliserons **vagrant** avec **virtualbox 7.0** depuis une machine hôte **Ubuntu desktop 22.04**. Nous suivons les étapes ci-dessous pour provisionner notre serveur qui contiendra notre installation **docker**.
 
 ```
 cd ~ && mkdir ubuntu-docker
@@ -13,7 +13,7 @@ cd ubuntu-docker
 ```
 
 ```
-wget https://download.virtualbox.org/virtualbox/7.0.12/VBoxGuestAdditions_7.0.12.iso
+wget https://download.virtualbox.org/virtualbox/7.0.20/VBoxGuestAdditions_7.0.20.iso
 ```
 
 ```
@@ -32,8 +32,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.12.iso"
 
   # General Vagrant VM configuration.
-  config.vm.box = "geerlingguy/ubuntu2004"
-  config.vm.box_version = "1.0.4"
+  config.vm.box = "bento/ubuntu-22.04"
+  config.vm.box_version = "202407.23.0"
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.provider :virtualbox do |v|
@@ -72,7 +72,7 @@ sudo sh get-docker.sh
 Pour accorder à un utilisateur l'autorisation d'exécuter des commandes Docker, ajoutez l'utilisateur au groupe Docker. L'utilisateur aura accès à Docker après sa prochaine connexion.
 
 ```
-sudo usermod -a -G docker <user>
+sudo usermod -a -G docker $USER
 ```
 
 **Démarrer et activer le service Docker**
