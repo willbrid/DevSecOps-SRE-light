@@ -1,13 +1,13 @@
 # Bac à sable
 
-Nous allons mettre en place notre bac à sable avec vagrant sous virtualbox 7.0 depuis une machine hôte **ubuntu 20.04**. Nous installerons les systèmes **Rocky Linux 8.9** et **Ubuntu 20.04**
+Nous allons mettre en place notre bac à sable avec vagrant sous virtualbox 7.0 depuis une machine hôte **Ubuntu desktop 22.04**. Nous installerons les systèmes **Rocky Linux 8.9** et **Ubuntu 22.04**
 
 ```
 mkdir $HOME/rocky-and-ubuntu && cd $HOME/rocky-and-ubuntu
 ```
 
 ```
-wget https://download.virtualbox.org/virtualbox/7.0.12/VBoxGuestAdditions_7.0.12.iso
+wget https://download.virtualbox.org/virtualbox/7.0.20/VBoxGuestAdditions_7.0.20.iso
 ```
 
 ```
@@ -23,7 +23,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.auto_update = false
   config.vbguest.no_remote = true
-  config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.12.iso"
+  config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.20.iso"
 
   # General Vagrant VM configuration
   config.ssh.insert_key = false
@@ -46,8 +46,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Ubuntu Server
   config.vm.define "ubuntu-server" do |srv|
-    srv.vm.box = "geerlingguy/ubuntu2004"
-    srv.vm.box_version = "1.0.4"
+    srv.vm.box = "bento/ubuntu-22.04"
+    srv.vm.box_version = "202407.23.0"
     srv.vm.hostname = "ubuntu-server"
     srv.vm.network :private_network, ip: "192.168.56.111"
     srv.vm.disk :disk, name: "storage3", size: "5GB"
