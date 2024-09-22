@@ -9,7 +9,7 @@ cd ~/ansible-test
 ```
 
 ```
-wget https://download.virtualbox.org/virtualbox/7.0.12/VBoxGuestAdditions_7.0.12.iso
+wget https://download.virtualbox.org/virtualbox/7.0.20/VBoxGuestAdditions_7.0.20.iso
 ```
 
 - Créeons un fichier **Vagrantfile** et insérons le contenu de notre infrastructure
@@ -27,7 +27,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.auto_update = false
   config.vbguest.no_remote = true
-  config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.12.iso"
+  config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.20.iso"
   
   # General Vagrant VM configuration.
   config.vm.box = "willbrid/rockylinux8"
