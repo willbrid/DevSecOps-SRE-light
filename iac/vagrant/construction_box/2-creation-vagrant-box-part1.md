@@ -1,10 +1,10 @@
 # Création de notre propre fichier vagrant box [Part1]
 
-Nous supposerons que nous utilisons virtualbox **7.0.12**.
-</br>
-Dans cette partie, nous allons créer notre machine virtuelle virtualbox pour le système rocky linux 8.9. 
-</br>
-Nous pouvons télécharger le système rocky linux 8.9 (Rocky-8.9-x86_64-boot.iso) via le lien **http://dl.rockylinux.org/pub/rocky/8/isos/x86_64/** 
+Nous supposerons que nous utilisons virtualbox **7.0.20**.
+
+Dans cette partie, nous allons créer notre machine virtuelle virtualbox pour le système rocky linux 8.10. 
+
+Nous pouvons télécharger le système rocky linux 8.10 (Rocky-8.10-x86_64-boot.iso) via le lien **http://dl.rockylinux.org/pub/rocky/8/isos/x86_64/** 
 
 ## Installation d'une machine virtuelle virtualbox
 
@@ -109,14 +109,13 @@ sudo systemctl restart sshd
 
 Cela évite une recherche DNS inversée sur le client SSH qui se connecte, ce qui peut prendre plusieurs secondes.
 
-- Installation de VBoxGuestAdditions 7.0.12 sur Rocky linux
+- Installation de VBoxGuestAdditions 7.0.20 sur Rocky linux
 
-Nous téléchargeons dans notre machine hôte le fichier iso **VBoxGuestAdditions_7.0.12.iso**
-<br>
-Lien : [virtualbox/7.0.12](https://download.virtualbox.org/virtualbox/7.0.12/)
-<br>
+Nous téléchargeons dans notre machine hôte le fichier iso **VBoxGuestAdditions_7.0.20.iso**
 
-Nous montons ce fichier iso dans notre machine virtuelle rocky linux 8 en faisant un clic droit sur l'icône de disque en bas à droite sur la machine virtuelle, puis en choisissant **choose a disk file** .
+Lien : [virtualbox/7.0.20](https://download.virtualbox.org/virtualbox/7.0.20/)
+
+Nous montons ce fichier iso dans notre machine virtuelle rocky linux 8.10 en faisant un clic droit sur l'icône de disque en bas à droite sur la machine virtuelle, puis en choisissant **choose a disk file** .
 
 ![create_vm_virtualbox9.png](../images/create_vm_virtualbox9.png)
 
@@ -128,7 +127,7 @@ sudo dnf install gcc make perl kernel-devel kernel-headers bzip2 dkms
 sudo dnf update kernel-*
 ```
 
-Nous montons le fichier iso dans un répertoire du système, puis nous installons **VBoxGuestAdditions_7.0.12**.
+Nous montons le fichier iso dans un répertoire du système, puis nous installons **VBoxGuestAdditions_7.0.20**.
 
 ```
 sudo mkdir -p /mnt/cdrom
@@ -152,7 +151,5 @@ Effaçons l'historique de nos commandes
 ```
 cat /dev/null > ~/.bash_history && history -c && exit
 ```
-
-<br><br>
 
 Source : [Vagrant BOX DOCS](https://www.vagrantup.com/docs/boxes/base)
