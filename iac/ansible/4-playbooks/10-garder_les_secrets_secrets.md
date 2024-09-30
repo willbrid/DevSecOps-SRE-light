@@ -77,3 +77,28 @@ ansible-vault rekey $HOME/display-api-key/vars/api_key.yml
 ```
 
 Nous pouvons aussi créer un nouveau fichier, afficher un fichier existant ou déchiffrer un fichier.
+
+Toutes ces commandes fonctionnent avec un ou plusieurs fichiers. Pour plus de commodité ou pour des exécutions automatisées de playbook (par exemple sur un serveur d'intégration continue), nous pouvons fournir des mots de passe de coffre-fort via un fichier de mots de passe. Tout comme les clés sécurisées dans notre dossier **∼/.ssh**, nous devons traiter ces fichiers avec sécurité: 
+- ne les enregistrer jamais dans un système contrôle de source
+- définir des autorisations strictes (par exemple **600**) pour que nous seul puissions lire ou écrire dans ce fichier
+
+Créons le fichier **∼/.ansible/vault_pass.txt** avec pour contenu notre mot de passe **test@test2025** et pour autorisation **600**
+
+```
+vim ~/.ansible/vault_pass.txt
+```
+
+```
+test@test2025
+```
+
+```
+chmod 600 ~/.ansible/vault_pass.txt
+```
+
+Puis exécutons la commande **ansible-playbook** en indiquant l'emplacement de notre mot de passe vault avec l'option **--vault-password-file**
+
+
+```
+ansible-playbook --vault-password-file ~/.ansible/vault_pass.txt $HOME/display-api-key/display-api-key-playbook.yml
+```
