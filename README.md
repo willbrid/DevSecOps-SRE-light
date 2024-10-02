@@ -27,6 +27,7 @@ Les contenus de ce dépôt seront régulièrement mis à jour pour refléter les
 ### Références
 
 - [Acloud Guru](https://learn.acloud.guru/)
+- [Kodekloud](https://kodekloud.com/)
 - [Gitlab Documentation](https://docs.gitlab.com/)
 - [Jenkins Documentation](https://www.jenkins.io/doc/)
 - [Kubernetes Documentation](https://kubernetes.io/docs/home/)
