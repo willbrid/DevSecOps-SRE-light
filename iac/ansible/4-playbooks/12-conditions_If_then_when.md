@@ -7,8 +7,13 @@ De nombreuses tâches ne doivent être exécutées que dans certaines circonstan
 Dans Ansible, n'importe quel jeu peut « enregistrer » une variable, et une fois enregistrée, cette variable sera disponible pour toutes les tâches suivantes. Les variables enregistrées fonctionnent comme des variables normales ou des faits d'hôte. Souvent, nous pouvons avoir besoin la sortie (**stdout** ou **stderr**) d'une commande shell, et nous pouvons l'obtenir dans une variable en utilisant la syntaxe suivante :
 
 ```
-- shell: my_command_here
-  register: my_command_result
+---
+- hosts: multi
+  tasks:
+  - name: Check for file presence
+    stat:
+      path: /etc/hosts
+    register: file_info
 ```
 
 Plus tard, nous pouvons accéder à **stdout** (sous forme de chaîne) avec **my_command_result.stdout** et à **stderr** avec **my_command_result.stderr**.
@@ -17,52 +22,64 @@ Les faits enregistrés sont très utiles pour de nombreux types de tâches et pe
 
 ### **when**
 
-L’instruction ci-dessous suppose que nous avons défini la variable **is_db_server** comme un booléen (vrai ou faux) plus tôt et que nous exécuterons la tâche si la valeur est **vraie** ou ignorerons la tâche lorsque la valeur est **fausse**.
+Dans cet exemple ci-dessous, nous exécuterons la tâche **Show file status** si la valeur de la variable **file_info.stat.exists** est **vraie** ou ignorerons la tâche lorsque cette valeur est **fausse**.
 
 ```
-- yum: name=mysql-server state=present
-  when: is_db_server
+---
+- hosts: multi
+  tasks:
+  - name: Check for file presence
+    stat:
+      path: /etc/hosts
+    register: file_info
+
+  - name: Show file status
+    debug:
+      msg: "The file existe"
+    when: file_info.stat.exists
 ```
 
-Par exemple si nous définissons uniquement la variable **is_db_server** sur les serveurs de base de données (ce qui signifie qu'il existe des moments où la variable peut ne pas être définie du tout), nous pouvons exécuter des tâches de manière conditionnelle comme suit :
+S'il existe des moments où la variable **file_info** peut ne pas être définie du tout, alors nous pouvons exécuter des tâches de manière conditionnelle comme suit :
 
 ```
-- yum: name=mysql-server state=present
-  when: (is_db_server is defined) and is_db_server
+---
+- hosts: multi
+  tasks:
+  - name: Check for file presence
+    stat:
+      path: /etc/hosts
+    register: file_info
+
+  - name: Show file status
+    debug:
+      msg: "The file existe"
+    when: (file_info is defined) and file_info.stat.exists
 ```
 
-**when** est encore plus intéressant s'il est utilisé en conjonction avec des variables enregistrées par des tâches précédentes. Par exemple, nous voulons vérifier l'état d'une application en cours d'exécution et exécuter une lecture uniquement lorsque cette application signale qu'elle est « prête » dans sa sortie :
+### changed_when, failed_when et ignore_errors
 
 ```
-- command: app --status
-  register: app_result
+---
+- hosts: multi
+  tasks:
+  - name: Check for file presence
+    command: ls /tmp/test_file.txt
+    register: file_check
+    ignore_errors: true
 
-- command: do-something-to-app
-  when: "'ready' in app_result.stdout"
+  - name: Determine if a file has changed
+    debug:
+      msg: "File does not exist, action required"
+    changed_when: file_check.rc != 0
+
+  - name: Fail if the file is not found and should not be missing
+    debug:
+      msg: "The file is missing, but it shouldn't be"
+    failed_when: file_check.rc != 0 and "file_should_exist" in ansible_facts
 ```
 
-### changed_when et failed_when
+Nous pouvons utiliser **changed_when** et **failed_when** pour influencer les rapports d’Ansible indiquant quand une certaine tâche entraîne des modifications ou des échecs :
+- **changed_when** : permet de définir si une tâche doit être marquée comme ayant changé quelque chose en fonction de la condition que nous spécifions
+- **failed_when** : permet de définir quand une tâche doit être considérée comme ayant échoué en fonction de la condition que nous spécifions
 
-Nous pouvons utiliser **changed_when** et **failed_when** pour influencer les rapports d’Ansible indiquant quand une certaine tâche entraîne des modifications ou des échecs.
-
-```
-- name: Install dependencies via Composer.
-  command: "/usr/local/bin/composer global require phpunit/phpunit --prefer-dist"
-  register: composer
-  changed_when: "'Nothing to install' not in composer.stdout"
-```
-
-```
-- name: Import a Jenkins job via CLI.
-  shell: >
-    java -jar /opt/jenkins-cli.jar -s http://localhost:8080/
-    create-job "My Job" < /usr/local/my-job.xml
-  register: import
-  failed_when: "import.stderr and 'exists' not in import.stderr"
-```
-
-### ignore_errors
-
-Pour certaines situations, nous pouvons ajouter **ignore_errors: true** à une tâche, et Ansible restera parfaitement inconscient des problèmes d'exécution de la tâche particulière.
-
-Il est généralement préférable de trouver un moyen de travailler avec et de contourner les erreurs générées par les tâches afin que les playbooks échouent en cas de problèmes réels.
+Pour certaines situations, nous pouvons ajouter **ignore_errors: true** à une tâche, et Ansible restera parfaitement inconscient des problèmes d'exécution de la tâche particulière. Il est généralement préférable de trouver un moyen de travailler avec et de contourner les erreurs générées par les tâches afin que les playbooks échouent en cas de problèmes réels.
