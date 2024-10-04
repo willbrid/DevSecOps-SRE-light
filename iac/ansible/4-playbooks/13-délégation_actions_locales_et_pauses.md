@@ -95,4 +95,4 @@ vi current-system-date-playbook.yml
 ansible-playbook --connection=local current-system-date-playbook.yml
 ```
 
-L'exécution d'un playbook avec **--connection=local** est également utile lorsque nous exécutons un playbook avec le mode **--check** pour vérifier la configuration, ou lorsque nous testons des playbooks sur une infrastructure de test (Jenkins, Github action,...).
+L'exécution d'un playbook avec **--connection=local** est également utile lorsque nous exécutons un playbook avec le mode **--check** pour vérifier la configuration, ou lorsque nous testons des playbooks sur une infrastructure de test (Jenkins, Gitlab CI, Github action,...).
