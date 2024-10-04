@@ -16,7 +16,7 @@ Dans Ansible, n'importe quel jeu peut « enregistrer » une variable, et une f
     register: file_info
 ```
 
-Plus tard, nous pouvons accéder à **stdout** (sous forme de chaîne) avec **my_command_result.stdout** et à **stderr** avec **my_command_result.stderr**.
+Plus tard, nous pouvons accéder à **stdout** (sous forme de chaîne) avec **file_info.stdout** et à **stderr** avec **file_info.stderr**.
 
 Les faits enregistrés sont très utiles pour de nombreux types de tâches et peuvent être utilisés à la fois avec des conditions (définir quand et comment une tâche se déroule) et dans n'importe quelle partie de la tâche.
 
