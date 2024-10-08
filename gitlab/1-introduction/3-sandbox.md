@@ -10,7 +10,7 @@ Supposons que nous souhaiterons mettre en place une architecture **ci/cd** avec 
 <img src="../images/gitlab-devops.png" alt="gitlab-devops.png" width="620" height="520" />
 </p>
 
-Nous utiliserons **vagrant** avec **virtualbox 7.0** depuis une machine hôte **ubuntu 20.04**. Nous suivons les étapes ci-dessous pour provisionner nos 4 serveurs.
+Nous utiliserons **vagrant** avec **virtualbox 7.0** depuis une machine hôte **ubuntu 22.04**. Nous suivons les étapes ci-dessous pour provisionner nos 4 serveurs.
 
 
 ```
@@ -22,7 +22,7 @@ cd gitlab-devops
 ```
 
 ```
-wget https://download.virtualbox.org/virtualbox/7.0.12/VBoxGuestAdditions_7.0.12.iso
+wget https://download.virtualbox.org/virtualbox/7.0.20/VBoxGuestAdditions_7.0.20.iso
 ```
 
 ```
@@ -34,7 +34,7 @@ vi Vagrantfile
 # vi: set ft=ruby :
 
 $script = <<-SCRIPT
-goVersion="1.21.7"
+goVersion="1.22.7"
 gotestsumVersion="1.11.0"
 goBinPath="/etc/profile.d/go_bin_path_setting.sh"
 usrLocalBinPathSetting="/etc/profile.d/usr_local_bin_path_setting.sh"
@@ -75,7 +75,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.auto_update = false
   config.vbguest.no_remote = true
-  config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.12.iso"
+  config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.20.iso"
 
   # General Vagrant VM configuration.
   config.vm.box = "willbrid/rockylinux8"
