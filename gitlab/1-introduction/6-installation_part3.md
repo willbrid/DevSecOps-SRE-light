@@ -1,6 +1,6 @@
 # Installation [Part3]
 
-Ici nous allons installer la plateforme **gitlab** (image **docker.io/gitlab/gitlab-ce:16.8.1-ce.0**), depuis notre serveur **gitlab** en activant sa fonctionnalité de notification par mail, sa fonctionnalité de registry d'images et en prenant en charge la sécurité via la configuration du protocole https pour la partie web.
+Ici nous allons installer la plateforme **gitlab** (image **docker.io/gitlab/gitlab-ce:16.11.10-ce.0**), depuis notre serveur **gitlab** en activant sa fonctionnalité de notification par mail, sa fonctionnalité de registry d'images et en prenant en charge la sécurité via la configuration du protocole https pour la partie web.
 
 - Création des répertoires nécessaires pour **gitlab**
 
@@ -36,7 +36,7 @@ vi docker-compose.yaml
 version: '3.6'
 services:
   gitlab:
-    image: docker.io/gitlab/gitlab-ce:16.8.1-ce.0
+    image: docker.io/gitlab/gitlab-ce:16.11.10-ce.0
     user: root
     name: gitlab
     hostname: 'gitlab.willbrid.com'
