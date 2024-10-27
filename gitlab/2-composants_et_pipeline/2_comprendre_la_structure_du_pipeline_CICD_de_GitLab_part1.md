@@ -26,7 +26,7 @@ La liste des pipelines fournit également des contrôles GUI pour réexécuter n
 
 ### CI : savoir si notre code est bon
 
-Le terme **CI** signifie intégration continue. Il s’agit la partie du pipeline qui garantit que toutes les modifications de fichiers sur lesquelles nous travaillons s'intégreront bien à la base de code stable de notre projet.
+Le terme **CI** signifie intégration continue (**continu integration**). Il s’agit la partie du pipeline qui garantit que toutes les modifications de fichiers sur lesquelles nous travaillons s'intégreront bien à la base de code stable de notre projet.
 
 La partie **CI** d'un pipeline exécute des tests, des analyses et d'autres vérifications sur notre code chaque fois que nous le validons dans la copie du référentiel Git de notre projet hébergée par GitLab. C'est du moins le comportement par défaut des pipelines GitLab. Nous pouvons remplacer ce comportement afin que les pipelines ne s'exécutent pas à chaque validation.
 

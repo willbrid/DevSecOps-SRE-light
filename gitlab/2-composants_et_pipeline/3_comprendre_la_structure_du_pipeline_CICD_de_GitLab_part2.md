@@ -21,7 +21,7 @@ Par exemple, une **tâche** peut compiler tout notre code source Java en classes
 ### Commandes
 
 Chaque **tâche** contient une ou plusieurs **commandes** qui permettent à la **tâche** d'effectuer quelque chose.
-Une **commande** contenue dans une **tâche** est la même chose qu'une **commande** qu'un humain peut saisir dans un terminal. Imaginer un **tâche** comme celui d'un robot qui tape une **commande** dans un shell bash Linux, un shell macOS Zsh ou Windows PowerShell, tout comme le ferait une vraie personne.
+Une **commande** contenue dans une **tâche** est la même chose qu'une **commande** qu'un humain peut saisir dans un terminal. Imaginer une **tâche** comme celui d'un robot qui tape une **commande** dans un shell bash Linux, un shell macOS Zsh ou Windows PowerShell, tout comme le ferait une vraie personne.
 
 En définitive,
 - chaque pipeline GitLab CI/CD comprend au moins une **étape**. Une **étape** représente une catégorie de **tâches** que le pipeline doit effectuer.
