@@ -87,7 +87,7 @@ compilation:
   stage: build
   script:
     - mkdir -p $OUTPUT_NAME
-    - go build -o $OUTPUT_NAME ./...
+    - go build -o $OUTPUT_NAME/sort-and-total ./...
   artifacts:
     paths:
       - $OUTPUT_NAME
@@ -107,9 +107,9 @@ Ce fichier est un exemple de configuration de pipeline pour GitLab CI/CD, qui d�
 
 **6-** **script:** : c'est la section où nous définissons les commandes à exécuter dans cette tâche.
 
-**7-** **- mkdir -p $OUTPUT_NAME** : cette commande crée un répertoire nommé **$OUTPUT_NAME**. $OUTPUT_NAME est la variable définie au préalable.
+**7-** **- mkdir -p $OUTPUT_NAME** : cette commande crée un répertoire nommé **$OUTPUT_NAME**. **$OUTPUT_NAME** est la variable définie au préalable.
 
-**8-** **- go build -o $OUTPUT_NAME ./...** : cette commande utilise le compilateur Go (go build) pour construire le projet. L'option **-o** est utilisée pour spécifier le nom du fichier de sortie de la compilation. Le fichier de sortie est nommé d'après la valeur de **$OUTPUT_NAME**. L'argument **./...** signifie que tous les fichiers du répertoire courant et de ses sous-répertoires seront compilés.
+**8-** **- go build -o $OUTPUT_NAME/sort-and-total ./...** : cette commande utilise le compilateur Go (go build) pour construire le projet. L'option **-o** est utilisée pour spécifier le nom du fichier de sortie de la compilation. Le fichier de sortie est nommé **sort-and-total** et se trouve dans le répertoire **$OUTPUT_NAME**. L'argument **./...** signifie que tous les fichiers du répertoire courant et de ses sous-répertoires seront compilés.
 
 **9-** Tous les fichiers créés par une tâche de pipeline, y compris les versions compilées des fichiers générés lors d'une tâche de **build**, sont supprimés dès que la tâche est terminée. La définition de la section **artifacts** nous permet de spécifier certains fichiers ou répertoires que GitLab doit conserver d'une tâche et mettre à disposition de toutes les tâches ultérieures. L'on définit avec la sous-section **paths**, les chemins des fichiers ou des répertoires à archiver. Dans cet exemple, cette sous-section spécifie que tous les fichiers situés dans le répertoire de sortie défini par la variable **OUTPUT_NAME** seront archivés en tant qu'**artefacts** de build.
 
