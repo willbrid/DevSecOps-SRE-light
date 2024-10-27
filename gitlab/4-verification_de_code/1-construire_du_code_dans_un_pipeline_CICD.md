@@ -6,14 +6,14 @@ Nous prendrons l'exemple d'un mini-project permettant de trier un tableau d'enti
 
 ### Initialisation du projet sortAndTotal sur notre plateforme gitlab
 
-Toutes les tâches suivantes s'effectueront depuis notre machine hôte **Ubuntu 20.04**.
+Toutes les tâches suivantes s'effectueront depuis notre machine hôte **Ubuntu 22.04**.
 
-- Créons le projet **sortAndTotal** sur notre plateforme sur gitlab
+- Créons le projet **sortAndTotal** depuis le groupe **mymbolo**
 
 --- cliquons sur le bouton **New Project** <br>
 --- selectionnons le menu **Create blank project** <br>
 --- donnons le nom de notre project : **sortAndTotal** <br>
---- choisissons le groupe **root** <br>
+--- choisissons la visibilité **public** <br>
 --- décochons la case **Initialize repository with a README** <br>
 --- cliquons sur le bouton **Create project**
 
@@ -26,11 +26,7 @@ mkdir $HOME/sortAndTotal && cd $HOME/sortAndTotal
 ```
 
 ```
-vi README.md
-```
-
-```
-Projet sortAndTotal
+echo "Projet sortAndTotal" > README.md
 ```
 
 - Copions le code source du repertoire **sortAndTotal** de ce référentiel vers le repertoire **sortAndTotal** de notre machine hôte
@@ -46,11 +42,10 @@ cp DevSecOps-SRE-light/gitlab/4-verification_de_code/sortAndTotal/* $HOME/sortAn
 - Poussons le code source vers notre plateforme **gitlab**
 
 ```
-git init
+git init --initial-branch=main
 git add .
 git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://gitlab.willbrid.com:8443/root/sortandtotal.git
+git remote add origin https://gitlab.willbrid.com:8443/mymbolo/sortandtotal.git
 git push --set-upstream origin main
 ```
 
@@ -60,6 +55,8 @@ Il nous est demandé un login et un mot de passe au niveau de la commande **git 
 Login : root
 Mot de passe : SuperSecret
 ```
+
+**NB :** Si l'on rencontre un problème de certificat lors du **push**, il faudrait ajouter le certificat d'autorité de certificat à l'hôte.
 
 <p align="center">
 <img src="../images/init-gitlab-project.png" alt="init-gitlab-project.png" width="800" height="520" />
