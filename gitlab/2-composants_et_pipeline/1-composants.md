@@ -45,7 +45,7 @@ Par exemple supposons que nous souhaiterons mettre en place une plateforme perme
 
 Les **problèmes** résident dans les projets GitLab, chaque **problème** n'appartenant qu'à un seul projet (bien qu'ils puissent être déplacés entre les **projets**). Les **problèmes** GitLab se composent de plusieurs parties, dont les quatre sont les plus importantes :
 
-- **titre**
+- **titre** : intitulé du problème
 
 - **description** : ce champ peut contenir autant de texte que nous le souhaitons. Il peut contenir des captures d’écran ou des liens et exploite pleinement les fonctionnalités de formatage de Markdown. Il peut également être modifié ultérieurement à mesure que de plus amples informations apparaissent ou que la direction exacte du problème change.
 
