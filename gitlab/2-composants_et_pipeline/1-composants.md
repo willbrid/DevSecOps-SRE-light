@@ -77,9 +77,9 @@ Tout en travaillant sur l'application **Mymbolo**, nous décidons d'ajouter une 
 
 4- Nous décidons que **authentifier les utilisateurs clients** est une bonne idée, mais nous ne sommes pas sûr. Nous faisons un autre problème intitulé **Question : devons-nous authentifier les utilisateurs clients ?** Nous mettons ce problème de côté pour le traiter plus tard et nous concentrons à nouveau sur le problème **authentifier les utilisateurs prestataire**, car nous sommes convaincu que les prestataires doivent avoir un compte.
 
-5- Lors d'une réunion de planification à l'échelle de l'équipe, le groupe décide d'attribuer au problème une pondération de **8**, ce qui signifie que pour notre équipe, cela devrait représenter une tâche d'une semaine. Nous attribuons le problème à un développeur back-end nommé **willbrid** et nous définissons son champ de date d'échéance sur 2 semaines à compter d'aujourd'hui.
+5- Lors d'une réunion de planification à l'échelle de l'équipe, le groupe décide d'attribuer au problème une pondération de **8**, ce qui signifie que pour notre équipe, cela devrait représenter une tâche d'une semaine. Nous attribuons le problème à un développeur **Back-end** nommé **willbrid** et nous définissons son champ de date d'échéance sur 2 semaines à compter d'aujourd'hui.
 
-6- **willbrid** applique une étiquette **Status::In Progress** avec une portée et une étiquette Back-end sans portée au problème. Cela aidera l’équipe à savoir si le problème est sur la bonne voie et à comprendre qui en est responsable.
+6- **willbrid** applique une étiquette **Status::In Progress** avec une portée et une étiquette **Back-end** sans portée au problème. Cela aidera l’équipe à savoir si le problème est sur la bonne voie et à comprendre qui en est responsable.
 
 7- **willbrid** crée une branche temporaire appelée **authentifier-utilisateurs-prestataire** pour conserver ses commits.
 
@@ -97,9 +97,9 @@ Tout en travaillant sur l'application **Mymbolo**, nous décidons d'ajouter une 
 
 14- Une fois de plus, **willbrid** regarde dans le MR pour voir les résultats des tests et analyses automatisés par rapport à son dernier commit. L'une des analyses de sécurité souligne une vulnérabilité qu'il a involontairement introduite. Il ajoute rapidement un nouveau commit qui corrige la vulnérabilité. Les analyses s'exécutent à nouveau sur ce code fixe, et cette fois tout se passe bien.
 
-15- **willbrid** reçoit l'avis favorable d'**Alice** et de **Bob** sur tout le code qu'il a engagé jusqu'à présent, son travail est donc terminé. Il supprime l'étiquette Back-end, ajoute une étiquette Front-end et réattribue le problème à un ingénieur front-end nommé **George**.
+15- **willbrid** reçoit l'avis favorable d'**Alice** et de **Bob** sur tout le code qu'il a engagé jusqu'à présent, son travail est donc terminé. Il supprime l'étiquette **Back-end**, ajoute une étiquette **Front-end** et réattribue le problème à un ingénieur **front-end** nommé **George**.
 
-16- **George** écrit du code frontend et ajoute quelques commits à la même branche de la fonctionnalité que **willbrid** utilisait. Chaque commit déclenche une nouvelle série de tests et d'analyses automatisés, et chacun est examiné par Alice et Bob.
+16- **George** écrit du code frontend et ajoute quelques commits à la même branche de la fonctionnalité que **willbrid** utilisait. Chaque commit déclenche une nouvelle série de tests et d'analyses automatisés, et chacun est examiné par **Alice** et **Bob**.
 
 17- **George** se rend compte que le travail prend du retard, il ajoute donc une étiquette **à risque** au problème original. Le responsable du développement répond à cela en affectant un autre développeur frontend nommé **Helen** pour aider **George**.
 
