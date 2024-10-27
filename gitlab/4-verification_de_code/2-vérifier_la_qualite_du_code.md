@@ -32,7 +32,7 @@ stages:
   - build
 
 include:
-  template: Code-Quality.gitlab-ci.yml
+- template: Jobs/Code-Quality.gitlab-ci.yml
 
 compilation:
   stage: build

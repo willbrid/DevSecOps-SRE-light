@@ -28,7 +28,7 @@ stages:
   - build
 
 include:
-  template: Code-Quality.gitlab-ci.yml
+- template: Jobs/Code-Quality.gitlab-ci.yml
 
 unit-tests:
   stage: test
