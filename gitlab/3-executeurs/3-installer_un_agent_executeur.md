@@ -29,6 +29,7 @@ Lorsque nous enregistrons un agent exécuteur auprès de GitLab, nous lions les 
 Nous prendrons le cas de l'enregistrement de l'agent exécuteur au près de notre projet **mymbolo** sur Gitlab. Pour cela accédons à la page **Settings > CI/CD > Runners** de notre projet **mymbolo** et suivons les étapes ci-dessous :
 
 - Etendons le menu **Runners** avec le bouton **Expand** : la box de configuration d'un nouveau runner s'ouvre.
+- Cliquons sur le bouton **New project runner**
 - Sélectionnons le système **Linux**
 - Ajoutons un tag "**dev,linux**"
 - Ajoutons une description "**linux dev server**"
