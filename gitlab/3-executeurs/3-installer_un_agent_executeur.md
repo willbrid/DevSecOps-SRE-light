@@ -33,7 +33,6 @@ Nous prendrons le cas de l'enregistrement de l'agent exécuteur au près de notr
 - Sélectionnons le système **Linux**
 - Ajoutons un tag "**dev,linux**"
 - Ajoutons une description "**linux dev server**"
-- Cliquons sur le bouton **New project runner**
 - Dans le champ Délai d'expiration maximum de la tâche, entrons une valeur en secondes : **600 secondes**(**10 minutes**).
 - Cliquons sur le bouton **Create runner**
 
