@@ -115,6 +115,8 @@ Ce fichier est un exemple de configuration de pipeline pour GitLab CI/CD, qui d�
 
 **NB:** Le mot-clé **artefacts** est l’un des mots-clés les plus importants que nous pouvons utiliser lors de la configuration des pipelines CI/CD, et oublier de l’utiliser lorsque cela est nécessaire est une erreur courante. Si notre pipeline ne fonctionne pas comme prévu, l'une des premières étapes de dépannage que nous devrions essayer consiste à vérifier si nous spécifions des artefacts dans toutes les tâches qui génèrent des fichiers auxquels nous souhaitons accéder dans des tâches ultérieures.
 
+- Depuis le projet **sortAndTotal**, il faudrait activer l'**agent éxécuteur** qui a été préalable configuré sur le projet **mymbolo-backend** du même groupe **mymbolo** : **Settings > CI/CD > Runners**
+
 - Validons et poussons la modification effectuée depuis notre machine hôte
 
 ```
