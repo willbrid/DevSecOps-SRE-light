@@ -82,6 +82,14 @@ services:
     shm_size: '256m'
 ```
 
+Si **podman-compose** n'est pas encore installé, nous exécutons la commande suivante pour l'installer :
+
+```
+sudo dnf install podman-compose
+```
+
+Ensuite nous démarrons notre installation de gitlab
+
 ```
 podman-compose up -d
 ```
