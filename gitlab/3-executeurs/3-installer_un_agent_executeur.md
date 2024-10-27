@@ -26,8 +26,9 @@ Nous verrons une confirmation que l'agent est en cours d'exécution, et égaleme
 
 Lorsque nous enregistrons un agent exécuteur auprès de GitLab, nous lions les agents exécuteurs à une instance GitLab entière (agents exécuteurs partagés), à un groupe (agents exécuteurs de groupe) ou à un projet (agents exécuteurs spécifiques). Les instructions d'inscription et les paramètres de l'agent exécuteur après l'enregistrement apparaissent dans la partie respective de GitLab où nous avons enregistré l'agent exécuteur (**instance**, **groupe** ou **projet**).
 
-Nous prendrons le cas de l'enregistrement de l'agent exécuteur au près de notre projet **mymbolo** sur Gitlab. Pour cela accédons à la page **Settings > CI/CD > Runners** de notre projet **mymbolo** et suivons les étapes ci-dessous :
+Nous prendrons le cas de l'enregistrement de l'agent exécuteur au près de notre projet **mymbolo-backend** sur Gitlab depuis le groupe **mymbolo**. Pour cela accédons à la page **Settings > CI/CD > Runners** de notre projet **mymbolo-backend** et suivons les étapes ci-dessous :
 
+- Créons le groupe **mymbolo**, puis le projet **mymbolo-backend** (avec le README par défaut) de ce groupe : tous les deux avec pour visibilité **public**
 - Etendons le menu **Runners** avec le bouton **Expand** : la box de configuration d'un nouveau runner s'ouvre.
 - Cliquons sur le bouton **New project runner**
 - Sélectionnons le système **Linux**
