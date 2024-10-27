@@ -87,7 +87,7 @@ Le champ de **délai d'expiration maximal** de la tâche indique à l'éxécuteu
 
 - L'exécuteur Docker peut être considéré comme un peu plus sûr car les conteneurs constituent une couche d'abstraction supplémentaire par rapport au système hôte. Le programme d'exécution clone le code du projet et exécute les commandes de tâches dans un conteneur isolé, puis détruit le conteneur après avoir renvoyé les résultats à GitLab. Il est cependant crucial de s’assurer que les conteneurs fonctionnent en mode non privilégié. Autrement dit, les tâches doivent être exécutées par des utilisateurs **non root** pour garantir que leur exécution n'implique pas l'accès au système hôte.
 
-- Le monitoring des données autour de nos exécuteurs et pipelines est essentielle pour garantir une sécurité et une utilisation appropriées des ressources.Les trois principaux domaines à prendre en compte concernant la surveillance de nos exécuteurs sont les suivants : <br>
+- Le monitoring des données autour de nos exécuteurs et pipelines est essentielle pour garantir une sécurité et une utilisation appropriées des ressources. Les trois principaux domaines à prendre en compte concernant la surveillance de nos exécuteurs sont les suivants : <br>
 --- le composant analytique disponible dans l'interface utilisateur de Gitlab <br>
 --- le système de journalisation des exécuteurs <br>
 --- les métriques exportables produites par les exécuteurs eux-mêmes
