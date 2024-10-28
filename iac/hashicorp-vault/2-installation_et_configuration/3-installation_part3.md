@@ -14,19 +14,15 @@ sudo dnf install epel-release
 sudo dnf install certbot
 ```
 
-2. Création du certificat de notre domaine 
+2. **Création du certificat de notre domaine** 
 
 ```
 sudo certbot certonly --standalone -d notredomaine
 ```
 
-L'argument **certonly** permet d'obtenir ou renouveler un certificat, mais sans l'installer. Son option **--standalone** permet d'exécuter un serveur Web autonome pour l'authentification et sans une utilisation spécifique d'un serveur web tel que : nginx ou apache. Son option **-d** permet d'indiquer notre nom de domaine.
-
-<br>
+L'argument **certonly** permet d'obtenir ou renouveler un certificat, mais sans l'installer. Son option **--standalone** permet d'exécuter un serveur Web autonome pour l'authentification et sans une utilisation spécifique d'un serveur web tel que : **nginx** ou **apache**. Son option **-d** permet d'indiquer notre nom de domaine.
 
 La sortie de la commande nous demande de préciser notre email, de lire et d'accepter les Conditions d'utilisation du service **Let's Encrypt** (nous acceptons) et de partager notre email (nous refusons).
-
-<br>
 
 Nous pouvons vérifier le contenu du repertoire généré contenant les informations sur notre certificat de notre domaine **notredomaine**:
 
