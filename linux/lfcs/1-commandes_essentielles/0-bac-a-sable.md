@@ -37,7 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Rocky Server
   config.vm.define "rocky-server" do |srv|
     srv.vm.box = "willbrid/rockylinux8"
-    srv.vm.box_version = "0.0.2"
+    srv.vm.box_version = "0.0.3"
     srv.vm.hostname = "rocky-server"
     srv.vm.network :private_network, ip: "192.168.56.110"
     srv.vm.disk :disk, name: "storage1", size: "5GB"
