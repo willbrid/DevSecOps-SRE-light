@@ -1,6 +1,6 @@
 # Installation et configuration de vault [PART4]
 
-Nous installerons et configurerons **vault** sur un serveur Rocky Linux 8.
+Nous installerons et configurerons **vault 1.18.0** sur notre serveur **vault-server**.
 
 1. **Installation**
 
@@ -13,7 +13,7 @@ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashi
 ```
 
 ```
-sudo yum -y install vault
+sudo yum -y install vault-1.18.0
 ```
 
 Pour vérifier si vault est bien installé, nous exécutons :
@@ -113,8 +113,6 @@ vault operator init
 
 Si tout se passe bien, aucune erreur ne sera affichée.
 
-<br>
-
 Nous pouvons réinitialiser la configuration de notre cluster vault :
 ```
 sudo systemctl stop vault
@@ -124,8 +122,6 @@ vault operator init
 ```
 
 L'argument **kv** de la commande **consul** permet d'nteragir avec son magasin **clé-valeur**. Avec son argument **delete** et son option **-recurse** (de l'argument **delete**), il permet de supprimer de manière récursive un magasin **clé-valeur** précisé en argument (**vault/**).
-
-<br>
 
 Nous aurons en sortie :
 
@@ -138,8 +134,6 @@ Unseal Key 5: 6c6cY920kRvpVlAJ9iQxoL7yAD8CmFyg+F/K5y8I8lBj
 
 Initial Root Token: hvs.oYcFoZDwF595Zi5hUHGdemO9
 ```
-
-<br>
 
 Après avoir éxécuté la commande **vault operator init**, nous obtenons dans le résultat le message : 
 
