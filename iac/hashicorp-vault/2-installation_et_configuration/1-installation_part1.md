@@ -18,7 +18,7 @@ Le flux de travail principal de **consul** comprend les étapes suivantes :
 
 - **Secure**: une fois les services localisés en amont, le **consul** s'assure que la communication de service à service est authentifiée, autorisée et cryptée. Le maillage de services **Consul** sécurise les architectures de microservices avec **mTLS** et peut autoriser ou restreindre l'accès en fonction des identités de service, quelles que soient les différences dans les environnements de calcul et les temps d'exécution.
 
-2. **Installation** 
+2. **Installation de consul 1.20.0 sur le serveur vault-server**
 
 ```
 sudo yum install -y yum-utils
@@ -29,5 +29,5 @@ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashi
 ```
 
 ```
-sudo yum -y install consul
+sudo yum -y install consul-1.20.0
 ```
