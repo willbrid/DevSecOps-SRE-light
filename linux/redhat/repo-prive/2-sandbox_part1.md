@@ -4,7 +4,7 @@ Nous allons mettre en place deux serveurs **Redhat 8.9** avec **vagrant** coupl�
 - un serveur **rhel-repo-server** pour la mise en place du repo privé
 - un serveur **rhel-server** pour consommer ce repo privé
 
-En guise d'exemple, nous configurerons le repo privé des packages de kubernetes (**kubeadm**, **kubectl**, **kubelet**) et du gestionnaire de conteneur **cri-o**. Puis nous installerons ces packages depuis notre serveur **rhel-server** utilisant le repo local configuré sur le serveur **rhel-repo-server**.
+En guise d'exemple, nous configurerons un repo privé pour : des packages **Red Hat 8.10**, des packages de kubernetes (**kubeadm**, **kubectl**, **kubelet**) et du moteur d'exécution de conteneurs **cri-o**. Puis nous installerons ces packages depuis notre serveur **rhel-server** utilisant le repo local configuré sur le serveur **rhel-repo-server**.
 
 ```
 cd ~ && mkdir private-redhat-repo
