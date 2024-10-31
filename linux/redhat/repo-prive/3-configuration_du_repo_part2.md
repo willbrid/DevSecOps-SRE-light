@@ -76,7 +76,7 @@ sudo su
 subscription-manager release --set=8.10 && rm -rf /var/cache/dnf
 ```
 
-Créons le repertoire d'hergement des packages RHEL dans 
+Créons le repertoire d'hergement des packages RHEL dans **/var/www/html**
 
 ```
 mkdir -p /var/www/html/rhel/8.10
@@ -101,3 +101,68 @@ reposync -p /var/www/html/rhel/8.10 --download-metadata --repoid=rhel-8-for-x86_
 - Sur **RHEL 8**, s'assurer d'installer **yum-utils-4.0.8-3.el8.noarch** ou une version supérieure afin que **reposync** télécharge correctement tous les packages.
 
 - L'utilitaire **reposync** ne peut mettre en miroir que les référentiels auxquels le système a droit.
+
+### Repo privé kubernetes 1.30 et cri-o 1.30
+
+Nous créons les fichiers **/etc/yum.repos.d/kubernetes.repo** et **/etc/yum.repos.d/cri-o.repo** pour kubernetes et cri-o version pour leur version **1.30**.
+
+
+```
+sudo su
+```
+
+```
+vi /etc/yum.repos.d/kubernetes.repo
+```
+
+```
+[kubernetes]
+name=Kubernetes
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/
+enabled=1
+gpgcheck=1
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key
+```
+
+```
+vi /etc/yum.repos.d/cri-o.repo
+```
+
+```
+[cri-o]
+name=CRI-O
+baseurl=https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.30/rpm/
+enabled=1
+gpgcheck=1
+gpgkey=https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.30/rpm/repodata/repomd.xml.key
+```
+
+Pour avoir l'exactitude des identifiants des repo kubernetes et cri-o, nous pouvons exécuter les commandes :
+
+```
+yum repolist all | grep -i kubernetes
+```
+
+```
+yum repolist all | grep -i cri-o
+```
+
+Créons les repertoires d'hergement des packages de kubernetes et cri-o dans **/var/www/html**
+
+```
+mkdir -p /var/www/html/kubernetes/1.30
+```
+
+```
+mkdir -p /var/www/html/cri-o/1.30
+```
+
+Exécutons la commande **reposync** pour télécharger tous les packages kubernetes et cri-o :
+
+```
+reposync -p /var/www/html/kubernetes/1.30 --download-metadata --repoid=kubernetes
+```
+
+```
+reposync -p /var/www/html/cri-o/1.30 --download-metadata --repoid=cri-o
+```
