@@ -1,6 +1,6 @@
 # Configuration du repo privé
 
-Nous allons dans cette partie configurer un repo privé pour les packages **Red Hat 8.10**, les packages de kubernetes (**kubeadm**, **kubectl**, **kubelet**) et du moteur d'exécution de conteneurs **cri-o**.
+Nous allons dans cette partie configurer un repo privé pour les packages **Red Hat 8.10**, les packages de kubernetes (**kubeadm**, **kubectl**, **kubelet**) et du moteur d'exécution de conteneurs **cri-o**. Toutes les configurations se feront sur le serveur **rhel-repo-server**.
 
 ### Installation et configuration de Apache pour héberger tous les packages
 
