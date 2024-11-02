@@ -22,68 +22,50 @@ Pour vérifier si vault est bien installé, nous exécutons :
 vault -h
 ```
 
+2. **Elements préconfigurés lors de l'installation de vault**
+
+L'installation de **vault** sur le serveur **vault-server** créera :
+- son repertoire de configuration **/etc/vault.d**
+- son fichier de configuration **/etc/vault.d/vault.hcl**
+- son fichier service systemd  **/usr/lib/systemd/system/vault.service**
+- son repertoire de certificat **/opt/vault/tls/** contenant les fichiers par défaut **tls.crt** et **tls.key**
+- son repertoire de données **/opt/vault/data** mais qui ne sera pas utilisé puisque **consul** sera utilisé
+
 2. **Configuration**
 
-Nous créeons d'abord le repertoire de configuration de **vault** :
+Effectuons le backup du fichier de configuration par défaut
 
 ```
-sudo mkdir -p /etc/vault.d/
+sudo mv /etc/vault.d/vault.hcl /etc/vault.d/vault.hcl.backup
 ```
 
-S'il existe déjà, alors nous pouvons ignorer cette étape.
-
-Nous éditons le fichier de configuration **vault.hcl**
+Editons le fichier de configuration **/etc/vault.d/vault.hcl**
 
 ```
-sudo vim /etc/vault.d/vault.hcl
+sudo vi /etc/vault.d/vault.hcl
 ```
 
 ```
 ui = true
 
-#storage "file" {
-#  path = "/opt/vault/data"
-#}
-
 storage "consul" {
-  address = "127.0.0.1:8500"
+  address = "192.168.56.70:8500"
   path    = "vault/"
 }
 
-# HTTPS listener
+api_addr = "https://vault.willbrid.com:8200"
+
 listener "tcp" {
-  address       = "0.0.0.0:8443"
-  tls_cert_file = "/etc/letsencrypt/live/notredomaine/fullchain.pem"
-  tls_key_file  = "/etc/letsencrypt/live/notredomaine/privkey.pem"
+  address       = "0.0.0.0:8200"
+  tls_cert_file = "/opt/vault/tls/willbrid.com.crt"
+  tls_key_file  = "/opt/vault/tls/willbrid.com.key"
 }
 ```
 
-Nous créeons le service **vault.service**
+Démarrons et activons **vault**
 
 ```
-sudo vim /etc/systemd/system/vault.service
-```
-
-```
-[Unit]
-Description=Vault
-Documentation=https://www.vault.io/
-
-[Service]
-ExecStart=/usr/bin/vault server -config=/etc/vault.d/vault.hcl
-ExecReload=/bin/kill -HUP $MAINPID
-LimitNOFILE=65536
-
-[Install]
-WantedBy=multi-user.target
-```
-
-L'argument **server** permet de configurer un serveur **vault** avec son option **-config** qui permet de préciser le fichier de configuration.
-
-```
-sudo systemctl daemon-reload
-sudo systemctl enable vault
-sudo systemctl start vault
+sudo systemctl enable --now vault
 ```
 
 Nous pouvons vérifier le statut de ce service :
@@ -98,14 +80,29 @@ Nous pouvons aussi consulter les logs de **vault** via **journalctl**
 sudo journalctl -f -u vault
 ```
 
-Nous configurons de manière permanente la variable d'environnement **VAULT_ADDR**
+Autorisation du port d'accès ui 8200 de **vault**
 
 ```
-export VAULT_ADDR="https://notredomaine:8443"
-echo "export VAULT_ADDR=https://notredomaine:8443" >> ~/.bashrc
+sudo firewall-cmd --permanent --add-port=8200/tcp
+sudo firewall-cmd --reload
 ```
 
-Nous initialisons un cluster vault
+Configurons de manière permanente la variable d'environnement **VAULT_ADDR**
+
+```
+export VAULT_ADDR="https://vault.willbrid.com:8200"
+echo "export VAULT_ADDR=https://vault.willbrid.com:8200" >> ~/.bashrc
+```
+
+Consultons le statut du cluster **vault**
+
+```
+vault status
+```
+
+### Initialisation du cluster vault
+
+Initialisons un cluster vault
 
 ```
 vault operator init
@@ -113,7 +110,8 @@ vault operator init
 
 Si tout se passe bien, aucune erreur ne sera affichée.
 
-Nous pouvons réinitialiser la configuration de notre cluster vault :
+Nous pouvons réinitialiser la configuration de notre cluster **vault** :
+
 ```
 sudo systemctl stop vault
 consul kv delete -recurse vault/
@@ -135,6 +133,20 @@ Unseal Key 5: 6c6cY920kRvpVlAJ9iQxoL7yAD8CmFyg+F/K5y8I8lBj
 Initial Root Token: hvs.oYcFoZDwF595Zi5hUHGdemO9
 ```
 
+Installons la saisie semi-automatique pour les commandes Vault.
+
+```
+vault -autocomplete-install
+```
+
+Activons après cette installation l'autocompletion.
+
+```
+complete -C /usr/bin/vault vault
+```
+
+### Descellement manuel des clés
+
 Après avoir éxécuté la commande **vault operator init**, nous obtenons dans le résultat le message : 
 
 ```
@@ -151,22 +163,14 @@ Nous devons desceller au moins 3 clés (issus du résultat de la commande **vaul
 vault operator unseal valeurCle
 ```
 
-Nous pouvons installer la saisie semi-automatique pour les commandes Vault.
-
-```
-vault -autocomplete-install
-```
-
-Nous pouvons activer après cette installation l'autocompletion.
-
-```
-complete -C /usr/bin/vault vault
-```
-
-Pour tester nos configurations, nous pouvons nous connecter au service vault à l'aide du jeton root fourni à la sortie du résultat de la commande **vault operator init**:
+Pour tester nos configurations, nous pouvons nous connecter au service vault à l'aide du jeton **root** fourni à la sortie du résultat de la commande **vault operator init**:
 
 ```
 vault login <JETON_RACINE>
 ```
 
 Si tout se passe bien, nous verrons le message de succès.
+
+<br>
+
+**NB :** En perpectives, Descellement automatique des clés
