@@ -65,3 +65,22 @@ Pour la suite, ces 4 fichiers doivent être importés sur le serveur **vault-ser
 sudo chmod 600 /opt/vault/tls/*
 sudo chown vault:vault /opt/vault/tls/*
 ```
+
+Il faudrait ajouter les contenus **ca.pem** et **ca.key** à l'ensemble des ca du serveur vault.
+
+```
+sudo su
+```
+
+```
+cat /opt/vault/tls/ca.pem > $HOME/vault-ca.crt
+cat /opt/vault/tls/ca.key >> $HOME/vault-ca.crt
+```
+
+```
+mv $HOME/vault-ca.crt /etc/pki/ca-trust/source/anchors/
+```
+
+```
+update-ca-trust
+```
