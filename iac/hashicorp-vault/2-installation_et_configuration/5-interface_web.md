@@ -5,25 +5,14 @@
 Nous allons nous connecter à l'interface web utilisateur via un navigateur en utilisant l'url : 
 
 ```
-https://notredomaine:8443
-```
-
-Si le service **firewalld** est installé, avant d'utiliser cette url nous devons ajouter le port 8443 dans la zone publique de notre paref-feu :
-
-```
-sudo firewall-cmd --zone=public --add-port=8443/tcp --permanent
-sudo firewall-cmd --reload
-```
-
-Nous pouvons vérifier la règle avec la commande 
-
-```
-sudo firewall-cmd --list-all
+https://vault.willbrid.com:8200
 ```
 
 Si tout se passe bien, à l'ouverture de notre interface web, nous aurons une page d'authentification
 
 ![interface web](../images/chap4_vault_ui.png)
+
+Nous pouvons nous authentifier avec le token **root** préalablement généré.
 
 - Activation d'un nouveau moteur : kv (key value)
 
