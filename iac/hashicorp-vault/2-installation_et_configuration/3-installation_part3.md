@@ -59,10 +59,9 @@ Ce playbook s'exécute sur une machine locale et est compatible avec les distrib
 - un fichier **willbrid.com.key** correspondant au fichier clé privé du wildcard domaine **\*.willbrid.com**
 - un fichier **willbrid.com.crt** correspondant au fichier certificat du wildcard domaine **\*.willbrid.com**.
 
-Pour la suite, ces 4 fichiers doivent être importés sur le serveur **vault-server** à l'emplacement **/etc/vault.d/certs** et il faudrait fournir les droits suivants :
+Pour la suite, ces 4 fichiers doivent être importés sur le serveur **vault-server** à l'emplacement **/opt/vault/tls** (emplacement créé automatiquement lors de l'installation de **vault**) avec les droits suivants :
 
 ```
-sudo chmod 755 /etc/vault.d/certs
-sudo chmod 444 /etc/vault.d/certs/*
-sudo chown -R vault:vault /etc/vault.d/certs
+sudo chmod 600 /opt/vault/tls/*
+sudo chown vault:vault /opt/vault/tls/*
 ```
