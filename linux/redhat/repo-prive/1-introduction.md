@@ -4,6 +4,6 @@ Dans un contexte professionnel, il est courant que certains serveurs d’entrepr
 
 Dans cet article qui sera composé de plusieurs parties, nous explorerons comment mettre en place un dépôt de packages local sur une machine **Red Hat 8.9**, afin de centraliser et simplifier l’accès aux packages nécessaires sans dépendre d’une connexion externe. Ce dépôt local permet ainsi d’éviter les connexions internet répétées, tout en assurant que les serveurs disposent des versions les plus récentes et sécurisées des logiciels. Nous verrons comment cette approche peut non seulement optimiser la gestion des ressources, mais aussi s’intégrer efficacement dans des environnements d’entreprise à accès restreint.
 
-**Référence :**
+**Références :**
 - [https://access.redhat.com/solutions/7019225](https://access.redhat.com/solutions/7019225)
 - [https://access.redhat.com/solutions/2785791](https://access.redhat.com/solutions/2785791)
