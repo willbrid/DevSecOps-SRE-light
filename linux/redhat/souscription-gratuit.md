@@ -16,6 +16,6 @@ sudo subscription-manager register --username <login>
 
 - soit c'est d'utiliser la sandbox **RHEL** directement sur le site de **Red Hat** via le lien [https://console.redhat.com/openshift/sandbox](https://console.redhat.com/openshift/sandbox)
 
-**Référence :**
+**Références :**
 - [https://access.redhat.com/solutions/4078831](https://access.redhat.com/solutions/4078831)
 - [https://developers.redhat.com/learning/learn:rhel:setting-red-hat-enterprise-linux-red-hat-developer-sandbox/resource/resources:prerequisites-step-step-guide](https://developers.redhat.com/learning/learn:rhel:setting-red-hat-enterprise-linux-red-hat-developer-sandbox/resource/resources:prerequisites-step-step-guide)
