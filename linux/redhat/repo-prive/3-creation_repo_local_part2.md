@@ -104,7 +104,7 @@ reposync -p /var/www/html/rhel/8.10 --download-metadata --repoid=rhel-8-for-x86_
 
 ### Repo privé kubernetes 1.30 et cri-o 1.30
 
-Nous créons les fichiers **/etc/yum.repos.d/kubernetes.repo** et **/etc/yum.repos.d/cri-o.repo** pour kubernetes et cri-o version pour leur version **1.30**.
+Nous créons les fichiers **/etc/yum.repos.d/kubernetes.repo** et **/etc/yum.repos.d/cri-o.repo** pour kubernetes et cri-o pour leur version **1.30**.
 
 
 ```
