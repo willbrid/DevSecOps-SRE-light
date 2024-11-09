@@ -38,3 +38,6 @@ Les contenus de ce dépôt seront régulièrement mis à jour pour refléter les
 - [Opensearch Documentation](https://opensearch.org/docs/latest/intro/)
 - [Haproxy Documentation](https://docs.haproxy.org/)
 - [Server World](https://www.server-world.info/en/)
+- [Opentelemetry Documentation](https://opentelemetry.io/docs/)
+- [Tempo Documentation](https://grafana.com/docs/tempo/)
+- [Loki Documentation](https://grafana.com/docs/loki/)
