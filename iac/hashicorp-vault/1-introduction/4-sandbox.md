@@ -29,7 +29,9 @@ vi Vagrantfile
 # vi: set ft=ruby :
 
 $script = <<-SCRIPT
-echo -e "192.168.56.70\tvault.willbrid.com" >> /etc/hosts
+if ! grep -q "vault.willbrid.com" /etc/hosts; then
+  echo -e "192.168.56.70\tvault.willbrid.com" >> /etc/hosts
+fi
 SCRIPT
 
 VAGRANTFILE_API_VERSION = "2"
