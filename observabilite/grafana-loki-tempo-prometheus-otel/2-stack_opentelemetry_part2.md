@@ -44,7 +44,21 @@ Username : admin
 Password : verysecurepassword
 ```
 
-Pour chaque bucket, nous cliquons sur le bouton **Create Bucket**, puis nous saisissons le nom du bucket. 
+Pour chaque bucket, nous cliquons sur le bouton **Create Bucket**, puis nous saisissons le nom du bucket.
+
+Nous créons une clé d'accès à nos buckets MinIO S3 (qui permettra de lire et d'écrire les données dans tous les buckets) en suivant les étapes ci-dessous :
+
+- accéder au menu **Access Keys**
+- cliquer sur le bouton **Create access key**
+- cliquer sur le bouton **create**
+- télécharger le fichier de clé créé
+
+Dans notre exemple, nous avons généré :
+
+```
+ACCESS KEY : 1MpVon6pfJgf9JiFQYfK
+SECRET KEY : 4j3jdcAeCf4jqgPxBxJ6ZuPVzcRtgjaoefCQICES
+```
 
 ### Mise en place de Redis
 
