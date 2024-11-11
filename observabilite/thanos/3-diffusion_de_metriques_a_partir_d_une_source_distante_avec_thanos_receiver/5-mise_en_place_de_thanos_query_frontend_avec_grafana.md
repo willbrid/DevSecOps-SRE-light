@@ -15,7 +15,7 @@ mkdir redis-data
 - Démarrons un seul container **redis** qui sera l'instance master
 
 ```
-podman run -d --net=host \
+podman run -d \
        -v $HOME/redis-data:/data:z \ 
        --name redis-cache \ 
        -p 6379:6379 \
