@@ -69,11 +69,10 @@ mkdir redis-data
 ```
 
 ```
-podman run -d --net=host \
-       -v $HOME/redis-data:/data:z \ 
-       --name redis-cache \ 
+podman run -d --name redis-cache \
+       -v $HOME/redis-data:/data:z \
        -p 6379:6379 \
-       -e REDIS_ARGS="--requirepass cache2024 --masteruser usercache --masterauth cache2024" \
+       -e REDIS_ARGS="--appendonly yes" \
        docker.io/redis/redis-stack-server:7.2.0-v6
 ```
 
