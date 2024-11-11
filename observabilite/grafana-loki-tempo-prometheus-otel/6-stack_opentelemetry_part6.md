@@ -76,13 +76,6 @@ limits_config:
   split_queries_by_interval: 15m
   volume_enabled: true
 
-# memberlist:
-#  join_members: ['loki-ingester:7946']
-#  dead_node_reclaim_time: 30s
-#  gossip_to_dead_nodes_time: 15s
-#  left_ingesters_timeout: 30s
-#  bind_port: 7946
-
 distributor:
   write_failures_logging:
     rate: 1KB
