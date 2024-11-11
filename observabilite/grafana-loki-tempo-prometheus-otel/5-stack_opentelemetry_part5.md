@@ -28,9 +28,9 @@ memberlist:
   abort_if_cluster_join_fails: false
   bind_port: 7946
   join_members:
-  - ingester-0:7946
-  - ingester-1:7946
-  - ingester-2:7946
+  - tempo-ingester-0:7946
+  - tempo-ingester-1:7946
+  - tempo-ingester-2:7946
 
 compactor:
   compaction:
@@ -38,7 +38,7 @@ compactor:
 
 querier:
   frontend_worker:
-    frontend_address: query-frontend:9095
+    frontend_address: tempo-query-frontend:9095
 
 query_frontend:
   max_retries: 3
@@ -66,7 +66,7 @@ vi $HOME/tempo/docker-compose.yml
 version: '3.8'
 
 services:
-  distributor:
+  tempo-distributor:
     image: docker.io/grafana/tempo:r174-403fdcf
     command: "-target=distributor -config.file=/etc/tempo.yaml"
     ports:
@@ -78,7 +78,7 @@ services:
     volumes:
       - '$HOME/tempo/tempo.yaml:/etc/tempo.yaml:z'
 
-  ingester-0:
+  tempo-ingester-0:
     image: docker.io/grafana/tempo:r174-403fdcf
     command: "-target=ingester -config.file=/etc/tempo.yaml"
     user: root
@@ -90,7 +90,7 @@ services:
       - '$HOME/tempo/tempo.yaml:/etc/tempo.yaml:z'
       - '$HOME/tempo/wal0:/var/tempo/wal:z'
   
-  ingester-1:
+  tempo-ingester-1:
     image: docker.io/grafana/tempo:r174-403fdcf
     command: "-target=ingester -config.file=/etc/tempo.yaml"
     user: root
@@ -102,7 +102,7 @@ services:
       - '$HOME/tempo/tempo.yaml:/etc/tempo.yaml:z'
       - '$HOME/tempo/wal1:/var/tempo/wal:z'
 
-  ingester-2:
+  tempo-ingester-2:
     image: docker.io/grafana/tempo:r174-403fdcf
     command: "-target=ingester -config.file=/etc/tempo.yaml"
     user: root
@@ -114,7 +114,7 @@ services:
       - '$HOME/tempo/tempo.yaml:/etc/tempo.yaml:z'
       - '$HOME/tempo/wal2:/var/tempo/wal:z'
 
-  query-frontend:
+  tempo-query-frontend:
     image: docker.io/grafana/tempo:r174-403fdcf
     command: "-target=query-frontend -config.file=/etc/tempo.yaml -log.level=debug"
     ports:
@@ -125,7 +125,7 @@ services:
     volumes:
       - '$HOME/tempo/tempo.yaml:/etc/tempo.yaml:z'
 
-  querier:
+  tempo-querier:
     image: docker.io/grafana/tempo:r174-403fdcf
     command: "-target=querier -config.file=/etc/tempo.yaml -log.level=debug"
     ports:
@@ -135,7 +135,7 @@ services:
     volumes:
       - '$HOME/tempo/tempo.yaml:/etc/tempo.yaml:z'
 
-  compactor:
+  tempo-compactor:
     image: docker.io/grafana/tempo:r174-403fdcf
     command: "-target=compactor -config.file=/etc/tempo.yaml"
     ports:
