@@ -119,7 +119,6 @@ services:
     command: "-target=query-frontend -config.file=/etc/tempo.yaml -log.level=debug"
     ports:
       - "3204:3200"
-      - "9095:9095"
     networks:
       - networks-monitoring
     volumes:
