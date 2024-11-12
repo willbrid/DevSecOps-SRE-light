@@ -75,6 +75,7 @@ limits_config:
   ingestion_burst_size_mb: 20
   split_queries_by_interval: 15m
   volume_enabled: true
+  allow_structured_metadata: true
 
 distributor:
   write_failures_logging:
