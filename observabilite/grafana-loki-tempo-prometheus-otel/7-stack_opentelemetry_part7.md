@@ -28,12 +28,12 @@ extensions:
 
 exporters:
   otlp:
-    endpoint: tempo-distributor:5317
+    endpoint: "tempo-distributor:5317"
     tls:
       insecure: true
 
-  otlp/2:
-    endpoint: loki-distributor:9096
+  otlphttp:
+    endpoint: "http://loki-distributor:3100/otlp"
     tls:
       insecure: true
 
@@ -52,7 +52,7 @@ service:
     logs:
       receivers: [otlp]
       processors: [batch,memory_limiter]
-      exporters: [otlp/2]
+      exporters: [otlphttp]
     metrics:
       receivers: [otlp]
       processors: [batch,memory_limiter]
