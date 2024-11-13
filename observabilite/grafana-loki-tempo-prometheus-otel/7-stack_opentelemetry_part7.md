@@ -9,6 +9,13 @@ mkdir $HOME/otelcollector
 ```
 # $HOME/otelcollector/config.yaml
 receivers:
+  loki:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:3500
+      grpc:
+        endpoint: 0.0.0.0:3600
+    use_incoming_timestamp: true
   otlp:
     protocols:
       grpc:
@@ -53,6 +60,10 @@ service:
       receivers: [otlp]
       processors: [batch,memory_limiter]
       exporters: [otlphttp]
+    logs/loki:
+      receivers: [loki]
+      processors: [batch,memory_limiter]
+      exporters: [otlphttp]
     metrics:
       receivers: [otlp]
       processors: [batch,memory_limiter]
@@ -75,6 +86,8 @@ services:
       - 13133:13133
       - 4317:4317
       - 4318:4318
+      - 3600:3600
+      - 3500:3500
     networks:
       - networks-monitoring
     volumes:
@@ -90,11 +103,11 @@ networks:
 podman-compose up -d
 ```
 
-- Autorisation des ports **4317** et **4318** sur le firewall
+- Autorisation des ports **4317**, **4318**, **3600** et **3500** sur le firewall
 
 
 ```
-sudo firewall-cmd --permanent --add-port={4317/tcp,4318/tcp}
+sudo firewall-cmd --permanent --add-port={4317/tcp,4318/tcp,3600/tcp,3500/tcp}
 
 sudo firewall-cmd --reload
 ```
