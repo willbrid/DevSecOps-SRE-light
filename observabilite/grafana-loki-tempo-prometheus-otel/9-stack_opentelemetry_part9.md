@@ -109,3 +109,7 @@ Nous accédons à grafana via l'url **http://192.168.56.21:3000/** puis nous sui
 --- au niveau de **Metric** on sélectionne par exemple **cpu_usage_idle**, puis au niveau de **Label filters** on sélectionne le label **host** et sa valeur **server-app**.
 
 L'on pourra ainsi visualiser la consommation du **cpu** sur une période précise.
+
+**Référence :**
+
+- [https://docs.influxdata.com/telegraf/v1/install/](https://docs.influxdata.com/telegraf/v1/install/)
