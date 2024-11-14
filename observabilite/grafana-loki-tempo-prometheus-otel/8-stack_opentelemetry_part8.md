@@ -57,6 +57,8 @@ scrape_configs:
 sudo systemctl restart promtail.service
 ```
 
+- Visualisation des métriques sur grafana
+
 Nous accédons à grafana via l'url **http://192.168.56.21:3000/** puis nous suivons les étapes :
 
 --- clic sur le bouton **Toggle menu** <br>
