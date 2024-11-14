@@ -9,6 +9,7 @@ sudo vi /etc/yum.repos.d/grafana.repo
 ```
 
 ```
+[grafana]
 name=grafana
 baseurl=https://rpm.grafana.com
 repo_gpgcheck=1
@@ -30,6 +31,14 @@ systemctl status promtail.service
 ```
 
 - Configuration de **promtail** pour le job **system**
+
+```
+sudo mv /etc/promtail/config.yml /etc/promtail/config.yml.backup
+```
+
+```
+sudo vi /etc/promtail/config.yml
+```
 
 ```
 server:
