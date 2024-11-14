@@ -268,13 +268,13 @@ podman container exec -it loki_loki-etcd_1 /usr/local/bin/etcdctl user add root 
 On lui ajoute le rôle **root**
 
 ```
-podman container exec -it loki_loki-etcd_1 /usr/local/bin/etcdctl user grant-role root root --user="root:root2024"
+podman container exec -it loki_loki-etcd_1 /usr/local/bin/etcdctl user grant-role root root
 ```
 
 On active l'authentification sur l'etcd
 
 ```
-podman container exec -it loki_loki-etcd_1 /usr/local/bin/etcdctl auth enable --user="root:root2024"
+podman container exec -it loki_loki-etcd_1 /usr/local/bin/etcdctl auth enable
 ```
 
 On crée un utilisateur **loki** avec pour mot de passe **loki2024**
