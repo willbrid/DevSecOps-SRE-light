@@ -76,7 +76,7 @@ ansible-galaxy role remove [rolename]
 - Commande pour créer un modèle de rôle adapté à la soumission à **Ansible Galaxy**
 
 ```
-ansible-galaxy role init
+ansible-galaxy role init [rolename]
 ```
 
 Nous pouvons configurer le chemin par défaut où les rôles Ansible seront téléchargés en modifiant notre fichier de configuration **ansible.cfg** et en définissant un **roles_path** dans la section **[defaults]**.
