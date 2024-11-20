@@ -99,6 +99,7 @@ sudo vi /etc/ssh/sshd_config
 ```
 
 Nous recherchons la ligne contenant le mot clé **UseDNS**
+
 ```
 UseDNS no
 ```
@@ -120,6 +121,7 @@ Nous montons ce fichier iso dans notre machine virtuelle rocky linux 8.10 en fai
 ![create_vm_virtualbox9.png](../images/create_vm_virtualbox9.png)
 
 Nous installons les dépendances nécessaires.
+
 ```
 sudo dnf update
 sudo dnf install epel-release
@@ -142,6 +144,7 @@ sudo systemctl enable vboxadd-service
 ```
 
 Nous vérifions la présence du module **vboxguest**
+
 ```
 lsmod | grep vboxguest
 ```
