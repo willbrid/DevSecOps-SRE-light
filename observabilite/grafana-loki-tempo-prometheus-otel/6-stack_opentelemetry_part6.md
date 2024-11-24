@@ -99,8 +99,18 @@ ingester:
   flush_op_timeout: 10s
 
 ruler:
-  rule_path: /loki/rules
+  rule_path: /tmp/rules
   alertmanager_url: "http://alertmanager:9093"
+  storage:
+    type: local
+    local:
+      directory: /loki/rules
+  wal:
+    dir: /loki/ruler-wal
+  remote_write:
+    enabled: true
+    client:
+      url: "http://prometheus:9090/api/v1/write"
 
 querier:
   max_concurrent: 4
@@ -132,6 +142,27 @@ frontend:
   compress_responses: true
   max_outstanding_per_tenant: 2048
   tail_proxy_url: http://loki-querier:3100
+```
+
+- Dans le repertoire **$HOME/loki/ruler**, nous créons une règle qui sera calculée en fonction du code de statut des requêtes http d'apache
+
+```
+mkdir $HOME/loki/ruler/fake
+```
+
+```
+vi $HOME/loki/ruler/fake/httpd.yaml
+```
+
+```
+groups:
+  - name: httpd_rules
+    interval: 1m
+    rules:
+    - record: httpd_requests_2xx5m
+      expr: 'sum(count_over_time({service_name="httpd"} | json | code=~"2[0-9]{2}" [5m])) by(code)'
+      labels:
+        service: "httpd"
 ```
 
 - Preparation du fichier **docker-compose** et installation des composants : **loki distributor**, **loki ingester**, **loki compactor**, **loki querier**, **loki query-frontend**, **loki query-scheduler**, **loki ruler**, **etcd**.
