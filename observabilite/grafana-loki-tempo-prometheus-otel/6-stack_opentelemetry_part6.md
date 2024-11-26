@@ -346,7 +346,7 @@ podman-compose up -d
 --- sélection du type de source de données **loki** <br>
 --- renseignement des paramètres du composant **loki query frontend** <br>
 ----- **Name** : **Loki-Query-Frontend** <br>
------ **Tempo query frontend server URL** : **http://192.168.56.21:3102** <br>
+----- **Loki query frontend server URL** : **http://192.168.56.21:3102** <br>
 --- clic sur le bouton **Save & test** : nous recevrons un message de succès.
 
 **Référence de configuration :** 
