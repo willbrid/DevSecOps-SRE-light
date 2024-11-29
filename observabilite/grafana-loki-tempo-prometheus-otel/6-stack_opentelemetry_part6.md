@@ -1,6 +1,6 @@
 # Mise en place de la stack logs sur le serveur server-monitoring
 
-- Préparation des repertoires de **loki**, **consul** et leur fichier de configuration
+- Préparation des repertoires de **loki**, **etcd** et leur fichier de configuration
 
 ```
 mkdir -p $HOME/loki/etcd $HOME/loki/compactor $HOME/loki/ingester $HOME/loki/ruler
