@@ -2,7 +2,7 @@
 
 Hypothèses
 1.  On supposera que la configuration d'un registre est déjà faite sur un serveur de domaine **example.com**. (voir configuration)
-2.  On supposera que docker est déjà installé depuis un hôte (ubuntu ou centos) qui nous permettra d'utiliser notre registre. 
+2.  On supposera que docker est déjà installé depuis un hôte (ubuntu ou rocky) qui nous permettra d'utiliser notre registre. 
 
 ### Installation du certification du registre privé sur l'hôte
 

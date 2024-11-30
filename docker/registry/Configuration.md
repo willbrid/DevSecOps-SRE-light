@@ -18,8 +18,7 @@ docker run --entrypoint htpasswd registry:2.7.0 -Bbn login password > ~/registry
 
 ### Génération d'un certificat auto-signé
 
-Générez un certificat auto-signé. Lors de la génération du certificat, vous pouvez laisser les autres invites vides, à l'exception de l'invite du 
-**Common Name**. Pour l'invite du **Common Name**, mettez le nom d'hôte public du serveur de registre : dans notre cas **example.com** .
+Générez un certificat auto-signé. Lors de la génération du certificat, vous pouvez laisser les autres invites vides, à l'exception de l'invite du **Common Name**. Pour l'invite du **Common Name**, mettez le nom d'hôte public du serveur de registre : dans notre cas **example.com** .
 
 ```
 mkdir ~/registry/certs
