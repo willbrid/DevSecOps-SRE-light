@@ -149,4 +149,4 @@ Nous accédons à grafana via l'url **http://192.168.56.21:3000/** puis nous sui
 --- choix de la datasource **Thanos-Query-Frontend** <br>
 --- au niveau de **Metric** on sélectionne par exemple **node_memory_MemAvailable_bytes**, puis au niveau de **Label filters** on sélectionne le label **host** et sa valeur **server-app**.
 
-L'on pourra ainsi visualiser la quantité de **mem** disponible sur une période précise.
+L'on pourra ainsi visualiser la quantité de **memoire** disponible sur une période précise.
