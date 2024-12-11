@@ -25,7 +25,7 @@ Il prétraite les données avant de les stocker dans le cluster. Il exécute un 
 - **nœud de coordination**
 
 Il délègue les demandes des clients aux fragments sur les nœuds de données, collecte et agrège les résultats en un seul résultat final, et renvoie ce résultat au client.
-<br><br>
+
 Par défaut, chaque nœud est un nœud de données, d'ingestion et de coordination éligible au gestionnaire de cluster. Décider du nombre de nœuds, attribuer des types de nœuds et choisir le matériel pour chaque type de nœud dépend de notre cas d'utilisation. Nous devons prendre en compte des facteurs tels que la durée pendant laquelle nous souhaitons conserver nos données, la taille moyenne de nos documents, notre charge de travail typique (indexation, recherches, agrégations), notre rapport qualité-prix attendu, notre tolérance au risque...
 
 ## Mise en place de notre architecture avec vagrant
