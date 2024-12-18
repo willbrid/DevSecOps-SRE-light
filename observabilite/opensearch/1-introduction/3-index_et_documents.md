@@ -1,6 +1,16 @@
-# Index et documents
+# Index et Document
 
-OpenSearch organise les données en index. Chaque index est une collection de documents JSON. Si nous avons un ensemble d'articles d'encyclopédie bruts ou de lignes de journal que nous souhaitons ajouter à OpenSearch, nous devons d'abord les convertir en JSON. Un simple document JSON pour un film pourrait ressembler à ceci :
+### Document
+
+Un **document** est une unité qui stocke des informations (texte ou données structurées). Dans **OpenSearch**, les documents sont stockés au format **JSON**.
+
+Nous pouvons considérer un document de plusieurs manières :
+
+- dans une base de données d'étudiants, un document peut représenter un étudiant.
+- lorsque nous recherchons des informations, **OpenSearch** renvoie les documents liés à notre recherche.
+- un document représente une ligne dans une base de données traditionnelle.
+
+Un simple document JSON pour un film pourrait ressembler à ceci :
 
 ```
 {
@@ -9,7 +19,17 @@ OpenSearch organise les données en index. Chaque index est une collection de do
 }
 ```
 
-Lorsque nous ajoutons le document à un index, OpenSearch ajoute certaines métadonnées, telles que l'ID unique du document :
+### Index
+
+Un **index** est une collection de **documents**.
+
+Nous pouvons considérer un index de plusieurs manières :
+
+- dans une base de données d'étudiants, un index représente tous les étudiants de la base de données.
+- lorsque nous recherchons des informations, nous interrogeons les données contenues dans un index.
+- un index représente une table de base de données dans une base de données traditionnelle.
+
+Lorsque nous ajoutons le document à un index, **OpenSearch** ajoute certaines métadonnées, telles que l'ID unique du document :
 
 ```
 {
@@ -23,7 +43,3 @@ Lorsque nous ajoutons le document à un index, OpenSearch ajoute certaines méta
   }
 }
 ```
-
-Les index contiennent également des mappages et des paramètres :
-- Un mappage est la collection de champs que possèdent les documents de l'index. Dans ce cas, ces champs sont **title** et **release_date**.
-- Les paramètres incluent des données telles que le nom de l'**index**, la **date de création** et le **nombre de fragments**.
