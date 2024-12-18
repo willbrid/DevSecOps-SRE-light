@@ -43,3 +43,23 @@ Lorsque nous ajoutons le document à un index, **OpenSearch** ajoute certaines m
   }
 }
 ```
+
+### Index inversé
+
+Un **index OpenSearch** utilise une structure de données appelée **index inversé**. Un **index inversé** associe les mots aux documents dans lesquels ils apparaissent. Par exemple, considérons un index contenant les deux documents suivants :
+
+```
+Document 1 : « La beauté est dans l'œil de celui qui regarde »
+Document 2 : « La belle et la bête »
+```
+
+Un **index inversé** pour un tel index associe les mots aux documents dans lesquels ils apparaissent
+
+```
+La     ->   documents : 1,2
+est    ->   documents : 1
+dans   ->   documents : 1
+et     ->   documents : 2
+```
+
+En plus de l'ID du document, **OpenSearch** stocke la position du mot dans le document pour exécuter des requêtes de phrase, où les mots doivent apparaître les uns à côté des autres.
