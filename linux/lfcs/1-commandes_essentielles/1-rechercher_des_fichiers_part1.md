@@ -19,7 +19,7 @@ sudo touch /etc/SEARCH.txt
 - **Recherche de fichiers par son nom dans le répertoire courant**
 
 ```
-find -name "search.txt"
+sudo find -name "search.txt"
 ```
 
 - **Recherche de fichiers par son nom dans tout le système**
@@ -135,6 +135,140 @@ Vérifions que nous les avons tous
 
 ```
 sudo find /home -nouser -a -nogroup -ls
+```
+
+Rechercher dans le repertoire **/usr/share/** tous les fichiers avec pour extension **\*.jpg**
+
+```
+sudo find /usr/share/ -name "*.jpg"
+```
+
+En supposant l'heure actuelle 12h05 et le repertoire de recherche **/dev/**
+
+- rechercher les fichiers modifiés il y'a exactement 5 minutes (fichiers modifiés à 12h00)
+
+```
+sudo find /dev/ -mmin 5
+```
+
+- rechercher les fichiers modifiés il y'a moins de 5 minutes (fichiers modifiés à 12h00, 12h01, 12h02, 12h03, 12h04)
+
+```
+sudo find /dev/ -mmin -5
+```
+
+- rechercher les fichiers modifiés il y'a plus de 5 minutes (fichiers modifiés à l'heure <= 12h00)
+
+```
+sudo find /dev/ -mmin +5
+```
+
+- rechercher les fichiers modifiés au cours des 2 dernières heures
+
+```
+sudo find /dev/ -mtime 2 
+```
+
+- rechercher les fichiers changés au cours des 2 dernières heures
+
+```
+sudo find /dev/ -ctime 2
+```
+
+fichier modifié -> fichier créé avec son contenu ou dont son contenu est modifié
+fichier changé  -> fichier dont ses métadonnées (permission, proprietaire, groupe,...) ont été modifiées
+
+- rechercher des fichiers de taille 512k
+
+```
+sudo find /dev/ -size 512k
+```
+
+- rechercher des fichiers avec plus de 512k de taille
+
+```
+sudo find /dev/ -size +512k
+```
+
+- rechercher des fichiers avec moins de 512k de taille
+
+```
+sudo find /dev/ -size -512k
+```
+
+Les différentes unités qui peuvent être utilisées :
+
+```
+c -> bytes
+k -> kilobytes
+M -> megabytes
+G -> gigabytes
+```
+
+- rechercher des fichiers dont leur nom commence par **f** **ou** dont leur taille est égale à 512k
+
+```
+sudo find /dev/ -name "f*" -o -size 512k
+```
+
+- rechercher des fichiers dont leur nom commence par **f** **et** dont leur taille est égale à 512k
+
+```
+sudo find /dev/ -name "f*" -size 512k
+```
+
+- rechercher des fichiers dont leur nom ne commence pas par **f**
+
+```
+sudo find /dev/ -not -name "f*"
+```
+
+```
+sudo find /dev/ \! -name "f*"
+```
+
+- rechercher des fichiers avec pour permissions **664**
+
+```
+sudo find /dev/ -perm 664
+```
+
+```
+sudo find /dev/ u=rw,g=rw,o=r
+```
+
+- rechercher des fichiers avec au moins 664 pour permissions
+
+```
+sudo find /dev/ -perm -664
+```
+
+- rechercher des fichiers avec l'une de ces permissions 664
+
+```
+sudo find /dev/ -perm /664
+```
+
+```
+sudo find /dev -perm /u=rw,g=rw,o=r
+```
+
+- rechercher des fichiers qui ont au moins une permission de lecture pour les autres utilisateurs
+
+```
+sudo find /dev/ -perm -o=r
+```
+
+- rechercher des fichiers qui n'ont pas de permission de lecture pour les autres utilisateurs
+
+```
+sudo find /dev/ \! -perm -o=r
+```
+
+- rechercher des fichiers qui ont au moins la permission g=w et n'ont aucune permission de lecture et d'écriture pour les autres utilisateurs
+
+```
+sudo find /dev/ -perm -g=w \! -perm /o=rw -ls
 ```
 
 ### Commande locate
