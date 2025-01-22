@@ -325,7 +325,7 @@ Changt : 2023-05-11 04:30:29.168987682 +0100
 
 Sur les systèmes d'exploitation Linux, la commande **chattr** modifie les **attributs des fichiers** et **lsattr** les affiche.
 
-Sous Linux, les **attributs de fichier** sont des indicateurs qui affectent la manière dont le fichier est stocké et accessible par le système de fichiers. Ce sont des métadonnées stockées dans l'**inode** associé au fichier.
+Sous Linux, les **attributs de fichier** sont des indicateurs qui affectent la manière dont un fichier est stocké et accessible par le système de fichiers. Ce sont des métadonnées stockées dans l'**inode** associé au fichier.
 
 ```
 cd $HOME && touch file file2 .file
