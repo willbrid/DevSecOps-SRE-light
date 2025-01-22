@@ -175,7 +175,7 @@ sudo find /dev/ -mtime 2
 sudo find /dev/ -ctime 2
 ```
 
-fichier modifié -> fichier créé avec son contenu ou dont son contenu est modifié
+fichier modifié -> fichier créé avec son contenu ou dont son contenu est modifié <br>
 fichier changé  -> fichier dont ses métadonnées (permission, proprietaire, groupe,...) ont été modifiées
 
 - rechercher des fichiers de taille 512k
