@@ -25,10 +25,11 @@ whereis python
 whereis python | tr " " '\n'
 ```
 
-### Commande type
+### Commande type 
 
 - Renvoie des informations sur le type de commande.
 - Les détails sont basés sur la relation entre la commande et la configuration du shell.
+- package associé **coreutils**
 
 ```
 type python
