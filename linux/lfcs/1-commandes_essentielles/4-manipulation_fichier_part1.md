@@ -189,3 +189,23 @@ Affichons les lignes en doublon avec l'option **"-d"**
 ```
 uniq -d bigfile_with_duplicated_line.txt
 ```
+
+### Commande vim (ViIMproved)
+
+Il s'agit d'une version améliorée du classique vi. Il est très complet, peu gourmand en ressources, et fait très bien la coloration syntaxique.
+
+```
+vim bigfile.txt
+```
+
+- pour entrer en mode insertion, on saisit la lettre **i**
+- pour écrire dans le fichier, on saisit **:w**
+- pour écrire et quitter, on saisit **:wq**
+- pour quitter sans enregistrer de modification, on saisit **:q!**
+- un fichier ouvert avec **vim**, pour aller à droit on saisit **l**, à gauche on saisit **h**, en haut on saisit **k** et en bas on saisit **j**
+- pour rechercher par défaut en respectant la casse, on saisit **/pattern**
+- pour rechercher par défaut sans respectant la casse, on saisit **/pattern\c**
+- pour aller à la ligne **x** on saisit **:x**
+- pour copier une ligne entière, on tape la touche **y (yank)** deux fois au debut de la ligne et pour coller la ligne copiée on tape la lettre **p**
+- pour couper une ligne entière, on tape la touche **D deux fois**
+- pour supprimer les 1000 premières lignes d'un fichier : s'assurer que le curseur se trouve sur la toute première ligne; puis, sans entrer dans le mode insertion, entrer le numéro 1000 et appuyer sur **dd** immédiatement après. Enfin, enregistrer le fichier.
