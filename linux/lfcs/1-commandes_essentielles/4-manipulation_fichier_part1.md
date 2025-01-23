@@ -207,5 +207,5 @@ vim bigfile.txt
 - pour rechercher par défaut sans respectant la casse, on saisit **/pattern\c**
 - pour aller à la ligne **x** on saisit **:x**
 - pour copier une ligne entière, on tape la touche **y (yank)** deux fois au debut de la ligne et pour coller la ligne copiée on tape la lettre **p**
-- pour couper une ligne entière, on tape la touche **D deux fois**
+- pour couper une ligne entière, on tape la touche **d deux fois**
 - pour supprimer les 1000 premières lignes d'un fichier : s'assurer que le curseur se trouve sur la toute première ligne; puis, sans entrer dans le mode insertion, entrer le numéro 1000 et appuyer sur **dd** immédiatement après. Enfin, enregistrer le fichier.
