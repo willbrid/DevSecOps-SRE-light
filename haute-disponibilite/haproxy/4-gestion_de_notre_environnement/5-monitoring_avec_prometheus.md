@@ -6,7 +6,7 @@ Nous allons mettre en place le monitoring de HAProxy avec prometheus.
 
 - Nous supposerons que les services prometheus et grafana sont déjà installés sur le serveur **haproxy-server**
 
-Lien : [github-willbrid-installation-de-prometheus](https://github.com/willbrid/monitoring-light/blob/main/prometheus/1-installation-et-configuration/1-installation-de-prometheus.md)
+Lien : [github-willbrid-installation-de-prometheus](https://github.com/willbrid/DevSecOps-SRE-light/blob/main/observabilite/prometheus/1-installation-et-configuration/1-installation-de-prometheus.md)
 
 - Au préalable, nous avons installé HAProxy avec la prise en charge de prometheus via son service **prometheus-exporter**. Nous pouvons vérifier à nouveau avec la commande :
 
@@ -45,7 +45,7 @@ sudo systemctl restart haproxy
 sudo systemctl status haproxy
 ```
 
-La ligne **http-request use-service** intercepte toutes les requêtes pour **/metrics** et les dirige vers l'exportateur **prometheus-exporter**. L'exportateur peut résider sous n'importe quel chemin, mais **/metrics** est le chemin attendu par Prometheus.
+La ligne **http-request use-service** intercepte toutes les requêtes pour **/metrics** et les redirige vers l'exportateur **prometheus-exporter**. L'exportateur peut résider sous n'importe quel chemin, mais **/metrics** est le chemin attendu par Prometheus.
 
 #### Configuration de prometheus
 
@@ -74,7 +74,7 @@ Nous pouvons visualiser via l'interface web de prometheus **http://192.168.56.8:
 - Nous allons configurer le template HAProxy pour grafana. <br>
 
 Lien : [HAPROXY_DASHBOARD](https://grafana.com/grafana/dashboards/12693-haproxy-2-full/)
-<br>
+
 Nous téléchargeons ce template via sa version JSON.
 
 - Nous ajoutons prometheus comme source de données dans grafana.
