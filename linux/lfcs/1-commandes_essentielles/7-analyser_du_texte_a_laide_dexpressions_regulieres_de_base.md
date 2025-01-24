@@ -55,6 +55,8 @@ grep '^#' /etc/login.defs
 grep -v '^#' /etc/login.defs
 ```
 
+L'option **-v** de la commande **grep** permet d'inverser la recherche.
+
 - Rechercher toutes les lignes commençant par PASS
 
 ```
@@ -81,6 +83,8 @@ grep 'mail$' /etc/login.defs
 grep -r 'c.t' /etc/
 ```
 
+L'option **-r** permettant de faire la recherche d'un dossier et de ses sous-dossiers.
+
 - Rechercher toutes les lignes contenant un mot de 3 lettres avec n'importe quel caractère entre c et t dans le repertoire **/etc**
 
 ```
@@ -103,6 +107,12 @@ Dans les expressions régulières de base, les méta-caractères **?**, **+**, *
 
 ```
 grep -r '0\+' /etc/
+```
+
+- Rechercher sans respecter la casse le mot **password**
+
+```
+grep -i password /etc/ssh/ssh_config
 ```
 
 ### Exemples d'expression régulière étendue
