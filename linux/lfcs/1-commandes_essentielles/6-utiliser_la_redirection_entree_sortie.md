@@ -65,3 +65,17 @@ Utilisé pour diriger le contenu d'un fichier vers une commande. Souvent utilis�
 ```
 less < etc.txt
 ```
+
+### Quelques exemples
+
+- Rechercher toutes les lignes commençant par **"The"** dans les fichiers situés dans le répertoire **/etc/** et ses sous-répertoires. Les lignes correspondantes sont écrites dans **output.txt** et les erreurs sont enregistrées dans **error.txt**.
+
+```
+grep -r '^The' /etc/ > output.txt 2> error.txt
+```
+
+- Rechercher toutes les lignes commençant par **"The"** dans les fichiers situés dans le répertoire **/etc/** et ses sous-répertoires. Les lignes correspondantes et les erreurs sont écrites dans **all_output.txt**.
+
+```
+grep -r '^The' /etc/ > all_output.txt 2>&1
+```
