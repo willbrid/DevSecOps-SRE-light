@@ -109,10 +109,22 @@ Dans les expressions régulières de base, les méta-caractères **?**, **+**, *
 grep -r '0\+' /etc/
 ```
 
-- Rechercher sans respecter la casse le mot **password**
+- Rechercher sans respecter la casse le mot **password** dans le fichier **/etc/ssh/ssh_config**
 
 ```
 grep -i password /etc/ssh/ssh_config
+```
+
+Pour permettre que la recherche affiche uniquement le mot recherché et non la ligne entière, on ajoute l'option **-o** (**--only-matching**)
+
+```
+grep -oi password /etc/ssh/ssh_config
+```
+
+Pour permettre d'utiliser des marqueurs pour mettre en évidence les chaînes correspondantes, on utilise l'option **--color**
+
+```
+grep --color -i password /etc/ssh/ssh_config
 ```
 
 ### Exemples d'expression régulière étendue
