@@ -141,6 +141,8 @@ Synchronisons le répertoire **/opt/api/app** du serveur **ubuntu-server** avec 
 rsync -aP /opt/app/ vagrant@192.168.56.111:/opt/api/app/
 ```
 
+L'option **-a** permet d'activer l'archivage pendant la synchronisation et l'option **-P** est équivalente aux options **--partial --progress**.
+
 Vérifions que les répertoires **/opt/api/app** du serveur **ubuntu-server** et **/opt/app** du serveur **rocky-server** sont les mêmes.
 
 Sur **rocky-server**
