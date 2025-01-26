@@ -55,3 +55,94 @@ sudo less /var/log/messages | grep acpi
 ```
 sudo less /var/log/yum.log
 ```
+
+### Les niveaux de priorité
+
+- **emerg (Emergency) (0)**    ->  **Urgence** : le système est inutilisable. Exemples : panne critique, crash OS.
+- **alert (Alert) (1)**	       ->  **Alerte** : action immédiate requise. Exemples : panne disque critique.
+- **crit (Critical) (2)**      ->  **Critique** : conditions critiques affectant les services.
+- **err (Error) (3)**          ->  **Erreur** : erreurs non critiques mais significatives.
+- **warning (Warning) (4)**    ->  **Avertissement** : conditions nécessitant une attention particulière.
+- **notice (Notice) (5)**	   ->  **Notice** : événements normaux mais importants.
+- **info (Informational) (6)** ->  **Info** : messages informatifs.
+- **debug (Debug) (7)**	       ->  **Débogage** : informations détaillées pour le diagnostic.
+
+- Afficher le journal de la commande sudo
+
+```
+journalctl /usr/bin/sudo
+```
+
+- Afficher les logs générés par le service ssh.service
+
+```
+journalctl -u ssh.service
+```
+
+```
+journalctl --unit=ssh.service -n 20 --no-pager
+```
+
+- Afficher le journal et aller en fin de la page
+
+```
+journalctl -e
+```
+
+- Afficher le journal avec le mode suivi
+
+```
+journalctl -f
+```
+
+- Afficher le journal avec le niveau err ou info
+
+```
+journalctl -p err
+```
+
+```
+journalctl -p info -g '^b'
+```
+
+- Afficher le journal depuis une certaine heure ou jusqu'à une certaine heure
+
+```
+journalctl -S 01:00
+```
+
+```
+journalctl -U 02:00
+```
+
+- Afficher le journal depuis une certaine date et heure
+
+```
+journalctl -S '2024-03-03 01:00:30'
+```
+
+- Afficher les logs du démarrage actuel
+
+```
+journalctl -b 0
+```
+
+- Afficher les logs du démarrage précédent
+
+```
+journalctl -b -1
+```
+
+- Afficher l'historique de qui s'est connecté au système
+
+```
+last
+```
+
+Les lignes commençant par **reboot** et **system boot** montrent également quand le système a été allumé.
+
+- Afficher les connexions les plus récentes de tous les utilisateurs ou d'un utilisateur donné
+
+```
+lastlog
+```
