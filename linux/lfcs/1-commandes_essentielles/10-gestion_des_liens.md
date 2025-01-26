@@ -5,12 +5,10 @@ En tant qu'administrateur, comment pouvons-nous gérer le besoin qu'un fichier s
 - Préréquis
 
 ```
-cd ~
-mkdir links
-cd links
-mkdir data
-echo "This file is named info.txt" > info.txt
-echo "This file is named details.txt" > data/details.txt
+mkdir -p $HOME/links/data
+
+echo "This file is named info.txt" > $HOME/links/info.txt
+echo "This file is named details.txt" > $HOME/links/data/details.txt
 ```
 
 ### Lien physique
@@ -20,6 +18,7 @@ echo "This file is named details.txt" > data/details.txt
 - Partage le même inode que la source
 - Doit être sur le même système de fichiers
 - Tant que le lien physique existe, les données existent
+- Possède la même permission que la source
 
 Créeons un lien physique du fichier **info.txt**
 
@@ -78,7 +77,7 @@ Les liens physiques sont très utiles lorsqu'on souhaite sauvegarder les fichier
 cd ~/links/data
 ```
 
-Créeons un lien symbolique du fichier **details.txt**
+Créeons un lien symbolique du fichier **details.txt** (World)
 
 ```
 ln -s details.txt detailssoftlink
@@ -149,3 +148,5 @@ ls -lhF mysoftlink
 ```
 
 Nous constatons que les deux repertoires contiennent le même contenu...
+
+Pour connaitre un lien symbolique, on tape la commande **"ls -l"**, puis la lettre **"l"** le plus à gauche indique qu'il s'agit d'un lien symbolique.
