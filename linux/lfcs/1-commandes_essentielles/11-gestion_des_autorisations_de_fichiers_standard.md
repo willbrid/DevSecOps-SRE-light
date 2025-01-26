@@ -5,7 +5,7 @@ Tout le monde a accès à un fichier contenant des données sensibles. Un associ
 - Préréquis
 
 ```
-cd ~ && mkdir projects && echo "This file is named info.txt" > projects/info.txt
+mkdir $HOME/projects && echo "This file is named info.txt" > $HOME/projects/info.txt
 ```
 
 ### Quelles sont les options d'autorisation ?
@@ -20,7 +20,7 @@ drwxr-xr-x 5 linux linux 4096 Oct 4 14:06 Documents
 
 --- le premier est un **-** qui indique qu'il s'agit d'un fichier <br>
 --- la deuxième valeur est un **d**, qui indique un répertoire <br>
---- et la troisième valeur est un **l**, qui indique un lien 
+--- et la troisième valeur est un **l**, qui indique un lien symbolique
 
 - La partie suivante de la première colonne concerne les autorisations réelles des fichiers. Ceux-ci sont affichés sous forme de 3 groupes de 3 lettres :
 
@@ -28,7 +28,7 @@ drwxr-xr-x 5 linux linux 4096 Oct 4 14:06 Documents
 --- Le deuxième groupe de 3 lettres est destiné au groupe. <br>
 --- Et la troisième série de 3 lettres est destinée à tous les autres utilisateurs.
 
-Nous pouvons utiliser le processus symbolique ou le processus octal. La lettre **r** signifie **lire**, la lettre **w** signifie **écrire** et la lettre **x** signifie **exécuter**. En valeurs octales, la **valeur de lecture** est un **4**, la **valeur d’écriture** est un **2** et la **valeur d’exécution** est un **1**.
+Nous pouvons utiliser le format symbolique ou le format octal. La lettre **r** signifie **lire**, la lettre **w** signifie **écrire** et la lettre **x** signifie **exécuter**. En valeurs octales, la **valeur de lecture** est un **4**, la **valeur d’écriture** est un **2** et la **valeur d’exécution** est un **1**.
 
 Et puis il existe également des autorisations spéciales :
 
@@ -38,7 +38,7 @@ Et puis il existe également des autorisations spéciales :
 
 --- Le troisième est le **sticky** : il s'agit d'une autorisation spéciale qui interdit à un utilisateur non propriétaire ou non groupe de déplacer, supprimer ou renommer un fichier. Ceci est représenté par la lettre **t** et a une valeur octale de **1000**.
 
-- Pour la troisième et quatrième colonne, ces 2 valeurs indiquent ici le **propriétaire** et le **groupe**. La première valeur est le **propriétaire**. Dans cet exemple, il s'agit de Linux. La deuxième valeur indique le **groupe**. Dans cet exemple, le groupe est également **Linux**.
+- Pour la troisième et quatrième colonne, ces 2 valeurs indiquent ici le **propriétaire** et le **groupe**. La première valeur est le **propriétaire**. Dans cet exemple, il s'agit de **Linux**. La deuxième valeur indique le **groupe**. Dans cet exemple, le groupe est également **Linux**.
 
 ### Exemples de modification des autorisations
 
@@ -58,7 +58,7 @@ La 2ème commande doit être répétée pour chaque ensemble. <br>
 Exemples: 
 
 ```
-cd ~/projects
+cd $HOME/projects
 ```
 
 ```
@@ -94,7 +94,7 @@ ls -lhF
 
 ### Exemples de modification du propriétaire
 
-- Changer le propriétaire et groupe du fichier/répertoire
+- Changer le propriétaire et groupe du fichier ou répertoire
 
 ```
 chown owner directoryname
@@ -115,4 +115,22 @@ sudo chmod root:root info.txt
 
 ```
 ls -lhF
+```
+
+Dans les permissions : <br>
+--- **+** -> ajouter la permission <br>
+--- **-** -> enlever la permission <br>
+--- **=** -> définir exactement la permission
+
+- changer le groupe d'un fichier ou d'un repertoire
+
+```
+chgrp group_name filename
+chgrp group_name directoryname
+```
+
+- Afficher tous les groups auxquel l'utilisateur courant appartient
+
+```
+groups
 ```
