@@ -31,7 +31,9 @@ Lister les paquets installés
 rpm -qa
 ```
 
-Obtenir les informations sur un paquet
+Ici l'option **-q** permet de faire une interrogation (**query**) de la base de données des packages installés
+
+Obtenir les informations sur un paquet installé
 ```
 rpm -qi pkgname
 ```
@@ -48,10 +50,10 @@ Quelques options de **rpm** :
 - **-U** : cette option permet de mettre à jour un paquet
 - **-e** : cette option permet de désinstaller un paquet
 - **-q** : cette option permet d'effectuer une requête sur une ou plusieurs paquets installés et est utilisée pour obtenir des informations sur les paquets déjà installés sur le système
-- **-a** : cette option permet d'interroger (ou vérifier) tous les paquets
-- **-f** : cette option permet d'interroger (ou vérifier) le(s) paquet(s) possédant le fichier installé
-- **-d** : cette option permet de lister les fichiers de documentation appartenant à un paquet
-- **-c** : cette option permet de lister les fichiers de configuration d'un paquet
+- **-qa** : cette option permet d'interroger (ou vérifier) tous les paquets
+- **-qf** : cette option permet d'interroger (ou vérifier) le(s) paquet(s) possédant le fichier installé
+- **-qd** : cette option permet de lister les fichiers de documentation appartenant à un paquet
+- **-qc** : cette option permet de lister les fichiers de configuration d'un paquet
 
 Exemples :
 
