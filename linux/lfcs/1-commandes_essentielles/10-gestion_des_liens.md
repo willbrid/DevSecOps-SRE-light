@@ -150,3 +150,11 @@ ls -lhF mysoftlink
 Nous constatons que les deux repertoires contiennent le même contenu...
 
 Pour connaitre un lien symbolique, on tape la commande **"ls -l"**, puis la lettre **"l"** le plus à gauche indique qu'il s'agit d'un lien symbolique.
+
+Pour afficher l'original d'un lien symbolique on utilise la commande **readlink**
+
+```
+readlink mysoftlink
+```
+
+La permission d'un lien symbolique n'a pas d'importance car c'est exactement celui du fichier original.
