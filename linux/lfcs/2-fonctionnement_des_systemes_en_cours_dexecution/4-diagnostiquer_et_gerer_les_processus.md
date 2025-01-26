@@ -76,6 +76,77 @@ ps aux | grep -v grep | grep -i -e cron
 
 ### nice et renice
 
+- Afficher tous les processus associé au terminal courant avec leur valeur **nice**
+
+```
+ps l
+```
+
+- Afficher tous les processus avec leur valeur **nice**
+
+```
+ps lax
+```
+
+- Afficher les processus sous forme d'arborescence (parent - enfant)
+
+```
+ps af
+```
+
+- Afficher tous les processus sous forme d'arborescence sous format utilisateur
+
+```
+ps faux
+```
+
+- Afficher les informations sur le processus de pid 1
+
+```
+ps u 1
+```
+
+- Afficher les processus lancés par l'utilisateur **vagrant**
+
+```
+ps u -U vagrant
+```
+
+- Afficher le processus ayant le nom **syslog**
+
+```
+pgrep -a syslog
+```
+
+Elle affiche aussi la commande via laquelle le processus a été demarré.
+
+
+- Afficher tous les fichiers et les repertoires utilisés par lé processus de pid 1
+
+```
+sudo lsof -p 1 
+```
+
+- Afficher les processus utilisant le fichier **/etc/hosts**
+
+```
+sudo lsof /etc/hosts
+```
+
+- Tuer un processus via son nom (exemple : **bash**)
+
+```
+pkill -KILL bash
+```
+
+- Tuer un processus via son pid
+
+```
+kill -SIGKILL 9313
+kill -KILL 9313
+kill -9 9313
+```
+
 - **nice**
 
 --- Modifie la priorité d'un nouveau processus <br>
@@ -106,3 +177,8 @@ Pour vérifier si le changement a été appliqué, nous pouvons exécuter la com
 ```
 htop
 ```
+
+**sleep 180** -> permet de mettre en pause pour 180 secondes. <br>
+**ctrl-z**    -> permet de mettre en pause un programme en cours d'exécution et cela le met en arrière plan. <br>
+**fg**        -> foreground mettre un job en avant plan. <br>
+**ctrl-c**    -> stopper un progr
