@@ -24,6 +24,14 @@ shutdown -H +5
 shutdown -P +7
 ```
 
+```
+sudo shutdown -r 02:00
+```
+
+```
+sudo shutdown -r +1 'scheduled restart to upgrade our linux kernel'
+```
+
 Nous pouvons annuler l'action du processus **shutdown** en cours d'exécution avec la commande 
 
 ```
