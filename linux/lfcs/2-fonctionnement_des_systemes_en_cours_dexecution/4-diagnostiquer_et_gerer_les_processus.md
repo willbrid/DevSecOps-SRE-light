@@ -181,4 +181,4 @@ htop
 **sleep 180** -> permet de mettre en pause pour 180 secondes. <br>
 **ctrl-z**    -> permet de mettre en pause un programme en cours d'exécution et cela le met en arrière plan. <br>
 **fg**        -> foreground mettre un job en avant plan. <br>
-**ctrl-c**    -> stopper un progr
+**ctrl-c**    -> stopper un programme
