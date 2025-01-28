@@ -83,6 +83,8 @@ sudo vi /etc/sysctl.d/10-network-security.conf
 net.ipv4.ip_forward=1
 ```
 
+Les fichiers dans le repertoire **/etc/sysctl.d/** doivent avoir l'extension **".conf"**.
+
 Pour charger la nouvelle configuration du fichier, nous avons plusieurs méthodes.
 
 - Charger la configuration via le fichier spécifique **10-network-security.conf**
