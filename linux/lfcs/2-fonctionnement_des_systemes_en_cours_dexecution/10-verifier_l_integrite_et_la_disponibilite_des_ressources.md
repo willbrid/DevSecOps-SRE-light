@@ -55,3 +55,65 @@ sudo tune2fs -c 0 /dev/sdb
 ```
 
 - Le démarrage à partir d'un support externe est une bonne option.
+
+RedHat OS -> xfs file systems (default) <br>
+Ubuntu OS -> ext4 file systems (default)
+
+### Quelques commandes
+
+- Afficher des informations sur l'architecture du processeur
+
+```
+lscpu
+```
+
+- Identifier le(s) cœur(s) de processeur par socket sur un système
+
+```
+lscpu | grep -i Socket
+```
+
+- Afficher les informations sur les matériels sur un système
+
+```
+lspci
+```
+
+- Afficher des informations sur l'utilisation de la mémoire (RAM et swap) d'un système
+
+```
+free -h
+```
+
+- Afficher des informations sur l'utilisation de l'espace disque pour chaque système de fichiers monté
+
+```
+df -h
+```
+
+- Afficher le temps de fonctionnement du système depuis son dernier démarrage ainsi que la charge moyenne du CPU
+
+```
+uptime
+```
+
+**Load average** : - charge cpu il y'a une minute - charge cpu il y'a 5 minutes - charge cpu il y'a 15 minutes
+
+- Réparer les systèmes de fichiers XFS : exemple avec **/dev/vdb1**
+
+```
+xfs_repair -v /dev/vdb1
+```
+
+Cette commande doit être exécutée sur un système de fichiers démonté.
+
+- Vérifier et réparer un système de fichiers ext4 : exemple avec **/dev/vdb2**
+
+```
+fsck.ext4 -v -f -p /dev/vdb2
+```
+
+--- **-f** : force une vérification complète du système de fichiers, même s'il est marqué comme propre. <br>
+--- **-p** : exécute des réparations automatiques, sans interaction de l'utilisateur.
+
+Cette commande doit être exécutée sur un système de fichiers démonté.
