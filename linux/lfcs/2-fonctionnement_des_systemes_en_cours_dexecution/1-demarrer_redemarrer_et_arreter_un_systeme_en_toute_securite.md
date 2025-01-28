@@ -61,3 +61,37 @@ Cette commande remplit la même fonction que **shutdown -P** et peut également 
 ```
 poweroff
 ```
+
+### Quelques commandes avec systemctl
+
+- Redémarrer proprement le système
+
+```
+sudo systemctl reboot
+```
+
+Cette commande arrête tous les services en cours d'exécution de manière ordonnée, informe les utilisateurs connectés et termine les processus utilisateurs avant de redémarrer.
+
+- Forcer un redémarrage immédiat sans effectuer l'arrêt ordonné des services et des processus
+
+```
+sudo systemctl reboot --force
+```
+
+- Forcer un arrêt immédiat du système
+
+```
+sudo systemctl poweroff --force
+```
+
+- Effectuer un redémarrage brutal au niveau du matériel
+
+```
+sudo systemctl reboot --force --force
+```
+
+- Force un arrêt brutal du système au niveau du matériel (extinction de la machine)
+
+```
+sudo systemctl poweroff --force --force
+```
