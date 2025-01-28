@@ -121,7 +121,7 @@ pgrep -a syslog
 Elle affiche aussi la commande via laquelle le processus a été demarré.
 
 
-- Afficher tous les fichiers et les repertoires utilisés par lé processus de pid 1
+- Afficher tous les fichiers et les repertoires utilisés par le processus de pid 1
 
 ```
 sudo lsof -p 1 
