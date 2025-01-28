@@ -133,20 +133,6 @@ sudo lsof -p 1
 sudo lsof /etc/hosts
 ```
 
-- Tuer un processus via son nom (exemple : **bash**)
-
-```
-pkill -KILL bash
-```
-
-- Tuer un processus via son pid
-
-```
-kill -SIGKILL 9313
-kill -KILL 9313
-kill -9 9313
-```
-
 - **nice**
 
 --- Modifie la priorité d'un nouveau processus <br>
@@ -170,7 +156,10 @@ Modifie la priorité d'un processus en cours d'exécution.
 sudo renice -n -20 15241
 ```
 
-**15241** est le PID d'un processus **/bin/bash** en cours d'exécution.
+**15241** est le PID d'un processus **/bin/bash** en cours d'exécution. <br>
+
+- Les utilisateurs réguliers peuvent attribuer une valeur nice uniquement entre **0** et **19**. Pour assigner une valeur nice entre **-20** et **-1**, on doit avoir les privilèges root.
+- Un utilisateur régulier ne peut pas mettre à jour la valeur d'un **nice** inférieur à la valeur de l'existant. Pour le faire, on doit avoir les privilèges root.
 
 Pour vérifier si le changement a été appliqué, nous pouvons exécuter la commande et filtrer le processus de PID **15241**
 
@@ -221,3 +210,27 @@ ctrl-c
 ```
 
 Il envoie un signal **SIGINT (Signal Interrupt)** qui demande au programme de s'arrêter immédiatement.
+
+Linux a ce concept d'envoyer des processus appelés **signaux**. ce sont comme des messages de haute priorité envoyés aux processus auxquel ils doivent répondre. Mais une application ne peut agir sur un signal spécifique que si elle a été programmé pour répondre à ce signal. Cependant il y'a des signaux d'exception auxquel une application doit toujours répondre.
+
+- afficher la liste des signaux qui peuvent être envoyer à un processus
+
+```
+kill -L
+```
+
+Pour envoyer un signal à un processus, soit on utilise son **nom** ou soit on utilise son **numéro**.
+
+- Tuer un processus via son nom (exemple : **bash**)
+
+```
+pkill -KILL bash
+```
+
+- Tuer un processus via son pid
+
+```
+kill -SIGKILL 9313
+kill -KILL 9313
+kill -9 9313
+```
