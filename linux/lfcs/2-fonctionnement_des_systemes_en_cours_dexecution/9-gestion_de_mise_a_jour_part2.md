@@ -51,6 +51,7 @@ Quelques options de **rpm** :
 - **-e** : cette option permet de désinstaller un paquet
 - **-q** : cette option permet d'effectuer une requête sur une ou plusieurs paquets installés et est utilisée pour obtenir des informations sur les paquets déjà installés sur le système
 - **-qa** : cette option permet d'interroger (ou vérifier) tous les paquets
+- **-qi** : cette option permet d'obtenir les informations sur un paquet installé
 - **-qf** : cette option permet d'interroger (ou vérifier) le(s) paquet(s) possédant le fichier installé
 - **-qd** : cette option permet de lister les fichiers de documentation appartenant à un paquet
 - **-qc** : cette option permet de lister les fichiers de configuration d'un paquet
