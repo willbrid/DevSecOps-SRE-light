@@ -178,7 +178,46 @@ Pour vérifier si le changement a été appliqué, nous pouvons exécuter la com
 htop
 ```
 
-**sleep 180** -> permet de mettre en pause pour 180 secondes. <br>
-**ctrl-z**    -> permet de mettre en pause un programme en cours d'exécution et cela le met en arrière plan. <br>
-**fg**        -> foreground mettre un job en avant plan. <br>
-**ctrl-c**    -> stopper un programme
+- Mettre en pause pour 180 secondes
+
+```
+sleep 180
+```
+
+- Mettre en pause un programme en cours d'exécution et cela le met en arrière plan
+
+```
+ctrl-z
+```
+
+- Mettre une commande en arrière plan avec le **&** : exemple avec la commande **sleep**
+
+```
+sleep 300 & 
+```
+
+- Afficher les jobs actifs (issus des commandes) en arrière plan avec leur id (identifiant du job)
+
+```
+jobs
+```
+
+- mettre un job existant en arrière plan comme s'il avait été démarré avec « & »
+
+```
+bg id
+```
+
+- Mettre un job avant plan grace à son id
+
+```
+fg id
+```
+
+- Stopper un programme actuellement exécuté au **premier plan** dans le terminal
+
+```
+ctrl-c
+```
+
+Il envoie un signal **SIGINT (Signal Interrupt)** qui demande au programme de s'arrêter immédiatement.
