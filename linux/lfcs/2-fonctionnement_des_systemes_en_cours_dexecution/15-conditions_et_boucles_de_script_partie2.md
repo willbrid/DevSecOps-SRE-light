@@ -11,8 +11,7 @@ Exemples
 - Exécuter le contenu d'une boucle **for** à partir d'un compteur
 
 ```
-cd ~
-vim countFor.sh
+vi $HOME/countFor.sh
 ```
 
 ```
@@ -24,15 +23,17 @@ done
 ```
 
 ```
-chmod +x countFor.sh
-./countFor.sh
+chmod +x $HOME/countFor.sh
+```
+
+```
+cd $HOME && ./countFor.sh
 ```
 
 - Exécuter le contenu d'une boucle **for** à partir du nombre de lignes d'un fichier
 
 ```
-cd ~
-vim listofurls.txt
+vi $HOME/listofurls.txt
 ```
 
 ```
@@ -41,13 +42,13 @@ https://www.google.com/
 ```
 
 ```
-vim forurlcheck.sh
+vim $HOME/forurlcheck.sh
 ```
 
 ```
 #!/bin/bash
 
-for url in $(cat listofurls.txt)
+for url in $(cat $HOME/listofurls.txt)
 do
   curl "$url" >> webpage_combined_for.html
 done
@@ -62,8 +63,7 @@ Exemples
 - Exécuter le contenu d'une boucle **while** à partir d'un compteur
 
 ```
-cd ~
-vim countWhile.sh
+vi $HOME/countWhile.sh
 ```
 
 ```
@@ -79,15 +79,17 @@ done
 ```
 
 ```
-chmod +x countWhile.sh
-./countWhile.sh
+chmod +x $HOME/countWhile.sh
 ```
 
-- Exécuter le contenu d'une boucle **for** à partir du nombre de lignes d'un fichier
+```
+cd $HOME && ./countWhile.sh
+```
+
+- Exécuter le contenu d'une boucle **while** à partir du nombre de lignes d'un fichier
 
 ```
-cd ~
-vim whileurlcheck.sh
+vi $HOME/whileurlcheck.sh
 ```
 
 ```
@@ -96,12 +98,15 @@ vim whileurlcheck.sh
 while read url
 do
   curl "$url" >> webpage_combined_while.html
-done < listofurls.txt
+done < $HOME/listofurls.txt
 ```
 
 ```
-chmod +x whileurlcheck.sh
-./whileurlcheck.sh
+chmod +x $HOME/whileurlcheck.sh
+```
+
+```
+cd $HOME && ./whileurlcheck.sh
 ```
 
 ### La boucle until
@@ -114,8 +119,7 @@ Exemples
 
 
 ```
-cd ~
-vim countUntil.sh
+vi $HOME/countUntil.sh
 ```
 
 ```
@@ -131,15 +135,17 @@ done
 ```
 
 ```
-chmod +x countUntil.sh
-./countUntil.sh
+chmod +x $HOME/countUntil.sh
+```
+
+```
+cd $HOME && ./countUntil.sh
 ```
 
 - Incrémenter la taille d'un fichier jusqu'à la limite 1024
 
 ```
-cd ~
-vim untilSize.sh
+vi $HOME/untilSize.sh
 ```
 
 ```
@@ -168,6 +174,9 @@ echo "La nouvelle taille du fichier cible a atteint 1 KB."
 ```
 
 ```
-chmod +x untilSize.sh
-./untilSize.sh
+chmod +x $HOME/untilSize.sh
+```
+
+```
+cd $HOME && ./untilSize.sh
 ```
