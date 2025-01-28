@@ -9,8 +9,7 @@ Les opérateurs sont utilisés pour évaluer, combiner ou effectuer une action s
 - Les opérateurs arithmétiques exécutent des fonctions mathématiques traditionnelles telles que **+** (addition), **-** (soustraction), **\*** (multiplication), **/** (division) et **%** (modulo)
 
 ```
-cd ~
-vi op-arithmetic.sh
+vi $HOME/op-arithmetic.sh
 ```
 
 ```
@@ -35,18 +34,17 @@ echo
 ```
 
 ```
-chmod +x op-arithmetic.sh
+chmod +x $HOME/op-arithmetic.sh
 ```
 
 ```
-./op-arithmetic.sh
+cd $HOME && ./op-arithmetic.sh
 ```
 
 - Les opérateurs relationnels sont utilisés pour comparer la relation entre les opérandes numériques et renvoie vrai ou faux. Les opérateurs sont **-eq** (égal), **-ne** (différent de), **-gt** (supérieur à), **-lt** (inférieur à), **-ge** (supérieur ou égal à) et **-le** (inférieur ou égal à)
 
 ```
-cd ~
-vi op-relational.sh
+vi $HOME/op-relational.sh
 ```
 
 ```
@@ -106,11 +104,11 @@ echo
 ```
 
 ```
-chmod +x op-relational.sh
+chmod +x $HOME/op-relational.sh
 ```
 
 ```
-./op-relational.sh
+cd $HOME && ./op-relational.sh
 ```
 
 ### Exemples de scripts
@@ -118,7 +116,7 @@ chmod +x op-relational.sh
 - Recherche de l'existence d'un repertoire
 
 ```
-vi ifdircheck.sh
+vi $HOME/ifdircheck.sh
 ```
 
 ```
@@ -135,18 +133,18 @@ echo
 ```
 
 ```
-chmod +x ifdircheck.sh
+chmod +x $HOME/ifdircheck.sh
 ```
 
 ```
-./ifdircheck.sh
+cd $HOME && ./ifdircheck.sh
 ```
 
 - Recherche de l'existence d'un fichier
 
 
 ```
-vi iffilecheck.sh
+vi $HOME/iffilecheck.sh
 ```
 
 ```
@@ -163,17 +161,17 @@ echo
 ```
 
 ```
-chmod +x iffilecheck.sh
+chmod +x $HOME/iffilecheck.sh
 ```
 
 ```
-./iffilecheck.sh
+cd $HOME && ./iffilecheck.sh
 ```
 
 - Utilisation de **elif**
 
 ```
-vi ifelif.sh
+vi $HOME/ifelif.sh
 ```
 
 ```
@@ -193,9 +191,9 @@ echo
 ```
 
 ```
-chmod +x ifelif.sh
+chmod +x $HOME/ifelif.sh
 ```
 
 ```
-./ifelif.sh
+cd $HOME && ./ifelif.sh
 ```
