@@ -85,3 +85,119 @@ Sous Rocky
 ```
 sudo systemctl enable crond
 ```
+
+Un fichier service que nous créons doit se trouver dans le repertoire **/etc/systemd/system/** : par exemple **/etc/systemd/system/myapp.service** et un template peut être le service **ssh**.
+
+### Quelques commandes
+
+- Afficher une structure en arbre des unités **systemd** qui sont actives et inactives
+
+```
+systemctl list-dependencies
+```
+
+- Afficher la page manuelle de **systemd.service**
+
+```
+man systemd.service
+```
+
+- Recharger les fichiers de configuration des services **systemd**
+
+```
+systemctl daemon-reload
+```
+
+- Afficher le contenu complet du fichier d'unité du service ssh
+
+```
+systemctl cat ssh.service
+```
+
+- Ouvrir le fichier d'unité complet de **ssh.service** dans un éditeur (généralement vi ou nano) pour modification
+
+```
+systemctl edit --full ssh.service
+```
+
+- Redémarrer le service SSH
+
+```
+systemctl restart ssh.service
+```
+
+- Afficher le statut actuel du service SSH
+
+```
+systemctl status ssh.service
+```
+
+- Arrêter le service SSH
+
+```
+systemctl stop ssh.service
+```
+
+- Démarrer le service SSH
+
+```
+systemctl start ssh.service
+```
+
+- Recharger ou redemarrer le service SSH
+
+```
+systemctl reload-or-restart ssh.service
+```
+
+- Désactiver le service SSH pour qu'il ne démarre pas automatiquement au prochain redémarrage du système
+
+```
+systemctl disable ssh.service
+```
+
+- Activer le service SSH pour qu'il démarre automatiquement au prochain redémarrage
+
+```
+systemctl enable ssh.service
+```
+
+- Vérifier si le service SSH est activé ou non (indique **enabled** ou **disabled**)
+
+```
+systemctl is-enabled ssh.service
+```
+
+- Activer le service SSH pour démarrage automatique et le démarre immédiatement
+
+```
+systemctl enable --now ssh.service
+```
+
+- Désactiver le service SSH pour démarrage automatique et l'arrête immédiatement
+
+```
+systemctl disable --now ssh.service
+```
+
+- Masquer le service atd (service d'exécution des tâches planifiées at)
+
+```
+systemctl mask atd.service
+```
+
+Cela empêche le démarrage manuel ou automatique du service, même par un utilisateur avec des privilèges élevés.
+
+- Démasquer le service atd, permettant son démarrage manuel ou automatique
+
+```
+systemctl unmask atd.service
+```
+
+- Afficher la liste complète de toutes les unités de service systemd
+
+```
+systemctl list-units --type service --all
+```
+
+Cela inclut les services actifs, inactifs, masqués ou arrêtés.
