@@ -7,8 +7,7 @@ Les scripts Shell sont une compétence précieuse pour un administrateur Linux. 
 Exemple de script
 
 ```
-cd ~/
-vi script.sh
+vi $HOME/script.sh
 ```
 
 ```
@@ -28,9 +27,9 @@ echo
 ```
 
 ```
-chmod +x script.sh
+chmod +x $HOME/script.sh
 ```
 
 ```
-./script.sh
+cd $HOME && ./script.sh
 ```
