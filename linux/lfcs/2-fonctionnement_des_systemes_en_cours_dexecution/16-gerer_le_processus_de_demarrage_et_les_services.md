@@ -201,3 +201,9 @@ systemctl list-units --type service --all
 ```
 
 Cela inclut les services actifs, inactifs, masqués ou arrêtés.
+
+- Afficher les logs du service SSH
+
+```
+journalctl -u ssh.service
+```
