@@ -64,3 +64,30 @@ Nous pouvons utiliser la commande **aa-complain** pour activer un profil de séc
 ```
 sudo aa-complain /etc/apparmor.d/lsb_release
 ```
+
+### Selinux sur Ubuntu
+
+- Installer selinux
+
+```
+sudo systemctl stop apparmor.service
+
+sudo systemctl disable apparmor.service
+
+sudo apt install selinux-basics auditd
+```
+
+- Vérifier si selinux est activé
+
+```
+sestatus
+```
+
+- Activer selinux
+
+```
+sudo selinux-activate
+```
+
+Après cette activation, l'on doit redemarrer le serveur. Dans le fichier **/etc/default/grub** nous pouvons vérifier la ligne **GRUB_CMDLINE_LINUX=" security=selinux"**. <br>
+Si nous faisons un **ls** sur le système de fichier racine (**/**) nous verrons un fichier caché appelé : **.autorelabel** qui indique que selinux va mettre les étiquettes au redemarrage du système.
