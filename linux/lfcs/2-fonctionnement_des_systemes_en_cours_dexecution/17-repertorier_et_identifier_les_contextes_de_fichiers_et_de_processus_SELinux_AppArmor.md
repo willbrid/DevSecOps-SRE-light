@@ -1,4 +1,4 @@
-# Répertorier et identifier les contextes de fichiers et de processus SELinux/AppArmor
+# Répertorier et identifier les contextes de fichiers et de processus SELinux/AppArmor [PART1]
 
 Pour éviter les problèmes potentiels causés par les faiblesses et les exploits d'une application, les administrateurs système s'appuient sur des outils tels que **SELinux** et **AppArmor** pour renforcer la sécurité du système.
 
@@ -77,65 +77,238 @@ Nous pouvons revenir au mode **enforcing**
 sudo setenforce enforcing
 ```
 
-### AppArmor
+### Concept selinux
 
-- Semblable à SELinux, il s'agit d'une amélioration du kernel utilisée pour limiter les applications à un ensemble sélectionné de ressources.
-- **AppArmor** est différent de certains systèmes similaires car il est basé sur un chemin. Cela permet une combinaison de profils de mode **enforce** et de mode **complaint**.
-- Il a tendance à être plus simple et plus facile à mettre en œuvre et à apprendre que les autres systèmes MAC populaires.
-- Commun sur les systèmes **Debian/Ubuntu**. Les profils sont stockés dans le répertoire **/etc/apparmor.d/**.
-
---- Affichons diverses informations sur la stratégie **apparmor** actuelle.
+Un **contexte selinux** est composé de : **user:role:type:level**. On parle généralement de **type** ou **domain**. <br>
+Exemple de contexte
 
 ```
-sudo aa-status
+unconfined_u:object_r:user_home_t:s0
 ```
 
-Nous pouvons voir combien de profils sont chargés, quels profils sont configurés pour être en mode **enforce**, quels profils sont en mode **complain**, si des processus ont un profil défini, si des processus sont en mode **enforce** et quels processus sont en mode **complaint**.
-
-Nous pouvons consulter les profils **apparmor** (par exemple pour le cas de **lsb_release**) dans le repertoire **/etc/apparmor.d/**
-
-```
-cat /etc/apparmor.d/lsb_release
-```
-
---- Listons les profils **apparmor** pour les processus avec la commande **ps**
+Chaque utilisateur qui se connecte à un système Linux est associé à un **utilisateur SELinux** dans le cadre de la configuration de la politique SELinux. <br>
+Exemple d'utilisateurs selinux avec leur rôle
 
 ```
-ps auxZ
+SELinux User               Roles
+developer_u                developer_r, docker_r
+guest_u                    guest_r
+root                       staff_r, sysadm_r, system_r, unconfined_r
 ```
 
---- Listons les profils **apparmor** avec la commande **ls** sur le repertoire **/var**
+- seuls certains utilisateurs peuvent entrer dans certains rôles et certains types : cela empêche les utilisateurs et processus non autorisés d'accéder à des types ou des domaines qui ne leur sont pas destinés
+- cela permet aux utilisateurs et processus autorisés de faire leur travail en leur accordant les permissions dont ils ont besoin
+- cependant en même temps, même les utilisateurs et processus autorisés ne peuvent effectuer qu'un ensemble limité d'actions, 
+- tout le reste est refusé
+
+Dans la politique Selinux par défaut à l'échelle du système, seuls les fichiers ayant le type SELinux x_t par exemple dans leur étiquette peuvent entrer dans ce domaine x_t. Donc seul un fichier marqué avec un certain type peut entrer dans un processus qui peut passer dans un certain domaine. Le type établit les actions autorisées pour un fichier et le domaine établit les actions autorisées pour un processus.
+
+Tout ce qui est étiquette **unconfined_t** fonctionne sans restrictions. SELinux permet à ces processus de faire presque tout ce qu'ils veulent.
+
+- Vérifier si selinux est activé
 
 ```
-ls -Z /var
+sudo sestatus
 ```
 
-Si les commandes **aa-enforce**, **aa-disable**, **aa-complain** n'existe pas, nous pouvons les installer avec la commande 
+- Afficher le contexte de sécurité attribué à notre utilisateur courant
 
 ```
-sudo apt install apparmor-utils
+id -Z
 ```
 
-Nous pouvons utiliser la commande **aa-enabled** pour vérifier que **apparmor** est activé.
+- Afficher la liste des mappages utilisateur système et utilisateur selinux
 
 ```
-aa-enabled
+sudo semanage login -l
 ```
 
-Nous pouvons utiliser la commande **aa-disable** pour désactiver un profil de sécurité **apparmor**.
+Donc un utilisateur qui se connecte qui n'est pas défini dans cette liste, il sera mappé à ce que nous voyons sur la ligne **__default__**.
+
+- Afficher la liste des rôles qu'un utilisateur peut avoir
 
 ```
-sudo aa-disable /etc/apparmor.d/lsb_release
+sudo semanage user -l
 ```
 
-Nous pouvons utiliser la commande **aa-enforce** pour activer un profil de sécurité **apparmor** en mode **enforce**.
+selinux confine les processus dans les bulles de sécurité appelées domaines et un domaine est étiqueté avec un certain type et le type appliqué à un processus détermine quelles règles appliquées.
+
+- Voir ce que selinux a enregistré dans le journal d'audit
 
 ```
-sudo aa-enforce /etc/apparmor.d/lsb_release
+sudo audit2why --all | grep less
 ```
 
-Nous pouvons utiliser la commande **aa-complain** pour activer un profil de sécurité **apparmor** en mode **complain**.
+- Afficher les processus ayant pour contexte selinux de type **sshd_t**
 
 ```
-sudo aa-complain /etc/apparmor.d/lsb_release
+ps -eZ | grep sshd_t
+```
+
+- Afficher le contexte selinux du fichier **/usr/sbin/sshd**
+
+```
+ls -Z /usr/sbin/sshd
+```
+
+- Générer une politique SELinux personnalisée basée sur les événements de refus enregistrés dans les logs d'audit
+
+```
+sudo audit2allow --all -M mymodule
+```
+
+**audit2allow** est un utilitaire qui analyse les logs d'audit SELinux et génère les règles **allow** nécessaires pour autoriser les actions bloquées par SELinux.
+
+- Activer (ou charger) le module **mymodule.pp**
+
+```
+sudo semodule -i mymodule.pp
+```
+
+La politque par défaut vient avec un utilisateur prédéfini. **extension pp = policy package**. Un 2ème fichier est généré (**mymodule.te**) avec l'extension **te = type enforcement**.
+
+- Changer l'utilisateur selinux du contexte selinux du fichier **/var/log/secure**
+
+```
+sudo chcon -u unconfined_u /var/log/secure
+```
+
+- Changer le rôle selinux du contexte selinux du fichier **/var/log/secure**
+
+```
+sudo chcon -r object_r /var/log/secure
+```
+
+- Changer le type selinux du contexte selinux du fichier **/var/log/secure**
+
+```
+sudo chcon -t user_home_t /var/log/secure
+```
+
+- Changer le contexte selinux du fichier **/var/log/secure** par rapport à la référence de celui du fichier **/var/log/messages**
+
+```
+sudo chcon --reference=/var/log/messages /var/log/secure
+```
+
+- Installation du package **setools-console** pour avoir la commande **seinfo**
+
+```
+sudo dnf install setools-console
+```
+
+- Afficher les étiquettes d'utilisateur selinux existant
+
+```
+seinfo -u
+```
+
+- Afficher les étiquettes de rôle selinux existant
+
+```
+seinfo -r
+```
+
+- Afficher les étiquettes de type existant
+
+```
+seinfo -t
+```
+
+- Afficher les utilisateurs selinux avec leur rôle
+
+```
+sudo semanage user -l
+```
+
+selinux a une sorte de base de données qui lui indique comment étiqueter les fichiers dans certains repertoires. Dans le cas où les étiquettes sont incorrectes nous pouvons les corriger avec  la commande **restorecon**.
+
+```
+sudo restorecon -R /var/www/
+```
+
+L'option R correspond au mode recursive. Par défaut cette option restaure uniquement le type et non l'utilisateur ou le rôle.
+
+```
+sudo restorecon -F -R /var/www/
+```
+
+Avec l'option -F le contexte selinux est restauré pour toutes les étiquettes : user, role et type.
+
+- Modifier temporairement le type du contexte selinux du fichier ***/var/www/app.log**
+
+```
+sudo mkdir /var/www && sudo touch /var/www/app.log
+```
+
+```
+sudo semanage fcontext --add --type var_log_t /var/www/app.log
+```
+
+Valider le changement
+
+```
+sudo restorecon /var/www/app.log
+```
+
+- Modifier temporairement le type du contexte selinux du repertoire **/nfs/shares** et son contenu
+
+```
+sudo mkdir -p /nfs/shares
+```
+
+```
+sudo semanage fcontext --add --type nfs_t "/nfs/shares(/.*)?"
+```
+
+Valider le changement
+
+```
+sudo restorecon -R /nfs/shares
+```
+
+- Lister les booléens selinux
+
+```
+sudo semanage boolean --list
+```
+
+Les **booléens selinux** sont utilisés pour dire à selinux de permettre ou d'interdire une action.
+
+- Activer le booléen selinux **virt_use_nfs**
+
+```
+sudo setsebool virt_use_nfs 1
+```
+
+- afficher la valeur du booléen selinux **virt_use_nfs**
+
+```
+sudo getsebool virt_use_nfs
+```
+
+Pour un booléen selinux donné, on a un couple (x, y) où x représente sa valeur courante (off, 0, false) et y sa valeur par défaut.
+
+- Lister les types ports selinux
+
+```
+sudo semanage port --list
+```
+
+- Afficher le type port selinux pour ssh
+
+```
+sudo semanage port --list | grep ssh
+```
+
+- Autoriser le port 2222 au près de selinux
+
+```
+sudo semanage port --add --type ssh_port_t --proto tcp 2222
+```
+
+- Supprimer l'autorisation selinux sur le port 222
+
+```
+sudo semanage port --delete --type ssh_port_t --proto tcp 2222
 ```
