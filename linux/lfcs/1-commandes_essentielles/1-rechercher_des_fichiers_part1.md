@@ -234,7 +234,7 @@ sudo find /dev/ -perm 664
 ```
 
 ```
-sudo find /dev/ u=rw,g=rw,o=r
+sudo find /dev/ -perm u=rw,g=rw,o=r
 ```
 
 - rechercher des fichiers avec au moins 664 pour permissions
