@@ -20,13 +20,13 @@ cat /etc/security/limits.conf
 Format du fichier **/etc/security/limits.conf** :
 
 - **Domaine** (**Domain**) : Utilisateur/groupe/wildcard
-- **Type** (**Type**) : **Hard/Soft**
+- **Type** (**Type**) : **hard/soft**
 - **Elément** (**Item**) : Taille de la mémoire, taille du fichier, nombre de fichiers...
 - **Valeur** (**Value**) : Limite, soit par valeur numérique, soit par taille en **Ko**
 
-Les limites des fichiers sont définies dans 4 colonnes. Ces valeurs incluent le **domaine**, le **type**, l'**élément** et la **valeur**. Examinons chacun d’eux plus en détail.
+Les limites sont définies dans 4 colonnes. Ces valeurs incluent le **domaine**, le **type**, l'**élément** et la **valeur**. Examinons chacun d’eux plus en détail.
 - La **valeur** du domaine peut être un **nom d'utilisateur**, un **nom de groupe** ou une **valeur générique**. 
-- Le **type** indique si la limite est souple (**soft**) ou stricte (**Hard**). 
+- Le **type** indique si la limite est souple (**soft**) ou stricte (**hard**). 
 - La valeur de l'élément peut contenir une grande variété d'informations <br> 
 --- **core** définit une limite sur la taille du fichier principal <br>
 --- **data** définit une taille maximale des données <br> 
