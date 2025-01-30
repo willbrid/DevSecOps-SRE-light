@@ -41,6 +41,8 @@ Vérifions que l'utilisateur **testuser1** n'a pas de repertoire personnel
 ls -alh /home
 ```
 
+NB: Dans la famille **RedHat**, par défaut elle crée un repertoire personnel ou dans la famille **Debian** elle ne le crée pas.
+
 Créons un utilisateur **testuser2** sans son repertoire personnel et le shell **/bin/bash**
 
 ```
