@@ -1,6 +1,6 @@
-### Introduction Opentofu
+# Introduction Opentofu
 
-« **OpenTofu** est un outil d'infrastructure en tant que code qui vous permet de définir des ressources cloud et sur site dans des fichiers de configuration lisibles par l'homme que vous pouvez versionner, réutiliser et partager. Vous pouvez ensuite utiliser un flux de travail cohérent pour provisionner et gérer l'ensemble de votre infrastructure tout au long de son cycle de vie. OpenTofu peut gérer des composants de bas niveau comme les ressources de calcul, de stockage et de réseau, ainsi que des composants de haut niveau comme les entrées DNS et les fonctionnalités SaaS. »
+**OpenTofu** est un outil d'infrastructure en tant que code qui vous permet de définir des ressources cloud et sur site dans des fichiers de configuration lisibles par l'homme que vous pouvez versionner, réutiliser et partager. Vous pouvez ensuite utiliser un flux de travail cohérent pour provisionner et gérer l'ensemble de votre infrastructure tout au long de son cycle de vie. OpenTofu peut gérer des composants de bas niveau comme les ressources de calcul, de stockage et de réseau, ainsi que des composants de haut niveau comme les entrées DNS et les fonctionnalités SaaS.
 
 ### Avantages d'OpenTofu
 

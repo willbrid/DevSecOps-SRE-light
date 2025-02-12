@@ -1,4 +1,4 @@
-### Qu'est-ce que l'Infrastructure as Code ?
+# Qu'est-ce que l'Infrastructure as Code ?
 
 L’Infrastructure as Code (IaC) permet d’automatiser la gestion et le provisionnement des infrastructures (serveurs, réseaux, stockage) en utilisant du code au lieu de configurations manuelles. Cette approche améliore l’efficacité, la cohérence et la scalabilité en décrivant l’infrastructure sous forme de scripts ou fichiers de configuration. Elle facilite également le contrôle des versions, le partage et la réplication dans différents environnements, réduisant ainsi les erreurs et optimisant le déploiement.
 
