@@ -53,10 +53,16 @@ roles:
     name: my-role  
 ```
 
-Pour installer les rôles définis dans un fichier d'exigences, utilisez la commande :
+Pour installer les rôles définis dans un fichier d'exigences, utiliser la commande :
 
 ```
 ansible-galaxy install -r requirements.yml
+```
+
+Pour installer les rôles définis dans un fichier d'exigences dans un repertoire **roles** (en supposant que **$HOME/installation** est notre repertoire de playbooks), utiliser la commande :
+
+```
+ansible-galaxy install -r requirements.yml --roles-path $HOME/installation/roles
 ```
 
 ### Commandes Galaxy utiles
