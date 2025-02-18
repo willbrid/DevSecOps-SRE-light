@@ -55,8 +55,8 @@ Pour illustrer l'utilisation de **host_vars**, nous supposerons que nous avons l
 ```
 app/
   host_vars/
-    instance1.app.com
-    instance2.app.com
+    server-app1.yml
+    server-app2.yml
   inventory/
     hosts
   main.yml
@@ -66,20 +66,20 @@ Le fichier **app/inventory/hosts** contient une définition simple de tous les s
 
 ```
 [app]
-app1.app.com
-app2.app.com
-app3.app.com
+server-app1
+server-app2
+server-app3
 ...
 
 [log]
-log.app.com
+server-log
 ```
 
-Ansible recherchera un fichier à l'un des endroits suivants : **app/host_vars/instance1.app.com**, **app/inventory/host_vars/instance1.app.com**. <br>
+Ansible recherchera un fichier à l'un des endroits suivants : **app/host_vars/server-app1.yml**, **app/inventory/host_vars/server-app1.yml**. <br>
 S'il y a des variables définies dans le fichier (au format YAML), ces variables remplaceront toutes les autres variables du playbook et du rôle et les facts collectés, uniquement pour l'hôte unique.
 
 ```
-# app/host_vars/instance1.app.com
+# app/host_vars/server-app1.yml
 app_name: "cookbook"
 ```
 
@@ -92,16 +92,17 @@ Ansible charge automatiquement tous les fichiers nommés d’après les groupes 
 ```
 app/
   group_vars/
-    linux
+    app.yml
+    log.yml
   host_vars/
-    instance1.app.com
-    instance2.app.com
+    server-app1.yml
+    server-app2.yml
   inventory/
     hosts
   main.yml
 ```
 
-Ensuite, dans **group_vars/linux**, on utilise YAML pour définir une liste de variables qui seront appliquées aux serveurs du groupe **linux** :
+Ensuite, dans **group_vars/app.yml**, on utilise le format yaml pour définir une liste de variables qui seront appliquées aux serveurs du groupe **app** de l'inventaire **app/inventory/hosts** :
 
 ```
 ---
