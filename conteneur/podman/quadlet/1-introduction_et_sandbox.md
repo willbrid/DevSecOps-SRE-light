@@ -8,6 +8,19 @@ de **systemd**.
 ### Environnement Quadlet
 
 - **Quadlet** est embarqué dans **Podman** à partie de la version **>=4.4** de **Podman** et nécessite **cgroups v2**.
+
+--- vérifier la version de podman
+
+```
+podman --version
+```
+
+--- vérifier la version du cgroups utilisé par podman
+
+```
+podman info --format {{.Host.CgroupsVersion}}
+```
+
 - Pour gérer les conteneurs en tant que root, les fichiers seront à placer dans : **/etc/containers/systemd**.
 - Pour gérer les conteneurs en tant que non root, les fichiers seront à placer dans : **~/.config/containers/systemd**. C'est à dire à
 partir de la racine d'un utilisateur non root.
