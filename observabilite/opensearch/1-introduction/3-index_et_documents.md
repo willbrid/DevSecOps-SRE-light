@@ -23,26 +23,11 @@ Un simple document JSON pour un film pourrait ressembler à ceci :
 
 Un **index** est une collection de **documents**.
 
-Nous pouvons considérer un index de plusieurs manières :
+Nous pouvons considérer un **index** de plusieurs manières :
 
-- dans une base de données d'étudiants, un index représente tous les étudiants de la base de données.
-- lorsque nous recherchons des informations, nous interrogeons les données contenues dans un index.
-- un index représente une table de base de données dans une base de données traditionnelle.
-
-Lorsque nous ajoutons le document à un index, **OpenSearch** ajoute certaines métadonnées, telles que l'ID unique du document :
-
-```
-{
-  "_index": "<index-name>",
-  "_type": "_doc",
-  "_id": "<document-id>",
-  "_version": 1,
-  "_source": {
-    "title": "The Wind Rises",
-    "release_date": "2013-07-20"
-  }
-}
-```
+- dans une base de données d'étudiants, un **index** représente tous les étudiants de la base de données.
+- lorsque nous recherchons des informations, nous interrogeons les données contenues dans un **index**.
+- un **index** représente une table de base de données dans une base de données traditionnelle.
 
 ### Index inversé
 
