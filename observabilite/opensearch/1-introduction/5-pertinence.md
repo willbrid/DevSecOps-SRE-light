@@ -14,3 +14,5 @@ Les mots individuels d'une requête de recherche sont appelés **termes de reche
 - un **terme de recherche** qui apparaît dans plus de documents aura tendance à obtenir un score plus bas. Il s'agit de la **composante fréquence du document inverse du score**.
 
 - une correspondance sur un document plus long devrait avoir tendance à obtenir un score plus bas qu'une correspondance sur un document plus court. Un document contenant un dictionnaire complet correspondrait à n'importe quel mot mais ne serait pas très pertinent pour un mot particulier. Cela correspond au **composant de normalisation de la longueur du score**.
+
+OpenSearch utilise l'algorithme de classement **BM25** pour calculer les scores de pertinence des documents, puis renvoie les résultats triés par pertinence.
