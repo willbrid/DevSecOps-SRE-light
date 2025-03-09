@@ -18,8 +18,8 @@ Un cas d'utilisation tout aussi populaire, mais moins évident, est l'analyse de
 
 **OpenSearch** prend en charge une variété de cas d'utilisation, par exemple :
 
-- **Observabilité** : visualiser les événements pilotés par les données en utilisant le langage PPL (Piped Processing Language) pour explorer, découvrir et interroger les données stockées dans OpenSearch.
-- **Recherche** : choisir la meilleure méthode de recherche pour notre application, de la recherche lexicale classique à la recherche conversationnelle optimisée par l'apprentissage automatique (ML).
+- **Observabilité** : visualiser les événements pilotés par les données en utilisant le langage PPL (**Piped Processing Language**) pour explorer, découvrir et interroger les données stockées dans OpenSearch.
+- **Recherche** : choisir la meilleure méthode de recherche pour notre application, de la recherche lexicale classique à la recherche conversationnelle optimisée par l'**apprentissage automatique** (ML).
 - **Apprentissage automatique** : intégrer des modèles ML dans notre application OpenSearch.
 - **Analyse de sécurité** : étudier, détecter, analyser et répondre aux menaces de sécurité qui peuvent compromettre le succès de l'organisation et les opérations en ligne.
 
