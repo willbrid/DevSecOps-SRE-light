@@ -16,7 +16,7 @@ Un conteneur est une technologie qui permet d'assembler et d'isoler des applicat
 
 Un **moteur d'exécution de conteneur** exécute et gère les images de conteneurs sur un serveur.
 
-**Quelques exemples de moteur d'exécution de conteneur** :
+**Quelques exemples de moteurs d'exécution de conteneur** :
 - Podman (runc)
 - Docker (containerd)
 - Kubernetes (CRI-O)
