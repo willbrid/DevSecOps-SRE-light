@@ -48,6 +48,7 @@ Les pods sont les plus petites unités de calcul déployables que nous pouvons c
 ### Composants clés d'un pod
 
 - **Pod**
+
 --- partage des liaisons de port, des valeurs parentes des cgroups et des espaces de noms du noyau. <br>
 --- une fois le pod créé, ces attributs ne peuvent plus être modifiés ; il faut recréer le pod avec les modifications. <br>
 --- chaque conteneur possède sa propre instance de **conmon**. Ce qui permet à **podman** de s'exécuter en mode détaché.
@@ -55,10 +56,12 @@ Les pods sont les plus petites unités de calcul déployables que nous pouvons c
 **Conmon** est un programme de surveillance et un outil de communication entre un gestionnaire de conteneurs (comme **Podman** ou **CRI-O**) et un **runtime OCI** (comme **runc** ou **crun)** pour un seul conteneur.
 
 - **Conteneurs**
+
 --- notre conteneur habituel avec nos applications. <br>
 --- il peut communiquer avec d'autres conteneurs du pod via un espace de noms réseau partagé.
 
 - **Conteneur infra**
+
 --- contient les espaces de noms associés au pod. <br>
 --- permet à **Podman** de connecter d'autres conteneurs au pod. <br>
 --- il est basé par défaut sur le conteneur d'image **k8s.gcr.io/pause**.
