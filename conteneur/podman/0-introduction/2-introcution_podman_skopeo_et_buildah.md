@@ -29,7 +29,7 @@ Il s'agit d'un outil en ligne de commande permettant de créer rapidement et fac
 
 Il est utilisé pour créer de nouvelles images de conteneur, sans démon.
 
-### Quelle est la différence entre Docker Podman ?
+### Quelle est la différence entre Docker et Podman ?
 
 |Docker|Podman|
 |---|----|
