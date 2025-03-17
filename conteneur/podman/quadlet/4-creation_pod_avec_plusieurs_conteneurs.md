@@ -1,4 +1,4 @@
-# Creation de pod avec plusieurs conteneurs
+# Création de pod avec plusieurs conteneurs
 
 Nous allons ici créer un pod **nextcloudapp** et ajouter nos conteneurs **Mariadb** et **Nextcloud** dans ce pod en utilisant la fonctionnalité **Quadlet** de **Podman**. Pour cela, nous suivrons les étapes suivantes.
 
