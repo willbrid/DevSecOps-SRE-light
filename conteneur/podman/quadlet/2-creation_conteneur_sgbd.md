@@ -39,7 +39,7 @@ Comme résultat nous devons avoir la ligne "**Linger=yes**".
 --- secret pour le mot de passe de l'utilisateur applicatif pour notre futur application 
 
 ```
-printf "solidinvoice@2025" | podman secret create mariadbpassword -
+printf "nextcloud@2025" | podman secret create mariadbpassword -
 ```
 
 --- secret pour le mot de passe root de Mariadb
@@ -63,7 +63,8 @@ After=network-online.target,local-fs.target
 ContainerName=mariadb
 Image=docker.io/library/mariadb:11.7.2
 Network=host
-Environment=MARIADB_USER=solidinvoice
+Environment=MARIADB_USER=nextcloud
+Environment=MARIADB_DATABASE=nextcloud
 Secret=mariadbpassword,type=env,target=MARIADB_PASSWORD
 Secret=mariadbrootpassword,type=env,target=MARIADB_ROOT_PASSWORD
 Timezone=Europe/Paris
@@ -100,15 +101,15 @@ systemctl --user status mariadb
 podman container ps
 ```
 
-- **Faire un test de connexion au conteneur Mariadb avec les utilisateurs : solidinvoice et root**
+- **Faire un test de connexion au conteneur Mariadb avec les utilisateurs : nextcloud et root**
 
---- Avec l'utilisateur **solidinvoice**
+--- Avec l'utilisateur **nextcloud**
 
 ```
-podman run --rm -it --network=host docker.io/library/mariadb:11.7.2 mariadb -h 127.0.0.1 -u solidinvoice -p
+podman run --rm -it --network=host docker.io/library/mariadb:11.7.2 mariadb -h 127.0.0.1 -u nextcloud -p
 ```
 
-**MP: solidinvoice@2025**
+**MP: nextcloud@2025**
 
 --- Avec l'utilisateur **root**
 
