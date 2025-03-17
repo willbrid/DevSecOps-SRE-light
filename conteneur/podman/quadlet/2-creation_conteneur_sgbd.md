@@ -34,7 +34,7 @@ sudo loginctl show-user vagrant | grep -i linger
 
 Comme résultat nous devons avoir la ligne "**Linger=yes**".
 
-- **Créer deux secrets podman** 
+- **Créer deux secrets podman**
 
 --- secret pour le mot de passe de l'utilisateur applicatif pour notre futur application 
 
@@ -48,7 +48,7 @@ printf "nextcloud@2025" | podman secret create mariadbpassword -
 printf "rootstrong@2025" | podman secret create mariadbrootpassword -
 ```
 
-- **Créer le fichier service du conteneur Mariadb**
+- **Créer et configurer le fichier service du conteneur Mariadb**
 
 ```
 vim /home/vagrant/.config/containers/systemd/mariadb.container
