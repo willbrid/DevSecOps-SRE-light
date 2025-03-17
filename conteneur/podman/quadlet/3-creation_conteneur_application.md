@@ -37,7 +37,6 @@ After=local-fs.target
 ContainerName=mariadb
 Image=docker.io/library/mariadb:11.7.2
 Network=stackappnet.network
-PublishPort=3306:3306
 Environment=MARIADB_USER=nextcloud
 Environment=MARIADB_DATABASE=nextcloud
 Secret=mariadbpassword,type=env,target=MARIADB_PASSWORD
