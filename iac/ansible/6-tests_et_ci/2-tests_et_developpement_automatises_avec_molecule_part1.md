@@ -1,4 +1,4 @@
-# Tests et développement automatisés avec Molecule
+# Tests et développement automatisés avec Molecule [Part1]
 
 **https://ansible.readthedocs.io/projects/molecule/**
 
@@ -18,5 +18,6 @@ De nos jours, nous avons **molecule**. En effet **molecule** est un outil léger
 pipx install molecule
 ```
 
-### Tester un rôle avec molecule
+### Exécution de notre playbook en mode vérification
 
+L'option **--check** d'Ansible permet d'exécuter un playbook sans appliquer de modifications, en indiquant les tâches qui entraîneraient un changement. Cela aide à détecter les dérives de configuration et à s'assurer que les modifications ne brisent pas l'idempotence. En complément, **--diff** affiche les différences ligne par ligne, bien qu'il puisse générer un grand volume de résultats si le mode **--check** effectue de nombreuses modifications.
