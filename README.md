@@ -45,3 +45,4 @@ Les contenus de ce dépôt seront régulièrement mis à jour pour refléter les
 - [Istio Documentation](https://istio.io/latest/docs/)
 - [Keda Documentation](https://keda.sh/docs)
 - [Kyverno Documentation](https://kyverno.io/docs/)
+- [Argocd Documentation](https://argo-cd.readthedocs.io/en/stable/)
