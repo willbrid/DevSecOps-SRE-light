@@ -42,3 +42,6 @@ Les contenus de ce dépôt seront régulièrement mis à jour pour refléter les
 - [Opentelemetry Documentation](https://opentelemetry.io/docs/)
 - [Tempo Documentation](https://grafana.com/docs/tempo/)
 - [Loki Documentation](https://grafana.com/docs/loki/)
+- [Istio Documentation](https://istio.io/latest/docs/)
+- [Keda Documentation](https://keda.sh/docs)
+- [Kyverno Documentation](https://kyverno.io/docs/)
