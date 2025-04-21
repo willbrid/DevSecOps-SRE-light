@@ -1,0 +1,22 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: false
+  vars:
+    users:
+      - name: bob1
+        shell: /bin/sh
+        group: bob1
+      - name: bob2
+        shell: /bin/bash
+        group: bob2
+      - name: alice1
+        shell: /bin/bash
+        group: alice1
+      - name: alice2
+        shell: /bin/sh
+        group: alice2
+  tasks:
+    - name: Include willbrid.users
+      ansible.builtin.include_role:
+        name: "willbrid.users"

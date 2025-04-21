@@ -1,0 +1,33 @@
+---
+argument_specs:
+  main:
+    short_description: "Create users and their group"
+    description:
+      - "Create and configure users with their group and shell"
+    author: "WillBrid"
+    options:
+      users:
+        type: list
+        required: true
+        description: 
+          - "List of users"
+        elements: dict
+        options:
+          name: 
+            description:
+              -  "the name of a user"
+            type: str
+            required: true
+          shell:
+            description:
+              -  "the shell of a user"
+            type: str
+            default: "/bin/bash"
+            choices:
+              - "/bin/bash"
+              - "/bin/sh"
+          group:
+            description:
+              - "the primary group of a user"
+            type: str
+            required: true

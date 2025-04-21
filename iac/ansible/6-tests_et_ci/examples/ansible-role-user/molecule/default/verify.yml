@@ -1,0 +1,35 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  vars:
+    users:
+      - name: bob1
+        shell: /bin/sh
+        group: bob1
+      - name: bob2
+        shell: /bin/bash
+        group: bob2
+      - name: alice1
+        shell: /bin/bash
+        group: alice1
+      - name: alice2
+        shell: /bin/sh
+        group: alice2
+  tasks:
+    - name: Get users id
+      ansible.builtin.command: "id {{ item.name }}"
+      with_items: "{{ users }}"
+      register: users_id_check
+      ignore_errors: true
+      changed_when: false
+    - name: Check if users_id_check is defined
+      ansible.builtin.assert:
+        that:
+          - users_id_check is defined and users_id_check.results is defined
+    - name: Check if users exist
+      ansible.builtin.assert:
+        that:
+          - item.rc == 0
+        fail_msg: "some users do not exist"
+      with_items: "{{ users_id_check.results }}"

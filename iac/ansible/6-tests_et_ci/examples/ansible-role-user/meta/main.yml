@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: willbrid
+  role_name: users
+  namespace: willbrid
+  description: Create users in RedHat or Debian distro
+  company: none
+  license: "license (BSD, MIT)"
+  min_ansible_version: "2.18"
+  platforms:
+    - name: Debian
+      versions:
+        - bookworm
+    - name: Rocky
+      versions:
+        - "9.2"
+  galaxy_tags:
+    - users
+    - linux
+dependencies: []

@@ -1,0 +1,18 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance-debian
+    image: docker.io/library/debian:bookworm
+    pre_build_image: false
+  - name: instance-rocky
+    image: docker.io/library/rockylinux:9.3
+    pre_build_image: false
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
+lint: |
+  yaml-lint
