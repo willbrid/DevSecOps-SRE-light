@@ -40,6 +40,11 @@ pipx install ansible-core==2.18.4
 pipx inject ansible-core argcomplete
 ```
 
+Injection du package **requests** nécessaire pour interroger la socket docker
+
+```
+pipx inject ansible-core requests
+```
 
 **Sources** :
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html)
