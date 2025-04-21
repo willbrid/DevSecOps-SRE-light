@@ -12,10 +12,35 @@ Avant pour tester un playbook il fallait effectuer les opérations suivantes à 
 
 De nos jours, nous avons **molecule**. En effet **molecule** est un outil léger, basé sur Ansible, qui facilite le développement et les tests de playbooks, rôles et collections Ansible. À sa base, **molecule** effectue les six étapes décrites ci-dessus et ajoute des fonctionnalités supplémentaires comme des scénarios multiples, des backends multiples et des méthodes de vérification configurables. Aussi tout dans **molecule** est contrôlé par des playbooks Ansible.
 
-- Install **molecule** via pipx sous Ubuntu 24.04
+- Installer **molecule** via pipx sous Ubuntu 24.04
 
 ```
 pipx install molecule
+```
+
+- Installer les drivers molecule via pipx sous Ubuntu 24.04
+
+```
+pipx inject molecule molecule-plugins
+```
+
+Pour vérifier si nos drivers sont présents, nous exécutons la commande :
+
+```
+molecule drivers
+```
+
+```
+# Résultats
+gce
+containers
+azure
+default
+vagrant
+ec2
+podman
+openstack
+docker
 ```
 
 ### Exécution de notre playbook en mode vérification
