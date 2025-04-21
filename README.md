@@ -6,7 +6,7 @@ Ce dépôt GitHub regroupe des ressources et des exemples pratiques **DevOps** e
 
 1. **devops-essential** : Contient des guides et des ressources essentielles pour vous familiariser avec les principes fondamentaux de DevOps.
 
-2. **docker** : Explorez les configurations Docker et les bonnes pratiques pour la conteneurisation d'applications.
+2. **conteneur** : Explorez les configurations d'un environnement d'exécution de conteneurs et les bonnes pratiques pour la conteneurisation d'applications.
 
 3. **haute-disponibilite** : Découvrez les meilleures pratiques pour la conception et la mise en œuvre de solutions à haute disponibilité.
 
