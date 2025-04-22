@@ -43,6 +43,12 @@ openstack
 docker
 ```
 
+- Injecter le package **requests** nécessaire pour interroger la socket **docker**
+
+```
+pipx inject ansible-core requests
+```
+
 ### Exécution de notre playbook en mode vérification
 
 L'option **--check** d'Ansible permet d'exécuter un playbook sans appliquer de modifications, en indiquant les tâches qui entraîneraient un changement. Cela aide à détecter les dérives de configuration et à s'assurer que les modifications ne brisent pas l'idempotence. En complément, **--diff** affiche les différences ligne par ligne, bien qu'il puisse générer un grand volume de résultats si le mode **--check** effectue de nombreuses modifications.
