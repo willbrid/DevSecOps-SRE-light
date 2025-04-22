@@ -49,3 +49,7 @@ Si les deux commandes ci-dessous se sont exécutées avec succès, nous pouvons 
 ```
 molecule test
 ```
+
+Ci-dessous un lien de référence des images de conteneur pour tester nos rôles ou nos collections ansible :
+
+[https://ansible.jeffgeerling.com/#container-images-testing](https://ansible.jeffgeerling.com/#container-images-testing)
