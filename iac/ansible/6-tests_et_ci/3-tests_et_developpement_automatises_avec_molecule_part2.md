@@ -32,10 +32,20 @@ Dans un fichier **molecule.yml**, nous pouvons avoir :
 - **scenario** : **molecule** s'appuie sur cette configuration pour contrôler l'ordre de séquence des scénarios.
 - **verifier** : **molecule** utilise **Ansible** par défaut pour fournir un moyen d'écrire des tests de vérification d'état spécifiques (tels que des tests de fumée de déploiement) sur l'instance cible.
 
+Une fois les fichiers **molecule.yml** et **converge.yml** correctement configurés, nous pouvons exécuter la commande suivante afin de vérifier que Molecule crée correctement l’environnement de test et exécute le playbook intégrant notre rôle.
+
 ```
 molecule converge
 ```
 
+Nous configurons ensuite notre fichier **verify.yml** qui permettra de valider le résultat d'exécution de notre rôle via notre playbook défini dans le fichier **converge.yml**.
+
 ```
 molecule verify
+```
+
+Si les deux commandes ci-dessous se sont exécutées avec succès, nous pouvons alors lancer la commande complète permettant d’exécuter l’ensemble des scénarios.
+
+```
+molecule test
 ```
