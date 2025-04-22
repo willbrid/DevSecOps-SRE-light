@@ -2,9 +2,19 @@
 
 Les packages communautaires d'Ansible sont distribués de deux manières : un package de langage et d'exécution minimaliste appelé **ansible-core**, et un package "batteries included" beaucoup plus grand appelé **ansible**, qui ajoute une sélection de collections Ansible organisée par la communauté pour automatiser une grande variété de périphériques.
 
-### Localiser Python
+### Installer Python3 avec certaines dépendances nécessaires
 
-Nous installerons ansible avec **python version 3**. Ainsi il faudrait se rassurer que le package **python3** est bien installé à une version stable.
+Nous installerons ansible avec **python version 3**. Nous devons installer **python3** avec les packages de dépendances supplémentaires.
+
+Sous ubuntu
+```
+sudo apt install -y python3 python3-pip libssl-dev
+```
+
+Sous Rocky
+```
+sudo dnf install -y gcc python3 python3-pip python3-devel openssl-devel python3-libselinux
+```
 
 ### Installer ansible avec pipx sous ubuntu 24.04 ou rocky linux 8.10
 
