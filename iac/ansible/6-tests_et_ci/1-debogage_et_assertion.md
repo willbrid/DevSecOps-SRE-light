@@ -7,7 +7,7 @@ Pour tester une infrastructure Ansible, il est essentiel de comprendre les types
 - Tests d'intégration : plus utiles, ils vérifient que plusieurs rôles et playbooks fonctionnent bien ensemble, en les testant individuellement sur des machines virtuelles isolées.
 - Tests fonctionnels : concernent l'ensemble de l'infrastructure déployée, garantissant que tout fonctionne comme prévu. Le reporting d'Ansible et des outils externes permettent d'approfondir ces tests.
 
-### Tester un playbook Ansile
+### Tester un playbook Ansible
 
 Tester un playbook Ansible consiste principalement à vérifier les modifications de configuration et le bon état du système en cours d'exécution. Il est recommandé d'intégrer des tests simples directement dans les playbooks à l'aide de modules dédiés :
 
