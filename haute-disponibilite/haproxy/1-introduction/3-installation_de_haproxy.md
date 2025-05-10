@@ -193,4 +193,6 @@ Nous devons définir **haproxy_connect_any** sur **1** pour faire fonctionner HA
 sudo setsebool -P haproxy_connect_any 1
 ```
 
-**NB :** C'est cette version (**2.8.9**) de HAProxy que nous allons utiliser tout au long de notre parcours.
+> NB: C'est cette version (**2.8.9**) de HAProxy que nous allons utiliser tout au long de notre parcours.
+
+**Référence** : [https://github.com/haproxy/haproxy/blob/master/INSTALL](https://github.com/haproxy/haproxy/blob/master/INSTALL)
