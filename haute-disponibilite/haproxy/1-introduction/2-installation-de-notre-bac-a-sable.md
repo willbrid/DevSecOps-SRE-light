@@ -2,7 +2,7 @@
 
 Nous pouvons utiliser des conteneurs Podman pour explorer nos concepts d'équilibrage de charge en utilisant un seul hôte avec notre OS rocky linux 8.
 
-Nous utiliserons **vagrant** et **virtualbox** pour provisionner notre serveur avec la box vagrant **willbrid/rockylinux8**.
+Nous utiliserons **vagrant** et **virtualbox** pour provisionner notre serveur avec la box vagrant **rockylinux/9** version **5.0.0**.
 
 - installons nos deux machines virtuelles **client** (haproxy-client -> 192.168.56.7) et **server** (haproxy-server -> 192.168.56.8) grâce à notre fichier vagrantfile
 
@@ -30,8 +30,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.24.iso"
   
   # General Vagrant VM configuration.
-  config.vm.box = "willbrid/rockylinux8"
-  config.vm.box_version = "0.0.2"
+  config.vm.box = "rockylinux/9"
+  config.vm.box_version = "5.0.0"
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.provider :virtualbox do |v|
@@ -77,7 +77,7 @@ sudo yum -y module install container-tools
 - Installons le package **figlet** pour créer les bannières textuelles
 
 ```
-sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum -y install epel-release
 ```
 
 ```
