@@ -21,4 +21,4 @@ resource "<PROVIDER>_<TYPE>" "<NAME>" {
 
 L’état dans **OpenTofu** est un mécanisme permettant de suivre l’infrastructure et ses ressources réelles. Il permet à OpenTofu de savoir quelles ressources existent déjà et d’identifier les modifications à appliquer.
 
-Par défaut, l’état est stocké dans un fichier local (terraform.tfstate), mais pour une collaboration plus efficace, il est recommandé d’utiliser un stockage distant (S3, Azure Blob, GCS, etc.) via des backends ou des outils comme TACOS. Cela permet de versionner, sécuriser et partager l’état entre équipes, évitant ainsi les conflits et garantissant une gestion plus fiable de l’infrastructure.
+Par défaut, l’état est stocké dans un fichier local (**terraform.tfstate**), mais pour une collaboration plus efficace, il est recommandé d’utiliser un stockage distant (S3, Azure Blob, GCS, etc.) via des backends ou des outils comme TACOS. Cela permet de versionner, sécuriser et partager l’état entre équipes, évitant ainsi les conflits et garantissant une gestion plus fiable de l’infrastructure.
