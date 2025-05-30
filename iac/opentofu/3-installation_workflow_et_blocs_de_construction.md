@@ -1,6 +1,6 @@
 # Installation, workflow et blocs de construction
 
-### Installation sous Ubuntu 22.04
+### Installation sous Ubuntu 24.04
 
 La méthode la plus simple d'installer **opentofu** est d'utiliser le script d'installation mis à disposition dans la documentation officielle.
 
