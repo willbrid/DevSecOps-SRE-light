@@ -81,7 +81,9 @@ provider "aws" {
 }
 ```
 
-Nous avons clairement défini la région **us-east-1** dans le bloc fournisseur pour **AWS**, ce qui signifie que si nous tentons de créer les deux ressources maintenant, elles seront toutes deux créées dans la région **us-east-1**. Comment créer la ressource **beta** dans la région **ca-central-1** ?
+Nous avons clairement défini la région **us-east-1** dans le bloc fournisseur pour **AWS**, ce qui signifie que si nous tentons de créer les deux ressources maintenant, elles seront toutes deux créées dans la région **us-east-1**. 
+
+Comment créer la ressource **beta** dans la région **ca-central-1** ?
 
 Nous ajoutons un autre bloc de fournisseur "AWS" dans le fichier **provider.tf** mais cette fois avec la région définie sur **ca-central-1**. Cependant pour identifier ce bloc particulier, nous ajoutons l'argument appelé **alias** et lui donnons une valeur logique telle que **central**.
 
