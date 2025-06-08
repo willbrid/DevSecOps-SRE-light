@@ -6,6 +6,11 @@
 
 Les fournisseurs permettent à **OpenTofu** de gérer des ressources spécifiques. Chaque fournisseur est indépendant et suit son propre cycle de publication. Le registre public **OpenTofu** centralise ces fournisseurs pour les principales plateformes. Lorsqu'une configuration est modifiée, il peut être nécessaire de réinitialiser le projet pour mettre à jour les fournisseurs installés.
 
+Il existe trois types de fournisseurs :
+- les fournisseurs officiels, détenus et gérés par Hashicorp, incluent les principaux fournisseurs de cloud tels qu'AWS, GCP et Azure.
+- les fournisseurs vérifiés détenus et gérés par une entreprise technologique tierce, mais a été examiné et testé par Hashicorp.
+- les fournisseurs communautaires, publiés et gérés par des contributeurs individuels.
+
 - **Ressources** (**Resources**)
 
 OpenTofu utilise des fichiers de configuration écrits en **HCL**, qui est une abréviation de **Hashicorp configuration language**.
