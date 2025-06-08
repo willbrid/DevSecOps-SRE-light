@@ -90,4 +90,66 @@ Cette étape ne crée pas encore la ressource d'infrastructure. Ces informations
 
 - La troisième commande à exécuter est **tofu apply**. Cette commande affichera à nouveau le plan d'exécution, puis demandera à l'utilisateur de confirmer en tapant **yes** pour continuer.
 
+```
+tofu apply
+```
+
 OpenTofu prend en charge plsuieurs centaines de fournisseurs. Chacun de ces fournisseurs dispose d'une liste unique de ressources pouvant être créées sur cette plateforme spécifique. Chaque ressource peut avoir un certain nombre d'arguments obligatoires et facultatifs nécessaires à sa création.
+
+Nous pouvons utiliser l'option **--auto-approve** pour approuver automatiquement l'exécution de la commande.
+
+```
+tofu apply --auto-approve
+```
+
+- **Mettre à jour et détruire les infrastructures**
+
+Pour mettre à jour une ressource, il suffit de mettre à jour le fichier de configuration relatif. Puis nous exécutons la commande **tofu plan** suivit de la commande **tofu apply**.
+
+```
+vim $HOME/opentofu/example1/local.tf
+```
+
+```
+resource "local_file" "pet" {
+  filename = "$HOME/opentofu/example1/pets.txt"
+  content = "We have some pets"
+  file_permission = "0700"
+}
+```
+
+```
+tofu plan
+```
+
+```
+tofu apply
+```
+
+Dans la sortie de la commande **tofu plan**, un symbole -/+ devant une ressource indique qu'elle sera supprimée puis recréée. La mention **forces replacement** précise la raison, ici l’ajout de l’argument **file_permission**. **OpenTofu** applique le **principe d’immuabilité**, donc **tofu apply** supprime puis recrée la ressource pour appliquer les changements, en l'occurrence les nouvelles permissions.
+
+Pour supprimer complètement la ressource, nous utilisons la commande **tofu destroy**.
+
+```
+tofu destroy
+```
+
+Cette commande affiche également le plan d'exécution et nous pouvons constater que la ressource et tous ses arguments sont accompagnés d'un signe **moins**. Cela indique que la ressource sera détruite. <br>
+Pour poursuivre la destruction, nous confirmons « **oui** » à l'invite. Une fois la ressource détruite par OpenTofu, nous obtiendrons un message indiquant que la commande a réussi. <br>
+Tout comme pour **tofu apply**, nous pouvons également utiliser l'option **--auto-approve** avec la commande **tofu destroy**.
+
+```
+tofu destroy --auto-approve
+```
+
+- **Déclaration des fichiers de configuration**
+
+Une bonne pratique courante consiste à utiliser un seul fichier de configuration contenant tous les blocs de ressources nécessaires au provisionnement de l'infrastructure. Un seul fichier de configuration peut contenir autant de blocs de configuration que nécessaire. Une convention de nommage courante pour ce type de fichier est de l'appeler **main.tf**. D'autres fichiers de configuration peuvent être créés dans ce répertoire, tels que **variables.tf** et **outputs.tf**.
+
+```
+main.tf       :   fichier de configuration principal contenant la définition des ressources
+variables.tf  :   fichier de configuration contenant les déclarations des variables
+outputs.tf    :   fichier de configuration contenant les sorties des ressources
+provider.tf   :   fichier de configuration contenant la définition du fournisseur
+opentofu.tf   :   fichier de configuration pour le comportement d'opentofu
+```
