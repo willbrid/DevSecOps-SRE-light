@@ -90,3 +90,24 @@ export TF_VAR_filename="/root/pets.txt"
 export TF_VAR_content="We have some pets"
 tofu apply
 ```
+
+--- Nous pouvons également déclarer des variables en masse en utilisant des fichiers de définition. Le fichier peut être nommé n'importe quoi mais doit toujours se terminer par **.tfvars** ou **.tfvars.json** : **variables.tfvars**. Ces variables doivent être chargées en utilisant l'option **-var-file**.
+
+```
+# variables.tfvars
+ami="ami-0c2f25c1f66a1ff4d"
+instance_type = "t2.micro"
+```
+
+```
+tofu apply -var-file variables.tfvars
+```
+
+Cependant le fichier de définition de variable appelé **terraform.tfvars** ou **terraform.tfvars.json** ou par tout autre nom se terminant par **.auto.tfvars** ou **.auto.tfvars.json**, sera automatiquement chargé par **OpenTofu**.
+
+- **Priorité de définition des variables**
+
+1--- variables d'environnement <br>
+2--- fichier d'extension **.tfvars** <br>
+3--- fichier d'extension **.auto.tfvars** <br>
+4--- options de commande : **-var** et **-var-file**
