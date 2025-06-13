@@ -199,6 +199,9 @@ Un ensemble (**set**) est similaire à une liste (**list**) mais la différence 
 La différence entre un tuple (**tuple**) et une liste (**list**) réside dans le fait qu'une liste (**list**) utilise des éléments du même type de variable, tandis qu'un tuple peut utiliser des types différents. Le type de variable à utiliser dans un tuple (**tuple**) est défini entre crochets.
 
 ```
+# variables.tf
+...
+...
 variable "db" {
   default = ["db1", "db2"]
   type = set(string)
