@@ -1,8 +1,6 @@
-# Injection de secrets sécurisés
+# Etat Opentofu
 
-- Introduction à l'état Opentofu
-
-Lors de l'exécution de tofu apply, OpenTofu crée un fichier d’état appelé **terraform.tfstate**, situé par défaut dans le répertoire des fichiers de configuration. Une sauvegarde de ce fichier est également créée sous le nom **terraform.tfstate.backup**. <br>
+Lors de l'exécution de **tofu apply**, OpenTofu crée un fichier d’état appelé **terraform.tfstate**, situé par défaut dans le répertoire des fichiers de configuration. Une sauvegarde de ce fichier est également créée sous le nom **terraform.tfstate.backup**. <br>
 
 Ce fichier (**terraform.tfstate**) est un document JSON qui contient une représentation complète de l’infrastructure créée. Il inclut des détails comme :
 
