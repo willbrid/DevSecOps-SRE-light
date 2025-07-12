@@ -112,4 +112,4 @@ sudo firewall-cmd --permanent --add-port=9090/tcp
 sudo firewall-cmd --reload
 ```
 
-Nous pouvons maintenant accéder à l'interface utilisateur prometheus sur le port 9090 du serveur prometheus.
+Nous pouvons maintenant accéder à l'interface Web prometheus (http://192.168.56.230:9090) du service prometheus.
