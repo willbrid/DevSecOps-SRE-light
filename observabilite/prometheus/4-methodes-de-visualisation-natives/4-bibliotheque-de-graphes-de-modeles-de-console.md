@@ -1,14 +1,15 @@
 # Bibliothèque de graphes de modèles de console
+
 La bibliothèque de graphiques nous permet de rendre des graphes dans les modèles de notre console.
-<br>
-<br>
 
 Connectons-nous à notre serveur Prometheus et modifions le fichier de modèle de notre console :
+
 ```
-vi /etc/prometheus/consoles/disk-io.html
+sudo vi /etc/prometheus/consoles/disk-io.html
 ```
 
 Ajoutons un graphique à votre modèle de console :
+
 ```
 {{template "head" .}}
 {{template "prom_content_head" .}}
@@ -30,7 +31,4 @@ new PromConsole.Graph({
 {{template "tail"}}
 ```
 
-Affichons notre modèle de console dans un navigateur Web :
-```
-http://<PROMETHEUS_SERVER_PUBLIC_IP>:9090/consoles/disk-io.html
-```
+Affichons notre modèle de console dans un navigateur Web : **http://192.168.56.230:9090/consoles/disk-io.html** .
