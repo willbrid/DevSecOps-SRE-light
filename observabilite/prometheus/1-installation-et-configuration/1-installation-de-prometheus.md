@@ -1,30 +1,27 @@
-# Installation de prometheus 2.33.4 sur Rocky linux 8
-Nous supposons que nous avons une machine virtuelle virtual-box de 32Go de disque, 2Go de Ram, où est installé le système Rocky linux 8.
-<br>
+# Installation de prometheus 3.4.2 sur Rocky linux 9
 
-- Nous modifions le hostname 
-```
-sudo hostnamectl set-hostname monitoring
-```
+- Mise à jour des packages de notre système
 
-- Nous faisons la mise à jour des packages de notre système
 ```
 sudo yum update -y
 ```
 
-- Nous téléchargeons et faisons l'extraction de prometheus v2.33.4
-```
-curl -LO https://github.com/prometheus/prometheus/releases/download/v2.33.4/prometheus-2.33.4.linux-amd64.tar.gz
+- Téléchargement et extraction de l'archive de prometheus v3.4.2
 
-tar -xvf prometheus-2.33.4.linux-amd64.tar.gz
 ```
+curl -LO https://github.com/prometheus/prometheus/releases/download/v3.4.2/prometheus-3.4.2.linux-amd64.tar.gz
 
-- Nous renommons le dossier prometheus-2.33.4.linux-amd64
-```
-mv prometheus-2.33.4.linux-amd64 prometheus-files
+tar -xvf prometheus-3.4.2.linux-amd64.tar.gz
 ```
 
-- Nous créeons un utilisateur Prometheus, les répertoires requis et faisons de Prometheus l'utilisateur en tant que propriétaire de ces répertoires
+- Renommage du dossier **prometheus-3.4.2.linux-amd64** en **prometheus-files**
+
+```
+mv prometheus-3.4.2.linux-amd64 prometheus-files
+```
+
+- Création d'un utilisateur Prometheus, des répertoires requis et autorisation de cet utilisateur en tant que propriétaire de ces répertoires
+
 ```
 sudo useradd --no-create-home --shell /bin/false prometheus
 sudo mkdir /etc/prometheus
@@ -33,7 +30,8 @@ sudo chown prometheus:prometheus /etc/prometheus
 sudo chown prometheus:prometheus /var/lib/prometheus
 ```
 
-- Nous copieons le binaire prometheus et promtool du dossier prometheus-files vers /usr/local/bin et changeons la propriété en utilisateur prometheus
+- Copie des binaires **prometheus** et **promtool** du dossier **prometheus-files** vers **/usr/local/bin** et modification du propriétaire pour les attribuer à l'utilisateur prometheus
+
 ```
 sudo cp prometheus-files/prometheus /usr/local/bin/
 sudo cp prometheus-files/promtool /usr/local/bin/
@@ -41,15 +39,8 @@ sudo chown prometheus:prometheus /usr/local/bin/prometheus
 sudo chown prometheus:prometheus /usr/local/bin/promtool
 ```
 
-- Nous déplaçons les répertoires consoles et console_libraries de prometheus-files vers le dossier /etc/prometheus et changeons la propriété en utilisateur prometheus
-```
-sudo cp -r prometheus-files/consoles /etc/prometheus
-sudo cp -r prometheus-files/console_libraries /etc/prometheus
-sudo chown -R prometheus:prometheus /etc/prometheus/consoles
-sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
-```
+- Création du fichier de configuration de prometheus et modification du propriétaire pour les attribuer à l'utilisateur prometheus
 
-- Nous créons le fichier de configuration de prometheus et changeons la propriété en utilisateur prometheus
 ```
 sudo vi /etc/prometheus/prometheus.yml
 ```
@@ -71,7 +62,8 @@ scrape_configs:
 sudo chown prometheus:prometheus /etc/prometheus/prometheus.yml
 ```
 
-- Nous configurons un service Prometheus
+- Configuration du service Prometheus
+
 ```
 sudo vi /etc/systemd/system/prometheus.service
 ```
@@ -89,9 +81,7 @@ Type=simple
 ExecStart=/usr/local/bin/prometheus \
     --config.file /etc/prometheus/prometheus.yml \
     --storage.tsdb.path /var/lib/prometheus/ \
-    --storage.tsdb.retention.time 2d \
-    --web.console.templates=/etc/prometheus/consoles \
-    --web.console.libraries=/etc/prometheus/console_libraries
+    --storage.tsdb.retention.time 2d
 
 [Install]
 WantedBy=multi-user.target
@@ -103,15 +93,21 @@ sudo systemctl start prometheus
 sudo systemctl enable prometheus
 ```
 
-*storage.tsdb.path* indique le répertoire de stockage des données de prometheus. *config.file* indique son fichier de configuration. *storage.tsdb.retention.time* indique la durée maximale de sauvegarde des données.
+- **storage.tsdb.path** indique le répertoire de stockage des données de prometheus. 
+- **config.file** indique son fichier de configuration. 
+- **storage.tsdb.retention.time** indique la durée maximale de sauvegarde des données.
 
-- Nous vérifions l'état du service prometheus à l'aide de la commande suivante
+- Vérification de l'état du service prometheus
+
 ```
 sudo systemctl status prometheus
 ```
 
 Pour accéder à l'interface web, nous devons d'abord autoriser le port 9090 au niveau du pare-feu
+
 ```
+sudo systemctl start firewalld.service && sudo systemctl enable firewalld.service
+
 sudo firewall-cmd --permanent --add-port=9090/tcp
 sudo firewall-cmd --reload
 ```
