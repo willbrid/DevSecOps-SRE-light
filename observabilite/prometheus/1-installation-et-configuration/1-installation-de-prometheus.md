@@ -1,4 +1,4 @@
-# Installation de prometheus 3.4.2 sur Rocky linux 9
+# Installation de prometheus 3.4.2 sur le serveur monitoring de la sandbox
 
 - Mise à jour des packages de notre système
 
