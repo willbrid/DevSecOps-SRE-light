@@ -1,6 +1,6 @@
 # Mise en place de la sandbox
 
-Nous allons mettre en place deux serveurs **Redhat 9** avec **vagrant** couplé à **virtualbox 7.0** depuis une machine hôte **ubuntu 24.04**.
+Nous allons mettre en place deux serveurs **Rocky Linux 9** avec **vagrant** couplé à **virtualbox 7.0** depuis une machine hôte **ubuntu 24.04**.
 
 ```
 mkdir $HOME/homelab-prometheus && cd $HOME/homelab-prometheus
