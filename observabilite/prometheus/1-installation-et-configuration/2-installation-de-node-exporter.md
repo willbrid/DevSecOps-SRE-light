@@ -1,29 +1,34 @@
-# Installation de node-exporter sur le noeud de prometheus
--  Nous téléchargeons et faisons l'extraction de node-exporter v1.3.1
-```
-curl -LO https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz
+# Installation de node-exporter sur le serveur monitoring de la sandbox
 
-tar -xvf node_exporter-1.3.1.linux-amd64.tar.gz
-```
+-  Téléchargement et extraction de l'archive de node-exporter v1.9.1
 
-- Nous copieons le binaire node_exporter du dossier node_exporter-1.3.1.linux-amd64 vers /usr/local/bin
 ```
-sudo mv node_exporter-1.3.1.linux-amd64/node_exporter /usr/local/bin/
+curl -LO https://github.com/prometheus/node_exporter/releases/download/v1.9.1/node_exporter-1.9.1.linux-amd64.tar.gz
+
+tar -xvf node_exporter-1.9.1.linux-amd64.tar.gz
 ```
 
-- Nous créeons un utilisateur node_exporter pour exécuter le service d'exportation de nœud
+- Copie du binaire node_exporter du dossier node_exporter-1.9.1.linux-amd64 vers /usr/local/bin
+
+```
+sudo mv node_exporter-1.9.1.linux-amd64/node_exporter /usr/local/bin/
+```
+
+- Création d'un utilisateur **node_exporter** pour exécuter le service d'exporteur de nœud
+
 ```
 sudo useradd -rs /bin/false node_exporter
 ```
 
-- Nous créeons un fichier de service node_exporter sous systemd
+- Création du fichier service node_exporter
+
 ```
 sudo vi /etc/systemd/system/node_exporter.service
 ```
 
 ```
 [Unit]
-Description=Node Exporter
+Description=Node Exporter v1.9.1
 After=network.target
 
 [Service]
@@ -42,12 +47,14 @@ sudo systemctl start node_exporter
 sudo systemctl enable node_exporter
 ```
 
-- Nous vérifions le status du service node_exporter
+- Vérification du status du service node_exporter
+
 ```
 sudo systemctl status node_exporter
 ```
 
-- Nous configurons le service node_exporter en tant que cible sur le service Prometheus
+- Configuration du job associé au service node_exporter
+
 ```
 sudo vi /etc/prometheus/prometheus.yml
 ```
@@ -58,7 +65,7 @@ global:
 
 scrape_configs:
   ...
-  - job_name: 'node_exporter_metrics'
+  - job_name: 'node_exporter_monitoring'
     scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9100']
@@ -68,4 +75,4 @@ scrape_configs:
 sudo systemctl restart prometheus
 ```
 
-Maintenant, si nous vérifions la cible dans l'interface utilisateur Web prometheus (http://prometheus-ip:9090/targets), nous pourrons voir le statut du node_exporter_metrics à *UP*.
+Maintenant, si nous vérifions la cible dans l'interface utilisateur Web prometheus (http://prometheus-ip:9090/targets), nous pourrons voir le statut du node_exporter_monitoring à **UP**.
