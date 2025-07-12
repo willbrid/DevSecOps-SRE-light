@@ -93,9 +93,9 @@ sudo systemctl start prometheus
 sudo systemctl enable prometheus
 ```
 
-- **storage.tsdb.path** indique le répertoire de stockage des données de prometheus. 
-- **config.file** indique son fichier de configuration. 
-- **storage.tsdb.retention.time** indique la durée maximale de sauvegarde des données.
+--- **storage.tsdb.path** indique le répertoire de stockage des données de prometheus. <br>
+--- **config.file** indique son fichier de configuration. <br>
+--- **storage.tsdb.retention.time** indique la durée maximale de sauvegarde des données.
 
 - Vérification de l'état du service prometheus
 
