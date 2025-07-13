@@ -1,6 +1,6 @@
 # Installation de node-exporter sur le serveur monitoring de la sandbox
 
-- Création d'un utilisateur **node_exporter** pour exécuter le service d'exporteur de nœud
+- Création d'un utilisateur **node_exporter** pour exécuter le service de collecteur de nœud
 
 ```
 sudo useradd -rs /bin/false node_exporter

@@ -1,6 +1,6 @@
 # Types de métriques
 
-Les exportateurs Prometheus utilisent une poignée de types de métriques pour représenter différents types de données.<br>
+Les **collecteurs** Prometheus utilisent une poignée de types de métriques pour représenter différents types de données. <br>
 Accédons au navigateur d'expressions Prometheus pour notre serveur Prometheus dans un navigateur Web : **http://192.168.56.230:9090** .
 
 - Interrogeons une plage de données sur un compteur. Notons que les valeurs ne diminuent jamais :
