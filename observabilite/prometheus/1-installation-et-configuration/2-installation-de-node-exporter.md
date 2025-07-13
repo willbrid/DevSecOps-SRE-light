@@ -1,5 +1,11 @@
 # Installation de node-exporter sur le serveur monitoring de la sandbox
 
+- Création d'un utilisateur **node_exporter** pour exécuter le service d'exporteur de nœud
+
+```
+sudo useradd -rs /bin/false node_exporter
+```
+
 -  Téléchargement et extraction de l'archive de node-exporter v1.9.1
 
 ```
@@ -14,10 +20,8 @@ tar -xvf node_exporter-1.9.1.linux-amd64.tar.gz
 sudo mv node_exporter-1.9.1.linux-amd64/node_exporter /usr/local/bin/
 ```
 
-- Création d'un utilisateur **node_exporter** pour exécuter le service d'exporteur de nœud
-
 ```
-sudo useradd -rs /bin/false node_exporter
+sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
 ```
 
 - Création du fichier service node_exporter
