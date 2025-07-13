@@ -1,8 +1,8 @@
 # Monitoring des conteneurs Docker
 
-### Installation et onfiguration de cAdvisor sur le serveur server2 de la sandbox pour exposer les métriques des conteneurs
+### Installation et configuration de cAdvisor sur le serveur server2 de la sandbox pour exposer les métriques des conteneurs
 
-**cAdvisor** (abréviation de container Advisor) analyse et expose l'utilisation des ressources et des données de performances des conteneurs en cours d'exécution. **cAdvisor** expose les métriques prometheus prêtes à l'emploi.
+**cAdvisor** (abréviation de **container Advisor**) analyse et expose l'utilisation des ressources et des données de performances des conteneurs en cours d'exécution. **cAdvisor** expose les métriques prometheus prêtes à l'emploi.
 
 - Exécutons cadvisor v0.52.1 dans un conteneur
 
@@ -29,7 +29,7 @@ sudo firewall-cmd --reload
 sudo docker run -d --name busybox --restart always library/busybox:1.37.0 /bin/sh -c "while true; do ping -c 1 127.0.0.1; sleep 5; done"
 ```
 
-### Configuration de Prometheus sur le serveur monitoring de la sandbox pour récupérer les données métriques du conteneur Docker de cAdvisor
+### Configuration de Prometheus sur le serveur monitoring de la sandbox pour récupérer les données métriques de tous les conteneurs Docker
 
 Nous éditons le fichier de configuration de prometheus.
 
