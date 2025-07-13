@@ -93,7 +93,7 @@ sudo vi /etc/prometheus/prometheus.yml
 - job_name: 'docker_daemon_server2'
   scrape_interval: 5s
   static_configs:
-  - targets: ['192.168.56.232:9323']
+    - targets: ['192.168.56.232:9323']
 ...
 ```
 
