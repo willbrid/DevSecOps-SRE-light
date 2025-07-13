@@ -33,7 +33,7 @@ cd haproxy-2.8.9
 make TARGET=linux-glibc USE_LUA=1 USE_OPENSSL=1 USE_PCRE=1 USE_ZLIB=1 USE_SYSTEMD=1 USE_PROMEX=1
 ```
 
-L'option **USE_PROMEX** permet d'activer la fonctionnalité d'exporteur prometheus
+L'option **USE_PROMEX** permet d'activer la fonctionnalité de **collecteur** prometheus
 
 - Installons HAProxy
 
