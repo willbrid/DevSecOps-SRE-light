@@ -1,8 +1,8 @@
 # Mise en place du mysql exporter dans prometheus
 
-### Installation de nos bases de données sur le serveur server1 de la sandbox
+### Installation de MARIADB sur le serveur server1 de la sandbox
 
-Nous utiliserons une image docker **mariadb:10.5.17** de mariadb pour monter une base de données.
+Nous utiliserons une image docker **mariadb:10.5.17** pour monter une instance MARIADB.
 
 - Installons notre gestionnaire de conteneur **podman** via le package **container-tools**
 
