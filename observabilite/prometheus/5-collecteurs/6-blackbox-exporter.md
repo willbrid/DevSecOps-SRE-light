@@ -78,7 +78,7 @@ sudo systemctl start blackbox_exporter
 sudo systemctl status blackbox_exporter
 ```
 
-### Configuration de Prometheus pour utiliser blackbox_exporter
+### Configuration de Prometheus sur le serveur monitoring de la sandbox pour utiliser blackbox_exporter
 
 Nous allons monitorer le port d'écoute **22** des services ssh des serveurs **server1** et **server2** de la sandbox
 
@@ -90,20 +90,22 @@ sudo vi /etc/prometheus/prometheus.yml
 
 ```
 ...
-- job_name: 'blackbox_exporter_monitoring'
-  metrics_path: /probe
-  scrape_interval: 5s
-  params:
-    module: [tcp_connect]
-  static_configs:
-    - targets: ['192.168.56.231:22', '192.168.56.232:22']
-  relabel_configs:
-    - source_labels: [__address__]
-      target_label: __param_target
-    - source_labels: [__param_target]
-      target_label: instance
-    - target_label: __address__
-      replacement: localhost:9115  # Ici nous avons l'adresse ip (localhost) du serveur contenant blackbox exporter et son port 9115
+scrape_configs:
+  ...
+  - job_name: 'blackbox_exporter_monitoring'
+    metrics_path: /probe
+    scrape_interval: 5s
+    params:
+      module: [tcp_connect]
+    static_configs:
+      - targets: ['192.168.56.231:22', '192.168.56.232:22']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # Ici nous avons l'adresse ip (localhost) du serveur contenant blackbox exporter et son port 9115
 ... 
 ```
 
