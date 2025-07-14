@@ -1,14 +1,13 @@
-# Installation de grafana 10.4.2 sur Rocky linux 8
+# Installation de grafana oss 12.0.2
 
 Dans ce tutoriel, nous allons installer grafana et ajouter la source de données de **prometheus**.
 
-### Installation de grafana
+### Installation de grafana oss sur le serveur monitoring de la sandbox
 
 - Nous téléchargeons et installons le binaire de grafana
 
 ```
-wget https://dl.grafana.com/oss/release/grafana-10.4.2-1.x86_64.rpm
-sudo yum install grafana-10.4.2-1.x86_64.rpm
+sudo yum install -y https://dl.grafana.com/oss/release/grafana-12.0.2-1.x86_64.rpm
 ```
 
 - Nous activons et démarrons grafana
@@ -25,7 +24,20 @@ sudo firewall-cmd --permanent --add-port=3000/tcp
 sudo firewall-cmd --reload
 ```
 
-- Nous accédons à l'interface ui via http://192.168.56.240:3000
+- Nous accédons à l'interface ui via **http://192.168.56.230:3000**.
+
+Paramètre d'authentification par défaut :
+
+```
+username : admin
+password : admin
+```
+
+Mot de passe configuration pour ce homelab
+
+```
+password : admin2025
+```
 
 ### Ajout de la source Prometheus à Grafana
 
@@ -39,3 +51,5 @@ Nous pouvons trouver tous les tableaux de bord communautaires partagés à parti
 - Nous sélectionnons l'option d'importation.
 - Voici les options d'importation prises en charge. Nous pouvons ajouter l'ID de tableau de bord que nous obtenons sur le site Web de grafana, télécharger le json ou coller le json dans la zone de texte.
 - Nous ajoutons un nom de modèle, une source Prometheus, un dossier de tableau de bord de destination et cliquez sur *importer*.
+
+**Référence** : https://grafana.com/grafana/download?edition=oss
