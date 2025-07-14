@@ -1,75 +1,56 @@
 # Mise en place du blackbox exporter dans prometheus
-## Installation et configuration de blackbox exporter
-Sur une machine virtuelle où est installé le service prometheus, nous procédons comme suit.
-<br>
 
-- créeons un utilisateur **blackbox_exporter** 
+### Installation et configuration de blackbox exporter sur le serveur monitoring de la sandbox
+
+- Créeons un utilisateur **blackbox_exporter** 
+
 ```
 sudo useradd -M -r -s /bin/false blackbox_exporter
 ```
 
-- téléchargeons et installons le binaire **blackbox_exporter** version 0.22
+- Téléchargeons et installons le binaire **blackbox_exporter** version 0.27.0
+
 ```
-wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.22.0/blackbox_exporter-0.22.0.linux-amd64.tar.gz
+curl -LO https://github.com/prometheus/blackbox_exporter/releases/download/v0.27.0/blackbox_exporter-0.27.0.linux-amd64.tar.gz
 ```
 
 ```
-tar xvfz blackbox_exporter-0.22.0.linux-amd64.tar.gz
+tar xvfz blackbox_exporter-0.27.0.linux-amd64.tar.gz
 ```
 
 ```
-sudo cp blackbox_exporter-0.22.0.linux-amd64/blackbox_exporter /usr/local/bin/
+sudo mv blackbox_exporter-0.27.0.linux-amd64/blackbox_exporter /usr/local/bin/
 ```
 
 ```
 sudo chown blackbox_exporter:blackbox_exporter /usr/local/bin/blackbox_exporter
 ```
 
-- créeons un fichier de configuration *blackbox.yml*
+- Créeons un fichier de configuration *blackbox.yml*
+
 ```
 sudo mkdir -p /etc/blackbox_exporter
 ```
 
 ```
-sudo vi /etc/blackbox_exporter/blackbox.yml
-```
-
-```
-modules:
-  tcp_connect:
-    prober: tcp
-    timeout: 5s
-  http_2xx:
-    prober: http
-    timeout: 5s
-    http:
-      valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
-      valid_status_codes: []
-      method: GET
-      follow_redirects: false
-      tls_config:
-        insecure_skip_verify: false
-      preferred_ip_protocol: "ip4"
-      ip_protocol_fallback: false    
+sudo mv blackbox_exporter-0.27.0.linux-amd64/blackbox.yml /etc/blackbox_exporter/
 ```
 
 ```
 sudo chown -R blackbox_exporter:blackbox_exporter /etc/blackbox_exporter
 ```
 
-Dans cette exemple, nous définissons deux modules dans le fichier de configuration : <br/>
---- un module **tcp_connect** avec un timeout de 5 secondes pour les requêtes tcp <br/>
---- un module **http_2xx** avec un timeout de 5 secondes pour les requêtes http; nous configurons deux versions du protocol http (http1 et http2); nous nous intéressons uniquement aux requêtes GET avec pour statut 200; nous désactivons le suivi de redirection, la vérification tls et l'utilisation de l'IPv6.
-<br/>
+Le fichier de configuration par défaut du collecteur **Blackbox** contient déjà un ensemble de modules préconfigurés : **http_2xx**, **http_post_2xx**, **tcp_connect**, **pop3s_banner**, **grpc**, **grpc_plain**, **ssh_banner**, **ssh_banner_extract**, **irc_banner**, **icmp**, **icmp_ttl5**.
 
-- configurons un service systemd pour blackbox_exporter
+- Configurons un service systemd pour blackbox_exporter
+
 ```
 sudo vi /etc/systemd/system/blackbox_exporter.service
 ```
 
 ```
 [Unit]
-Description=Blackbox Exporter
+Description=Blackbox Exporter 0.27.0
 Wants=network-online.target
 After=network-online.target
 
@@ -83,7 +64,8 @@ ExecStart=/bin/sh -c '/usr/local/bin/blackbox_exporter --config.file /etc/blackb
 WantedBy=multi-user.target
 ```
 
-- activons et démarrons le service blackbox_exporter
+- Activons et démarrons le service blackbox_exporter
+
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable blackbox_exporter
@@ -91,38 +73,37 @@ sudo systemctl start blackbox_exporter
 ```
 
 - Assurons-nous que le service blackbox_exporter fonctionne
+
 ```
 sudo systemctl status blackbox_exporter
 ```
 
-## Configuration de Prometheus pour utiliser blackbox_exporter
+### Configuration de Prometheus pour utiliser blackbox_exporter
 
-Nous supposerons ici que nous souhaiterons monitorer l'api : *http://www.example.com/api/healthcheck* <br/>
+Nous allons monitorer le port d'écoute **22** des services ssh des serveurs **server1** et **server2** de la sandbox
+
 Nous éditons le fichier de configuration de prometheus :
+
 ```
 sudo vi /etc/prometheus/prometheus.yml
 ```
 
 ```
-global:
-  scrape_interval: 10s
-
-scrape_configs:
-  ...
-  - job_name: 'blackbox'
-    metrics_path: /probe
-    scrape_interval: 5s
-    params:
-      module: [http_2xx]
-    static_configs:
-      - targets: ['http://www.example.com/api/healthcheck']
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: localhost:9115  # Ici nous avons l'adresse ip (localhost) du serveur contenant blackbox exporter et son port 9115
+...
+- job_name: 'blackbox_exporter_monitoring'
+  metrics_path: /probe
+  scrape_interval: 5s
+  params:
+    module: [tcp_connect]
+  static_configs:
+    - targets: ['192.168.56.231:22', '192.168.56.232:22']
+  relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: localhost:9115  # Ici nous avons l'adresse ip (localhost) du serveur contenant blackbox exporter et son port 9115
 ... 
 ```
 
@@ -130,9 +111,6 @@ scrape_configs:
 sudo systemctl restart prometheus
 ```
 
-Vérifions que Prometheus est en mesure d'atteindre blackbox_exporter et récupérer les kpi. Accédons à Prometheus dans un navigateur Web à l'adresse :
-```
-http://<IP_SERVEUR_PROMETHEUS>:9090.
-```
+Vérifions que Prometheus est en mesure d'atteindre blackbox_exporter et récupérer les kpi. Accédons à Prometheus dans un navigateur Web à l'adresse : **http://192.168.56.230:9090** .
 
-Cliquons sur le menu **Graph**, entrons le mot clé **probe_http_status_code** et vérifions que les résultats affichent un statut **200**
+Cliquons sur le menu **Graph**, entrons le mot clé **probe_success** et vérifions que les résultats affichent un statut **200**
