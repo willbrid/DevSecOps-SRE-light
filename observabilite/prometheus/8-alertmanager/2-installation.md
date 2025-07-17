@@ -134,4 +134,4 @@ sudo systemctl restart prometheus
 
 Vérifions que Prometheus est en mesure d'atteindre Alertmanager. Accédons à Prometheus dans un navigateur Web à l'adresse : **http://192.168.56.230:9090** .
 
-Cliquons sur le menu **Status > Runtime & Build Information** et vérifions que notre instance Alertmanager apparaît dans la section *Alertmanagers*.
+Cliquons sur le menu **Status > alertmanager-discovery** et vérifions que notre instance Alertmanager apparaît dans la section **Active Alertmanagers**.
