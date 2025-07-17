@@ -1,24 +1,27 @@
 # Installation d'Alertmanager
-## Installation et configuration d'Alertmanager
 
-Sur notre serveur rocky linux où est installé prometheus, nous installerons *Alertmanager v0.24.0*. Nous procédons comme suit.
+### Installation et configuration d'Alertmanager sur le serveur monitoring de la sandbox
 
-- créeons un utilisateur **alertmanager**
+Nous installerons *Alertmanager v0.28.1* en procédant comme suit.
+
+- Créons un utilisateur **alertmanager**
+
 ```
 sudo useradd -M -r -s /bin/false alertmanager
 ```
 
-- téléchargeons et installons les binaires **alertmanager** et son fichier de configuration
+- Téléchargeons et installons les binaires **alertmanager** et son fichier de configuration
+
 ```
-wget https://github.com/prometheus/alertmanager/releases/download/v0.24.0/alertmanager-0.24.0.linux-amd64.tar.gz
+curl -LO https://github.com/prometheus/alertmanager/releases/download/v0.28.1/alertmanager-0.28.1.linux-amd64.tar.gz
 ```
 
 ```
-tar xvfz alertmanager-0.24.0.linux-amd64.tar.gz
+tar xvfz alertmanager-0.28.1.linux-amd64.tar.gz
 ```
 
 ```
-sudo cp alertmanager-0.24.0.linux-amd64/{alertmanager,amtool} /usr/local/bin/
+sudo mv alertmanager-0.28.1.linux-amd64/{alertmanager,amtool} /usr/local/bin/
 ```
 
 ```
@@ -30,23 +33,25 @@ sudo mkdir -p /etc/alertmanager
 ```
 
 ```
-sudo cp alertmanager-0.24.0.linux-amd64/alertmanager.yml /etc/alertmanager
+sudo mv alertmanager-0.28.1.linux-amd64/alertmanager.yml /etc/alertmanager
 ```
 
 ```
 sudo chown -R alertmanager:alertmanager /etc/alertmanager
 ```
 
-- Créeons un répertoire de données pour alertmanager
+- Créons un répertoire de données pour alertmanager
+
 ```
 sudo mkdir -p /var/lib/alertmanager
 ```
 
 ```
-sudo chown alertmanager:alertmanager /var/lib/alertmanager
+sudo chown -R alertmanager:alertmanager /var/lib/alertmanager
 ```
 
-- Créeons un fichier de configuration pour amtool
+- Créons un fichier de configuration pour amtool
+
 ```
 sudo mkdir -p /etc/amtool
 ```
@@ -59,14 +64,15 @@ sudo vi /etc/amtool/config.yml
 alertmanager.url: http://localhost:9093
 ```
 
-- configurons un service systemd pour alertmanager
+- Configurons un service systemd pour alertmanager
+
 ```
 sudo vi /etc/systemd/system/alertmanager.service
 ```
 
 ```
 [Unit]
-Description=Prometheus Alertmanager
+Description=Prometheus Alertmanager 0.28.1
 Wants=network-online.target
 After=network-online.target
 
@@ -74,39 +80,41 @@ After=network-online.target
 User=alertmanager
 Group=alertmanager
 Type=simple
-ExecStart=/usr/local/bin/alertmanager \
- --config.file /etc/alertmanager/alertmanager.yml \
- --storage.path /var/lib/alertmanager/
+ExecStart=/bin/sh -c '/usr/local/bin/alertmanager --config.file /etc/alertmanager/alertmanager.yml --storage.path="/var/lib/alertmanager"'
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-- activons et démarrons le service alertmanager
+- Activons et démarrons le service alertmanager
+
 ```
+sudo systemctl daemon-reload
 sudo systemctl enable alertmanager
 sudo systemctl start alertmanager
 ```
 
 - Assurons-nous que le service alertmanager fonctionne
+
 ```
 sudo systemctl status alertmanager
-curl localhost:9093
+
+curl -v localhost:9093
 ```
 
-Nous pouvons également accéder à Alertmanager dans un navigateur Web à l'adresse :
-```
-http://<IP_SERVEUR_PROMETHEUS>:9093.
-```
+Nous pouvons également accéder à Alertmanager dans un navigateur Web à l'adresse : **http://192.168.56.230:9093** (le port 9093 doit être autorisé au niveau firewall).
+
 
 - Vérifions qu'amtool est capable de se connecter à Alertmanager et de récupérer la configuration actuelle
+
 ```
 amtool config show
 ```
 
-## Configuration de Prometheus pour se connecter à Alertmanager
+### Configuration de Prometheus sur le serveur monitoring de la sandbox pour se connecter à Alertmanager
 
-Nous éditons le fichier de configuration de prometheus :
+Editons le fichier de configuration de prometheus.
+
 ```
 sudo vi /etc/prometheus/prometheus.yml
 ```
@@ -114,9 +122,9 @@ sudo vi /etc/prometheus/prometheus.yml
 ```
 ...
 alerting:
- alertmanagers:
- - static_configs:
-   - targets: ["localhost:9093"]
+  alertmanagers:
+    - static_configs:
+      - targets: ["localhost:9093"]
 ... 
 ```
 
@@ -124,9 +132,6 @@ alerting:
 sudo systemctl restart prometheus
 ```
 
-Vérifions que Prometheus est en mesure d'atteindre Alertmanager. Accédons à Prometheus dans un navigateur Web à l'adresse :
-```
-http://<IP_SERVEUR_PROMETHEUS>:9090.
-```
+Vérifions que Prometheus est en mesure d'atteindre Alertmanager. Accédons à Prometheus dans un navigateur Web à l'adresse : **http://192.168.56.230:9090** .
 
 Cliquons sur le menu **Status > Runtime & Build Information** et vérifions que notre instance Alertmanager apparaît dans la section *Alertmanagers*.
