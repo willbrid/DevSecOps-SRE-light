@@ -102,10 +102,16 @@ sudo systemctl status alertmanager
 curl -v localhost:9093
 ```
 
-Nous pouvons également accéder à Alertmanager dans un navigateur Web à l'adresse : **http://192.168.56.230:9093** (le port 9093 doit être autorisé au niveau firewall).
+Pour accéder à alertmanager depuis l'extérieur du serveur, nous devons d'abord autoriser le port 9093 au niveau du pare-feu
 
+```
+sudo firewall-cmd --permanent --add-port=9093/tcp
+sudo firewall-cmd --reload
+```
 
-- Vérifions qu'amtool est capable de se connecter à Alertmanager et de récupérer la configuration actuelle
+Nous pouvons ainsi accéder à alertmanager dans un navigateur Web à l'adresse : **http://192.168.56.230:9093**.
+
+- Vérifions qu'amtool est capable de se connecter à alertmanager et de récupérer la configuration actuelle
 
 ```
 amtool config show
