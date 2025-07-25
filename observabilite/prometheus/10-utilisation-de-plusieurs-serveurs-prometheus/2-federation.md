@@ -18,11 +18,11 @@ La fédération peut être configurée en configurant un serveur prometheus pour
 - Affiner les données de séries chronologiques que nous récupérons avec le paramètre **match[]**
 - Faire correspondre les noms et/ou les étiquettes des métriques pour récupérer un sous-ensemble des données.
 
-### Configuration
+### Configuration d'un service prometheus sur le serveur federating de la sandbox
 
-Nous supposons que nous avons déjà installé et configuré prometheus sur un autre serveur qui sera le fédérateur.<br>
+Nous pouvons utiliser le lien [installation prometheus](../1-installation-et-configuration/1-installation-de-prometheus.md) pour configurer prometheus sur le serveur **federating** .
 
-- Modifions la configuration Prometheus sur notre serveur Prometheus fédérateur en ajoutant le endpoint **/federate** sur notre premier serveur Prometheus en tant que nouvelle cible de récupération.
+- Modifions la configuration prometheus sur notre serveur **federating** pour collecter les métriques sur le serveur prometheus **monitoring**
 
 ```
 sudo vi /etc/prometheus/prometheus.yml
@@ -31,32 +31,31 @@ sudo vi /etc/prometheus/prometheus.yml
 ```
 scrape_configs:
 ...
-- job_name: 'federate'
-  scrape_interval: 15s
-  honor_labels: true
-  metrics_path: '/federate'
-  params:
-    'match[]':
-      - '{job!~"prometheus"}'
-  static_configs:
-  - targets:
-    - '<IP_SERVEUR_PROMETHEUS>:9090'
+  - job_name: 'federate'
+    scrape_interval: 15s
+    honor_labels: true
+    metrics_path: '/federate'
+    params:
+      'match[]':
+          - '{job="prometheus"}'
+          - '{__name__=~"job:.*"}'
+    static_configs:
+      - targets:
+        - '192.168.56.230:9090'
 ```
 
 ```
 sudo systemctl restart prometheus
 ```
 
-- Accédons à notre serveur Prometheus fédérateur dans un navigateur à l'adresse
+- Accédons à notre serveur Prometheus fédérateur dans un navigateur à l'adresse : **http://192.168.56.233:9090** .
 
-```
-http://<IP_SERVEUR_PROMETHEUS_FEDERATEUR>:9090
-```
-
-Exécutons une requête pour extraire des données sur nos jobs
+Exécutons ces requêtes pour extraire des données sur nos jobs
 
 ```
 up
+
+prometheus_http_requests_total
 ```
 
 Nous devrions voir les données sur les jobs exécutés par notre premier serveur Prometheus.
