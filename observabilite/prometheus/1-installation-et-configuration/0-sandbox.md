@@ -34,7 +34,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   SERVERS = [
     { hostname: "monitoring", ip: "192.168.56.230", vcpu: 2, mem: 2048 },
     { hostname: "server1", ip: "192.168.56.231", vcpu: 1, mem: 1024 },
-    { hostname: "server2", ip: "192.168.56.232", vcpu: 1, mem: 1024 }
+    { hostname: "server2", ip: "192.168.56.232", vcpu: 1, mem: 1024 },
+    { hostname: "federating", ip: "192.168.56.233", vcpu: 1, mem: 1024 }
   ]
 
   SERVERS.each do |server|
