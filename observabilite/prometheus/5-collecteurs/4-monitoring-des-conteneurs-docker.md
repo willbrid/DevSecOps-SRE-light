@@ -54,7 +54,7 @@ sudo systemctl restart prometheus
 
 Nous utilisons le navigateur d'expressions pour vérifier que nous pouvons voir les métriques de conteneurs docker du serveur **server2** dans prometheus en accédant au lien : **http://192.168.56.230:9090** .
 
-Et en saisissant cette requête pour afficher quelques données métriques de conteneurs docker (dont le nom contient *web*) :
+Et en saisissant cette requête pour afficher quelques données métriques de conteneurs docker (dont le nom contient par exemple **busybox**) :
 
 ```
 container_fs_usage_bytes{name="busybox"}
