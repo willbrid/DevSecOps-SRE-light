@@ -24,7 +24,7 @@ sudo loginctl enable-linger vagrant
 podman run -d --name cadvisor -p 9080:8080 --volume=/:/rootfs:ro --volume=/run/user/1000:/run/user/1000:ro --volume=/dev/disk/:/dev/disk:ro --volume=/home/vagrant/.local/share/containers:/var/lib/containers:ro --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --volume=/etc/machine-id:/etc/machine-id:ro --privileged=true gcr.io/cadvisor/cadvisor:v0.52.1 --podman="unix:///run/user/1000/podman/podman.sock"
 ```
 
-**NB:** 1000 est le uid de l'utilisateur vagrant.
+**NB:** **1000** est l'uid de l'utilisateur vagrant.
 
 - Vérifions que nous pouvons interroger cAdvisor pour les métriques
 
