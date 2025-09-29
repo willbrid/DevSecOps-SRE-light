@@ -80,7 +80,7 @@ podman container run -d \
 Nous pouvons vérifier notre installation avec les ports en écoute (**9092** et **9093**) :
 
 ```
-podman containe ls
+podman container ls
 ```
 
 ```
