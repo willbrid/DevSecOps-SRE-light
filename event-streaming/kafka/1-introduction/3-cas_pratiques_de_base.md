@@ -110,3 +110,29 @@ L'option **--workdir** permet de se placer immédiatement dans le repertoire des
 ```
 ./kafka-topics.sh --describe --topic notifications --bootstrap-server localhost:9092
 ```
+
+### Ecriture de quelques événements dans le sujet
+
+Dans la même session de terminal, à l'intérieur du conteneur ouvert, utilisons le script **kafka-console-producer.sh** pour produire des événements. Une fois la saisie terminée, il suffit d'appuyer sur Ctrl+C pour quitter l'invite de commande du producteur.
+
+```
+./kafka-console-producer.sh --topic notifications --bootstrap-server localhost:9092
+```
+
+```
+> notification for event 1
+> notification for event 2
+> notification for event 3
+```
+
+### Lecture de quelques événements dans le sujet
+
+Dans une autre session vagrant de terminal, accédons à notre conteneur **broker** et démarrons notre consommateur sur notre sujet.
+
+```
+podman container exec --workdir /opt/kafka/bin/ -it broker /bin/bash
+```
+
+```
+./kafka-console-consumer.sh --topic notifications --from-beginning --bootstrap-server localhost:9092
+```
