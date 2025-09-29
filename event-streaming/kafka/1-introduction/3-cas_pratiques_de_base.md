@@ -86,3 +86,27 @@ podman containe ls
 ```
 ss -tupln | grep 909
 ```
+
+### Création d'un nouveau sujet
+
+- Créer un sujet
+
+Supposons que nous souhaitions créer un topic nommé **notifications**, destiné à stocker les événements du même nom. Pour cela, nous utiliserons le script **kafka-topics.sh**, disponible dans le conteneur Kafka.
+
+Dans une session vagrant de terminal, accédons à notre conteneur **broker** et créeons notre sujet.
+
+```
+podman container exec --workdir /opt/kafka/bin/ -it broker /bin/bash
+```
+
+L'option **--workdir** permet de se placer immédiatement dans le repertoire des scripts (**/opt/kafka/bin/**) de kafka à l'intérieur du conteneur.
+
+```
+./kafka-topics.sh --create --topic notifications --bootstrap-server localhost:9092
+```
+
+- Afficher les détails de notre sujet **notifications**
+
+```
+./kafka-topics.sh --describe --topic notifications --bootstrap-server localhost:9092
+```
