@@ -71,8 +71,8 @@ podman container run -d \
 `KAFKA_CONTROLLER_LISTENER_NAMES`|Définit une liste séparée par des virgules des noms d'écoute utilisés par les contrôleurs
 `KAFKA_LISTENER_SECURITY_PROTOCOL_MAP`|Associe chaque listener à un protocole de sécurité
 `KAFKA_CONTROLLER_QUORUM_VOTERS`|Définit les membres votants du quorum de contrôle : `nodeId@host:port`
-`KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR`|Définit le facteur de réplication du topic des offsets
-`KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR`|Définit le facteur de réplication du topic des transactions
+`KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR`|Définit le facteur de réplication du sujet des offsets
+`KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR`|Définit le facteur de réplication du sujet des transactions
 `KAFKA_TRANSACTION_STATE_LOG_MIN_ISR`|Définit le nombre minimum d'instances qui doivent accuser réception d'une écriture dans un sujet de transaction pour être considérée comme réussie
 `KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS`|Définit la durée pendant laquelle le coordinateur du groupe attendra que davantage de consommateurs rejoignent un nouveau groupe avant d'effectuer le premier rééquilibrage.
 `KAFKA_NUM_PARTITIONS`|Définit le nombre par défaut de partitions de logs par sujet
@@ -91,7 +91,7 @@ ss -tupln | grep 909
 
 - Créer un sujet
 
-Supposons que nous souhaitions créer un topic nommé **notifications**, destiné à stocker les événements du même nom. Pour cela, nous utiliserons le script **kafka-topics.sh**, disponible dans le conteneur Kafka.
+Supposons que nous souhaitions créer un sujet nommé **notifications**, destiné à stocker les événements du même nom. Pour cela, nous utiliserons le script **kafka-topics.sh**, disponible dans le conteneur Kafka.
 
 Dans une session vagrant de terminal, accédons à notre conteneur **broker** et créeons notre sujet.
 
