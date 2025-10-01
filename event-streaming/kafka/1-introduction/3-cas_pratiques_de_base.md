@@ -136,3 +136,131 @@ podman container exec --workdir /opt/kafka/bin/ -it broker /bin/bash
 ```
 ./kafka-console-consumer.sh --topic notifications --from-beginning --bootstrap-server localhost:9092
 ```
+
+### Kafka Connect : synchronisation avec des fichiers
+
+**Kafka Connect** nous permet d'ingérer en continu des données provenant de **systèmes externes** vers **Kafka**, et inversement. Cet outil extensible exécute des **connecteurs** implémentant la logique personnalisée d'interaction avec un système externe.
+
+Pour ce cas pratique, nous verrons comment exécuter **Kafka Connect** avec des **connecteurs simples** qui importent des données d'un **fichier** vers un **sujet Kafka** et exportent des données d'un **sujet Kafka** vers un **fichier**.
+
+- Configuration du plugin **connect-file-4.1.0.jar**
+
+Depuis notre serveur broker, connectons-nous au conteneur broker
+
+```
+podman container exec --workdir /opt/kafka/bin/ -it broker /bin/bash
+```
+
+Verification de la présence du plugin **connect-file-4.1.0.jar** dans le repertoire de plugins **/opt/kafka/libs/**
+
+```
+ls -l /opt/kafka/libs/ | grep connect-file-4.1.0.jar
+```
+
+Configuration du path du plugin **connect-file-4.1.0.jar** dans le fichier **/opt/kafka/config/connect-standalone.properties**
+
+```
+echo "plugin.path=/opt/kafka/libs/connect-file-4.1.0.jar" >> /opt/kafka/config/connect-standalone.properties
+```
+
+- Création du fichier source de synchronisation **/home/appuser/test.txt** avec un contenu
+
+```
+echo -e "foo\nbar" > /home/appuser/test.txt
+```
+
+- Configuration du fichier **/opt/kafka/config/connect-file-source.properties** du connecteur source
+
+```
+vi /opt/kafka/config/connect-file-source.properties
+```
+
+```
+...
+name=local-file-source
+connector.class=FileStreamSource
+tasks.max=1
+file=/home/appuser/test.txt
+topic=connect-test
+...
+```
+
+|Variable|Description|
+|--------|-----------|
+`name`|Définit le nom du connecteur
+`connector.class`|Définit la classe de connecteur à instancier
+`tasks.max`|Définit le nombre maximum de tâches que le connecteur peut exécuter en parallèle
+`file`|Définit le fichier source de synchronisation
+`topic`|Définit le sujet de sychronisation
+
+- Configuration du fichier **/opt/kafka/config/connect-file-sink.properties** du connecteur récepteur
+
+```
+vi /opt/kafka/config/connect-file-sink.properties
+```
+
+```
+...
+name=local-file-sink
+connector.class=FileStreamSink
+tasks.max=1
+file=/home/appuser/test.sink.txt
+topics=connect-test
+...
+```
+
+- Démarrage du processus de synchronisation
+
+```
+./connect-standalone.sh /opt/kafka/config/connect-standalone.properties /opt/kafka/config/connect-file-source.properties /opt/kafka/config/connect-file-sink.properties
+```
+
+Nous fournissons trois fichiers de configuration en tant que paramètres. Le premier correspond toujours à la configuration du processus **Kafka Connect**, contenant les paramètres communs tels que les brokers Kafka auxquels se connecter et le format de sérialisation des données. Les fichiers de configuration restants spécifient chacun un connecteur à créer. Ces fichiers incluent un nom de connecteur unique, la classe de connecteur à instancier, un fichier et le sujet de synchronisation.
+
+Le premier est un **connecteur source** qui lit les lignes du fichier d'entrée **/home/appuser/test.txt** et les envoie chacune vers un sujet Kafka (**connect-test**) ; le second est un **connecteur récepteur** qui lit les messages d'un sujet Kafka (**connect-test**) et les envoie chacun sous forme de ligne dans le fichier de sortie **/home/appuser/test.sink.txt** .
+
+- Vérification du fichier de sortie **/home/appuser/test.sink.txt**
+
+Nous pouvons vérifier que les données ont été transmises tout au long du pipeline en examinant le contenu du fichier de sortie. <br>
+Pour cela dans une autre session vagrant de terminal, accédons à notre conteneur **broker** et vérifions la présence du fichier **/home/appuser/test.sink.txt** et son contenu.
+
+```
+podman container exec --workdir /opt/kafka/bin/ -it broker /bin/bash
+```
+
+```
+ls -l /home/appuser/test.sink.txt
+
+more /home/appuser/test.sink.txt
+```
+
+- Connexion au sujet **connect-test** avec un consommateur
+
+Dans une autre session vagrant de terminal, accédons à notre conteneur **broker** et démarrons notre consommateur sur le sujet **connect-test**.
+
+```
+podman container exec --workdir /opt/kafka/bin/ -it broker /bin/bash
+```
+
+```
+./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-test --from-beginning
+```
+
+Nous aurons comme sortie
+
+```
+{"schema":{"type":"string","optional":false},"payload":"foo"}
+{"schema":{"type":"string","optional":false},"payload":"bar"}
+```
+
+Dans une autre session vagrant de terminal, accédons à notre conteneur **broker** et ajoutons une nouvelle ligne dans le fichier source **/home/appuser/test.txt**.
+
+```
+podman container exec --workdir /opt/kafka/bin/ -it broker /bin/bash
+```
+
+```
+echo "new line" >> /home/appuser/test.txt
+```
+
+Nous constaterons que la ligne apparaît dans la sortie console du consommateur et dans le fichier récepteur **/home/appuser/test.sink.txt**.
