@@ -23,3 +23,59 @@ Seuls les messages validés sont transmis au consommateur. Ainsi, le consommateu
 Kafka garantit qu'un message validé ne sera pas perdu, tant qu'au moins un réplica synchronisé est actif à tout moment.
 
 Kafka reste disponible en cas de panne de nœud après une courte période de basculement, mais peut ne pas l'être en présence de partitions réseau.
+
+### Journaux répliqués : quorums, ISR et machines à états
+
+Au cœur d’une partition Kafka se trouve un journal répliqué, une primitive essentielle des systèmes distribués qui permet de garantir un consensus sur l’ordre des événements.
+
+- Le leader fixe l’ordre des valeurs, et les suiveurs se contentent de les recopier.
+- Si le leader tombe en panne, un nouveau leader doit être élu parmi les suiveurs, idéalement celui dont le journal est le plus à jour.
+
+La garantie clé est la suivante : lorsqu’un message est déclaré validé, il doit obligatoirement être présent chez le nouveau leader après une panne. Cela crée un compromis :
+
+- Plus le leader attend d’accusés de réception avant de considérer un message comme validé,
+- plus il y aura de suiveurs éligibles pour devenir leader en cas de défaillance.
+
+Si l'on choisit le **nombre d'accusés de réception requis** et le **nombre de journaux à comparer** pour élire un leader de manière à garantir un chevauchement, on parle alors de **quorum**.
+
+Un modèle classique (bien que différent de celui de Kafka) consiste à avoir **2f+1 réplicas** et à exiger **f+1 accusés** de réception pour valider un message. Ainsi, avec jusqu’à **f pannes**, on garantit qu’au moins un réplica ayant tous les messages validés sera présent, et donc choisi comme nouveau leader. Une approche courante pour ce compromis consiste à utiliser un **vote majoritaire** pour la décision de **validation et l'élection du leader**. **Ce n'est pas ce que fait Kafka**.
+
+Kafka adopte une approche légèrement différente pour choisir son ensemble de **quorum**. Au lieu d'un vote majoritaire, Kafka gère dynamiquement un ensemble de réplicas synchronisés (**ISR**) rattrapés par le leader. Seuls les membres de cet ensemble sont éligibles à l'élection comme leader. Une écriture sur une partition Kafka n'est considérée comme validée que lorsque tous les réplicas synchronisés l'ont reçue. Cet ensemble d'**ISR** est conservé dans les métadonnées du cluster à chaque modification. De ce fait, tout réplica de l'**ISR** est éligible à l'élection comme leader. Il s'agit d'un facteur important pour le modèle d'utilisation de Kafka, où les partitions sont nombreuses et où l'équilibre du leadership est primordial. Avec ce modèle d'**ISR** et des réplicas **f+1**, un sujet Kafka peut tolérer **f échecs** sans perdre de messages validés.
+
+Une autre distinction de conception importante réside dans le fait que Kafka n'exige pas que les nœuds en panne se rétablissent avec toutes leurs données intactes. En effet le protocole permettant à un réplica de rejoindre l'**ISR** garantit qu'avant de rejoindre, il doit se resynchroniser complètement, même si il a perdu des données non vidées lors de son crash.
+
+### Et si tous les leaders crashaient tous ?
+
+La garantie de Kafka concernant la perte de données repose sur la synchronisation d'au moins une réplique. Si tous les nœuds répliquant une partition disparaissent, cette garantie n'est plus valable.
+Cependant, un système fonctionnel doit réagir de manière raisonnable lorsque toutes les répliques disparaissent. Si par malchance, cela se produit, il est important d'anticiper les conséquences. Deux comportements peuvent être mis en œuvre :
+
+- Attendre qu'une réplique de l'ISR se réactive et la choisir comme leader (en espérant qu'elle conserve toutes ses données).
+- Choisir la première réplique (pas nécessairement de l'ISR) à se réactiver comme leader.
+
+Il s'agit d'un simple compromis entre disponibilité et cohérence. Si nous attendons des répliques dans l'ISR, nous resterons indisponibles tant que ces répliques seront hors service. Si ces répliques sont détruites ou que leurs données sont perdues, nous sommes définitivement hors service. En revanche, si une réplique non synchronisée est réactivée et que nous l'autorisons à devenir leader, son journal devient la source de référence, même s'il n'est pas garanti qu'elle contienne tous les messages validés. Par défaut, depuis la version 0.11.0.0, Kafka choisit la première stratégie et privilégie l'attente d'une réplique cohérente. Ce comportement peut être modifié via la propriété de configuration **unclean.leader.election.enable**, afin de prendre en charge les cas d'utilisation où la disponibilité est préférable à la cohérence.
+
+### Garanties de disponibilité et de durabilité
+
+Lors de l'écriture dans Kafka, les producteurs peuvent choisir d'attendre que le message soit acquitté par 0, 1 ou tous les réplicas (-1). L'« **accusé de réception par tous les réplicas** » ne garantit pas que l'ensemble des réplicas assignés ait reçu le message. Par défaut, lorsque **acks=all**, l'accusé de réception intervient dès que tous les réplicas synchronisés actuels ont reçu le message. Par exemple, si un sujet est configuré avec seulement deux réplicas et que l'un d'eux échoue (c'est-à-dire qu'il ne reste qu'un seul réplica synchronisé), les écritures spécifiant **acks=all** réussiront. Cependant, ces écritures pourraient être perdues si le réplica restant échoue également.
+
+Par conséquent, il existe deux configurations de sujet permettant de privilégier la durabilité des messages à la disponibilité :
+
+- **désactiver l'élection d'un leader non propre** : si tous les réplicas deviennent indisponibles, la partition restera indisponible jusqu'à ce que le leader le plus récent soit à nouveau disponible. Cela privilégie l'indisponibilité au risque de perte de messages.
+
+- **spécifier une taille ISR minimale** : la partition n'acceptera les écritures que si la taille de l'**ISR** est supérieure à un certain minimum, afin d'éviter la perte de messages écrits sur une seule réplique, qui deviendrait alors indisponible. Ce paramètre n'est effectif que si le producteur utilise **acks=all** et garantit que le message sera acquitté par au moins autant de répliques synchronisées. Ce paramètre offre un compromis entre cohérence et disponibilité. Une taille **ISR** minimale élevée garantit une meilleure cohérence, car le message est assuré d'être écrit sur davantage de répliques, ce qui réduit le risque de perte. Cependant, cela réduit la disponibilité, car la partition sera indisponible pour les écritures si le nombre de répliques synchronisées descend en dessous du seuil minimum.
+
+### Gestion des réplicas
+
+Un cluster Kafka ne gère pas un seul journal (partition), mais des centaines ou milliers de partitions. Pour éviter la surcharge, Kafka :
+
+- équilibre la répartition des partitions entre les nœuds (éviter de concentrer les partitions à fort volume sur quelques brokers) ;
+
+- équilibre aussi les rôles de leaders afin que chaque nœud soit leader pour une proportion équitable de ses partitions.
+
+Il est également important d'optimiser le processus d'élection du leader, car il s'agit de la fenêtre critique d'indisponibilité. <br>
+Kafka optimise cela grâce au **rôle du contrôleur** :
+
+- Le contrôleur gère l’enregistrement des brokers.
+- En cas de panne d’un broker, il élit rapidement de nouveaux leaders parmi les réplicas synchronisés (ISR).
+- Il regroupe les notifications de changement de leader, rendant le processus plus rapide et économique, même avec un grand nombre de partitions.
+- Si le contrôleur lui-même échoue, un autre contrôleur est automatiquement élu.
