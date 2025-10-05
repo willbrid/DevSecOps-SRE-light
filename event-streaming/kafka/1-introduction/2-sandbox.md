@@ -2,8 +2,7 @@
 
 Nous allons mettre en place 4 serveurs **Rocky Linux 9** avec **vagrant** couplé à **virtualbox 7.0** depuis une machine hôte **ubuntu 24.04**.
 
-- un serveur **broker** : contenant les conteneurs **kafka broker** avec un conteneur **haproxy** pour exposer les endpoints **kafka broker**
-- un serveur **controller** : contenant les conteneurs **kafka controller**
+- un serveur **broker** : contenant les conteneurs **kafka controller**, les conteneurs **kafka broker** avec un conteneur **haproxy** pour exposer les endpoints **kafka broker**
 - un serveur **monitoring** : contenant les conteneurs **grafana**, **prometheus**, **tempo**, **loki**, **opentelemetry collector** et **easy_api_prom_sms_alert**
 - un serveur **serverapp** : contenant les conteneurs microservice d'une simple application d'envoie de notification (simple (message de notification) et en masse (input : message de notification et nombre de notifications à envoyer))
 
@@ -39,8 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   SERVERS = [
     { hostname: "broker", ip: "192.168.56.209", vcpu: 2, mem: 1024 },
-    { hostname: "controller", ip: "192.168.56.210", vcpu: 1, mem: 1024 },
-    { hostname: "monitoring", ip: "192.168.56.211", vcpu: 2, mem: 2048 },
+    { hostname: "monitoring", ip: "192.168.56.211", vcpu: 3, mem: 2048 },
     { hostname: "serverapp", ip: "192.168.56.212", vcpu: 1, mem: 1024 }
   ]
 
