@@ -38,7 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   SERVERS = [
     { hostname: "broker", ip: "192.168.56.209", vcpu: 2, mem: 1024 },
-    { hostname: "monitoring", ip: "192.168.56.211", vcpu: 3, mem: 2048 },
+    { hostname: "monitoring", ip: "192.168.56.211", vcpu: 3, mem: 4096 },
     { hostname: "serverapp", ip: "192.168.56.212", vcpu: 1, mem: 1024 }
   ]
 
