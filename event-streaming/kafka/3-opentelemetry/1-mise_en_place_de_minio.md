@@ -130,7 +130,7 @@ password = verysecurepassword
 
 ### Création des buckets de monitoring dans minio
 
-Nous créons 3 buckets nommés **prometheus**, **loki** et **tempo** en suivant les étapes ci-dessous :
+Nous créons 3 buckets nommés **prometheus**, **loki-data**, **loki-ruler** et **tempo** en suivant les étapes ci-dessous :
 
 - accèder au menu Buckets
 - cliquer sur le bouton **Create Bucket**
