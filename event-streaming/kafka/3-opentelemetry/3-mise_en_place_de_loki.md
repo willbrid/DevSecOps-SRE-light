@@ -4,6 +4,8 @@ Les configurations de ces différentes sections se feront dans notre serveur **m
 
 Dans cette section, nous allons déployer **Loki** sous forme de composants indépendants : **Read**, **Write**, **Gateway** et **Backend** afin d’obtenir notre déploiement de test.
 
+**Référence :** https://github.com/grafana/loki/blob/main/examples/getting-started/docker-compose.yaml
+
 ### Configuration des préréquis
 
 - Création du repertoire de **Loki**
