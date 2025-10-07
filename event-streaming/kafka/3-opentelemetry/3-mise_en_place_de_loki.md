@@ -171,7 +171,7 @@ events {
 }
 
 http {
-    resolver 127.0.0.11;
+    resolver 10.89.0.1; # Ce paramètre pourrait être différent dans votre configuration
 
     server {
         listen 3100;
@@ -210,6 +210,12 @@ http {
         }
     }
 }
+```
+
+Pour trouver la valeur d'adresse du paramètre **resolver**, il faut exécuter la commande :
+
+```
+podman network inspect monitoring | grep gateway
 ```
 
 - Configuration du fichier service loki-gateway
@@ -296,3 +302,24 @@ Verification du statut du service loki-backend
 
 ```
 systemctl --user status loki-backend
+```
+
+### Ajout de Loki comme datasource dans Grafana
+
+- Accéder à l’interface de Grafana
+
+1- Connectons-nous à notre instance Grafana via le lien : **http://192.168.56.211:3000** <br>
+2- Entrons nos identifiants
+
+- Ajouter une nouvelle source de données Loki
+
+1- Dans le menu latéral gauche, cliquons sur **“Connections”** > “**Data Sources**” <br>
+2- Cliquons ensuite sur le bouton “**Add data source**” <br>
+3- Recherchons “**Loki**” dans la liste et sélectionnons-le
+
+- Configurer la source de données
+
+1- Définissons le nom de la source de données : **loki** <br>
+2- Définissons l'url de loki : **http://loki-gateway:3100** <br>
+3- Ajoutons un header personnalisé en cliquant sur le bouton “**Add Header**” de la section **HTTP headers**, puis en définissant un header : **X-Scope-OrgID** et sa valeur **tenant** <br>
+4- Cliquons sur le bouton “**Save & Test**” : Grafana devrait afficher un message de succès.
