@@ -159,6 +159,7 @@ Timezone=Europe/Paris
 Exec=--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.retention.time=6h --storage.tsdb.wal-compression --storage.tsdb.path=/prometheus --storage.tsdb.max-block-duration=2h --storage.tsdb.min-block-duration=2h --web.listen-address=:9090 --web.external-url=http://prometheus:9090 --web.enable-lifecycle --web.enable-admin-api --web.enable-remote-write-receiver
 Volume=/home/vagrant/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:z
 Volume=/home/vagrant/prometheus/data:/prometheus:z
+Volume=/home/vagrant/prometheus/rules:/etc/prometheus/rules:z
 
 [Service]
 Restart=always
