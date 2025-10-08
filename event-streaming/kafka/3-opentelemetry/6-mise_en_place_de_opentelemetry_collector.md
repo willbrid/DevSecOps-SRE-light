@@ -38,12 +38,12 @@ extensions:
   health_check: {}
 
 exporters:
-  otlp:
-    endpoint: "tempo:4317"
+  otlphttp/tempo:
+    endpoint: "http://tempo:4318"
     tls:
       insecure: true
 
-  otlphttp:
+  otlphttp/loki:
     endpoint: "http://loki-gateway:3100/otlp"
     encoding: json
     tls:
@@ -62,11 +62,11 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch,memory_limiter]
-      exporters: [otlp]
+      exporters: [otlphttp/tempo]
     logs:
       receivers: [otlp]
       processors: [batch,memory_limiter]
-      exporters: [otlphttp]
+      exporters: [otlphttp/loki]
     metrics:
       receivers: [otlp]
       processors: [batch,memory_limiter]

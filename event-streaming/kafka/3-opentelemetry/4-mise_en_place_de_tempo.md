@@ -44,6 +44,8 @@ distributor:
       protocols:
         grpc:
           endpoint: "tempo:4317"
+        http:
+          endpoint: "tempo:4318"
 
 ingester:
   max_block_duration: 5m
