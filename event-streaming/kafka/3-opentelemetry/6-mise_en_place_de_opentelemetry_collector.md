@@ -44,7 +44,7 @@ exporters:
       insecure: true
 
   otlphttp:
-    endpoint: "http://loki-gateway:3100/loki/api/v1/push"
+    endpoint: "http://loki-gateway:3100/otlp"
     encoding: json
     tls:
       insecure: true

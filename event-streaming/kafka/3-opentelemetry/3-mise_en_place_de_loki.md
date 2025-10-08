@@ -199,6 +199,10 @@ http {
             proxy_pass       http://loki-write:3100$request_uri;
         }
 
+        location = /otlp/v1/logs {
+            proxy_pass       http://loki-write:3100$request_uri;
+        }
+
         location = /loki/api/v1/tail {
             proxy_pass       http://loki-read:3100$request_uri;
             proxy_set_header Upgrade $http_upgrade;
