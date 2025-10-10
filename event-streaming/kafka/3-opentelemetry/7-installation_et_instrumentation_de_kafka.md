@@ -113,3 +113,17 @@ Verification du statut du service kafka
 ```
 systemctl --user status kafka
 ```
+
+- Activation du parefeu firewalld et autorisation du port 9092
+
+```
+sudo systemctl enable firewalld --now
+
+sudo systemctl status firewalld
+```
+
+```
+sudo firewall-cmd --permanent --add-port=9092/tcp
+
+sudo firewall-cmd --reload
+```
