@@ -84,8 +84,9 @@ Environment=KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
 Environment=KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
 Environment=KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS=0
 Environment=KAFKA_NUM_PARTITIONS=3
-Environment=KAFKA_OPTS=-javaagent:/tmp/opentelemetry-javaagent.jar -Dotel.jmx.target.system=kafka-broker
+Environment=KAFKA_OPTS=-javaagent:/tmp/opentelemetry-javaagent.jar
 Environment=OTEL_SERVICE_NAME=kafka-broker
+Environment=OTEL_JMX_TARGET_SYSTEM=kafka-broker
 Environment=OTEL_EXPORTER_OTLP_ENDPOINT=http://192.168.56.211:4318
 Environment=OTEL_METRICS_EXPORTER=otlp
 Environment=OTEL_LOGS_EXPORTER=otlp
