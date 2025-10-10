@@ -106,7 +106,120 @@ chmod +x $HOME/producer.sh
 ./$HOME/producer.sh 50
 ```
 
-Par exemple nous exécutons le script pour 50 messages, en se connectant sur l'**explorateur de grafana**, nous pourrons déjà voir certaines métriques : 
+Par exemple nous exécutons le script pour 50 messages, en se connectant sur l'**explorateur de grafana** (**http://192.168.56.211:3000**), nous pourrons déjà voir certaines métriques : 
 
 - **kafka_message_count_total** : nombre total de messages envoyés
 - **kafka_request_count_total** : nombre total de requêtes envoyées pour le producteur (étiquette : **type=produce**) ou pour le consommateur (étiquette : **type=fetch**)
+
+
+### Monitoring de notre noeud conteneur kafka via cadvisor
+
+- Activation des sockets podman pour l'utilisateur vagrant (Depuis notre serveur **broker**)
+
+```
+systemctl --user start podman.socket
+
+systemctl --user enable podman.socket
+```
+
+- Création du fichier service **cadvisor** (Depuis notre serveur **broker**)
+
+```
+vi .config/containers/systemd/cadvisor.container
+```
+
+```
+[Unit]
+Description=cadvisor
+After=local-fs.target
+
+[Container]
+ContainerName=cadvisor
+Image=gcr.io/cadvisor/cadvisor:v0.52.1
+Network=kafkanet.network
+PublishPort=9882:8080
+Exec=--podman="unix:///run/user/1000/podman/podman.sock"
+PodmanArgs=--privileged
+Volume=/:/rootfs:ro
+Volume=/run/user/1000:/run/user/1000:ro
+Volume=/dev/disk/:/dev/disk:ro
+Volume=/home/vagrant/.local/share/containers:/var/lib/containers:ro
+Volume=/sys/fs/cgroup:/sys/fs/cgroup:ro
+Volume=/etc/machine-id:/etc/machine-id:ro
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
+```
+
+```
+systemctl --user daemon-reload
+```
+
+```
+systemctl --user start cadvisor
+```
+
+Verification du statut du service cadvisor
+
+```
+systemctl --user status cadvisor
+```
+
+- Autorisation du port 9882 d'exposition du service cadvisor (Depuis notre serveur **broker**)
+
+```
+sudo firewall-cmd --permanent --add-port=9882/tcp
+
+sudo firewall-cmd --reload
+```
+
+- Mise à jour de la configuration de prometheus avec la création d'une règle d'alertes (Depuis notre serveur **monitoring**)
+
+--- Mise à jour du fichier **$HOME/prometheus/prometheus.yml**
+
+```
+vi $HOME/prometheus/prometheus.yml
+```
+
+```
+...
+scrape_configs:
+  ...
+
+  - job_name: 'brokercontainer'
+    static_configs:
+      - targets: ['192.168.56.209:9882']
+```
+
+--- Création de la règle d'alerte pour détecter lorsque le conteneur **kafka** est down
+
+```
+vi $HOME/prometheus/rules/kafka-alerts.yml
+```
+
+```
+groups:
+- name: kafka-alerts
+  rules:
+  - alert: KafkaContainerDown
+    expr: (time() - container_last_seen{id="/user.slice/user-1000.slice/user@1000.service/app.slice/kafka.service"}) > 30
+    for: 1m
+    labels:
+      severity: critical
+      service: kafka
+    annotations:
+      summary: "Le conteneur kafka ne répond plus"
+      description: "Le conteneur kafka n’est plus accessible depuis plus de 30 secondes.
+
+```
+
+--- Redémarrage du service prometheus
+
+```
+systemctl --user restart prometheus
+```
+
+> Si nous stoppons le service kafka depuis notre serveur **broker** alors après 1 minute une alerte sera déclenchée et envoyée vers slack.
