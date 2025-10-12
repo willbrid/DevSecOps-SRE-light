@@ -46,7 +46,8 @@ easy_api_prom_sms_alert:
     - "devsecops-dojo-alertes"
 ```
 
-**xxxxxxx** représente le token bot configuré depuis le lien : **https://api.slack.com/apps** .
+**xxxxxxx** représente le token bot configuré depuis le lien : **https://api.slack.com/apps** . <br>
+**devsecops-dojo-alertes** représente un channel slack dans l'espace de travail slack **devsecops-dojo** .
 
 - Configuration du fichier service **alertsender**
 
