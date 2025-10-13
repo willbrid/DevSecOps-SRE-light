@@ -106,7 +106,7 @@ chmod +x $HOME/producer.sh
 ./$HOME/producer.sh 50
 ```
 
-Par exemple nous exécutons le script pour 50 messages, en se connectant sur l'**explorateur de grafana** (**http://192.168.56.211:3000**), nous pourrons déjà voir certaines métriques : 
+Par exemple, nous exécutons le script pour **50 messages** et en se connectant sur l'**explorateur de grafana** (**http://192.168.56.211:3000**), nous pourrons déjà voir certaines métriques : 
 
 - **kafka_message_count_total** : nombre total de messages envoyés
 - **kafka_request_count_total** : nombre total de requêtes envoyées pour le producteur (étiquette : **type=produce**) ou pour le consommateur (étiquette : **type=fetch**)
