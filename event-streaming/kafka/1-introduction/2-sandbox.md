@@ -4,7 +4,7 @@ Nous allons mettre en place 4 serveurs **Rocky Linux 9** avec **vagrant** coupl�
 
 - un serveur **broker** : contenant les conteneurs **kafka controller**, les conteneurs **kafka broker** avec un conteneur **haproxy** pour exposer les endpoints **kafka broker**
 - un serveur **monitoring** : contenant les conteneurs **grafana**, **prometheus**, **tempo**, **loki**, **opentelemetry collector** et **easy_api_prom_sms_alert**
-- un serveur **serverapp** : contenant les conteneurs microservice d'une simple application d'envoie de notification (simple (message de notification) et en masse (input : message de notification et nombre de notifications à envoyer))
+- un serveur **serverapp** : contenant un utilitaire client kafka utilisable en ligne de commande appelé : **kcat**
 
 ```
 mkdir $HOME/homelab-kafka && cd $HOME/homelab-kafka
