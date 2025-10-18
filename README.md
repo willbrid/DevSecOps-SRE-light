@@ -4,21 +4,19 @@ Ce dépôt GitHub regroupe des ressources et des exemples pratiques **DevOps** e
 
 ### Contenus
 
-1. **devops-essential** : Contient des guides et des ressources essentielles pour vous familiariser avec les principes fondamentaux de DevOps.
+1. **devops-essential** : Contient des guides et des ressources essentielles pour nous familiariser avec les principes fondamentaux de DevOps.
 
-2. **conteneur** : Explorez les configurations d'un environnement d'exécution de conteneurs et les bonnes pratiques pour la conteneurisation d'applications.
+2. **conteneur** : Regroupe les outils et concepts liés à la conteneurisation et à la gestion d’environnements isolés.
 
-3. **haute-disponibilite** : Découvrez les meilleures pratiques pour la conception et la mise en œuvre de solutions à haute disponibilité.
+3. **haute-disponibilite** : Regroupe les pratiques pour la conception et la mise en œuvre de solutions à haute disponibilité.
 
-4. **gitlab** : Découvrez une plateforme complète de gestion de projet basée sur Git, offrant des fonctionnalités telles que la gestion du code source, l'intégration continue, le suivi des problèmes, la gestion de la planification, et bien plus encore.
+4. **scv-git** : Regroupe tout ce qui touche à Git et aux différentes plateformes de gestion de code
 
-5. **jenkins** : Guides et configurations pour Jenkins, un serveur d'intégration continue populaire.
+5. **iac** (Infrastructure as Code) : Regroupe les pratiques et outils liés à l’IaC, pour déployer et configurer des infrastructures de façon automatisée.
 
-6. **iac** : Infrastructure as Code (IaC) : exemples et modèles pour provisionner et gérer l'infrastructure de manière automatisée.
+6. **orchestration** : Regroupe tout ce qui concerne l’orchestration de conteneurs et la gestion des déploiements avec des outils comme Kubernetes, docker swarm
 
-7. **kubernetes** : Ressources pour comprendre et déployer des applications sur Kubernetes, un orchestrateur de conteneurs.
-
-8. **observabilite** : Pratiques et outils pour garantir la visibilité et la compréhension des systèmes en production.
+7. **observabilite** : Regroupe les pratiques et outils pour garantir la visibilité et la compréhension des systèmes en production.
 
 ### Mises à Jour et Provisionnement Continu
 
