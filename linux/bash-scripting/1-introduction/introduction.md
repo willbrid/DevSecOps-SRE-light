@@ -69,7 +69,7 @@ Aucun résultat n'est affiché.
 
 ### Bonnes pratiques pour les scripts Shell
 
-- Commencer par un simple "**#!/usr/bin/env bash**" pour la portabilité.
+- Commencer par une simple ligne "**#!/usr/bin/env bash**" pour la portabilité. Incluer toujours un **shebang** **(#!)** en haut de nos scripts pour déclarer quel shell utiliser.
 
 - Utiliser "**set -euo pipefail**" pour détecter les erreurs au plus tôt.
 
@@ -78,6 +78,40 @@ Aucun résultat n'est affiché.
 - Sourcer explicitement les fichiers si nécessaire : `source ~/.bashrc`
 
 - Tester les scripts dans les deux modes s'ils doivent s'exécuter de manière interactive et non interactive.
+
+### Quand utiliser les scripts « Shell » ou « Bash »
+
+- **Scripting Shell** : terme générique pour l'écriture de scripts dans n'importe quel shell
+
+- **Scripting Shell avec Bash** : lorsque notre code repose sur des fonctionnalités exclusives à **Bash**
+
+Pour les scripts portables, éviter d'utiliser `echo -n` mais utiliser plutôt `printf`.
+
+### Terminologie
+
+- **Shell**
+
+Un **shell** est un interpréteur de commandes : il lit vos commandes, les exécute et affiche les résultats. Chaque **shell** offre des fonctionnalités, une syntaxe de script et des utilitaires intégrés uniques. Exemple : **sh**, **bash**, **zsh**, **kornshell**,...
+
+- **CLI**
+
+Une **interface en ligne de commande** (**CLI**) est une interface textuelle qui permet de saisir des commandes directement dans un **shell**.<br> Chaque interface CLI peut inclure :
+
+--- invites et thèmes uniques <br>
+--- historique et complétion des commandes intégrés <br>
+--- hooks de script personnalisés
+
+Les outils **CLI** s'intègrent souvent aux composants système tels que **SSH**, **Docker**, **Podman** ou les **gestionnaires de packages**.
+
+- **Terminal**
+
+Un **terminal**, ou **émulateur de terminal**, est la fenêtre d'application où s'exécute notre session CLI. Il affiche le texte, gère la saisie au clavier et gère plusieurs onglets ou volets. Exemple : **GNOME Terminal**, **Xterm**,...
+
+- **POSIX et conformité POSIX**
+
+**POSIX (Portable Operating System Interface)** est une norme IEEE qui définit une API et un comportement shell communs aux systèmes de type Unix. **POSIX** garantit l'exécution des scripts utilisant des utilitaires et une syntaxe standard dans des environnements compatibles.
+
+Tous les shells ne sont pas entièrement compatibles **POSIX**. Pour une portabilité maximale, utiliser **/bin/sh** ou vérifier le niveau de conformité de notre shell. Les fonctionnalités en ligne comme les **tableaux** ou le **globbing étendu** peuvent être défaillantes sur les systèmes **POSIX stricts**.
 
 **Références** : 
 
