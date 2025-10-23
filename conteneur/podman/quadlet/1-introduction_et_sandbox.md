@@ -48,7 +48,7 @@ mkdir $HOME/quadlet-sandbox && cd $HOME/quadlet-sandbox
 ```
 
 ```
-wget https://download.virtualbox.org/virtualbox/7.0.20/VBoxGuestAdditions_7.0.20.iso
+wget https://download.virtualbox.org/virtualbox/7.0.24/VBoxGuestAdditions_7.0.24.iso
 ```
 
 ```
@@ -64,7 +64,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vbguest.auto_update = false
   config.vbguest.no_remote = true
-  config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.20.iso"
+  config.vbguest.iso_path = "./VBoxGuestAdditions_7.0.24.iso"
 
   # General Vagrant VM configuration
   config.ssh.insert_key = false
@@ -78,11 +78,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Rocky Server
   config.vm.define "rocky-server" do |srv|
     srv.vm.box = "generic/rocky9"
-    srv.vm.box_version = "4.3.12"
+    srv.vm.box_version = "6.0.0"
     srv.vm.hostname = "rocky-server"
     srv.vm.network :private_network, ip: "192.168.56.9"
   end
-end  
+end
 ```
 
 ```
