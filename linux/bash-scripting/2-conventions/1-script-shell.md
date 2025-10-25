@@ -90,9 +90,51 @@ clone_repo() {
 }
 ```
 
-- Bonne pratiques d'implémentation de fonctions
+- Bonnes pratiques d'implémentation de fonctions
 
 --- Définir des fonctions sans le mot-clé **function**. <br>
 --- Utiliser des variables locales (avec le mot clé **local**) pour éviter la pollution de l'espace de noms global. <br>
 --- Renvoyer des codes d'état et gérer les erreurs correctement <br>
 --- Analyser les options de ligne de commande avec `getopts`.
+
+### Expansion
+
+Dans les scripts shell, l'**expansion de variable** utilise le signe dollar (**$**) pour indiquer au shell de remplacer le nom de la variable par sa valeur stockée.
+
+Par défaut, les **expansions sans guillemets** sont séparées par des espaces définis par la variable d'environnement **IFS** (**espace**, **tabulation**, **saut de ligne**). Utiliser des guillemets pour conserver la valeur exacte.
+
+```
+# Sans guillemets
+#!/bin/bash
+string="One Two Three"
+
+# Divise en mots à cause de ${string}
+for element in ${string}; do
+  echo "${element}"
+done
+```
+
+```
+# Avec guillemets
+#!/bin/bash
+string="One Two Three"
+
+# Préserve la chaîne entière comme un seul élément à cause de "${string}"
+for element in "${string}"; do
+  echo "${element}"
+done
+```
+
+Dans un script shell sous Linux, il ne faut jamais utiliser une variable non entourée de guillemets (non « quotée ») lorsqu’elle contient une entrée utilisateur ou un nom de fichier. <br>
+Sans guillemets, le shell peut interpréter les espaces, les caractères spéciaux ou les métacaractères (*, ?, ;, etc.) d’une manière imprévisible ou dangereuse. Cela peut entraîner :
+- des erreurs d’exécution (fichiers mal référencés, commandes tronquées),
+- voire des failles de sécurité (injection de commandes).
+
+|Cas d'utilisation|Entre quotes|Entre accolades|Exemple|
+|-----------------|------------|---------------|-------|
+expansion simple|Facultatif|Facultatif|`echo $var`
+ajout de texte à une variable|Facultatif|Obligatoire|`echo "${var}suffix"`
+chemins et noms de fichiers|Recommandé|Facultatif|`ls "${directory}/file.txt"`
+url et chaînes complexes|Recommandé|Facultatif|`curl "${URL}?id=123&name=abc"`
+itérer intentionnellement sur les mots|Facultatif|Facultatif|`for x in ${list}; do ...; done`
+prévenir la division des mots|Obligatoire|Facultatif|`read -r line <<< "${input}"`
