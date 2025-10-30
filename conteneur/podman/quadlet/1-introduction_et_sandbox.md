@@ -76,10 +76,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
   
   # Rocky Server
-  config.vm.define "rocky-server" do |srv|
-    srv.vm.box = "generic/rocky9"
+  config.vm.define "rocky-podman" do |srv|
+    srv.vm.box = "rockylinux/9"
     srv.vm.box_version = "6.0.0"
-    srv.vm.hostname = "rocky-server"
+    srv.vm.hostname = "rocky-podman"
     srv.vm.network :private_network, ip: "192.168.56.9"
   end
 end
