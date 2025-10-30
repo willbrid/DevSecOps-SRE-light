@@ -7,7 +7,7 @@ Nous allons installer un conteneur de l'application **Nextcloud** basé sur l'im
 - **Créer le fichier service du réseau de notre application avec sa base de données**
 
 ```
-vim /home/vagrant/.config/containers/systemd/stackappnet.network
+vi /home/vagrant/.config/containers/systemd/stackappnet.network
 ```
 
 ```
@@ -25,7 +25,7 @@ WantedBy=default.target
 - **Mettre à jour le fichier service du conteneur Mariadb pour prendre compte la configuration service réseau**
 
 ```
-vim /home/vagrant/.config/containers/systemd/mariadb.container
+vi /home/vagrant/.config/containers/systemd/mariadb.container
 ```
 
 ```
@@ -82,7 +82,7 @@ printf "nextcloudadmin@2025" | podman secret create nextcloudadminpassword -
 -  **Créer et configurer le fichier service du conteneur Nextcloud**
 
 ```
-vim /home/vagrant/.config/containers/systemd/nextcloud.container
+vi /home/vagrant/.config/containers/systemd/nextcloud.container
 ```
 
 ```
