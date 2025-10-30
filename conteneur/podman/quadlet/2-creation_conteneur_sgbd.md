@@ -51,7 +51,7 @@ printf "rootstrong@2025" | podman secret create mariadbrootpassword -
 - **Créer et configurer le fichier service du conteneur Mariadb**
 
 ```
-vim /home/vagrant/.config/containers/systemd/mariadb.container
+vi /home/vagrant/.config/containers/systemd/mariadb.container
 ```
 
 ```
