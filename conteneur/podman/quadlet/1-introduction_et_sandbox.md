@@ -7,7 +7,7 @@ de **systemd**.
 
 ### Environnement Quadlet
 
-- **Quadlet** est embarqué dans **Podman** à partie de la version **>=4.4** de **Podman** et nécessite **cgroups v2**.
+- **Quadlet** est embarqué dans **Podman** à partir de la version **>=4.4** de **Podman** et nécessite **cgroups v2**.
 
 --- vérifier la version de podman
 
@@ -31,9 +31,9 @@ echo "username:100000:65536" >> /etc/subuid
 echo "username:100000:65536" >> /etc/subgid
 ```
 
-Ces deux commandes doivent être exécutées en tant que root, après avoir remplacé **username** par le nom de votre utilisateur non root.
+Ces deux commandes doivent être exécutées en tant que root, après avoir remplacé **username** par le nom de notre utilisateur non root.
 
-- Pour le mode non root, il faudrait permettre aux services de continuer à s'exécuter après la déconnexion de votre utilisateur non root.
+- Pour le mode non root, il faudrait permettre aux services de continuer à s'exécuter après la déconnexion de notre utilisateur non root.
 
 ```
 sudo loginctl enable-linger username
