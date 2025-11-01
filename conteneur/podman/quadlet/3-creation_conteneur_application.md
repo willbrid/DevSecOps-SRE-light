@@ -135,6 +135,10 @@ podman container ps
 Autoriser le port d'exposition 8080 du conteneur Nextcloud au niveau du service firewalld
 
 ```
+sudo systemctl enable --now firewalld
+```
+
+```
 sudo firewall-cmd --permanent --add-port=8080/tcp
 
 sudo firewall-cmd --reload
