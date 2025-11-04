@@ -10,4 +10,86 @@ Si la commande s'est exécutée avec succès (ou si la valeur est `true`), `$?` 
 
 ### Tests dans l'expression
 
-Les expressions sont jugées vraies ou fausses par la commande `test` ou par l'un des deux mots réservés non standard du shell : `[[` et `((`. La commande `test` compare les **chaînes de caractères**, les **entiers** et **divers attributs de fichiers** ; `((` teste les **expressions arithmétiques**, et `[[...]]` fait la même chose que `test` avec la possibilité **supplémentaire** de comparer des **expressions régulières**.
+Les expressions sont jugées vraies ou fausses par la commande `test` (ou `[...]`) ou par l'un des deux mots réservés non standard du shell : `[[` et `((`. La commande `test` compare les **chaînes de caractères**, les **entiers** et **divers attributs de fichiers** ; `((` teste les **expressions arithmétiques**, et `[[...]]` fait la même chose que `test` avec la possibilité **supplémentaire** de comparer des **expressions régulières**.
+
+- **Tests sur les fichiers**
+
+**Bash** propose plusieurs opérateurs pour tester l’état d’un fichier. L’option `-e` (ou la non standard `-a`) permet de vérifier si un fichier existe. Pour déterminer le type de fichier, on peut utiliser `-f` pour un fichier ordinaire, `-d` pour un répertoire, et `-h` ou `-L` pour un lien symbolique. D’autres opérateurs existent également pour contrôler des types de fichiers particuliers ou vérifier leurs permissions.
+
+```
+# tester si le fichier est un fichier régulier
+test -f /etc/hosts
+
+# tester si le fichier est un lien symbolique
+test -h /etc/os-release
+
+# tester si le fichier peut-être exécuté
+[ -x "/usr/bin/ls" ]
+
+# tester si le fichier existe et n'est pas vide
+[[ -s "/etc/hosts" ]]
+```
+
+- **Tests sur les entiers**
+
+La comparaison entre entiers utilise les opérateurs : <br>
+--- `-eq` (**égale à**), <br>
+--- `-ne` (**différent de**), <br>
+--- `-gt` (**superieur à**), <br>
+--- `-lt` (**inférieur à**), <br>
+--- `-ge` (**supérieur ou égal à**), <br>
+--- `-le` (**inférieur ou égal à**)
+
+```
+# tester si 1 est égal à 1
+test 1 -eq 1
+
+# tester si 3 est égal à 2
+[ 3 -eq 2 ]
+
+# tester si 1 est différent de 1
+[ 3 -ne 2 ]
+
+# tester si 3 est supérieur à 1
+[[ 3 -gt 2 ]]
+
+# tester si 3 est supérieur égal à 3
+[[ 3 -ge 3 ]]
+```
+
+- **Test sur les chaines de caractères**
+
+Une chaîne de caractères est une suite de **zéro** ou **plusieurs caractères**, pouvant contenir **tout caractère** sauf **NUL**. On peut comparer des chaînes pour vérifier leur égalité, leur inégalité, leur présence (vide ou non vide) ou encore leur ordre alphabétique en Bash.
+L’opérateur `=` permet de tester si deux chaînes sont identiques, tandis que `!=` vérifie qu’elles diffèrent. <br>
+Bash accepte également `==` comme test d’égalité, mais cet opérateur n’est pas standard et son usage est déconseillé.
+
+```
+name1="willbrid"
+name2="willbrid"
+
+# tester si la chaine name1 est égale à la chaine name2
+test "$name1" = "$name2"
+
+# tester si la chaine name1 est différente de la chaine name2
+[ "$name1" != "$name2" ]
+
+# tester si la chaine name1 est vide
+[ -z "$name1" ]
+
+# test si la chaine name2 est non vide
+test -n "$name2"
+```
+
+L'option `-z` permet de tester si une chaine est vide alors que l'option `-n` permet de tester si une chaine est non vide.
+
+Les symboles **supérieur à** `>` et **inférieur à** `<` sont utilisés dans bash pour comparer les positions lexicales des chaînes de caractères et doivent être échappés pour éviter qu'ils ne soient interprétés comme des opérateurs de redirection.
+
+```
+str1="abc"
+str2="def"
+
+test "$str1" \< "$str2"
+test "$str1" \> "$str2"
+```
+
+Le test est généralement utilisé en combinaison avec `if` ou les opérateurs conditionnels `&&` et `||`
