@@ -92,4 +92,16 @@ test "$str1" \< "$str2"
 test "$str1" \> "$str2"
 ```
 
-Le test est généralement utilisé en combinaison avec `if` ou les opérateurs conditionnels `&&` et `||`
+Le test est généralement utilisé en combinaison avec `if` ou les opérateurs conditionnels `&&` et `||`.
+
+- **Test avec `[[ ... ]]`**
+
+L’expression `[[ ... ]]` permet, tout comme la commande `test` (ou son équivalent `[ ... ]`), d’évaluer des conditions dans un script **Bash**.
+Cependant, `[[` n’est pas une commande, mais fait partie de la syntaxe propre du shell. Cela signifie qu’elle est interprétée directement par **Bash**, sans passer par les règles classiques d’exécution d’une commande.
+
+Contrairement à `test`, la structure `[[ ... ]]` n’applique pas la séparation des mots, ni l’expansion des **jokers** (**globbing**) entre les crochets. Cela évite de nombreuses erreurs liées à des variables contenant des espaces ou des caractères spéciaux. Par exemple, une comparaison comme `[[ $fichier = *.txt ]]` fonctionnera sans risque d’expansion indésirable du motif `*.txt`.
+
+La structure `[[ ... ]]` prend en charge tous les opérateurs de test, mais ajoute aussi des fonctionnalités plus puissantes, comme la comparaison de chaînes par expressions rationnelles avec l’opérateur `=~`.
+
+Cependant, `[[ ... ]]` n’est pas définie dans la norme **POSIX**, ce qui la rend non portable vers d’autres shells (comme **dash** ou **sh**).
+Pour garantir la compatibilité entre systèmes, il est donc préférable d’utiliser `test` ou `[ ... ]` lorsque les fonctionnalités avancées de `[[ ... ]]` ne sont pas nécessaires.
