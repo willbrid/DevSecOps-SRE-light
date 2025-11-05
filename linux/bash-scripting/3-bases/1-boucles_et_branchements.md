@@ -127,11 +127,17 @@ wordname="hello"
 
 **Quelques exemples**
 
-| - |[ ... ] ou test |  [[ ... ]]  |
-|--------|----------------|--------------
-`<`|`[ a \< b ]`|`[[ a < b ]]`
-`&& ||`|`[ a = a ] && [ b = b ] [ a = a ] || [ b = b ]`|`[[ a = a && b = b ]] [[ a = a || b = b ]]`
-`()`|`{ [ a = a ] || [ a = b ]; } && [ a = b ]`|`[[ (a = a || a = b) && a = b ]]`
-`split+glob`|`x='a b'; [ "$x" = 'a b' ]`|`x='a b'; [[ $x = 'a b' ]]`
-`=`|`case ab in (a?) echo match; esac`|`[[ ab = a? ]] [[ ab == a? ]] (correspondance de modèles)`
-`=~`|`printf 'ab\n' | grep -Eq 'ab?'`|`[[ ab =~ ab? ]] (expression régulière)`
+|   |[ ... ] ou test |  [[ ... ]]  |
+|---|----------------|--------------
+`<` | `[ a \< b ]` | `[[ a < b ]]`
+
+`&& ||` | `[ a = a ] && [ b = b ] [ a = a ] || [ b = b ]` | `[[ a = a && b = b ]] [[ a = a || b = b ]]`
+
+`()` | `{ [ a = a ] || [ a = b ]; } && [ a = b ]` | `[[ (a = a || a = b) && a = b ]]`
+
+`split+glob` | `x='a b'; [ "$x" = 'a b' ]` | `x='a b'; [[ $x = 'a b' ]]`
+
+`=` | `case ab in (a?) echo match; esac` | `[[ ab = a? ]] [[ ab == a? ]] (correspondance de modèles)`
+
+`=~` | `printf 'ab\n' | grep -Eq 'ab?'` | `[[ ab =~ ab? ]] (expression régulière)`
+
