@@ -105,3 +105,14 @@ La structure `[[ ... ]]` prend en charge tous les opérateurs de test, mais ajou
 
 Cependant, `[[ ... ]]` n’est pas définie dans la norme **POSIX**, ce qui la rend non portable vers d’autres shells (comme **dash** ou **sh**).
 Pour garantir la compatibilité entre systèmes, il est donc préférable d’utiliser `test` ou `[ ... ]` lorsque les fonctionnalités avancées de `[[ ... ]]` ne sont pas nécessaires.
+
+|Fonction|[ ... ] ou test |  [[ ... ]]  |
+|--------|----------------|--------------
+`Type`|Commande POSIX|Syntaxe interne à Bash
+`Séparation des mots`|Oui|Non
+`Globbing`|Oui|Non
+`Expressions régulières (=~)`|Non supporté|Oui
+`Nécessité de guillemets`|Oui, souvent obligatoire|Pas nécessaire dans la plupart des cas
+`Portabilité`|POSIX|Bash seulement
+
+Le **globbing** (ou **file name expansion** ou **génération de nom de fichier**) est le processus par lequel le shell remplace automatiquement certains motifs contenant des caractères spéciaux (`*, ?, [ ], {}`) par la liste des fichiers correspondants dans le système de fichiers. Pour le désactiver on exécute la commande `set -f`.
