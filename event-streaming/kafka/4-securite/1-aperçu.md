@@ -94,3 +94,34 @@ allow.everyone.if.no.acl.found=true
 Lorsque ce paramètre est activé, si aucune liste de contrôle d'accès (ACL) n'est définie pour une ressource, Kafka autorisera l'accès à tous. Si une ressource possède une ou plusieurs ACL définies, ces règles seront appliquées normalement, quel que soit le paramètre.
 
 Dans les clusters KRaft, les requêtes d'administration telles que **CreateTopics** et **DeleteTopics** sont envoyées au broker par le client. Le broker transmet ensuite la requête au contrôleur actif via la première interface d'écoute configurée dans **controller.listener.names**. L'autorisation de ces requêtes est effectuée sur le nœud contrôleur. Ceci est réalisé au moyen d'une requête **Envelope** qui encapsule à la fois la requête sous-jacente du client et le principal client. Lorsque le contrôleur reçoit la requête **Envelope** transmise par le broker, il autorise d'abord la requête **Envelope** à l'aide du **principal authentifié du broker**. Ensuite, il autorise la requête sous-jacente à l'aide du **principal transmis**.
+
+Les appels de protocole effectuent généralement des opérations sur certaines ressources de Kafka. Il est nécessaire de connaître ces opérations et ces ressources pour mettre en place une protection efficace.
+
+- **Opérations dans Kafka**
+
+Plusieurs primitives d'opération permettent de définir des privilèges. Celles-ci peuvent être associées à certaines ressources afin d'autoriser des appels de protocole spécifiques pour un utilisateur donné.
+
+--- **Read** <br>
+--- **Write** <br>
+--- **Create** <br>
+--- **Delete** <br>
+--- **Alter** <br>
+--- **Describe** <br>
+--- **ClusterAction** <br>
+--- **DescribeConfigs** <br>
+--- **AlterConfigs** <br>
+--- **IdempotentWrite** <br>
+--- **CreateTokens** <br>
+--- **DescribeTokens** <br>
+--- **All**
+
+- **Ressources dans Kafka**
+
+Les opérations ci-dessus peuvent être appliquées à certaines ressources décrites ci-dessous.
+
+--- **Topic** : représente un sujet (Topic). <br>
+--- **Group** : représente les groupes de consommateurs dans les brokers. <br>
+--- **Cluster**: représente le cluster. Les opérations affectant l’ensemble du cluster. <br>
+--- **TransactionalId** : représente les actions liées aux transactions, telles que la validation. <br>
+--- **DelegationToken** : représente les jetons de délégation dans le cluster. <br>
+--- **User** : les opérations `CreateToken` et `DescribeToken` peuvent être accordées aux ressources `User` pour permettre la création et la description de jetons pour d’autres utilisateurs.
