@@ -72,3 +72,25 @@ Le port qui sera utilisé pour les contrôleurs, provient de la configuration `c
 Il est impératif que l'hôte et le port définis dans `controller.quorum.bootstrap.servers` soient acheminés vers les interfaces d'écoute de contrôleur exposés. Le contrôleur acceptera les requêtes sur tous les interfaces d'écoute définis par `controller.listener.names`. En général, il n'y a qu'une seule interface d'écoute de contrôleur, mais il est possible d'en avoir plusieurs.
 
 Dans Kafka, il est d'usage d'utiliser une interface d'écoute distinct pour les clients. Cela permet d'isoler les interfaces d'écoute inter-clusters au niveau du réseau. Dans le cas de l'interface d'écoute du contrôleur dans KRaft, il est nécessaire de l'isoler puisque les clients n'interagissent pas avec lui.
+
+### Autorisation et ACL
+
+Kafka intègre un système d'autorisation modulaire, configurable via la propriété `authorizer.class.name` dans la configuration du serveur. Les implémentations configurées doivent étendre `org.apache.kafka.server.authorizer.Authorizer`. Kafka fournit une implémentation par défaut qui stocke les listes de contrôle d'accès (ACL) dans les métadonnées du cluster. <br>
+Pour les clusters KRaft, il faut utiliser la configuration suivante sur tous les nœuds (brokers, contrôleurs ou nœuds combinant broker et contrôleur) :
+
+```
+authorizer.class.name=org.apache.kafka.metadata.authorizer.StandardAuthorizer
+```
+
+Pour ajouter, supprimer ou lister les ACL, nous pouvons utiliser le script : **kafka-acls.sh** qui vient avec kafka.
+
+Lorsqu’aucune liste de contrôle d’accès (ACL) n’est associée à une ressource, Kafka en bloque automatiquement l’accès. Dans ce cas, seuls les super-utilisateurs disposent des permissions nécessaires pour interagir avec cette ressource. <br>
+Si nous préférons que les ressources sans ACL soient accessibles à tous les utilisateurs (et non seulement aux super-utilisateurs), nous pouvons modifier le comportement par défaut. Pour ce faire, l'on ajoute la ligne suivante à notre fichier **server.properties** :
+
+```
+allow.everyone.if.no.acl.found=true
+```
+
+Lorsque ce paramètre est activé, si aucune liste de contrôle d'accès (ACL) n'est définie pour une ressource, Kafka autorisera l'accès à tous. Si une ressource possède une ou plusieurs ACL définies, ces règles seront appliquées normalement, quel que soit le paramètre.
+
+Dans les clusters KRaft, les requêtes d'administration telles que **CreateTopics** et **DeleteTopics** sont envoyées au broker par le client. Le broker transmet ensuite la requête au contrôleur actif via la première interface d'écoute configurée dans **controller.listener.names**. L'autorisation de ces requêtes est effectuée sur le nœud contrôleur. Ceci est réalisé au moyen d'une requête **Envelope** qui encapsule à la fois la requête sous-jacente du client et le principal client. Lorsque le contrôleur reçoit la requête **Envelope** transmise par le broker, il autorise d'abord la requête **Envelope** à l'aide du **principal authentifié du broker**. Ensuite, il autorise la requête sous-jacente à l'aide du **principal transmis**.
