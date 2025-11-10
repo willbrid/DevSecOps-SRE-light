@@ -125,3 +125,13 @@ Les opérations ci-dessus peuvent être appliquées à certaines ressources déc
 --- **TransactionalId** : représente les actions liées aux transactions, telles que la validation. <br>
 --- **DelegationToken** : représente les jetons de délégation dans le cluster. <br>
 --- **User** : les opérations `CreateToken` et `DescribeToken` peuvent être accordées aux ressources `User` pour permettre la création et la description de jetons pour d’autres utilisateurs.
+
+Le modèle de sécurité Kafka comprend les opérations suivantes sur différents types de ressources.
+
+|Ressources|Operations|
+|----------|-----------|
+`Topic`|`Write`, `Read`, `Describe`, `Create`, `Delete`, `DescribeConfigs`, `AlterConfigs`, `IdempotentWrite`
+`Group`|`Read`,`Describe`,`Delete`
+`Cluster`|`Create`, `Describe`, `Alter`, `DescribeConfigs`, `AlterConfigs`, `IdempotentWrite`, `ClusterAction`
+`TransactionalId`|`Describe`, `Write`
+`DelegationToken`|`Describe`
