@@ -11,6 +11,8 @@ Les mesures de sécurité suivantes sont actuellement prises en charge :
 --- **SASL/SCRAM-SHA-256** et **SASL/SCRAM-SHA-512** <br>
 --- **SASL/OAUTHBEARER**
 
+**SASL** => Simple Authentication and Security Layer
+
 - Chiffrement des données transférées entre les brokers et les clients, entre les brokers, ou entre les brokers et les outils via SSL. L’activation du chiffrement SSL réduit les performances de Kafka, à un niveau variable selon la puissance du processeur et la JVM utilisée.
 
 - Autorisation des opérations de **lecture/écriture** par les clients. L'autorisation est modulaire et l’intégration avec des services d’autorisation externes est prise en charge.
