@@ -47,7 +47,7 @@ sudo reboot
 - Création du repertoire de **kafka**
 
 ```
-mkdir -p $HOME/kafka/logs
+mkdir -p $HOME/kafka
 ```
 
 - Téléchargement de l'agent opentelemetry (version **2.20.1**)
