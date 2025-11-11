@@ -186,3 +186,11 @@ systemctl --user status kafka-3.service
 ```
 podman container ls
 ```
+
+- Autorisation des ports **29092**, **39092**, **49092**
+
+```
+sudo firewall-cmd --permanent --add-port=29092/tcp --add-port=39092/tcp --add-port=49092/tcp
+
+sudo firewall-cmd --reload
+```
