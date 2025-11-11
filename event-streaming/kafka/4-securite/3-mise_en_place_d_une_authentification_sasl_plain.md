@@ -41,8 +41,8 @@ Nous allons définir les variables d'environnement
 
 --- KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL=PLAIN <br>
 --- KAFKA_SASL_ENABLED_MECHANISMS=PLAIN <br>
---- KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:SASL_PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:SASL_PLAINTEXT (cette ligne est une mise à jour)<br>
---- KAFKA_OPTS=-Djava.security.auth.login.config=/etc/kafka/kafka_server_jaas.conf
+--- KAFKA_OPTS=-Djava.security.auth.login.config=/etc/kafka/kafka_server_jaas.conf <br>
+--- KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:SASL_PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:SASL_PLAINTEXT (cette ligne est une mise à jour)
 
 ```
 vi $HOME/.config/containers/systemd/kafka-1.container
