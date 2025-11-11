@@ -194,3 +194,87 @@ sudo firewall-cmd --permanent --add-port=29092/tcp --add-port=39092/tcp --add-po
 
 sudo firewall-cmd --reload
 ```
+
+- Exemple avec la création de 2 sujets **usertokens** et **transactions**
+
+```
+podman container exec --workdir /opt/kafka/bin/ -it kafka-1 /bin/bash
+```
+
+```
+./kafka-topics.sh --create --topic usertokens --bootstrap-server localhost:9092
+
+./kafka-topics.sh --create --topic transactions --bootstrap-server localhost:9092
+```
+
+Ecriture de quelques messages sensibles :
+
+```
+./kafka-console-producer.sh --topic usertokens --bootstrap-server localhost:9092
+```
+
+```
+> user1 token1 
+> user2 token2
+> user3 token3
+```
+
+
+```
+./kafka-console-producer.sh --topic transactions --bootstrap-server localhost:9092
+```
+
+```
+> trid1 value1
+> trid2 value2
+> trid3 value3
+```
+
+```
+exit
+```
+
+### Inconvénients d'un cluster kafka non sécurisé
+
+Un cluster Kafka non sécurisé expose de nombreuses informations sensibles et ouvre la porte à des actions malveillantes. Sans **contrôles d’accès**, **chiffrement** et **authentification**, un attaquant (ou même un employé non autorisé) peut obtenir ou manipuler des informations critiques du système.
+
+Nous allons simuler des actions non autorisées depuis notre serveur **serverapp** :
+
+- Afficher les sujets et métadonnées du cluster
+
+```
+kcat -b 192.168.56.209:29092 -L
+```
+
+```
+# Résultats
+
+Metadata for all topics (from broker 1: 192.168.56.209:29092/1):
+ 3 brokers:
+  broker 1 at 192.168.56.209:29092
+  broker 2 at 192.168.56.209:39092
+  broker 3 at 192.168.56.209:49092 (controller)
+ 2 topics:
+  topic "usertokens" with 3 partitions:
+    partition 0, leader 1, replicas: 1, isrs: 1
+    partition 1, leader 2, replicas: 2, isrs: 2
+    partition 2, leader 3, replicas: 3, isrs: 3
+  topic "transactions" with 3 partitions:
+    partition 0, leader 2, replicas: 2, isrs: 2
+    partition 1, leader 3, replicas: 3, isrs: 3
+    partition 2, leader 1, replicas: 1, isrs: 1
+```
+
+- Afficher les messages contenus dans les sujets
+
+```
+kcat -C -b 192.168.56.209:39092 -t usertokens -o begin
+
+kcat -C -b 192.168.56.209:49092 -t transactions -o begin
+```
+
+- Envoyer les messages dans n'importe quel sujet
+
+```
+echo "trid3 fakevalue4" | kcat -b 192.168.56.209:29092 -t transactions -P
+```
