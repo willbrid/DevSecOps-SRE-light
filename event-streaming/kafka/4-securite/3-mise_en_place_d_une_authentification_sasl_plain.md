@@ -180,6 +180,12 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 ./kafka-topics.sh --create --topic userstatus --command-config /tmp/kafka-client.conf --bootstrap-server localhost:9092
 ```
 
+De même pour envoyer des messages dans le sujet **userstatus** à partir de notre conteneur broker kafka, on exécute :
+
+```
+./kafka-console-producer.sh --topic userstatus --producer.config /tmp/kafka-client.conf --bootstrap-server localhost:9092
+```
+
 ### Tests de connexion depuis le serveur serverapp
 
 - Tentative d'afficher des sujets et métadonnées du cluster sans utiliser de paramètres d'authentification
