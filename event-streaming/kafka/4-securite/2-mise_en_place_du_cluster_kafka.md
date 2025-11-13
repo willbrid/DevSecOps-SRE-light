@@ -68,7 +68,7 @@ Environment=KAFKA_NUM_PARTITIONS=3
 Environment=KAFKA_LOG_DIRS='/tmp/kraft-combined-logs'
 Environment=CLUSTER_ID='h6446m6i9UHem180lrU0Jg'
 Timezone=Europe/Paris
-Volume=/home/vagrant/kafka/data1:/tmp:Z
+Volume=/home/vagrant/kafka/data1:/tmp/kraft-combined-logs:Z
 
 [Service]
 Restart=always
@@ -109,7 +109,7 @@ Environment=KAFKA_NUM_PARTITIONS=3
 Environment=KAFKA_LOG_DIRS='/tmp/kraft-combined-logs'
 Environment=CLUSTER_ID='h6446m6i9UHem180lrU0Jg'
 Timezone=Europe/Paris
-Volume=/home/vagrant/kafka/data2:/tmp:Z
+Volume=/home/vagrant/kafka/data2:/tmp/kraft-combined-logs:Z
 
 [Service]
 Restart=always
@@ -150,7 +150,7 @@ Environment=KAFKA_NUM_PARTITIONS=3
 Environment=KAFKA_LOG_DIRS='/tmp/kraft-combined-logs'
 Environment=CLUSTER_ID='h6446m6i9UHem180lrU0Jg'
 Timezone=Europe/Paris
-Volume=/home/vagrant/kafka/data3:/tmp:Z
+Volume=/home/vagrant/kafka/data3:/tmp/kraft-combined-logs:Z
 
 [Service]
 Restart=always
