@@ -16,10 +16,10 @@ systemctl --user stop kafka-2.service
 systemctl --user stop kafka-3.service
 ```
 
-- Nous créeons notre fichier **kafka_server_jaas.conf** contenant la définition des crédentials de nos utilisateurs
+- Nous créeons notre fichier **kafka_server_saslplain_jaas.conf** contenant la définition des crédentials de nos utilisateurs
 
 ```
-vi $HOME/kafka/kafka_server_jaas.conf
+vi $HOME/kafka/kafka_server_saslplain_jaas.conf
 ```
 
 ```
@@ -65,7 +65,7 @@ Environment=KAFKA_LOG_DIRS='/tmp/kraft-combined-logs'
 ...
 ...
 Volume=/home/vagrant/kafka/data1:/tmp:Z
-Volume=/home/vagrant/kafka/kafka_server_jaas.conf:/etc/kafka/kafka_server_jaas.conf:z
+Volume=/home/vagrant/kafka/kafka_server_saslplain_jaas.conf:/etc/kafka/kafka_server_jaas.conf:z
 
 [Service]
 Restart=always
@@ -95,7 +95,7 @@ Environment=KAFKA_LOG_DIRS='/tmp/kraft-combined-logs'
 ...
 ...
 Volume=/home/vagrant/kafka/data1:/tmp:Z
-Volume=/home/vagrant/kafka/kafka_server_jaas.conf:/etc/kafka/kafka_server_jaas.conf:z
+Volume=/home/vagrant/kafka/kafka_server_saslplain_jaas.conf:/etc/kafka/kafka_server_jaas.conf:z
 
 [Service]
 Restart=always
@@ -125,7 +125,7 @@ Environment=KAFKA_LOG_DIRS='/tmp/kraft-combined-logs'
 ...
 ...
 Volume=/home/vagrant/kafka/data1:/tmp:Z
-Volume=/home/vagrant/kafka/kafka_server_jaas.conf:/etc/kafka/kafka_server_jaas.conf:z
+Volume=/home/vagrant/kafka/kafka_server_saslplain_jaas.conf:/etc/kafka/kafka_server_jaas.conf:z
 
 [Service]
 Restart=always
