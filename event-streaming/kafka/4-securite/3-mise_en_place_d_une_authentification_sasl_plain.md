@@ -64,7 +64,7 @@ Environment=KAFKA_OPTS=-Djava.security.auth.login.config=/etc/kafka/kafka_server
 Environment=KAFKA_LOG_DIRS='/tmp/kraft-combined-logs'
 ...
 ...
-Volume=/home/vagrant/kafka/data1:/tmp:Z
+Volume=/home/vagrant/kafka/data1:/tmp/kraft-combined-logs:Z
 Volume=/home/vagrant/kafka/kafka_server_saslplain_jaas.conf:/etc/kafka/kafka_server_jaas.conf:z
 
 [Service]
@@ -94,7 +94,7 @@ Environment=KAFKA_OPTS=-Djava.security.auth.login.config=/etc/kafka/kafka_server
 Environment=KAFKA_LOG_DIRS='/tmp/kraft-combined-logs'
 ...
 ...
-Volume=/home/vagrant/kafka/data1:/tmp:Z
+Volume=/home/vagrant/kafka/data2:/tmp/kraft-combined-logs:Z
 Volume=/home/vagrant/kafka/kafka_server_saslplain_jaas.conf:/etc/kafka/kafka_server_jaas.conf:z
 
 [Service]
@@ -124,7 +124,7 @@ Environment=KAFKA_OPTS=-Djava.security.auth.login.config=/etc/kafka/kafka_server
 Environment=KAFKA_LOG_DIRS='/tmp/kraft-combined-logs'
 ...
 ...
-Volume=/home/vagrant/kafka/data1:/tmp:Z
+Volume=/home/vagrant/kafka/data3:/tmp/kraft-combined-logs:Z
 Volume=/home/vagrant/kafka/kafka_server_saslplain_jaas.conf:/etc/kafka/kafka_server_jaas.conf:z
 
 [Service]
