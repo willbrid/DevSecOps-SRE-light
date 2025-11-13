@@ -160,6 +160,26 @@ systemctl --user status kafka-3.service
 podman container ls
 ```
 
+### Création manuelle de sujet avec l'authentification SASL/PLAIN
+
+Pour créer un sujet directement à partir d’un conteneur broker Kafka, il convient de suivre les étapes ci-dessous.
+
+En guise d'exemple nous créons un sujet **userstatus**.
+
+```
+podman container exec --workdir /opt/kafka/bin/ -it kafka-1 /bin/bash
+```
+
+```
+echo 'security.protocol=SASL_PLAINTEXT
+sasl.mechanism=PLAIN
+sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-secret";' > /tmp/kafka-client.conf
+```
+
+```
+./kafka-topics.sh --create --topic userstatus --command-config /tmp/kafka-client.conf --bootstrap-server localhost:9092
+```
+
 ### Tests de connexion depuis le serveur serverapp
 
 - Tentative d'afficher des sujets et métadonnées du cluster sans utiliser de paramètres d'authentification
