@@ -38,10 +38,10 @@ listener.security.protocol.map=CLIENT:SSL,BROKER:PLAINTEXT
 ```
 
 Les valeurs possibles pour le protocole de sécurité sont :
-- PLAINTEXT
-- SSL
-- SASL_PLAINTEXT
-- SASL_SSL
+- `PLAINTEXT`      : aucune authentification et aucun chiffrement.
+- `SSL`            : chiffrement du trafic avec TLS et possibilité d’authentifier les clients via certificat X.509 
+- `SASL_PLAINTEXT` : authentification via un mécanisme SASL mais trafic non chiffré
+- `SASL_SSL`       : combinaison du chiffrement TLS et de l’authentification SASL
 
 Le protocole **PLAINTEXT** n'offre aucune sécurité et ne nécessite aucune configuration supplémentaire. Si chaque  interface d'écoute requis utilise un protocole de sécurité distinct, il est également possible d'utiliser le nom de ce protocole comme nom interface d'écoute. Toutefois, Il est recommandée de nommer explicitement les interfaces, car cela clarifie leur fonction.
 
