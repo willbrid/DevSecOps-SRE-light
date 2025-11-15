@@ -39,10 +39,11 @@ Cette configuration définit trois utilisateurs (**admin**, **alice** et **bob**
 
 Nous allons définir les variables d'environnement 
 
+--- KAFKA_SECURITY_PROTOCOL=SASL_PLAINTEXT (cette ligne est une mise à jour) <br>
 --- KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL=PLAIN <br>
 --- KAFKA_SASL_ENABLED_MECHANISMS=PLAIN <br>
 --- KAFKA_OPTS=-Djava.security.auth.login.config=/etc/kafka/kafka_server_jaas.conf <br>
---- KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:SASL_PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:SASL_PLAINTEXT (cette ligne est une mise à jour)
+--- KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:SASL_PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:SASL_PLAINTEXT (cette ligne est une mise à jour) <br>
 
 ```
 vi $HOME/.config/containers/systemd/kafka-1.container
@@ -56,6 +57,7 @@ After=local-fs.target
 [Container]
 ContainerName=kafka-1
 ...
+Environment=KAFKA_SECURITY_PROTOCOL=SASL_PLAINTEXT
 ...
 Environment=KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL=PLAIN
 Environment=KAFKA_SASL_ENABLED_MECHANISMS=PLAIN
@@ -86,6 +88,7 @@ After=local-fs.target
 [Container]
 ContainerName=kafka-2
 ...
+Environment=KAFKA_SECURITY_PROTOCOL=SASL_PLAINTEXT
 ...
 Environment=KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL=PLAIN
 Environment=KAFKA_SASL_ENABLED_MECHANISMS=PLAIN
@@ -116,6 +119,7 @@ After=local-fs.target
 [Container]
 ContainerName=kafka-3
 ...
+Environment=KAFKA_SECURITY_PROTOCOL=SASL_PLAINTEXT
 ...
 Environment=KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL=PLAIN
 Environment=KAFKA_SASL_ENABLED_MECHANISMS=PLAIN
