@@ -275,15 +275,15 @@ On peut aussi supprimer un utilisateur
 
 - Tentative d'afficher des sujets et métadonnées du cluster sans utiliser de paramètres d'authentification avec l'outil **kafkaio**
 
-[authentication_without_auth.png](./images/authentication_without_auth.png)
+![authentication_without_auth.png](./images/authentication_without_auth.png)
 
 Nous allons constater que nous ne pouvons pas nous connecter.
 
 - Tentative d'afficher des sujets et métadonnées du cluster en utilisant un paramètre d'authentification SCRAM avec l'outil **kafkaio**
 
-[authentication_with_saslscram1.png](./images/authentication_with_saslscram1.png)
+![authentication_with_saslscram1.png](./images/authentication_with_saslscram1.png)
 
-[authentication_with_saslscram2.png](./images/authentication_with_saslscram2.png)
+![authentication_with_saslscram2.png](./images/authentication_with_saslscram2.png)
 
 Nous constatons que la connexion réussie.
 
