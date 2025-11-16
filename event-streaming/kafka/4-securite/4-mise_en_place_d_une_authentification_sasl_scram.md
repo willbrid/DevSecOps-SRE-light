@@ -271,7 +271,9 @@ On peut aussi supprimer un utilisateur
 ./kafka-configs.sh --bootstrap-server localhost:9092 --alter --delete-config 'SCRAM-SHA-512' --entity-type users --entity-name bob --command-config /opt/kafka/config/client.properties
 ```
 
-### Tests de connexion depuis le serveur serverapp
+### Tests de connexion depuis le client kafkaio
+
+[https://kafkio.com/](https://kafkio.com/)
 
 - Tentative d'afficher des sujets et métadonnées du cluster sans utiliser de paramètres d'authentification avec l'outil **kafkaio**
 
