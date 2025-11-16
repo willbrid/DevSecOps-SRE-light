@@ -195,6 +195,41 @@ keytool -keystore kafka-3-keystore.jks -alias localhost -import -file kafka-3.cr
 
 Le mot de passe demandé est celui créé lors de la génération des fichiers keystore : `test2025`.
 
+- Générons les fichiers **client-keystore.jks** et **client.csr** du client, signons avec le CA pour générer le fichier **client.crt** et importons le CA et le client crt dans le keystore client
+
+```
+keytool -genkeypair -keystore client-keystore.jks -alias localhost -validity 730 -keyalg RSA -storetype pkcs12
+
+keytool -certreq -keystore client-keystore.jks -alias localhost -ext SAN=DNS:localhost,DNS:kafka-client,IP:192.168.56.1,IP:192.168.56.212 -file client.csr
+```
+
+> NB: Pour la première commande, on a le mot de passe : `client2025` et les différentes réponses aux questions
+
+```
+What is your first and last name?
+  [Unknown]: kafka-client
+What is the name of your organizational unit?
+  [Unknown]: devsecops-dojo
+What is the name of your organization?
+  [Unknown]: devsecops-dojo
+What is the name of your City or Locality?
+  [Unknown]: idf
+What is the name of your State or Province?
+  [Unknown]: idf 
+What is the two-letter country code for this unit?
+  [Unknown]: FR
+```
+
+```
+openssl ca -config openssl-ca.cnf -policy signing_policy -extensions signing_req -out client.crt -infiles client.csr
+```
+
+```
+keytool -keystore client-keystore.jks -alias CARoot -import -file cacert.pem
+
+keytool -keystore client-keystore.jks -alias localhost -import -file client.crt
+```
+
 - Générons des fichiers **server.truststore.jks** et **client.truststore.jks**
 
 Cette étape consiste à ajouter l'autorité de certification générée au magasin de certificats de confiance des brokers ou des clients afin que ces derniers puissent lui faire confiance.
@@ -386,3 +421,15 @@ systemctl --user status kafka-3.service
 ```
 podman container ls
 ```
+
+### Tests de connexion depuis le client kafkaio
+
+[https://kafkio.com/](https://kafkio.com/)
+
+Tentative d'afficher des sujets et métadonnées du cluster en utilisant un paramètre d'authentification SCRAM SSL avec l'outil **kafkaio**
+
+![authentication_with_saslscramssl1.png](./images/authentication_with_saslscramssl1.png)
+
+![authentication_with_saslscramssl2.png](./images/authentication_with_saslscramssl2.png)
+
+Nous constatons que la connexion réussie.
