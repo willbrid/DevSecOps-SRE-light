@@ -169,8 +169,47 @@ Les autres utilisateurs `alice` et `bob` n'ont aucun droit pour l'instant.
 
 ### Tests de connexion depuis le client kafkaio avec l'utilisateur superadmin
 
-Tentative de connexion au cluster en utilisant un paramètre d'authentification SCRAM SSL avec l'outil **kafkaio** avec l'utilisateur `superadmin`.
+- Tentative de connexion au cluster en utilisant un paramètre d'authentification SCRAM SSL avec l'outil **kafkaio** avec l'utilisateur `superadmin`.
 
 ![authentication_with_saslscramsslacl1.png](./images/authentication_with_saslscramsslacl1.png)
 
 ![authentication_with_saslscramsslacl2.png](./images/authentication_with_saslscramsslacl2.png)
+
+- Création d'une acl avec le script `kafka-acls.sh` sur les utilisateurs `alice` et `bob`concernant le sujet `usertokens`.
+
+Les listes de contrôle d'accès (ACL) Kafka sont définies selon le format général suivant : « **Le principal {P} est [allow|deny] Opération {O} depuis l'hôte {H} sur toute ressource {R} correspondant au modèle de ressource {RP}** ». Pour ajouter, supprimer ou lister les ACL, vous pouvez utiliser l'interface de ligne de commande Kafka : **kafka-acls.sh** .
+
+```
+vi /opt/kafka/config/client.properties
+```
+
+```
+security.protocol=SASL_SSL
+sasl.mechanism=SCRAM-SHA-512
+ssl.truststore.location=/etc/kafka/secrets/server.truststore.jks
+ssl.truststore.password=test2027
+ssl.keystore.location=/etc/kafka/secrets/kafka-1-keystore.jks
+ssl.keystore.password=test2025
+ssl.key.password=test2025
+sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required \
+    username="admin" \
+    password="admin-secret";
+```
+
+--- Créons le sujet `usertokens`
+
+```
+./kafka-topics.sh --create --topic usertokens --bootstrap-server localhost:9092 --command-config /opt/kafka/config/client.properties
+```
+
+--- Ajoutons le droit de lecture sur le sujet `usertokens` à l'utilisateur `alice`
+
+```
+./kafka-acls.sh --bootstrap-server localhost:9092 --add --allow-principal User:alice --allow-host * --operation Read --topic usertokens --command-config /opt/kafka/config/client.properties
+```
+
+--- Ajoutons le droit d'écriture sur le sujet `usertokens` à l'utilisateur `bob`
+
+```
+./kafka-acls.sh --bootstrap-server localhost:9092 --add --allow-principal User:bob --allow-host * --operation Write --topic usertokens --command-config /opt/kafka/config/client.properties
+```
