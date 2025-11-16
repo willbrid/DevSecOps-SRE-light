@@ -426,7 +426,7 @@ podman container ls
 
 [https://kafkio.com/](https://kafkio.com/)
 
-Tentative d'afficher des sujets et métadonnées du cluster en utilisant un paramètre d'authentification SCRAM SSL avec l'outil **kafkaio**
+Tentative de connexion au cluster en utilisant un paramètre d'authentification SCRAM SSL avec l'outil **kafkaio**
 
 ![authentication_with_saslscramssl1.png](./images/authentication_with_saslscramssl1.png)
 
