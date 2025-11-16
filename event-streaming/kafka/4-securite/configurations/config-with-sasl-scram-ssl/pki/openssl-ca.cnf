@@ -1,0 +1,61 @@
+HOME            = .
+RANDFILE        = $ENV::HOME/.rnd
+
+[ ca ]
+default_ca    = CA_default
+
+[ CA_default ]
+
+base_dir      = .
+certificate   = $base_dir/cacert.pem
+private_key   = $base_dir/cakey.pem
+new_certs_dir = $base_dir
+database      = $base_dir/index.txt
+serial        = $base_dir/serial.txt
+default_days     = 1000
+default_crl_days = 30
+default_md       = sha256
+preserve         = no
+x509_extensions = ca_extensions
+
+email_in_dn     = no
+copy_extensions = copy
+
+[ req ]
+default_bits       = 4096
+default_keyfile    = cakey.pem
+distinguished_name = ca_distinguished_name
+x509_extensions    = ca_extensions
+string_mask        = utf8only
+prompt             = no
+
+[ ca_distinguished_name ]
+countryName                 = FR
+stateOrProvinceName         = idf
+localityName                = idf
+organizationName            = devsecops-dojo
+organizationalUnitName      = devsecops-dojo
+commonName                  = devsecopsdojo
+emailAddress                = ngaswilly77@gmail.com
+
+[ ca_extensions ]
+
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid:always, issuer
+basicConstraints       = critical, CA:true
+keyUsage               = keyCertSign, cRLSign
+
+[ signing_policy ]
+countryName            = optional
+stateOrProvinceName    = optional
+localityName           = optional
+organizationName       = optional
+organizationalUnitName = optional
+commonName             = supplied
+emailAddress           = optional
+
+[ signing_req ]
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid,issuer
+basicConstraints       = CA:FALSE
+keyUsage               = digitalSignature, keyEncipherment
