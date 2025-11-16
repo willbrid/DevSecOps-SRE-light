@@ -286,3 +286,19 @@ Nous allons constater que nous ne pouvons pas nous connecter.
 [authentication_with_saslscram2.png](./images/authentication_with_saslscram2.png)
 
 Nous constatons que la connexion réussie.
+
+### Inconvénients d'un cluster kafka sécurisé avec une authentification SASL/PLAIN
+
+- Le mot de passe scram circule en clair si **SSL** n’est pas activé.
+- Les identifiants sont souvent stockés dans le sujet `__cluster_metadata` du broker, donc peu sécurisés.
+- Les messages peuvent toujours être interceptés.
+- Ce mécanisme résoud le problème de sécurité de l'authentification SASL/PLAIN mais non recommandé en production sans chiffrement TLS.
+
+En guise d'exemple, on peut utiliser la commande `tcpdump` pour capturer tous les communications tcp d'un client sur l'interface eth1 de notre serveur **broker**.
+
+```
+sudo tcpdump -i eth1 -nn -s 0 -A -X port 29092 -w kafka.pcap
+```
+
+Le package `tcpdump` est installé sur le serveru **broker**. <br>
+Le fichier généré **kafka.pcap** peut être chargé dans l'outil **wireshark** afin de voir en clair les crédentials et les messages.
