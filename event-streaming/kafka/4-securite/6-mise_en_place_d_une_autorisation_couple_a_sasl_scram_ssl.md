@@ -33,7 +33,7 @@ sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule require
 ./kafka-configs.sh --bootstrap-server localhost:9092 --alter --add-config 'SCRAM-SHA-512=[iterations=8192,password=superadmin-secret]' --entity-type users --entity-name superadmin --command-config /opt/kafka/config/client.properties
 ```
 
-On peut vérifier la liste des utilisateurs avec la commande
+On peut vérifier la liste des utilisateurs avec la commande suivante :
 
 ```
 ./kafka-configs.sh --bootstrap-server localhost:9092 --describe --entity-type users --command-config /opt/kafka/config/client.properties
@@ -161,7 +161,7 @@ systemctl --user status kafka-3.service
 podman container ls
 ```
 
-Nous avons défini deux super utilisateurs : <br>
+Nous avons défini deux super-utilisateurs : <br>
 --- `admin` : pour la communication interne dans le cluster <br>
 --- `superadmin` : pour la communication depuis l'extérieur
 
