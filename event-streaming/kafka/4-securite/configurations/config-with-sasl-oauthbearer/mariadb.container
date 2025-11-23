@@ -1,0 +1,20 @@
+[Unit]
+Description=Mariadb image 11.8 - LTS
+After=network-online.target,local-fs.target
+
+[Container]
+ContainerName=mariadb
+Image=docker.io/library/mariadb:11.8
+Network=host
+Environment=MARIADB_USER=keycloak
+Environment=MARIADB_DATABASE=keycloak
+Secret=mariadbpassword,type=env,target=MARIADB_PASSWORD
+Secret=mariadbrootpassword,type=env,target=MARIADB_ROOT_PASSWORD
+Timezone=Europe/Paris
+Volume=/var/lib/mariadb:/var/lib/mysql:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
