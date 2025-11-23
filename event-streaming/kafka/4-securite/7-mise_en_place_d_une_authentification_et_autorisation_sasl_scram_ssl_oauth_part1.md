@@ -1,4 +1,4 @@
-# Mise en place d'un authentification et autorisation client oauth avec keycloak
+# Mise en place d'une authentification et autorisation client oauth avec keycloak
 
 Grâce au plugin SASL/OAUTHBEARER, Kafka permet aux clients d’obtenir un jeton OAuth2 auprès d’un Identity Provider (IdP), puis de l’utiliser pour s’authentifier auprès des brokers. Couplé au système d’autorisations basé sur les ACLs ou sur un Authorizer personnalisé, ce mécanisme offre un niveau de sécurité robuste, moderne et parfaitement adapté aux environnements multi-services.
 
