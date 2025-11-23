@@ -4,22 +4,12 @@ Apache Kafka permet aux clients d'utiliser `SSL` pour le chiffrement du trafic e
 
 Nous allons mettre en place notre propre **infrastructure PKI**, l'utiliser pour créer des **certificats** et configurer Kafka pour les utiliser.
 
-### Configuration initiale
-
-- Nous allons commencer par arrêter les trois services Kafka conteneurisés actuellement en cours d’exécution et ne pas supprimer les données kafka persistées issues de la configuration précédente.
-
-```
-systemctl --user stop kafka-1.service
-
-systemctl --user stop kafka-2.service
-
-systemctl --user stop kafka-3.service
-```
+### Configuration initiale [sandbox : servertools]
 
 - Nous créons le repertoire des données ssl
 
 ```
-mkdir -p $HOME/kafka/pki && cd $HOME/kafka/pki
+mkdir -p $HOME/pki && cd $HOME/pki
 ```
 
 - Installons **keytool** à travers l'installation de **java-21-openjdk**
@@ -34,7 +24,7 @@ Vérifions de l'installation de **keytool**
 keytool --version
 ```
 
-### Génération d'une clé et d'un certificat SSL pour chaque broker Kafka
+### Génération d'une clé et d'un certificat SSL pour chaque broker Kafka [sandbox : servertools]
 
 Pour activer SSL pour chacun de nos brokers Kafka, il faut d’abord générer pour chaque broker une paire de clés **publique/privée** avec sa demande de signature de certificat. Kafka impose que ces clés et certificats soient stockés dans un **keystore**. On utilise pour cela l’outil Java **keytool** au format **PKCS12**.
 
@@ -79,7 +69,7 @@ What is the two-letter country code for this unit?
   [Unknown]: FR
 ```
 
-### Création de notre propre CA et signature de nos demandes de certificats
+### Création de notre propre CA et signature de nos demandes de certificats [sandbox : servertools]
 
 - Créons notre propre CA
 
@@ -246,7 +236,33 @@ keytool -keystore client.truststore.jks -alias CARoot -import -file cacert.pem
 
 Mot de passe du magasin de certificats de confiance des brokers : `client2027`.
 
-### Configuration des 3 services kafka
+### Configuration des 3 services kafka [sandbox : broker]
+
+- Nous allons commencer par arrêter les trois services Kafka conteneurisés actuellement en cours d’exécution et ne pas supprimer les données kafka persistées issues des configurations précédentes.
+
+```
+systemctl --user stop kafka-1.service
+
+systemctl --user stop kafka-2.service
+
+systemctl --user stop kafka-3.service
+```
+
+- Copie des fichiers **keystore** et **trustore** générés pour le cluster kafka
+
+```
+mkdir -p $HOME/kafka/ssl
+```
+
+```
+scp vagrant@192.168.56.214:/home/vagrant/pki/kafka-1-keystore.jks $HOME/kafka/ssl/
+
+scp vagrant@192.168.56.214:/home/vagrant/pki/kafka-2-keystore.jks $HOME/kafka/ssl/
+
+scp vagrant@192.168.56.214:/home/vagrant/pki/kafka-2-keystore.jks $HOME/kafka/ssl/
+
+scp vagrant@192.168.56.214:/home/vagrant/pki/server.truststore.jks $HOME/kafka/ssl/
+```
 
 - Création du repertoire de configuration des fichiers pki pour les brokers
 
