@@ -136,3 +136,84 @@ wordname="hello"
 `=` | `case ab in (a?) echo match; esac` | `[[ ab = a? ]] [[ ab == a? ]] (correspondance de modèles)`
 `=~` | `printf 'ab\n' \| grep -Eq 'ab?'` | `[[ ab =~ ab? ]] (expression régulière)`
 
+- **Test avec `(( ... ))`**
+
+La syntaxe non standard `((expression arithmétique))` renvoie `false` si l'expression arithmétique est égale à zéro, et `true` sinon. Son équivalent portable utilise `test` et la syntaxe POSIX pour les opérations arithmétiques du shell :
+
+```
+test $((a - 2)) -ne 0
+```
+
+Cependant, comme `((expression))` relève de la syntaxe du shell et non d'une commande intégrée, `expression` n'est pas interprétée de la même manière que les arguments d'une commande.
+
+```
+if ((total > max)); then ... ; fi
+```
+
+Donc à l’intérieur de `(( ))` :
+
+--- pas de séparation des mots (word splitting) <br>
+--- pas d’expansion des glob patterns (*, ?, etc.) <br>
+--- pas besoin de $ devant une variable pour l’utiliser <br>
+--- les valeurs sont automatiquement traitées comme des nombres
+
+Le shell interprète `(( ))` comme du calcul brut, pas comme une commande avec des arguments. Donc à l'intérieur ce sont des **expressions arithmétiques**.
+
+### Exécution conditionnelle
+
+Les constructions conditionnelles permettent à un script de décider s'il doit exécuter un bloc de code ou de sélectionner lequel de deux ou plusieurs blocs exécuter.
+
+- **if**
+
+La commande `if` de base évalue une liste d'une ou plusieurs commandes et exécute une liste si l'exécution de `<liste de conditions>` réussit.
+
+```
+if <list de condition>
+then
+  <instructions>
+fi
+
+if <list de condition>; then
+  <instructions>
+fi
+```
+
+`<liste de condition>` est généralement construite avec : `test`, `[]` ou `[[]]` .
+
+Exemple :
+
+```
+read filename
+if [[ -z $filename ]]; then
+  printf "no name entered" >&2
+fi
+```
+
+En utilisant le mot-clé `else`, un ensemble d'instructions peut être exécuté si la `<liste de conditions>` échoue.
+
+```
+printf "Enter a number greather than 7: "
+read number
+if (( number < 7 )); then
+  printf "%d is too small \n" "$number" >&2
+  exit 1
+else
+  printf "you entered %d\n" "$number"
+fi
+```
+
+Il est possible de spécifier plusieurs conditions à l'aide du mot-clé `elif`, de sorte que si le premier test échoue, le second est évalué.
+
+```
+printf "Enter a number between 7 and 17: "
+read number
+if (( number < 7 )); then
+  printf "%d is too small \n" "$number" >&2
+  exit 1
+elif (( number > 17 )); then
+  printf "%d is too big \n" "$number" >&2
+  exit 1
+else
+  printf "you entered %d\n" "$number"
+fi
+```
