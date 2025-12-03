@@ -217,3 +217,75 @@ else
   printf "you entered %d\n" "$number"
 fi
 ```
+
+### Opérateurs conditionels && et ||
+
+Les listes contenant les opérateurs conditionnels ET et OU sont évaluées de gauche à droite. La commande suivant l'opérateur ET (`&&`) est exécutée si la commande précédente réussit. La partie suivant l'opérateur OU (`||`) est exécutée si la commande précédente échoue.
+
+```
+dirname="homelab"
+
+[ -d "${dirname}" ] && cd "${dirname}"
+```
+
+```
+dirname="homelab"
+
+cd "$HOME/$dirname" || exit 1
+```
+
+```
+dirname="homelab"
+
+mkdir "$HOME/$dirname" && cd "$HOME/$dirname" || exit 1
+```
+
+```
+dirname="homelab"
+
+if [ -d "${dirname}" ] && cd "${dirname}"; then
+  echo "${PWD}"
+fi
+```
+
+### Instruction case
+
+Une instruction `case` permet de comparer une valeur (souvent le contenu d’une variable) à une série de modèles et d’exécuter les commandes correspondant au premier modèle qui correspond. Les modèles utilisent les mêmes mécanismes que l’expansion de noms de fichiers :
+
+- les caractères génériques `*` et `?`,
+- les listes ou plages de caractères `[... ]`.
+
+Cela permet de tester facilement plusieurs formes possibles d’une même valeur sans écrire une succession de if.
+
+Syntaxe:
+
+```
+case STRING in
+  PATTERN) COMMANDS ;;
+  PATTERN) COMMANDS ;;
+esac
+```
+
+Exemples:
+
+```
+case $filename in
+  *"$search"*) false;;
+  *) true ;;
+esac
+```
+
+```
+case $number in
+  *[!0-9]*) false;;
+  *) true ;;
+esac
+```
+
+```
+case $# in
+  3) printf "Arguments : $1 - $2 - $3" ;;
+  *) printf "%s\n" "Please provide three arguments" >&2
+     exit 1
+     ;;
+```
