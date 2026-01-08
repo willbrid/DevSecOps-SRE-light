@@ -46,6 +46,8 @@ pipx inject ansible argcomplete
 pipx install ansible-core==2.18.4
 ```
 
+NB: Dernière version actuelle : `2.20.1`.
+
 ```
 pipx inject ansible-core argcomplete
 ```
