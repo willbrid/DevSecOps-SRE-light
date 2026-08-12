@@ -2,7 +2,7 @@
 
 Ce contenu montre comment déployer un pod dans un cluster **Minikube** à l'aide de l'outil `kubectl`. Un pod est la **plus petite unité déployable** de Kubernetes, conçue pour contenir un ou plusieurs conteneurs applicatifs.
 
-💡 On peut spécifier un **tag d'image** ou utiliser un **registre de conteneurs alternatif** si l'image souhaitée est hébergée ailleurs.
+> On peut spécifier un **tag d'image** ou utiliser un **registre de conteneurs alternatif** si l'image souhaitée est hébergée ailleurs.
 
 ### Opérations sur les Pods
 
