@@ -12,6 +12,7 @@ La commande `kubectl explain` **décrit les champs et la structure** des différ
   ```
   
   Exemple : `pods.spec.containers` cible le champ `containers`, imbriqué dans `spec`, lui-même dans `pods`.
+
 - Pour obtenir la **liste complète des ressources supportées**, utiliser :
 
   ```bash
