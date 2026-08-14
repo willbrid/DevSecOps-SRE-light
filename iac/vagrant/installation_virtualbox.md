@@ -63,5 +63,11 @@ Pour utiliser VirtualBox, ajoutons notre compte utilisateur au groupe **vboxuser
 sudo usermod -a -G vboxusers $USER
 ```
 
+Pour cette version virtualbox (version 7.2.14), nous pouvons utiliser **VBoxGuestAdditions 7.2.14**
+
+```
+wget https://download.virtualbox.org/virtualbox/7.2.14/VBoxGuestAdditions_7.2.14.iso
+```
+
 **Sources**: 
 - [Virtualbox](https://www.virtualbox.org/wiki/Linux_Downloads)
