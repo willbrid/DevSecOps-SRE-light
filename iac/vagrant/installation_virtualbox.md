@@ -1,6 +1,6 @@
-# Installation de virtual 7.0
+# Installation de virtual 7.2
 
-Dans ce tutoriel, nous allons installer virtualbox version **7.0** sous **Ubuntu desktop 22.04**.
+Dans ce tutoriel, nous allons installer virtualbox version **7.2** sous **Ubuntu desktop 24.04**.
 
 - Ajoutons la ligne suivante à notre **/etc/apt/sources.list**
 
@@ -9,44 +9,44 @@ sudo vi /etc/apt/sources.list
 ```
 
 ```
-deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian jammy contrib
+deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian noble contrib
 ```
 
 - Ajoutons la clé publique Oracle de vérification des signatures :
 
 ```
-wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --dearmor --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg
+wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg --dearmor
 ```
 
-- Installons virtualbox **7.0**
+- Installons virtualbox **7.2**
 
 ```
 sudo apt-get update
-sudo apt-get install virtualbox-7.0
+sudo apt-get install virtualbox-7.2
 ```
 
 - Installons VirtualBox Extension Pack
 
-Assurons-nous de télécharger la version Extension Pack qui correspond à la version de VirtualBox 7.0 sur notre système Ubuntu. Pour connaître notre version de VirtualBox, exécutons cette commande :
+Assurons-nous de télécharger la version Extension Pack qui correspond à la version de VirtualBox **7.2** sur notre système Ubuntu. Pour connaître notre version de VirtualBox, exécutons cette commande :
 
 ```
 vboxmanage -v | cut -dr -f1
 ```
 
-Cette commande renverra le numéro de version dans un format similaire à **7.0.20**. Avec ces informations, nous pouvons procéder au téléchargement du pack d'extension approprié à l'aide de la commande
+Cette commande renverra le numéro de version dans un format similaire à **7.2.14**. Avec ces informations, nous pouvons procéder au téléchargement du pack d'extension approprié à l'aide de la commande
 
 ```
 cd ~
 ```
 
 ```
-wget https://download.virtualbox.org/virtualbox/7.0.20/Oracle_VM_VirtualBox_Extension_Pack-7.0.20.vbox-extpack
+wget https://download.virtualbox.org/virtualbox/7.2.14/Oracle_VirtualBox_Extension_Pack-7.2.14.vbox-extpack
 ```
 
 Pour installer le pack d'extension que nous venons de télécharger, utilisons la commande **vboxmanage**
 
 ```
-sudo vboxmanage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-7.0.20.vbox-extpack
+sudo vboxmanage extpack install --replace Oracle_VirtualBox_Extension_Pack-7.2.14.vbox-extpack
 ```
 
 L'option **--replace** permet de remplacer l'installation existante.

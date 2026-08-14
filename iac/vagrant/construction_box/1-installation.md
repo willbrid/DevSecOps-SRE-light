@@ -1,11 +1,11 @@
-# Installation vagrant 2.4
+# Installation vagrant 2.4.9 (Ubuntu 24.04)
 
 Dans ce tutoriel, nous allons construire notre propre vagrant box. De ce fait, nous devons télécharger et installer Vagrant, puis configurer un simple fichier **Vagrantfile** afin de tester notre installation.
 
 ## Installation de vagrant
 
 ```
-wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 ```
 
 ```
