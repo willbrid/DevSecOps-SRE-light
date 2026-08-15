@@ -119,4 +119,4 @@ profiles:
 
 ### Liens utiles
 
-- Proposition d'amélioration KEP-1451 (multiple profiles) : https://github.com/kubernetes/enhancements/tree/master/keps/sig-scheduling/1451-kube-scheduler-multiple-profiles
+- Proposition d'amélioration KEP-1451 (multiple profiles) : https://github.com/kubernetes/enhancements/tree/master/keps/sig-scheduling/1451-multi-scheduling-profiles
