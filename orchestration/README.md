@@ -15,10 +15,6 @@ On y traite des concepts, des configurations et des travaux pratiques permettant
 
 | Répertoire | Description |
 | --- | --- |
-| [kcna](kubernetes/kcna/) | Fondamentaux de Kubernetes, orchestration de conteneurs, architecture cloud native, observabilité et livraison d'applications |
-| [cka](kubernetes/cka/) | Gestion des clusters, objets Kubernetes, pods et conteneurs, allocation avancée, déploiements, réseau, services, stockage et troubleshooting |
-| [ckad](kubernetes/ckad/) | Conception et construction d'applications, déploiement, observabilité et maintenance, configuration et sécurité des applications, services et réseau |
-| [cks](kubernetes/cks/) | Configuration et durcissement du cluster, durcissement du système, réduction des vulnérabilités des microservices, sécurité de la chaîne d'approvisionnement, monitoring et sécurité d'exécution |
 | [helm](kubernetes/helm/) | Packaging et gestion du cycle de vie des applications Kubernetes avec Helm |
 | [keda](kubernetes/keda/) | Mise à l'échelle automatique des workloads pilotée par les évènements avec KEDA |
 | [hands-on-labs](kubernetes/hands-on-labs/) | Travaux pratiques de bout en bout pour mettre en application les concepts |
