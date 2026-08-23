@@ -5,10 +5,13 @@ Ce contenu clarifie les distinctions entre **Docker** et **ContainerD**, ainsi q
 ### L'évolution des runtimes de conteneurs
 
 - Docker était l'outil dominant grâce à sa simplicité, et Kubernetes y était étroitement intégré à l'origine.
+
 - Avec l'apparition d'autres runtimes (comme Rocket), Kubernetes a introduit le **CRI (Container Runtime Interface)**, un standard API compatible avec les runtimes respectant l'**OCI (Open Container Initiative)**.
 - L'OCI définit deux spécifications essentielles :
   - **Image specification** : comment les images doivent être construites ;
   - **Runtime specification** : les standards pour les runtimes de conteneurs.
+L'OCI est une fondation (sous l'égide de la Linux Foundation) qui édite des standards définissant ce qu'est un conteneur et comment il est construit/exécuté. C'est une norme indépendante de Kubernetes
+
 - Docker est antérieur au CRI et n'en a pas le support natif → Kubernetes a utilisé le **Docker Shim** pour combler cet écart. Avec la maturité de ContainerD (issu de l'architecture de Docker), ce shim est devenu inutile.
 
 ### Les composants de Docker

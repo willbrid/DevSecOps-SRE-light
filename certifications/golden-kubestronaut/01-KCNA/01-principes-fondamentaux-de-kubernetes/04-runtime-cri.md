@@ -12,6 +12,8 @@ Docker Shim était maintenu uniquement pour assurer la rétrocompatibilité. À 
 
 ### Fonctionnement du CRI
 
+Le **CRI** (**Container Runtime Interface**) c'est le protocole standard de communication entre **kubelet** et le **runtime de conteneur**. C'est une interface spécifique à Kubernetes. C'est le contrat qui définit comment le kubelet dialogue avec un container runtime (containerd, CRI-O…) pour gérer pods, conteneurs et images.
+
 Le **CRI** définit une **interface de plugin** que tout fournisseur peut implémenter, à condition de respecter les standards de l'**Open Container Initiative (OCI)**. Il repose sur une **API gRPC** utilisée par le **kubelet** de Kubernetes pour gérer les **images**, les **conteneurs** et le **réseau**.
 
 Ainsi, les runtimes peuvent fonctionner indépendamment de Kubernetes, laissant aux architectes la liberté de choisir la solution la plus adaptée.
