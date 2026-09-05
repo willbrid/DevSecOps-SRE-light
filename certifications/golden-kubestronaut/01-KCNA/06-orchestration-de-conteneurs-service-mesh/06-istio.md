@@ -57,6 +57,13 @@ DATA PLANE (dans chaque Pod)
 - **Évolution majeure** : ces 3 composants ont fusionné en un **seul daemon**, **istiod**.
 - Dans chaque Pod, en plus du proxy **Envoy**, il y a un **Istio agent** chargé de transmettre les **configurations et secrets** aux proxies Envoy.
 
+Dans une architecture maillée de services (istio), quel est le rôle du plan de contrôle ? il gère tout le trafic entrant et sortant des services via des proxys.
+
+Pourquoi Istio est-il connu en matière de déploiements complexes ?
+- permettant la télémétrie et la surveillance
+- renforcer la sécurité
+- assurer une gestion universelle du trafic
+
 ### Liens utiles
 
 - Documentation officielle Istio : https://istio.io/latest/docs/
