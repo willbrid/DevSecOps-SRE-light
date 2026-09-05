@@ -90,3 +90,7 @@ spec:
 - Envoy est à la fois un **proxy** et un **bus de communication** aux fonctionnalités avancées.
 - Envoy s'exécute comme un **sidecar** : tout le trafic **entrant et sortant** du Pod passe par lui.
 - Il est la **brique de base** de nombreux service meshes, notamment **Istio**.
+
+### Liens utiles
+
+- https://www.envoyproxy.io/docs
