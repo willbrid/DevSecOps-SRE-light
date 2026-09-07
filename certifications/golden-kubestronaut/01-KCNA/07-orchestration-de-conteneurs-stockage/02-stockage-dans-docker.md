@@ -1,6 +1,6 @@
 # Stockage dans Docker
 
-Ce contenu explore le **stockage des conteneurs** et la **gestion du système de fichiers** dans Docker : les **storage drivers**, l'**architecture en couches** et les différences entre données **persistantes** et **éphémères**.
+Ce contenu explore le **stockage des conteneurs** et la **gestion du système de fichiers** dans Docker : les **pilotes de stockage**, l'**architecture en couches** et les différences entre données **persistantes** et **éphémères**.
 
 ### La structure de répertoires de Docker
 
