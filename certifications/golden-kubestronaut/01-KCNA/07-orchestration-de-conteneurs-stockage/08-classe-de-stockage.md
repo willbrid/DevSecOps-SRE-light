@@ -181,12 +181,13 @@ parameters:
   type: pd-ssd
   replication-type: regional-pd
 ```
+
 Il suffit ensuite de **spécifier le nom de la classe de stockage** voulue dans le PVC, et Kubernetes provisionne dynamiquement le volume avec les caractéristiques définies.
 
 ### À retenir
 
 - **provisionnement statique** : disque **et** PV créés **manuellement** avant usage → lourd et répétitif.
-- **provisionnement dynamique** : une **StorageClass** (avec un **provisionneur**) crée **automatiquement** le disque **et** le PV quand un PVC est soumis → pas de PV pré-créés.
+- **provisionnement dynamique** : une **classe de stockage** (avec un **provisionneur**) crée **automatiquement** le disque **et** le PV quand un PVC est soumis → pas de PV pré-créés.
 - Le PVC référence la classe de stockage via **`storageClassName`**.
 - Une objet **StorageClass** utilise `apiVersion: storage.k8s.io/v1`, un champ **`provisioner`** (ex. `kubernetes.io/gce-pd`) et des **`parameters`** (type de disque, réplication).
 - **Plusieurs classes de stockage** = plusieurs **niveaux de service** (ex. `Silver/standard`, `Gold/SSD`, `Platinum/SSD régional`).
