@@ -15,7 +15,7 @@ Ce contenu explique la création et la gestion des **Persistent Volume Claims (P
 - Si **plusieurs PV** correspondent aux critères, on peut utiliser des **labels et selectors** pour garantir le bon volume ;
 - Même si le PVC demande **moins** que la capacité du PV (ex. 500Mi sur 1Gi), la **capacité excédentaire n'est PAS allouée** à d'autres claims (elle est « perdue »).
 
-### Creating a Persistent Volume Claim (créer un PVC)
+### Créer un PVC
 
 Exemple de PVC nommé `myclaim`, demandant **500Mi** en mode **ReadWriteOnce** (`pvc-definition.yaml`) :
 ```yaml

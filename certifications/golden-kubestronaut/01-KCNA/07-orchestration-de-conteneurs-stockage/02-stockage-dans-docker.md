@@ -10,7 +10,7 @@ Ce contenu explore le **stockage des conteneurs** et la **gestion du système de
 - **`image`** : données des images ;
 - **`volumes`** : données persistantes des conteneurs.
 
-### Docker's Layered Architecture (Architecture en couches)
+### Architecture en couches de Docker
 
 Docker construit les images selon une **structure en couches** : **chaque instruction** d'un Dockerfile crée une **nouvelle couche** contenant **uniquement les changements** par rapport à la précédente.
 
@@ -36,7 +36,7 @@ Les couches créées :
 
 > Comme les couches ne stockent que les **changements**, la taille de l'image dépend de ces modifications incrémentales (ex. Ubuntu ≈ 120 Mo, tandis que les couches de code restent petites).
 
-#### Réutilisation des couches (Reusing Layers)
+#### Réutilisation des couches
 
 Deux applications partageant la plupart des couches du Dockerfile **réutilisent** les couches communes.
 
@@ -57,22 +57,26 @@ Les **3 premières couches étant identiques**, Docker **réutilise le cache** e
 
 > Si l'on modifie **seulement le code** (ex. `app.py`), Docker utilise le cache pour les couches inchangées et ne reconstruit que la couche de code mise à jour.
 
-#### Couches d'image et de conteneur (Image and Container Layers)
+#### Couches d'image et de conteneur
 
-Une image Docker est composée de **couches immuables (read-only)**, empilées ainsi :
+Une image Docker est composée de **couches immuables (read-only -> couche en lecture seule)**, empilées.
+
+**Exemple relatif au dockerfile:**
 1. **Base Layer** (Ubuntu) ;
 2. **Packages Layer** (paquets APT) ;
 3. **Dependencies Layer** (paquets pip) ;
 4. **Application Code Layer** (code source) ;
 5. **Entry Point Layer** (commande de démarrage).
 
-**Point essentiel** : au lancement d'un conteneur, Docker ajoute une **couche inscriptible (writable layer)** au-dessus des couches **read-only**. Cette couche capture les changements runtime (logs, données temporaires, modifications). Ex. : créer un fichier `temp.txt` dans un conteneur → stocké dans cette couche writable.
+**Point essentiel** : au lancement d'un conteneur, Docker ajoute une **couche en écriture** au-dessus des couches **immuables**. Cette couche capture les changements runtime (logs, données temporaires, modifications). 
 
-**Copy-on-Write (point crucial)** : le mécanisme « copy-on-write » fait que toute modification d'un fichier **provenant de l'image** est d'abord **copiée dans la couche writable** avant d'être modifiée — l'image originale reste intacte.
+Exemple : créer un fichier `temp.txt` dans un conteneur : il est stocké dans cette `couche en écriture`.
 
-### Persisting Data with Volumes and Bind Mounts (Persistance des données)
+**Copy-on-Write** : le mécanisme `copy-on-write` fait que toute modification d'un fichier **provenant de l'image** est d'abord **copiée dans la couche en écriture** avant d'être modifiée et l'image originale reste intacte.
 
-La couche writable étant **temporaire**, persister les données importantes (surtout pour les applications **stateful** comme les bases de données) est **critique**. Docker offre **deux méthodes** : les **volumes** et les **bind mounts**.
+### Persistance des données avec les volumes et les montages liés (bind mounts)
+
+La **couche en écriture** étant **temporaire**, persister les données importantes (surtout pour les applications **stateful** comme les bases de données) est **critique**. Docker offre **deux méthodes** : les **volumes** et les **montages liés**.
 
 #### Volumes (gérés par Docker)
 
@@ -95,7 +99,7 @@ docker run -v data_volume:/var/lib/mysql mysql
 docker run -v data_volume2:/var/lib/mysql mysql
 ```
 
-#### Bind Mounts (répertoire existant de l'hôte)
+#### Montages liés (Bind Mounts)
 
 Utilise un répertoire **existant** du système hôte (ex. `/data/mysql`) :
 
@@ -119,28 +123,30 @@ Les deux (`-v` et `--mount`) permettent de mapper un répertoire hôte au conten
 | Méthode | Emplacement | Géré par |
 |---------|-------------|----------|
 | **Volume** | `/var/lib/docker/volumes/...` | **Docker** |
-| **Bind Mount** | N'importe quel répertoire de l'**hôte** | L'**utilisateur** |
+| **montage lié** | N'importe quel répertoire de l'**hôte** | L'**utilisateur** |
 
-### Pilotes de stockage (Docker Storage Drivers)
+### Pilotes de stockage Docker
 
-Les **pilotes de stockage** sont essentiels pour implémenter le **système de fichiers en couches** et gérer la **couche writable**. Ils gèrent la **création des couches** et le mécanisme **copy-on-write**.
+Les **pilotes de stockage** sont essentiels pour implémenter le **système de fichiers en couches** et gérer la **couche en écriture**. Ils gèrent la **création des couches** et le mécanisme **copy-on-write**.
 
-Pilotes courants :
+Pilotes de stockage Docker courants :
 - **AUFS**
 - **ZFS**
 - **Btrfs**
 - **Device Mapper**
 - **Overlay** et **Overlay2**
 
-**Choix du driver** : dépend du **système d'exploitation**. Ex. : Ubuntu utilise généralement **AUFS**, Fedora/CentOS peuvent utiliser **Device Mapper**. Docker **choisit automatiquement** le driver optimal selon le système, chacun ayant ses caractéristiques de **performance et stabilité**.
+**Choix du pilote** : dépend du **système d'exploitation**. 
+
+**Exemple :** Ubuntu utilise généralement **AUFS**, Fedora/CentOS peuvent utiliser **Device Mapper**. Docker **choisit automatiquement** le pilote optimal selon le système, chacun ayant ses caractéristiques de **performance et stabilité**.
 
 ### À retenir
 
 - Docker stocke ses données sous **`/var/lib/docker`** (`overlay2`, `containers`, `images`, `volumes`).
 - **Architecture en couches** : chaque instruction du Dockerfile = une couche de **changements** ; les couches communes sont **réutilisées via le cache** (builds rapides).
-- Les couches d'**image sont read-only** ; au runtime, Docker ajoute une **couche writable** avec le mécanisme **copy-on-write** (l'image reste intacte).
-- La couche writable étant **temporaire**, on persiste via **volumes** (gérés par Docker, `/var/lib/docker/volumes`) ou **bind mounts** (répertoire hôte existant), avec `-v` ou `--mount`.
-- Les **storage drivers** (AUFS, ZFS, Btrfs, Device Mapper, Overlay/Overlay2) implémentent les couches et le copy-on-write ; le choix dépend de l'OS.
+- Les couches d'**image sont lecture seule** ; au runtime, Docker ajoute une **couche en écriture** avec le mécanisme **copy-on-write** (l'image reste intacte).
+- La **couche en écriture** étant **temporaire**, on persiste via **volumes** (gérés par Docker, `/var/lib/docker/volumes`) ou **montages liés** (répertoire hôte existant), avec `-v` ou `--mount`.
+- Les **pilotes de stockage** (AUFS, ZFS, Btrfs, Device Mapper, Overlay/Overlay2) implémentent les **couches** et le **copy-on-write** ; le choix dépend de l'OS.
 
 ### Liens utiles
 

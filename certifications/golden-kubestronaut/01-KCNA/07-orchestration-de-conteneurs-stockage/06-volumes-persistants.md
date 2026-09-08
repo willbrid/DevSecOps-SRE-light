@@ -38,7 +38,7 @@ En résumé :
 | **PersistentVolume (PV)** | L'**administrateur** | Ressource de stockage disponible dans le pool |
 | **PersistentVolumeClaim (PVC)** | L'**utilisateur** | Demande (réclamation) de stockage puisée dans le pool de PV |
 
-### Creating a Persistent Volume (créer un PV)
+### Créer un PV
 
 Pour créer un PV via un template YAML, on définit dans la section `spec` :
 - **Access Modes** : détermine **comment** le volume peut être monté :

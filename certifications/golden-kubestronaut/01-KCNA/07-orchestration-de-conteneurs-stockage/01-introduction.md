@@ -18,4 +18,4 @@ Le stockage **Docker** s'articule autour de **deux éléments** :
 ### À retenir
 
 - Comprendre le **stockage Docker** est un prérequis pour aborder le stockage dans **Kubernetes**.
-- Deux notions clés : les **storage drivers** (gestion des couches d'images et données de conteneurs) et les **volume driver plugins** (gestion des volumes / stockage persistant).
+- Deux notions clés : les **pilotes de stockage** (gestion des couches d'images et données de conteneurs) et les **plugins de volumes** (gestion des volumes / stockage persistant).
