@@ -150,7 +150,7 @@ static_configs:
 - Les **labels** ajoutent des dimensions → préférer une métrique unique + labels plutôt que des métriques séparées (agrégation facilitée).
 - Labels **automatiques** : **`instance`** (la target) et **`job`** (le nom du job) ; **`__name__`** = le nom de la métrique en interne.
 
-#### Liens utiles
+### Liens utiles
 
 - Page de téléchargement Prometheus : https://prometheus.io/download
 - Documentation officielle Prometheus : https://prometheus.io/docs/
