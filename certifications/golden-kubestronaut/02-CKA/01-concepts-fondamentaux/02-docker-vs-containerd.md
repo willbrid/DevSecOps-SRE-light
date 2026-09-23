@@ -97,9 +97,37 @@ $ crictl --runtime-endpoint <endpoint>
 $ export CONTAINER_RUNTIME_ENDPOINT=<endpoint>
 ```
 
+### Note sur la dépréciation de Docker
+
+> Clarification sur la dépréciation de Docker dans Kubernetes, et pourquoi Docker reste pertinent malgré ce statut, notamment pour le développement et la gestion de conteneurs.
+
+#### Contexte
+
+À l'origine, **Docker était le seul runtime de conteneur supporté** par Kubernetes. Pour permettre la compatibilité avec d'autres runtimes, la **CRI (Container Runtime Interface)** a été introduite.
+
+Docker, en tant que **plateforme complète**, regroupe plusieurs outils :
+- La **CLI Docker**
+- L'**API**
+- Les **outils de build** (création d'images)
+- Le **support des volumes**
+- Les **configurations de sécurité**
+- Le **runtime de conteneur** (`runc`)
+- Le **daemon** (`containerd`) qui gère le runtime
+
+**containerd** est désormais **compatible CRI** et fonctionne comme un composant **autonome** qui interagit directement avec Kubernetes. Grâce à cela, Kubernetes **ne dépend plus** des outils additionnels de Docker : il gère les opérations de conteneurs **nativement**.
+
+#### Le rôle de Docker dans le développement moderne
+
+Même si Kubernetes a **officiellement déprécié Docker** comme runtime, Docker reste la **solution de conteneur la plus populaire** pour le développement et les processus de build au quotidien. Kubernetes s'appuie simplement sur **containerd** pour l'orchestration, mais de nombreuses pratiques de développement continuent de bénéficier de la riche palette d'outils de Docker.
+
+> Bien que Kubernetes n'exige pas Docker pour l'orchestration, **utiliser Docker pour comprendre les fondamentaux des conteneurs reste précieux**. Une fois ces bases maîtrisées, le passage vers Kubernetes et containerd devient plus intuitif.
+
+> Si Docker n'est pas installé ou si l'on préfère containerd, on peut convertir les commandes Docker en leurs équivalents **`kubectl`**.
+
 ### À retenir
 
 - **CRI** = interface qui standardise les runtimes pour Kubernetes ; s'appuie sur les standards **OCI** (image + runtime).
+- La **CRI** a permis d'ouvrir Kubernetes à d'autres runtimes que Docker.
 - **Docker Shim** = solution temporaire pour brancher Docker (non-CRI) sur Kubernetes → supprimée en **1.24**.
 - Les **images Docker sont OCI** → toujours compatibles avec ContainerD, même sans Docker.
 - **ContainerD** = runtime CRI indépendant (CNCF), installable seul.
@@ -112,7 +140,10 @@ $ export CONTAINER_RUNTIME_ENDPOINT=<endpoint>
 | **crictl** | Kubernetes | Débogage/inspection de **tous** les runtimes compatibles CRI |
 
 - **Piège** : un conteneur créé à la main via crictl peut être nettoyé par le Kubelet.
+- **Déprécié ≠ inutilisable** : Docker est déprécié comme *runtime* dans Kubernetes, mais reste parfaitement pertinent pour le développement.
+- Les **images Docker restent standard** : ce qui est produit avec Docker fonctionne avec containerd.
 
 ### Liens utiles
 
 - Dépôt Kubernetes (voir PR 869 et issue 868) : https://github.com/kubernetes/kubernetes
+- Référence des commandes `kubectl` : https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
