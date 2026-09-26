@@ -50,3 +50,7 @@ La **séparation claire** et la **coordination** entre nœuds maîtres et nœuds
 - **Kubelet** = agent sur chaque nœud qui exécute réellement les conteneurs.
 - **Kube Proxy** = réseau et communication entre conteneurs/nœuds.
 - Un **container runtime** (Docker / Containerd / CRI-O) est requis sur **tous** les nœuds.
+
+### Liens utiles:
+
+- Guide KodeKloud : https://github.com/kodekloudhub/certified-kubernetes-administrator-course
