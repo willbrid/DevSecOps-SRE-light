@@ -17,7 +17,7 @@ Le parcours est découpé en sous-dossiers numérotés, un par certification, af
 | Sous-dossier | Certification |
 | --- | --- |
 | [01-KCNA](golden-kubestronaut/01-KCNA/) | Kubernetes and Cloud Native Associate |
-| [01-CKA](golden-kubestronaut/01-CKA/) | Kubernetes and Cloud Native Associate |
+| [01-CKA](golden-kubestronaut/01-CKA/) | Certified Kubernetes Administrator |
 
 > Les autres certifications du parcours seront ajoutées progressivement, dans le même format.
 
