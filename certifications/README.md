@@ -15,7 +15,7 @@ Ce dossier regroupe **uniquement** les contenus dédiés à la **préparation de
 Le parcours est découpé en sous-dossiers numérotés, un par certification, afin de suivre une progression du niveau fondamental au niveau avancé.
 
 | Sous-dossier | Certification |
-| --- | --- | --- |
+| --- | --- |
 | [01-KCNA](golden-kubestronaut/01-KCNA/) | Kubernetes and Cloud Native Associate |
 | [01-CKA](golden-kubestronaut/01-CKA/) | Kubernetes and Cloud Native Associate |
 
