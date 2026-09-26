@@ -14,11 +14,14 @@ Ce dossier regroupe **uniquement** les contenus dédiés à la **préparation de
 
 Le parcours est découpé en sous-dossiers numérotés, un par certification, afin de suivre une progression du niveau fondamental au niveau avancé.
 
-| Sous-dossier | Certification | Statut |
+| Sous-dossier | Certification |
 | --- | --- | --- |
-| [01-KCNA](golden-kubestronaut/01-KCNA/) | Kubernetes and Cloud Native Associate | En cours |
+| [01-KCNA](golden-kubestronaut/01-KCNA/) | Kubernetes and Cloud Native Associate |
+| [01-CKA](golden-kubestronaut/01-CKA/) | Kubernetes and Cloud Native Associate |
 
 > Les autres certifications du parcours seront ajoutées progressivement, dans le même format.
+
+[Parcours Golden Kubestronaute sur KodeKloud](https://kodekloud.com/learning-path/golden-kubestronaut/)
 
 ### Organisation des contenus
 
