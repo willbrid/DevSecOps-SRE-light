@@ -96,8 +96,9 @@ kubectl get pods -n kube-system
 
 Examiner les clés stockées dans etcd (organisées sous le répertoire **registry**) :
 ```bash
-kubectl exec etcd-master -n kube-system -- etcdctl get / --prefix --keys-only
+kubectl exec etcd-master -n kube-system -- etcdctl get /
 ```
+
 Exemple de sortie :
 ```text
 /registry/apiregistration.k8s.io/apiservices/v1
@@ -106,6 +107,13 @@ Exemple de sortie :
 ```
 
 Le répertoire racine d'etcd (le **registry**) contient des sous-répertoires pour les composants Kubernetes : **nodes, pods, ReplicaSets, Deployments**, etc.
+
+```
+kubectl exec etcd-controlplane -n kube-system -- sh -c "ETCDCTL_API=3 etcdctl get / \
+  --cacert /etc/kubernetes/pki/etcd/ca.crt \
+  --cert /etc/kubernetes/pki/etcd/server.crt \
+  --key /etc/kubernetes/pki/etcd/server.key"
+```
 
 ### À retenir
 
