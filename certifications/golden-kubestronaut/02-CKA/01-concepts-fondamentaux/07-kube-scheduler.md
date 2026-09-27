@@ -51,6 +51,16 @@ ps -aux | grep kube-scheduler
 # ex : kube-scheduler --kubeconfig=/etc/kubernetes/scheduler.conf --leader-elect=true
 ```
 
+| Option | Signification |
+| ------ | ------------- |
+| `--bind-address=127.0.0.1` | Adresse d'écoute du **port sécurisé** (`10259` par défaut) pour les endpoints HTTPS (métriques, santé). Ici limité à la **loopback** (accès local uniquement). Remplace l'ancien `--address` (supprimé). |
+| `--authentication-kubeconfig=/etc/kubernetes/scheduler.conf` | Kubeconfig utilisé pour **déléguer l'authentification** des requêtes entrantes à l'API Server (protège le port sécurisé, ex. `/metrics`). |
+| `--authorization-kubeconfig=/etc/kubernetes/scheduler.conf` | Kubeconfig utilisé pour **déléguer l'autorisation** des requêtes entrantes à l'API Server (via SubjectAccessReview). |
+| `--kubeconfig=/etc/kubernetes/scheduler.conf` | Kubeconfig indiquant comment le scheduler **se connecte à l'API Server** (son identité en tant que client). |
+| `--leader-elect=true` | Active l'**élection de leader** : en HA multi-masters, une seule instance de scheduler est active à la fois. |
+| `--config=/etc/kubernetes/config/kube-scheduler.yaml` | Fichier de configuration **KubeSchedulerConfiguration** (profils de scheduling, plugins, plugins d'extension…). C'est la **méthode moderne** de configuration, préférée aux flags individuels. |
+| `--v=2` | **Niveau de verbosité** des logs. |
+
 ### À retenir
 
 - **Scheduler = décision, Kubelet = exécution** : le scheduler choisit le nœud, il ne crée jamais le pod lui-même.
@@ -67,3 +77,4 @@ ps -aux | grep kube-scheduler
 - Documentation Kubernetes : https://kubernetes.io/docs/
 - Page de téléchargement des releases Kubernetes : https://kubernetes.io/releases/download/, https://dl.k8s.io/
 - Référence des flags kube-scheduler : https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/
+- Configuration du scheduler (KubeSchedulerConfiguration) : https://kubernetes.io/docs/reference/scheduling/config/
