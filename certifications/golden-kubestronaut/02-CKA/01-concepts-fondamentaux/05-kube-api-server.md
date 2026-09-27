@@ -111,6 +111,11 @@ cat /etc/systemd/system/kube-apiserver.service
 ```
 3. Les options de commande directement dans la définition du pod.
 
+Vérifier le processus et ses options actives :
+```bash
+ps -aux | grep kube-apiserver
+```
+
 ### Tableau de référence rapide
 
 | Composant | Rôle | Exemple d'action |
