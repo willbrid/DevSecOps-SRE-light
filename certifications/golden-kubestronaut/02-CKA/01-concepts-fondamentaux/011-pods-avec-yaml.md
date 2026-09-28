@@ -132,6 +132,12 @@ kubectl describe pod nginx
 
 Fournit : les **Conditions** (`Initialized`, `Ready`, `ContainersReady`, `PodScheduled`), les **Volumes**, la **QoS Class**, les **Tolerations** par défaut, le **nœud assigné**, et les **Events** (Scheduled → Pulling → Pulled → Created → Started).
 
+Et si on veut consulter la page **nginx**, on peut exposer le pods via un service de type **nodePort** :
+
+```
+kubectl expose pod nginx --port 80 --type NodePort
+```
+
 ### À retenir
 
 - **4 champs racine obligatoires** dans tout manifeste : **`apiVersion`, `kind`, `metadata`, `spec`** (à mémoriser absolument).
