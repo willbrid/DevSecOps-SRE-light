@@ -289,3 +289,128 @@ case $# in
      exit 1
      ;;
 ```
+
+### Boucles
+
+Il arrive qu’on ait besoin de répéter une commande plusieurs fois. Une solution consiste à l’écrire autant de fois que nécessaire, mais dès qu’il faut modifier quelque chose (retirer ou ajouter des lignes, puis vérifier que tout reste correct), cela peut vite devenir un cauchemar et s’avérer pénible. Dans de nombreux langages de programmation, ce problème se résout grâce à une boucle. Le shell propose trois types de boucles : while, until et for. Les deux premières s’exécutent tant qu’une condition est vraie ou jusqu’à ce qu’elle le devienne ; la troisième parcourt une liste de valeurs.
+
+#### 1. `while`
+
+La condition d'une boucle `while` est une liste d'une ou plusieurs commandes. Les commandes à exécuter **tant que la condition reste vraie** se placent entre les mots-clés `do` et `done` :
+
+```bash
+while <condition>
+do
+  <commandes>
+done
+```
+
+**Avec un compteur** : on peut exécuter une boucle `while` un nombre précis de fois grâce à une variable incrémentée à chaque passage.
+
+```bash
+n=1
+while [ $n -le 10 ]
+do
+  echo "$n"
+  n=$(( $n + 1 ))
+done
+```
+
+**Boucle infinie** : la commande `true` permet de créer une boucle sans fin.
+
+```bash
+while true ## ':' peut remplacer true
+do
+  read x
+done
+```
+
+**Lire un fichier ligne par ligne** :
+
+```bash
+while IFS= read -r line
+do
+  : traiter "$line"
+done < $FILENAME
+```
+
+#### 2. `until`
+
+La boucle `until` est peu utilisée. C'est l'inverse de `while` : elle continue de tourner **tant que la condition échoue**, et s'arrête dès qu'elle devient vraie.
+
+```bash
+n=1
+until [ $n -gt 10 ]
+do
+  echo "$n"
+  n=$(( $n + 1 ))
+done
+```
+
+#### 3. `for`
+
+La boucle `for` reçoit une liste de valeurs (nombres, mots, etc.). Elle la parcourt et place chaque élément dans la variable définie, en passant au mot suivant à chaque itération.
+
+```bash
+for var in Canada USA Mexico
+do
+  printf "%s\n" "$var"
+done
+```
+
+**Forme inspirée du langage C** : elle comporte trois parties. La première est évaluée au démarrage, la deuxième est la condition qui décide si la boucle continue ou s'arrête, et la troisième est évaluée à la fin de chaque itération.
+
+```bash
+for (( n=1; n<=10; ++n ))
+do
+  echo "$n"
+done
+```
+
+#### 4. `break`
+
+Le mot-clé `break` permet de **sortir d'une boucle** lorsqu'une condition donnée est remplie.
+
+```bash
+while :
+do
+  read x
+  [ -z "$x" ] && break
+done
+```
+
+Particularité de Bash : on peut ajouter un nombre après `break` pour sortir de **plusieurs boucles imbriquées** d'un coup.
+
+```bash
+for n in a b c d e
+do
+  while true
+  do
+    if [ $RANDOM -gt 20000 ]
+    then
+      printf .
+      break 2 ## sort à la fois du while et du for
+    elif [ $RANDOM -lt 10000 ]
+    then
+      printf '"'
+      break ## sort uniquement du while
+    fi
+  done
+done
+echo
+```
+
+#### 5. `continue`
+
+Parfois, on ne veut pas quitter la boucle mais **passer directement à l'itération suivante**. On utilise alors `continue`.
+
+```bash
+for n in {1..9}
+do
+  x=$RANDOM
+  [ $x -le 20000 ] && continue
+  echo "n=$n x=$x"
+done
+```
+
+Ici, seuls les tirages supérieurs à 20 000 sont affichés ; les autres sont ignorés.
