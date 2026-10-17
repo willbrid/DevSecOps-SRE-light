@@ -79,6 +79,12 @@ Aucun résultat n'est affiché.
 
 - Tester les scripts dans les deux modes s'ils doivent s'exécuter de manière interactive et non interactive.
 
+> Détails sur **set -euo pipefail**
+> - option `"-e"` signifie que Bash doit interrompre l'exécution du script lorsqu'une commande échoue, c'est-à-dire lorsqu'elle retourne un code de sortie différent de zéro. Elle ne s'applique généralement pas aux commandes utilisées comme conditions dans `if`, `while` ou `until`, ni aux commandes non finales de certaines listes `&&` et `||`.
+> - option `"-u"`, également appelée `nounset`, indique à Bash de signaler une erreur lorsqu'une variable non définie est utilisée dans une expansion, sauf dans certains contextes particuliers.
+> - option `"-o pipefail"` concerne les pipelines Bash, c'est-à-dire les commandes reliées par le caractère `|`. Avec par exemple une commande: `commande1 | commande2 | commande3`, la sortie standard de `commande1` est transmise à `commande2`, puis celle de `commande2` à `commande3`. Sans `pipefail`, le code de retour du pipeline correspond généralement à celui de la dernière commande, ici `commande3` et cela peut masquer une erreur survenue dans une commande précédente. Donc cette option fait remonter les erreurs dans les pipelines.
+
+
 ### Quand utiliser les scripts « Shell » ou « Bash »
 
 - **Scripting Shell** : terme générique pour l'écriture de scripts dans n'importe quel shell
