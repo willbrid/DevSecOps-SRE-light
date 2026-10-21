@@ -55,8 +55,6 @@ two equals two
 
 Même résultat ici, mais le mécanisme interne est différent.
 
-
-
 ### 3. `[` vs `test`
 
 `[ ]` n'est rien d'autre que le built-in `test` : les deux noms sont interchangeables (avec `[`, le `]` final est simplement le dernier argument obligatoire).
@@ -94,11 +92,9 @@ $ [[ 5 < 7 ]] && echo "5 is less than 7"
 5 is less than 7
 ```
 
-> ⚠️ Attention : dans `[[ ]]`, `<` et `>` comparent des **chaînes** (ordre alphabétique), pas des nombres. Exemple piège : `[[ 10 < 9 ]]` est **vrai** car « 1 » vient avant « 9 ».
+> Attention : dans `[[ ]]`, `<` et `>` comparent des **chaînes** (ordre alphabétique), pas des nombres. Exemple piège : `[[ 10 < 9 ]]` est **vrai** car « 1 » vient avant « 9 ».
 > Pour comparer des nombres : `-lt`, `-gt`… ou l'arithmétique `(( 10 < 9 ))`.
 > Avec `[ ]`, on peut échapper : `[ "a" \< "b" ]`.
-
-
 
 ### 5. Fonctionnalités avancées de `[[ ]]`
 
@@ -127,9 +123,7 @@ Regular expressions can be used
 
 > Le motif à droite **ne doit pas être entre guillemets**, sinon il est comparé comme une chaîne littérale. Les groupes capturés par `=~` sont disponibles dans `${BASH_REMATCH[@]}`.
 
-> ⚠️ `[[ ]]` **n'est pas POSIX** : il n'existe pas dans tous les shells (ex. `sh`/`dash`). À utiliser seulement si le script est destiné à Bash (shebang `#!/bin/bash`).
-
-
+> `[[ ]]` **n'est pas POSIX** : il n'existe pas dans tous les shells (ex. `sh`/`dash`). À utiliser seulement si le script est destiné à Bash (shebang `#!/bin/bash`).
 
 ### 6. Avantages et inconvénients
 
@@ -155,8 +149,6 @@ Regular expressions can be used
 
 > Exemple de « comparaison plus sûre » : si `$var` est vide, `[ $var = "x" ]` provoque une erreur de syntaxe, alors que `[[ $var = "x" ]]` fonctionne. Avec `[ ]`, il faut **toujours** mettre les variables entre guillemets.
 
-
-
 ### 7. Synthèse
 
 - Les **built-ins** s'exécutent dans Bash sans fork.
@@ -164,8 +156,6 @@ Regular expressions can be used
 - **Ni l'un ni l'autre** ne lance de processus externe.
 
 Certains mots-clés comme `time` agissent plutôt comme des **directives** que comme des structures de contrôle.
-
-
 
 ### À retenir
 
