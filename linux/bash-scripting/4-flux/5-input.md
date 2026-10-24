@@ -43,7 +43,7 @@ Les **pipes nommés (FIFO)**, créés avec `mkfifo`, sont des objets du système
 
 ```bash
 $ wc
-Juan Carlos
+Will Brid
 ^D
 1 2 11
 ```
@@ -53,7 +53,7 @@ Résultat : **1 ligne, 2 mots, 11 octets** (retour à la ligne inclus). `Ctrl+D`
 **Même entrée via un pipe** :
 
 ```bash
-$ echo "Juan Carlos" | wc
+$ echo "Will Brid" | wc
 1 2 11
 ```
 
@@ -187,7 +187,7 @@ will@willbrid.com
 
 Explications :
 - `exec 3<> fichier` : ouvre le fichier sur le **fd 3** en **lecture et écriture** (`<>`), sans le tronquer.
-- `read -n 4 <&3` : lit 4 octets (`Juan`) et avance le **pointeur de position** juste avant l'espace (le texte lu va dans `$REPLY`).
+- `read -n 4 <&3` : lit 4 octets (`Brid`) et avance le **pointeur de position** juste avant l'espace (le texte lu va dans `$REPLY`).
 - `echo -n "." >&3` : écrit `.` à la position courante, ce qui **remplace** l'espace (`-n` évite d'ajouter un retour à la ligne qui écraserait un caractère de plus).
 - `exec 3>&-` : ferme le fd 3.
 
