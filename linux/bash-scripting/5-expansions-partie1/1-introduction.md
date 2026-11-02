@@ -15,7 +15,7 @@ Elles permettent de **générer des séquences**, **extraire des sous-chaînes**
 | Type | Description | Exemple |
 ||||
 | **Accolades** | Génère des chaînes à partir d'une liste ou d'une plage | `echo {A,B,C}` → `A B C` |
-| **Paramètres** | Manipule la valeur d'une variable (sous-chaînes, valeurs par défaut…) | `${var###*/}` → supprime le plus long préfixe `*/` |
+| **Paramètres** | Manipule la valeur d'une variable (sous-chaînes, valeurs par défaut…) | `${var##*/}` → supprime le plus long préfixe `*/` |
 | **Substitution de commande** | Insère la sortie d'une commande dans une autre | `echo "Date: $(date +%F)"` |
 | **Noms de fichiers (globs)** | Sélectionne des fichiers avec des jokers | `ls *.txt` → tous les `.txt` |
 
@@ -59,14 +59,14 @@ echo "Your home directory is: $USER_HOME"
 
 #### Supprimer le chemin (garder le nom de fichier)
 
-`###*/` supprime le **plus long préfixe** correspondant à `*/`, c'est-à-dire tout jusqu'au **dernier** `/` :
+`##*/` supprime le **plus long préfixe** correspondant à `*/`, c'est-à-dire tout jusqu'au **dernier** `/` :
 
 ```bash
 #!/usr/bin/env bash
 
 some_script="/usr/bin/my_script.sh"
 # Supprime la plus longue correspondance de '*/' au début
-echo "${some_script###*/}"
+echo "${some_script##*/}"
 ```
 
 Sortie :
@@ -82,11 +82,11 @@ my_script.sh
 > ```bash
 > pathname="/usr/bin/my_script.sh"
 >
-> echo "${pathname###*/}"     # my_script.sh   → ### : plus long préfixe supprimé (≈ basename)
+> echo "${pathname##*/}"     # my_script.sh   → ## : plus long préfixe supprimé (≈ basename)
 > echo "${pathname#*/}"      # usr/bin/my_script.sh → # : plus court préfixe
 > echo "${pathname%/*}"      # /usr/bin       → % : plus court suffixe (≈ dirname)
 > echo "${pathname%.*}"      # /usr/bin/my_script → retire l'extension
-> echo "${pathname###*.}"     # sh             → l'extension seule
+> echo "${pathname##*.}"     # sh             → l'extension seule
 >
 > echo "${#pathname}"        # 21             → longueur
 > echo "${pathname:5:3}"     # bin            → sous-chaîne (position 5, 3 caractères)
@@ -146,7 +146,7 @@ echo **/*.md
 
 - 4 expansions principales : **accolades**, **paramètres**, **substitution de commande**, **globs**.
 - Accolades `{A,B}`, `{1..5}`, `{1..10..2}` : génération de texte pure, **pas entre guillemets**, pas de variables dans les plages, non POSIX.
-- Paramètres : `${var###*/}` (basename), `${var%/*}` (dirname), `${var%.*}` (sans extension), `${#var}` (longueur), `${var:-défaut}`.
+- Paramètres : `${var##*/}` (basename), `${var%/*}` (dirname), `${var%.*}` (sans extension), `${#var}` (longueur), `${var:-défaut}`.
 - `#` = supprime au **début**, `%` = à la **fin** ; simple = plus court, double = plus long.
 - Substitution de commande : `$(cmd)` (préférer aux backticks), exécutée dans un sous-shell.
 - Globs : `*`, `?`, `[…]` ; `**` récursif avec `shopt -s globstar` ; `extglob` pour `!(…)` ; `nullglob` si aucun résultat.
