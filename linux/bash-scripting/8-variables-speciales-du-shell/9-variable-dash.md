@@ -108,7 +108,7 @@ Le **`e`** indique que l'option **« exit on error »** est active.
 ### 4. Flags courants de `$-`
 
 | Flag | Description |
-|||
+|---|---|
 | `i` | Shell en mode **interactif** |
 | `e` | **Quitter immédiatement** si une commande échoue (`set -e`) |
 | `u` | Traiter les variables **non définies** comme une erreur (`set -u`) |
@@ -116,7 +116,7 @@ Le **`e`** indique que l'option **« exit on error »** est active.
 
 > Autres flags utiles :
 > | Flag | Commande | Description |
-> ||||
+> |---|---|---|
 > | `C` | `set -C` | **noclobber** : interdit d'écraser un fichier avec `>` |
 > | `f` | `set -f` | Désactive le **globbing** (`*` n'est plus développé) |
 > | `n` | `set -n` | Lit les commandes **sans les exécuter** (vérification de syntaxe) |
