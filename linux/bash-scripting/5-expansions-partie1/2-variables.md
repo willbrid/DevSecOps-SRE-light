@@ -102,7 +102,7 @@ echo "Hello, ${name:-Unknown}"
 
 > Variantes :
 > | Syntaxe | Effet |
-> |||
+> |---|---|
 > | `${var:-def}` | renvoie `def` si `var` vide **ou** non définie (sans modifier `var`) |
 > | `${var-def}` | renvoie `def` seulement si `var` **non définie** (vide = conservé) |
 > | `${var:=def}` | renvoie `def` **et l'assigne** à `var` |
@@ -112,7 +112,7 @@ echo "Hello, ${name:-Unknown}"
 ### 4. Opérateurs d'expansion de paramètres
 
 | Type | Syntaxe | Description |
-||||
+|---|---|---|
 | Valeur par défaut | `${var:-default}` | `default` si `var` est non définie ou vide |
 | Extraction de sous-chaîne | `${var:offset:length}` | Extrait `length` caractères à partir de `offset` |
 | Remplacement | `${var/motif/remplacement}` | Remplace la **première** occurrence de `motif` |

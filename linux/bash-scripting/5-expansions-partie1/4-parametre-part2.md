@@ -5,7 +5,7 @@
 Sous Linux, on manipule souvent des chemins et des extensions :
 
 | Composant | Exemple 1 | Exemple 2 | Exemple 3 |
-|||||
+|---|---|---|---|
 | **Préfixe** (chemin) | `/home/my_username/` | `/home/my_username/` | `/usr/bin/` |
 | **Nom** | `text_file` | `text_file2` | `app.py` |
 | **Suffixe** (extension) | `.txt` | `.txt` | `.py` |
@@ -127,7 +127,7 @@ echo "${my_python_file%%.*}"  # /usr/bin/app
 ### 4. Choisir le bon opérateur
 
 | Opérateur | Description | Usage |
-||||
+|---|---|---|
 | `${var#…}` | Supprime le **plus court préfixe** | Jusqu'au **premier** délimiteur |
 | `${var##…}` | Supprime le **plus long préfixe** | Jusqu'au **dernier** délimiteur |
 | `${var%…}` | Supprime le **plus court suffixe** | Depuis le **dernier** délimiteur |

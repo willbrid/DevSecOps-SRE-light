@@ -116,7 +116,7 @@ Pour qu'une commande ne produise **aucune sortie**, on redirige les deux flux ve
 ### 7. Tableau récapitulatif
 
 | Opérateur | Rôle | Exemple |
-||||
+|---|---|---|
 | `>fichier` | stdout (fd 1) → fichier | `ls > out.txt` |
 | `2>fichier` | stderr (fd 2) → fichier | `ls -z 2>err.txt` |
 | `&>fichier` | stdout + stderr → fichier (Bash) | `cmd &>all.txt` |

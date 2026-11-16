@@ -13,7 +13,7 @@ Elles permettent de **générer des séquences**, **extraire des sous-chaînes**
 ### 1. Tableau des types d'expansion
 
 | Type | Description | Exemple |
-||||
+|---|---|---|
 | **Accolades** | Génère des chaînes à partir d'une liste ou d'une plage | `echo {A,B,C}` → `A B C` |
 | **Paramètres** | Manipule la valeur d'une variable (sous-chaînes, valeurs par défaut…) | `${var##*/}` → supprime le plus long préfixe `*/` |
 | **Substitution de commande** | Insère la sortie d'une commande dans une autre | `echo "Date: $(date +%F)"` |
@@ -129,7 +129,7 @@ echo **/*.md
 
 > Jokers de base :
 > | Motif | Correspond à |
-> |||
+> |---|---|
 > | `*` | n'importe quelle suite de caractères (sauf fichiers cachés `.xxx`) |
 > | `?` | exactement **un** caractère |
 > | `[abc]` / `[a-z]` | un caractère de l'ensemble / de la plage |

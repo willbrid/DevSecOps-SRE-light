@@ -3,7 +3,7 @@
 En Bash, les **pipes** permettent d'envoyer la sortie d'une commande vers une autre, pour construire des traitements puissants **sans fichiers intermédiaires**. Deux types principaux :
 
 | Type | Symbole / commande | Description |
-||||
+|---|---|---|
 | **Pipe nommé** | `mkfifo` / FIFO | Crée un fichier spécial persistant servant de point de communication entre processus |
 | **Pipe anonyme** | `\|` | Enchaîne des commandes à la volée : stdout de l'une → stdin de la suivante |
 

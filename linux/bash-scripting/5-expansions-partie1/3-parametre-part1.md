@@ -142,7 +142,7 @@ La notion de **plus court** n'a vraiment d'importance qu'avec des **jokers** (`*
 ### 5. Tableau récapitulatif
 
 | Opérateur | Action | Exemple |
-||||
+|---|---|---|
 | `${var#motif}` | Supprime le **plus court préfixe** correspondant | `${greetings#Hello }` → `World` |
 | `${var%motif}` | Supprime le **plus court suffixe** correspondant | `${greetings%rld}` → `Hello Wo` |
 

@@ -126,7 +126,7 @@ endif
 `env` cherche `bash` dans le **`PATH`**, ce qui améliore la compatibilité entre systèmes. Il faut en revanche que `env` soit bien dans `/usr/bin` (c'est le cas quasiment partout).
 
 | Shebang | Description | Avantages / inconvénients |
-||||
+|---|---|---|
 | `#!/bin/bash` | Chemin direct vers Bash | Rapide et prévisible, mais échoue si Bash est installé ailleurs |
 | `#!/usr/bin/env bash` | Cherche Bash dans le `PATH` via `env` | Portable, mais dépend d'un `PATH` correct |
 

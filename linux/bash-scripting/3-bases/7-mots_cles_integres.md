@@ -7,7 +7,7 @@ Ce contenu explique la différence entre les **commandes intégrées** (built-in
 ### 1. Built-ins vs mots-clés
 
 | Aspect | Built-ins | Mots-clés |
-||||
+|---|---|---|
 | Exécution | Exécutés dans le shell | Interprétés (parsés) par le shell |
 | Création de processus | Aucune | Aucune |
 | Documentation | `help` ou `man` | Pas de page de manuel dédiée |

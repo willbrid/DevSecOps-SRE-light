@@ -151,7 +151,7 @@ Règle simple : **`commande > fichier 2>&1`** — stdout d'abord, puis stderr ve
 ### 4. Référence rapide des opérateurs
 
 | Opérateur | Effet | Exemple |
-||||
+|---|---|---|
 | `> file` | stdout → `file` (écrase) | `echo hi > out.txt` |
 | `>> file` | stdout → `file` (ajoute) | `echo more >> out.txt` |
 | `1> file` | Identique à `> file` (stdout explicite) | `ls 1> out.txt` |

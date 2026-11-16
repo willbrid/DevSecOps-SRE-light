@@ -92,7 +92,7 @@ Commande exécutée : `mkdir dir1 dir2 dir3`.
 #### Exemples pratiques
 
 | Usage | Commande |
-|||
+|---|---|
 | Supprimer des fichiers `.log` | `find . -name '*.log' \| xargs rm -f` |
 | Créer des répertoires | `echo "a b c" \| xargs mkdir` |
 | SSH en parallèle | `cat hosts.txt \| xargs -P4 -I{} ssh {} hostname` |

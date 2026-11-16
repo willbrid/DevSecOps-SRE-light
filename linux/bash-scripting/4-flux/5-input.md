@@ -3,7 +3,7 @@
 En scripting shell, l'**entrée** (`Input`) désigne toute donnée fournie à un programme ou au shell, soit **interactivement** (clavier/terminal), soit **non interactivement** (depuis un autre programme ou un fichier). Unix expose les E/S sous forme de **descripteurs de fichiers numérotés** :
 
 | fd | Nom | Usage typique |
-||||
+|---|---|---|
 | **0** | stdin | Source d'entrée par défaut (le terminal en session interactive) |
 | **1** | stdout | Sortie standard (résultats normaux) |
 | **2** | stderr | Sortie d'erreur (diagnostics, erreurs) |
@@ -18,7 +18,7 @@ Ce modèle vient du principe Unix **« tout est fichier »** : un programme lit 
 Opérateurs courants :
 
 | Opérateur | Rôle |
-|||
+|---|---|
 | `>` | Rediriger la sortie vers un fichier |
 | `<` | Alimenter l'entrée d'un script ou d'une commande avec un fichier |
 | `\|` | Pipe anonyme : stdout de gauche → stdin de droite |

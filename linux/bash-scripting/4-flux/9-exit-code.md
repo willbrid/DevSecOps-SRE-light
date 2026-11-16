@@ -34,7 +34,7 @@ Toute commande Unix se termine avec un code :
 #### Tableau des codes courants
 
 | Code | Signification |
-|||
+|---|---|
 | **0** | Succès |
 | **1** | Erreur générale |
 | **2** | Mauvaise utilisation d'un built-in du shell (mauvais arguments) |

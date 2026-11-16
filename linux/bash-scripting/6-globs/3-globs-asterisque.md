@@ -97,7 +97,7 @@ image1.jpg  image2.jpeg  image3.png
 ### 5. Motifs `*` courants
 
 | Motif | Description | Exemple de résultat |
-||||
+|---|---|---|
 | `report.*` | Commence par `report.` | `report.txt`, `report.pdf` |
 | `*.pdf` | Se termine par `.pdf` | `notes.pdf`, `config.pdf` |
 | `image*` | Commence par `image` | `image1.jpg`, `image2.jpeg` |

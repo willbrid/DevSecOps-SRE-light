@@ -28,7 +28,7 @@ ls: cannot access 'file[C-A]': No such file or directory
 #### Exemples courants
 
 | Motif | Correspond à | Description |
-||||
+|---|---|
 | `file[A-C]` | fileA, fileB, fileC | Majuscules A à C |
 | `file[a-c]` | filea, fileb, filec | Minuscules a à c |
 | `file[1-3]` | file1, file2, file3 | Chiffres 1 à 3 |
@@ -200,7 +200,7 @@ Pour **générer** une série de noms, utiliser l'**expansion d'accolades** plut
 > touch file{a,b}{1,2}     # filea1 filea2 fileb1 fileb2
 > ```
 > | | Accolades `{}` | Crochets `[]` |
-> ||||
+> |---|---|---|
 > | Rôle | **Génère** du texte | **Sélectionne** des fichiers existants |
 > | Si rien n'existe | Fonctionne quand même | Motif laissé littéral |
 > | Exemple | `touch file{1..3}` | `ls file[1-3]` |

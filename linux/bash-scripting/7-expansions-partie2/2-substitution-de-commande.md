@@ -19,7 +19,7 @@ echo "${name}"
 Le shell exécute la commande dans un **sous-shell** et **remplace** la commande par sa **sortie standard (stdout)**. Deux syntaxes :
 
 | Syntaxe | Description |
-|||
+|---|---|
 | `$( ... )` | Forme **recommandée** ; imbrication facile |
 | `` `...` `` | **Obsolète** ; moins lisible, difficile à imbriquer |
 

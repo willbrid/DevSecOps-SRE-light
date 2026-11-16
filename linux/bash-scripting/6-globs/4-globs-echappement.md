@@ -119,14 +119,14 @@ Pail Pail* PailTwo
 ### 6. Tableau récapitulatif
 
 | Caractère | Rôle de joker | Forme échappée | Exemple |
-|||||
+|---|---|---|---|
 | `?` | Un seul caractère | `\?` | `touch \?file` |
 | `*` | Zéro ou plusieurs caractères | `\*` | `ls Pail\*` |
 | `[` `]` | Ensemble de caractères | `\[` `\]` | `ls \[abc\]*` |
 
 > Différences entre les méthodes de protection :
 > | Méthode | Effet |
-> |||
+> |---|---|
 > | `\x` | protège **un seul** caractère |
 > | `'…'` | tout est **littéral** (ni globs, ni variables, ni `\`) |
 > | `"…"` | pas de globs, mais `$var`, `$(…)` et `\` restent interprétés |

@@ -5,7 +5,7 @@ Ce contenu combine `?`, `*` et l'**échappement** pour faire correspondre des no
 Rappel des opérateurs :
 
 | Joker | Description | Exemple |
-||||
+|---|---|---|
 | `*` | Zéro ou plusieurs caractères | `*.txt` |
 | `?` | Exactement un caractère | `file.?` |
 | `\` | Rend le caractère suivant littéral | `file\*.*` |

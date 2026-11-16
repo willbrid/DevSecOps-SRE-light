@@ -122,7 +122,7 @@ Toutes les commandes ne créent pas de nouveau processus :
 - Certaines commandes existent aussi en **binaire externe** ; appeler le binaire (ex. `/usr/bin/…`) crée alors un nouveau processus.
 
 | Méthode d'exécution | Nouveau PID ? | Exemple |
-||||
+|---|---|---|
 | Par nom (recherche dans le `PATH`) | Oui, pour le binaire trouvé | `ls`, `cat` |
 | Par chemin absolu | Oui | `/usr/bin/cat file.txt` |
 | Depuis le répertoire courant | Oui (chemin explicite) | `./script.sh` |
@@ -162,7 +162,7 @@ $ ps -ef | grep bash
 `kill` envoie un **signal** à un PID. Par défaut : **SIGTERM (15)**, une demande d'arrêt « polie ». Si le processus refuse de s'arrêter, **SIGKILL (9)** le termine immédiatement.
 
 | Signal | Numéro | Signification |
-||||
+|---|---|---|
 | SIGTERM | 15 | Demande d'arrêt propre (par défaut) |
 | SIGKILL | 9 | Arrêt forcé immédiat (ne peut pas être intercepté) |
 | SIGHUP | 1 | « Hangup » – souvent envoyé à la fermeture du terminal |

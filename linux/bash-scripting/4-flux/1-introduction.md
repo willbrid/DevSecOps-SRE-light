@@ -88,7 +88,7 @@ bash < setup_script.sh
 ### 4. Pour aller plus loin
 
 | Sujet | Description |
-|||
+|---|---|
 | Bash Scripting | Guide complet de la syntaxe Bash |
 | Pipelines avancés | Construire des chaînes de commandes complexes |
 | Descripteurs de fichiers | Les entrées/sorties bas niveau sous Unix/Linux |

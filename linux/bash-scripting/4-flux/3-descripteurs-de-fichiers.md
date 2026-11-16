@@ -9,7 +9,7 @@ En ligne de commande, les nombres `1` et `2` désignent stdout et stderr : ce so
 Par convention sous Linux et Unix, trois descripteurs sont **pré-alloués** pour les flux principaux :
 
 | Descripteur | Flux | Description |
-||||
+|---|---|---|
 | **0** | stdin | Entrée standard |
 | **1** | stdout | Sortie standard |
 | **2** | stderr | Sortie d'erreur |

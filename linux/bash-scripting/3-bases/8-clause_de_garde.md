@@ -127,7 +127,7 @@ Conseils :
 Les opérateurs logiques du shell permettent d'écrire des clauses de garde très concises :
 
 | Opérateur | Usage | Exemple |
-||||
+|---|---|---|
 | `\|\|` (OU) | Exécute la partie droite **si la gauche échoue** → échec rapide | `[[ -f "file.txt" ]] \|\| echo "file does not exist"` |
 | `&&` (ET) | Exécute la partie droite **seulement si la gauche réussit** | `[[ -n "${1}" ]] && echo "argument provided: $1"` |
 

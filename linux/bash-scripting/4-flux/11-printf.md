@@ -42,7 +42,7 @@ Capacités mises en avant : ✅ formater le texte précisément ✅ alignement �
 Comme le `printf()` du langage C :
 
 | Spécificateur | Description | Exemple |
-||||
+|---|---|---|
 | `%s` | Chaîne | `printf "%s\n" "text"` |
 | `%d` | Entier signé | `printf "%d\n" 42` |
 | `%f` | Nombre à virgule flottante | `printf "%.2f\n" 3.14159` → `3.14` |

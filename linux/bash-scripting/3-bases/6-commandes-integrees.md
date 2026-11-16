@@ -12,7 +12,7 @@ Le shell est un **chef en cuisine**. S'il déléguait chaque petite tâche (épl
 ### 2. Catégories de commandes
 
 | Catégorie | Description | Exemples |
-||||
+|---|---|---|
 | **Built-in** | Implémentée dans le shell ; s'exécute sans fork | `cd`, `echo`, `true` |
 | **Binaire externe** | Fichier sur le disque ; l'appeler déclenche un `fork` puis un `execve` | `/bin/ls`, `/usr/bin/cat` |
 
@@ -65,7 +65,7 @@ sys     0m0,002s
 #### Temps d'exécution comparés
 
 | Commande | Built-in (real) | Externe `/usr/bin` (real) |
-||||
+|---|---|---|
 | `true` | 0.000s | 0m0,004s |
 | `echo` | 0.000s | 0m0,005s |
 

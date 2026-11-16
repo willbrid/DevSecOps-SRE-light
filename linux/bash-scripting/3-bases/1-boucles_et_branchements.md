@@ -107,7 +107,7 @@ Cependant, `[[ ... ]]` n’est pas définie dans la norme **POSIX**, ce qui la r
 Pour garantir la compatibilité entre systèmes, il est donc préférable d’utiliser `test` ou `[ ... ]` lorsque les fonctionnalités avancées de `[[ ... ]]` ne sont pas nécessaires.
 
 |Fonction|[ ... ] ou test |  [[ ... ]]  |
-|--------|----------------|--------------
+|--------|----------------|-------------|
 `Type`|Commande POSIX|Syntaxe interne à Bash
 `Séparation des mots`|Oui|Non
 `Globbing`|Oui|Non
@@ -128,7 +128,7 @@ wordname="hello"
 **Quelques exemples**
 
 |   |[ ... ] ou test |  [[ ... ]]  |
-|---|----------------|--------------
+|---|----------------|-------------|
 `<` | `[ a \< b ]` | `[[ a < b ]]`
 `&& \|\|` | `[ a = a ] && [ b = b ] [ a = a ] \|\| [ b = b ]` | `[[ a = a && b = b ]] [[ a = a \|\| b = b ]]`
 `()` | `{ [ a = a ] \|\| [ a = b ]; } && [ a = b ]` | `[[ (a = a \|\| a = b) && a = b ]]`

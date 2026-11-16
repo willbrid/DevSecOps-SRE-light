@@ -87,7 +87,7 @@ CUSTOM
 ### 3. Cas d'usage courants
 
 | Usage | Exemple |
-|||
+|---|---|
 | Générer un fichier de configuration | `cat > app.conf <<EOF ... EOF` |
 | Intégrer un script SQL | `psql <<SQL ... SQL` |
 | Lancer un lot de commandes SSH | `ssh user@host <<EOF ... EOF` |

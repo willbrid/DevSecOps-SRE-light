@@ -73,7 +73,7 @@ Avec `pipefail` :
 ### 5. Options shell courantes
 
 | Option | Description | Par défaut |
-||||
+|---|---|---|
 | `pipefail` | Le pipeline échoue si une commande échoue | désactivée |
 | `errexit` | Quitte le script dès qu'une commande renvoie un code ≠ 0 (`set -e`) | désactivée |
 | `noclobber` | Empêche d'écraser un fichier avec `>` (`set -C`) | désactivée |

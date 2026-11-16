@@ -73,7 +73,7 @@ Le script peut maintenant cloner **n'importe quel dépôt**.
 ### 4. Variables spéciales courantes
 
 | Variable | Description | Exemple de sortie |
-||||
+|---|---|---|
 | `$0` | Nom du script | `./myscript.sh` |
 | `$1`, `$2`, … | 1er, 2e, … argument | `apple banana` |
 | `$#` | Nombre total d'arguments | `3` |

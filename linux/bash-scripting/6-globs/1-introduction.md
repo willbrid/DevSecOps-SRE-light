@@ -1,7 +1,7 @@
 # Introduction
 
 | Symbole | Rôle (rappel) |
-|||
+|---|---|
 | `#` | Supprime le plus court préfixe |
 | `##` | Supprime le plus long préfixe |
 | `%` | Supprime le plus court suffixe |
@@ -20,14 +20,14 @@ Les **globs** (aussi appelés *wildcards* ou motifs d'expansion de chemins) sont
 Un glob permet de faire correspondre des noms de fichiers/répertoires (ou des chaînes) avec une **syntaxe concise**. Plus simple que les **expressions régulières** (pas de *lookahead*, pas de groupes nommés…), mais suffisant pour la plupart des besoins courants.
 
 | Motif | Correspond à | Exemple |
-||||
+|---|---|---|
 | `*` | Zéro ou plusieurs caractères | `*.txt` |
 | `?` | Exactement **un** caractère | `file?.sh` |
 | `[abc]` | Exactement **un** caractère parmi a, b, c | `report[12].pdf` |
 
 > Compléments :
 > | Motif | Correspond à | Exemple |
-> ||||
+> |---|---|---|
 > | `[a-z]` / `[0-9]` | Un caractère dans la **plage** | `log[0-9].txt` |
 > | `[!abc]` ou `[^abc]` | Un caractère **hors** de l'ensemble | `file[!0-9].sh` |
 > | `[[:digit:]]`, `[[:alpha:]]`, `[[:upper:]]` | Classes de caractères POSIX | `*[[:digit:]].log` |
@@ -42,14 +42,14 @@ Un glob permet de faire correspondre des noms de fichiers/répertoires (ou des c
 ### 2. Globs ou expressions régulières ?
 
 | Critère | Globs | Expressions régulières |
-||||
+|---|---|---|
 | Simplicité | Très faciles à écrire | Plus complexes (syntaxe avancée) |
 | Usage courant | Sélection de **fichiers** | **Analyse de texte**, validation |
 | Constructions avancées | Non supportées | Lookahead, groupes nommés, etc. |
 
 > Les mêmes symboles n'ont **pas le même sens** :
 > | Symbole | Glob | Regex |
-> ||||
+> |---|---|---|
 > | `*` | n'importe quelle suite de caractères | répète **le caractère précédent** 0 fois ou plus |
 > | `?` | exactement un caractère | rend le caractère précédent **optionnel** |
 > | `.` | un point **littéral** | **n'importe quel** caractère |
