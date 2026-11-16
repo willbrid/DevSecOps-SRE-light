@@ -25,8 +25,9 @@ Chaque lettre (`h`, `i`, `m`, `B`, `H`, `s`) représente une **option du shell**
 > L'ensemble exact dépend de la **version de Bash** et de la configuration (`.bashrc`, `.bash_profile`…).
 
 > Signification de `himBHs` :
+>
 > | Lettre | Option | Signification |
-> ||||
+> |---|---|---|
 > | `h` | hashall | Mémorise l'emplacement des commandes déjà trouvées dans le `PATH` |
 > | `i` | interactive | Shell **interactif** |
 > | `m` | monitor | **Contrôle des jobs** activé (`fg`, `bg`, `jobs`, Ctrl+Z) |
