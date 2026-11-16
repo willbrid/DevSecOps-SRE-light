@@ -115,8 +115,6 @@ $ echo "Output" | test -t 1 && echo "Output received"
 Output received
 ```
 
-La leçon précise que l'évaluation de `test -t` dans un pipeline dépend de la façon dont le shell configure les descripteurs, mais le principe reste : **un pipe relie stdout → stdin**.
-
 > Cet exemple est trompeur : `test -t 1` teste le **stdout** de `test`, qui est toujours le terminal ici ; il serait vrai **même sans le pipe**. Pour vraiment observer l'effet du pipe, il faut tester **fd 0** :
 > ```bash
 > $ echo "x" | test -t 0 || echo "stdin vient d'un pipe"
