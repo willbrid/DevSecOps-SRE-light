@@ -84,7 +84,7 @@ image1.jpg  image2.jpeg  image3.png
 - `image` est le préfixe fixe.
 - `*` prend tout ce qui suit : `.jpg`, `.jpeg`, `.png`…
 
-> Combinaisons possibles (non présentes dans la leçon) :
+> Combinaisons possibles :
 > ```bash
 > ls *backup*          # contient "backup" n'importe où
 > ls image*.jp*g       # image1.jpg, image2.jpeg
