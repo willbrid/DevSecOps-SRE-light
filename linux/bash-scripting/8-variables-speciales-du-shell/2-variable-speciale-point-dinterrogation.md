@@ -52,7 +52,7 @@ $ echo $?
 #### 3. Codes de sortie courants
 
 | Code | Signification |
-|||
+|---|---|
 | **0** | Succès |
 | **1** | Erreur générale |
 | **2** | Mauvaise utilisation d'un built-in du shell |
@@ -70,7 +70,7 @@ On peut définir des codes personnalisés **à partir de 128**.
 
 ```bash
 $ ./script.sh
-permission denied: ./script.sh
+bash: ./script.sh: Permission denied
 $ echo $?
 126
 
@@ -124,7 +124,7 @@ exit 0
 
 ```bash
 $ ./wrong_echo-v2.sh
-./wrong_echo-v2.sh: line 2: ehco: command not found
+./wrong_echo-v2.sh: line 3: ehco: command not found
 Error: Failed to run command.
 $ echo $?
 1
@@ -148,7 +148,7 @@ exit 0
 
 ```bash
 $ ./wrong_echo-v3.sh
-./wrong_echo-v3.sh: line 1: ehco: command not found
+./wrong_echo-v3.sh: line 2: ehco: command not found
 Error: Failed to run command.
 $ echo $?
 1
@@ -169,7 +169,7 @@ exit 0
 
 ```bash
 $ ./wrong_echo-sete.sh
-./wrong_echo-sete.sh: line 2: ehco: command not found
+./wrong_echo-sete.sh: line 3: ehco: command not found
 $ echo $?
 127
 ```

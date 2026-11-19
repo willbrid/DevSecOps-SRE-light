@@ -201,7 +201,7 @@ cd "${WORK_DIR}/subdir"
 ### 6. Tableau récapitulatif
 
 | Élément | Rôle | Exemple |
-||||
+|---|---|---|
 | `$0` | Comment le script a été invoqué | `echo "$0"` |
 | `${0##*/}` | Nom du script seul (basename) | `SCRIPT_NAME=${0##*/}` |
 | Heredoc d'usage | Insérer `SCRIPT_NAME` dans l'aide | `cat <<USAGE …` |

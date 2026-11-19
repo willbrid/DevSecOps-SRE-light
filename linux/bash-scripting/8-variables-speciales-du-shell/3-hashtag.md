@@ -76,7 +76,7 @@ Sans validation, le script **continue avec des données manquantes**, ce qui pro
 Valider `$#` en début de script pour imposer l'usage attendu :
 
 | Motif | Description | Exemple |
-||||
+|---|---|---|
 | `[[ $# -ne N ]]` | Nombre **exact** | `if [[ $# -ne 1 ]]; then echo "Usage: $0 <arg>" >&2; exit 1; fi` |
 | `[[ $# -lt N ]]` | **Au moins** N | `if [[ $# -lt 1 ]]; then echo "Need at least one arg" >&2; exit 1; fi` |
 | `[[ $# -lt MIN \|\| $# -gt MAX ]]` | **Entre** MIN et MAX | `if [[ $# -lt 1 \|\| $# -gt 2 ]]; then echo "Expect 1–2 args" >&2; exit 1; fi` |
@@ -205,7 +205,7 @@ $ echo $?
 ### 6. Récapitulatif des variables
 
 | Variable | Description | Exemple |
-||||
+|---|---|---|
 | `$?` | Code de sortie de la dernière commande | `echo $?` |
 | `$#` | Nombre de paramètres positionnels | `if [[ $# -ne 1 ]]; then … fi` |
 | `$1`, `$2`… | Paramètres positionnels (1er, 2ᵉ…) | `echo "First: $1"` |

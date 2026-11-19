@@ -184,7 +184,12 @@ IFS='_'
 args_at="$@"
 args_star="$*"
 
-print_section_header() { ... }
+print_section_header() {
+  local title="$1"
+  echo "==============================="
+  echo "= Section ${title} ="
+  echo "==============================="
+}
 
 print_section_header "1: \$@"
 echo "--> \$@: $@"
@@ -244,7 +249,7 @@ done
 ### 7. Récapitulatif : `$@` vs `$*`
 
 | Variable | Entre guillemets | Sans guillemets | Usage |
-|||||
+|---|---|---|---|
 | `$@` | `"$@"` → chaque argument **séparé** | Redécoupé sur `IFS` + globbing | **Boucler** sur les arguments, les **transmettre** à une autre commande/fonction |
 | `$*` | `"$*"` → **une seule chaîne** (jointe avec le 1er car. de `IFS`) | Redécoupé sur `IFS` + globbing | Construire **un message** / une chaîne unique |
 

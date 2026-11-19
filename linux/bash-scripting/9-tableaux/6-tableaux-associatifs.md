@@ -177,7 +177,11 @@ After:  kriti@email.com ... feng2@email.com
 
 ```bash
 #!/usr/bin/env bash
-declare -A email_addresses=( ... )
+declare -A email_addresses=(
+  ["Mark"]="mark@email.com"
+  ["Kriti"]="kriti@email.com"
+  ["Feng"]="feng@email.com"
+)
 
 # Supprimer un élément
 unset email_addresses["Kriti"]
@@ -200,7 +204,11 @@ unset email_addresses
 
 ```bash
 #!/usr/bin/env bash
-declare -A email_addresses=( ... )
+declare -A email_addresses=(
+  ["Mark"]="mark@email.com"
+  ["Kriti"]="kriti@email.com"
+  ["Feng"]="feng@email.com"
+)
 
 echo "Keys:   ${!email_addresses[@]}"
 echo "Values: ${email_addresses[@]}"
@@ -225,7 +233,11 @@ On boucle sur les **clés**, puis on accède à chaque valeur :
 
 ```bash
 #!/usr/bin/env bash
-declare -A email_addresses=( ... )
+declare -A email_addresses=(
+  ["Mark"]="mark@email.com"
+  ["Kriti"]="kriti@email.com"
+  ["Feng"]="feng@email.com"
+)
 
 for key in "${!email_addresses[@]}"; do
   echo "$key's email is ${email_addresses[$key]}"

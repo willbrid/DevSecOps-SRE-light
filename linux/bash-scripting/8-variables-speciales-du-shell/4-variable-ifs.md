@@ -9,7 +9,7 @@ Par défaut, `IFS` contient **espace, tabulation et retour à la ligne**, ce qui
 ### 1. Séparateurs par défaut
 
 | Séparateur | Séquence d'échappement | Description |
-||||
+|---|---|---|
 | Espace | `<espace>` | Découpe sur les espaces |
 | Tabulation | `\t` | Découpe sur les tabulations |
 | Retour à la ligne | `\n` | Découpe sur les retours à la ligne |
@@ -177,7 +177,7 @@ Quand `IFS` est **vide**, **aucun découpage** n'a lieu : chaque expansion reste
 
 > Différence importante :
 > | Valeur | Effet |
-> |||
+> |---|---|
 > | `IFS=$' \t\n'` | Découpage par défaut |
 > | `unset IFS` | Comme la valeur par défaut |
 > | `IFS=''` | **Aucun** découpage |

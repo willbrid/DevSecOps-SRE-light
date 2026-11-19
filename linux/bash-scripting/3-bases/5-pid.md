@@ -52,8 +52,8 @@ $ ps -ef | grep bash
 Script de test qui dort 3 minutes pour avoir le temps d'observer :
 
 ```bash
-# script.sh
 #!/bin/bash
+# script.sh
 sleep 180
 ```
 

@@ -288,6 +288,7 @@ case $# in
   *) printf "%s\n" "Please provide three arguments" >&2
      exit 1
      ;;
+esac
 ```
 
 ### Boucles

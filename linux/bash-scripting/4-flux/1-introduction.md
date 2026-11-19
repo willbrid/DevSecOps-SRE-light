@@ -9,7 +9,7 @@ Maîtriser les flux est indispensable pour des scripts robustes : capturer la so
 Chaque processus Linux démarre avec **trois descripteurs de fichiers** (*file descriptors*, fd) standards :
 
 | fd | Nom | Rôle | Source / destination par défaut |
-|||||
+|---|---|---|---|
 | **0** | `stdin` | Entrée standard (lecture) | Clavier ou pipe |
 | **1** | `stdout` | Sortie standard (résultats normaux) | Terminal ou fichier redirigé |
 | **2** | `stderr` | Sortie d'erreur (erreurs, diagnostics) | Terminal ou fichier redirigé |

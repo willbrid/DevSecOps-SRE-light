@@ -180,12 +180,12 @@ $ read -n 4 <&3                     # lit 4 octets → la position est sur l'esp
 $ echo -n "." >&3                   # écrit un point à la position courante (remplace l'espace)
 $ exec 3>&-                         # ferme le fd 3
 $ cat email_file.txt
-will@willbrid.com
+will.will@willbrid.com
 ```
 
 Explications :
 - `exec 3<> fichier` : ouvre le fichier sur le **fd 3** en **lecture et écriture** (`<>`), sans le tronquer.
-- `read -n 4 <&3` : lit 4 octets (`Brid`) et avance le **pointeur de position** juste avant l'espace (le texte lu va dans `$REPLY`).
+- `read -n 4 <&3` : lit 4 octets (`will`) et avance le **pointeur de position** juste avant l'espace (le texte lu va dans `$REPLY`).
 - `echo -n "." >&3` : écrit `.` à la position courante, ce qui **remplace** l'espace (`-n` évite d'ajouter un retour à la ligne qui écraserait un caractère de plus).
 - `exec 3>&-` : ferme le fd 3.
 

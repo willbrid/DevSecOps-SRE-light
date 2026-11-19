@@ -21,7 +21,7 @@ echo {3..1}
 ```
 
 | Type | Syntaxe | Résultat |
-|---|---|
+|---|---|---|
 | Plage alphabétique | `{a..z}` | a b c … z |
 | Plage numérique | `{1..5}` | 1 2 3 4 5 |
 

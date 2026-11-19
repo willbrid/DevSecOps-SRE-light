@@ -87,8 +87,8 @@ my_python_file="/usr/bin/app.py"
 echo "${my_text_file#*/}"    # home/my_username/text_file.txt
 echo "${my_python_file#*/}"  # usr/bin/app.py
 
-echo "${my_text_file###*/}"   # text_file.txt
-echo "${my_python_file###*/}" # app.py
+echo "${my_text_file##*/}"   # text_file.txt
+echo "${my_python_file##*/}" # app.py
 ```
 
 > Avec un chemin absolu, `#*/` ne retire que le `/` initial (le plus court motif `*/` est simplement `/`).
@@ -120,7 +120,7 @@ echo "${my_python_file%%.*}"  # /usr/bin/app
 
 > Combinaison utile : nom sans chemin ni extension
 > ```bash
-> name="${my_text_file###*/}"   # text_file.txt
+> name="${my_text_file##*/}"   # text_file.txt
 > echo "${name%.*}"            # text_file
 > ```
 
@@ -141,8 +141,8 @@ Avec ces quatre opérateurs, on adapte la manipulation à n'importe quelle donn�
 > Exemple pratique (contexte Kubernetes/Docker) :
 > ```bash
 > image="docker.io/library/nginx:1.27.2"
-> echo "${image###*/}"      # nginx:1.27.2   → sans registre
-> echo "${image###*:}"      # 1.27.2         → le tag
+> echo "${image##*/}"      # nginx:1.27.2   → sans registre
+> echo "${image##*:}"      # 1.27.2         → le tag
 > repo="${image%:*}"       # docker.io/library/nginx
 > echo "${repo##*/}"       # nginx          → nom seul
 >
@@ -153,12 +153,12 @@ Avec ces quatre opérateurs, on adapte la manipulation à n'importe quelle donn�
 ### À retenir
 
 - Un suffixe/préfixe **fixe** (`%.txt`) ne marche que pour ce cas précis ; les **jokers** (`%.*`) généralisent.
-- **Simple** (`#`, `%`) = plus **court** ; **double** (`###`, `%%`) = plus **long**.
+- **Simple** (`#`, `%`) = plus **court** ; **double** (`##`, `%%`) = plus **long**.
 - `#` agit au **début**, `%` à la **fin**.
-- `${var#* }` = sans le 1er mot ; `${var% *}` = sans le dernier mot ; `${var###* }` = dernier mot ; `${var%% *}` = premier mot.
+- `${var#* }` = sans le 1er mot ; `${var% *}` = sans le dernier mot ; `${var##* }` = dernier mot ; `${var%% *}` = premier mot.
 - `${path##*/}` = **basename** ; `${path%/*}` = **dirname**.
 - `${file%.*}` = sans la **dernière** extension (recommandé) ; `${file%%.*}` = sans **toutes** (attention aux points dans les dossiers).
-- Toujours associer `*` à un **délimiteur littéral** ; `${var###*}` / `${var%%*}` → chaîne vide, `${var#*}` / `${var%*}` → inchangé.
+- Toujours associer `*` à un **délimiteur littéral** ; `${var##*}` / `${var%%*}` → chaîne vide, `${var#*}` / `${var%*}` → inchangé.
 
 ### Liens utiles
 

@@ -47,8 +47,8 @@ echo $SHELL
 Même script, **avec** shebang :
 
 ```bash
-# shebang.sh
 #!/bin/bash
+# shebang.sh
 WORDS="I don't have a shebang and I still run"
 for word in ${WORDS}; do
   if [[ 2 < 3 ]]; then

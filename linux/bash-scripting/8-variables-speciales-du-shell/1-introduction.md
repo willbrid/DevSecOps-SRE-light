@@ -38,7 +38,7 @@ $ echo $?
 Paramètres spéciaux **POSIX** les plus utilisés :
 
 | Variable | Description | Exemple |
-||||
+|---|---|---|
 | `$*` | Tous les paramètres positionnels en **un seul mot** | `echo "Args: $*"` |
 | `$#` | **Nombre** de paramètres positionnels | `echo "Count: $#"` |
 | `$0` | **Nom** du script ou du shell | `echo "Script: $0"` |
@@ -51,7 +51,7 @@ Ces variables se mettent à jour **dynamiquement** selon le contexte d'exécutio
 
 > Compléments :
 > | Variable | Description |
-> |||
+> |---|---|
 > | `$?` | Code de sortie de la dernière commande |
 > | `$@` | Tous les arguments, **chacun séparé** (`"$@"` = la forme à utiliser dans les boucles) |
 > | `$1` … `$9`, `${10}` | Arguments positionnels |

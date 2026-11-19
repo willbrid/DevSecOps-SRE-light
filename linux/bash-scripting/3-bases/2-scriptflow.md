@@ -197,8 +197,8 @@ On peut importer un autre script ou un fichier de configuration **en cours d'ex√
 #### Exemple v1 : sourcing simple
 
 ```bash
-# Le fichier .conf contient par ex. : name="Bob Doe"
 #!/usr/bin/env bash
+# Le fichier .conf contient par ex. : name="Bob Doe"
 source .conf
 echo "${name}"
 ```

@@ -184,7 +184,7 @@ Dans un pipeline Jenkins, chaque étape `sh` s'exécute dans **son propre proces
 ### 5. Vérifier les PID
 
 | Variable | Description |
-|||
+|---|---|
 | `$$` | PID du shell **parent** (du script) |
 | `$BASHPID` | PID du processus Bash **courant** (y compris dans un sous-shell) |
 

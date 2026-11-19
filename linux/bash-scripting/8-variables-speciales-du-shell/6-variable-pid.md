@@ -12,7 +12,7 @@ En Bash et dans les shells POSIX, les variables spéciales **`$$`** et **`$!`** 
 ### 2. Tableau des variables PID
 
 | Variable | Description | Usage typique |
-||||
+|---|---|---|
 | `$!` | PID du **dernier job lancé en arrière-plan** | Suivre et contrôler des tâches en arrière-plan |
 | `$$` | PID du **shell courant** ou du **script** en cours | Le script connaît son propre PID |
 
@@ -34,7 +34,7 @@ First background PID is 93506
 $ echo "Hello" &
 [1] 93761
 Hello
-[1] + done echo "Hello"
+[1]+  Done                    echo "Hello"
 
 $ echo $!
 93761

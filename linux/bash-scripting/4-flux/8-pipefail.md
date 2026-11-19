@@ -10,7 +10,7 @@ Avec `|`, le **stdout** de chaque commande alimente le **stdin** de la suivante.
 
 ```bash
 $ sort somefile.txt | uniq | cat file.txt
-sort: cannot read somefile.txt: No such file or directory
+sort: cannot read: somefile.txt: No such file or directory
 hello
 ```
 
@@ -27,7 +27,7 @@ Bien que `sort` ait échoué, le **code de sortie final du pipeline est `0`** : 
 
 ```bash
 $ sort somefile.txt | uniq
-sort: cannot read somefile.txt: No such file or directory
+sort: cannot read: somefile.txt: No such file or directory
 $ echo $?
 0
 ```
@@ -36,7 +36,7 @@ Malgré l'échec, on obtient `0`. Les opérateurs logiques se comportent donc de
 
 ```bash
 $ sort somefile.txt | uniq && echo "Won't stop on error"
-sort: cannot read somefile.txt: No such file or directory
+sort: cannot read: somefile.txt: No such file or directory
 Won't stop on error
 ```
 
@@ -60,7 +60,7 @@ Enregistré sous `set-pipefail.sh` :
 
 ```bash
 $ ./set-pipefail.sh
-sort: cannot read somefile.txt: No such file or directory
+sort: cannot read: somefile.txt: No such file or directory
 Exit status: 2
 ```
 
@@ -126,6 +126,10 @@ Exécution :
 
 ```bash
 $ ./set-pipefail3.sh
+./set-pipefail3.sh: line 6: file.txt: cannot overwrite existing file
+sort: cannot read: somefile.txt: No such file or directory
+$ echo $?
+100
 $ cat file.txt
 First line
 ```

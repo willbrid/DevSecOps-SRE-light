@@ -132,8 +132,8 @@ Par défaut, un pipeline ne transmet que **stdout**. Les erreurs (**stderr**) s'
 ```bash
 $ ls -z | echo "Hello world"
 Hello world
-ls: unknown option -- z
-Try 'ls --help' for more information
+ls: invalid option -- 'z'
+Try 'ls --help' for more information.
 ```
 
 Les erreurs ne passent **pas** d'une commande à l'autre. Pour les inclure dans le pipeline, utiliser `2>&1`.

@@ -26,7 +26,6 @@ La variable spéciale **`$_`** contient le **dernier argument de la commande pr�
 
 ```bash
 $ ls -l file.conf
-total 16
 -rw-r--r-- 1 root root 896 Jun 18 2020 file.conf
 $ cp $_ /tmp
 ```
@@ -37,7 +36,6 @@ $ cp $_ /tmp
 
 ```bash
 $ ls -l file.conf; echo "Done"
-total 16
 -rw-r--r-- 1 root root 896 Jan 18 2020 file.conf
 Done
 $ echo $_
@@ -80,7 +78,7 @@ pwd
 ### 4. Cas d'usage courants
 
 | Scénario | Dernière commande | Valeur de `$_` |
-||||
+|---|---|---|
 | Copier un fichier | `cp large_archive.tar.gz /backup` | `/backup` |
 | Éditer un fichier | `vim /etc/nginx/nginx.conf` | `/etc/nginx/nginx.conf` |
 | Déplacer un répertoire | `mv logs_old logs_archive` | `logs_archive` |

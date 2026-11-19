@@ -187,7 +187,7 @@ Chaque substitution **crée un nouveau processus**. C'est négligeable dans la p
 ### 7. Mentions honorables
 
 | Usage | Exemple |
-|||
+|---|---|
 | Capturer **stderr** | `files=$(ls -j 2>&1)` |
 | Capturer un **horodatage** | `current_date=$(date)` |
 

@@ -28,7 +28,7 @@ ls: cannot access 'file[C-A]': No such file or directory
 #### Exemples courants
 
 | Motif | Correspond à | Description |
-|---|---|
+|---|---|---|
 | `file[A-C]` | fileA, fileB, fileC | Majuscules A à C |
 | `file[a-c]` | filea, fileb, filec | Minuscules a à c |
 | `file[1-3]` | file1, file2, file3 | Chiffres 1 à 3 |

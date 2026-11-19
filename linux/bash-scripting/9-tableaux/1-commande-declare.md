@@ -52,7 +52,7 @@ Pour obtenir un comportement d'**entier** (imitant un typage statique) :
 declare -i num=5
 echo $(( num + 2 ))   # 7
 
-num="not a number"
+num="hello"
 echo "$num"           # 0
 ```
 

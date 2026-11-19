@@ -35,7 +35,8 @@ Raccourci Bash pour capturer **les deux flux** d'un coup :
 ```bash
 $ ls -z &> all-logs.txt
 $ cat all-logs.txt
-ls: cannot access '-z': No such file or directory
+ls: invalid option -- 'z'
+Try 'ls --help' for more information.
 ```
 
 En Bash, `&> fichier` équivaut à `> fichier 2>&1`.
@@ -68,7 +69,8 @@ $ echo "warning" >&2
 
 ```bash
 $ ls -z 2>&1
-ls: cannot access '-z': No such file or directory
+ls: invalid option -- 'z'
+Try 'ls --help' for more information.
 ```
 
 > **L'ordre compte** quand on combine des redirections : rediriger **stdout d'abord**, puis stderr vers stdout.

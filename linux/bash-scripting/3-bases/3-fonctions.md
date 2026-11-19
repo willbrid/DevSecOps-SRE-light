@@ -16,8 +16,8 @@ Analogie : un chef met au point une recette une fois, puis la réutilise chaque 
 #!/bin/bash
 
 mkdir backup
+cp -r "${1}" backup/
 cd backup
-cp -r "${1}" .
 tar -czvf backup.tar.gz *
 echo "Backup complete!"
 ```
@@ -29,8 +29,8 @@ echo "Backup complete!"
 
 perform_backup() {
     mkdir -p backup
+    cp -r "${1}" backup/
     cd backup || exit 1
-    cp -r "${1}" .
     tar -czvf backup.tar.gz *
     echo "Backup complete!"
 }

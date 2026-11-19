@@ -76,6 +76,7 @@ Utiliser cette syntaxe standard pour déclarer des fonctions :
 ```
 function_name() {
     # corps de fonction
+    :
 }
 ```
 
@@ -104,8 +105,8 @@ Dans les scripts shell, l'**expansion de variable** utilise le signe dollar (**$
 Par défaut, les **expansions sans guillemets** sont séparées par des espaces définis par la variable d'environnement **IFS** (**espace**, **tabulation**, **saut de ligne**). Utiliser des guillemets pour conserver la valeur exacte.
 
 ```
-# Sans guillemets
 #!/bin/bash
+# Sans guillemets
 string="One Two Three"
 
 # Divise en mots à cause de ${string}
@@ -115,8 +116,8 @@ done
 ```
 
 ```
-# Avec guillemets
 #!/bin/bash
+# Avec guillemets
 string="One Two Three"
 
 # Préserve la chaîne entière comme un seul élément à cause de "${string}"
