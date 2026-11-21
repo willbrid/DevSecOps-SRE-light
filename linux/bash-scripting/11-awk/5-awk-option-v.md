@@ -1,5 +1,7 @@
 # awk option v
 
+> Fichiers d'exemple : [exemples/5-awk-option-v/](exemples/5-awk-option-v/) (lancer les commandes depuis ce répertoire).
+
 L'option **`-v`** définit des **variables awk avant l'exécution** du programme. Déclarer les variables ainsi permet de **séparer la configuration de la logique**, rend les one-liners plus **lisibles** et les scripts/pipelines plus **réutilisables**.
 
 ### 1. Exemple simple : `-v` avec un bloc `BEGIN`
@@ -66,21 +68,21 @@ $ cat employees.txt
 
 ```bash
 $ awk -F "|" -v prefix="Employee's First Name: " '{ print prefix, $2 }' employees.txt
-Employee's First Name: Kriti
-Employee's First Name: Rajasekar
-Employee's First Name: Debbie
-Employee's First Name: Enrique
-Employee's First Name: Feng
-Employee's First Name: Andy
-Employee's First Name: Mark
-Employee's First Name: Jing
+Employee's First Name:  Kriti
+Employee's First Name:  Rajasekar
+Employee's First Name:  Debbie
+Employee's First Name:  Enrique
+Employee's First Name:  Feng
+Employee's First Name:  Andy
+Employee's First Name:  Mark
+Employee's First Name:  Jing
 ```
 
 - `-v prefix="…"` définit une variable utilisable dans le programme ;
 - `-F "|"` découpe sur le pipe → `$2` = prénom ;
 - `prefix` est utilisée dans l'action pour **chaque** ligne.
 
-> Détail : `prefix` se termine déjà par un espace **et** la virgule ajoute `OFS` (un espace) → la sortie réelle contient **deux espaces** (`Name:  Kriti`). Pour un seul espace : `print prefix $2` (concaténation) ou retirer l'espace final du préfixe.
+> Détail : `prefix` se termine déjà par un espace **et** la virgule ajoute `OFS` (un espace) → la sortie contient **deux espaces** (`Name:  Kriti`). Pour un seul espace : `print prefix $2` (concaténation) ou retirer l'espace final du préfixe.
 
 ### 5. Filtrer sur un champ numérique (salaire)
 

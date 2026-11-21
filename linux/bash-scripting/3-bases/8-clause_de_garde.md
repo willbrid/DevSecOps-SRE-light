@@ -1,5 +1,7 @@
 # Clause de garde
 
+> Fichiers d'exemple : [exemples/8-clause_de_garde/](exemples/8-clause_de_garde/) (lancer les commandes depuis ce répertoire).
+
 La **clause de garde** est une technique simple qui consiste à **vérifier les préconditions dès le début** et à **quitter immédiatement** si elles ne sont pas remplies (*fail fast*). Résultat : moins d'imbrication, un chemin principal (le cas de succès) **plat et lisible**, et un script plus facile à maintenir.
 
 ### 1. Pourquoi éviter l'imbrication profonde ?

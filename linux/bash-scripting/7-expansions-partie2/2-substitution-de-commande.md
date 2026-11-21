@@ -1,5 +1,7 @@
 # Substitution de commande
 
+> Fichiers d'exemple : [exemples/2-substitution-de-commande/](exemples/2-substitution-de-commande/) (lancer les commandes depuis ce répertoire).
+
 La **substitution de commande** permet de **capturer la sortie d'une commande** et de l'**insérer dans une autre** (ou dans une variable). Elle améliore la lisibilité des scripts et permet de manipuler des données **dynamiques**.
 
 ### 1. Rappel : l'expansion de variables
@@ -27,7 +29,7 @@ Le shell exécute la commande dans un **sous-shell** et **remplace** la commande
 
 ```bash
 $ ls
-DEV001  DEV002  DEV003  DEV004  MKT001  MKT002  MKT003  MKT004  command-substitution.sh
+command-substitution.sh  DEV001  DEV002  DEV003  DEV004  MKT001  MKT002  MKT003  MKT004
 $ find . -type f | wc -l
 9
 ```

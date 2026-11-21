@@ -1,5 +1,7 @@
 # Globs : les crochets
 
+> Fichiers d'exemple : [exemples/6-globs-les-crochets/](exemples/6-globs-les-crochets/) (lancer les commandes depuis ce répertoire).
+
 En globbing, `*` correspond à n'importe quelle chaîne et `?` à un seul caractère. Les **crochets** `[ ]` définissent une **classe de caractères** : ils correspondent à **un seul caractère** choisi dans un **ensemble** ou une **plage**.
 
 ### 1. Correspondre à une plage de caractères

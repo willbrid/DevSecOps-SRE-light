@@ -1,5 +1,7 @@
 # awk option F
 
+> Fichiers d'exemple : [exemples/4-awk-option-f/](exemples/4-awk-option-f/) (lancer les commandes depuis ce répertoire).
+
 L'option **`-F`** permet de **personnaliser le séparateur de champs** d'awk. Par défaut, awk découpe les lignes sur les **espaces**, mais `-F` permet d'utiliser **n'importe quel caractère** ou **expression régulière** comme délimiteur.
 
 ```bash

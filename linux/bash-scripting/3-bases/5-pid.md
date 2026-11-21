@@ -1,5 +1,7 @@
 # Pid
 
+> Fichiers d'exemple : [exemples/5-pid/](exemples/5-pid/) (lancer les commandes depuis ce répertoire).
+
 Un script shell est un fichier de commandes et de constructions de programmation qui automatise des tâches. Chaque fois qu'un nouveau processus démarre, le **noyau lui attribue un identifiant unique : le PID** (Process ID). Il sert à inspecter, contrôler ou arrêter ce processus.
 
 ### 1. Shell parent et processus enfants

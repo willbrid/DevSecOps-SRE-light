@@ -1,0 +1,8 @@
+1|Kriti|Shreshtha|Finance|Financial Analyst|kriti.shreshtha@company.com|60000
+2|Rajasekar|Vasudevan|Finance|Senior Accountant|rajasekar.vasudevan@company.com|75000
+3|Debbie|Miller|IT|Software Developer|debbie.miller@company.com|80000
+4|Enrique|Rivera|Marketing|Marketing Specialist|enrique.rivera@company.com|65000
+5|Feng|Lin|Sales|Sales Manager|feng.lin@company.com|90000
+6|Andy|Luscomb|IT|IT Manager|andy.luscomb@company.com|95000
+7|Mark|Crocker|HR|HR Manager|mark.crocker@company.com|85000
+8|Jing|Ma|Engineering|Engineering Manager|jing.ma@company.com|100000

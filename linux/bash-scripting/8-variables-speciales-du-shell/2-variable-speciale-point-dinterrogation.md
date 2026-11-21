@@ -1,5 +1,7 @@
 # Variable spéciale $?
 
+> Fichiers d'exemple : [exemples/2-variable-speciale-point-dinterrogation/](exemples/2-variable-speciale-point-dinterrogation/) (lancer les commandes depuis ce répertoire).
+
 En Bash et dans les shells POSIX, la variable spéciale **`$?`** contient le **code de sortie** de la **dernière** commande, du dernier script ou de la dernière fonction exécutée. La vérifier est essentiel pour une **gestion d'erreurs robuste**.
 
 ### Partie 1 : utiliser `$?`

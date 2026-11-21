@@ -1,0 +1,8 @@
+INFO Server started on port 8080
+WARN Disk usage above 80%
+INFO New connection from 10.0.0.12
+WARN High memory usage
+ERROR Database connection lost
+WARN Disk usage above 80%
+INFO Database connection restored
+WARN Disk usage above 80%

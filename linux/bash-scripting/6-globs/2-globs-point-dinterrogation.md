@@ -1,5 +1,7 @@
 # Globs : point d'interrogration
 
+> Fichiers d'exemple : [exemples/2-globs-point-dinterrogation/](exemples/2-globs-point-dinterrogation/) : un sous-répertoire `exemple-N` par exemple du cours (lancer les commandes depuis ce sous-répertoire).
+
 Dans les globs, le joker **`?` correspond à exactement un caractère**. Les noms de fichiers doivent donc avoir **la même longueur** que le motif. En combinant du texte fixe et des `?`, on obtient une sélection de fichiers très **précise**.
 
 ### 1. Les bases du joker `?`
@@ -20,10 +22,10 @@ Motif `?ail` : n'importe quel caractère **unique** suivi de `ail` :
 
 ```bash
 $ ls
-rail  Document.doc  fail  hail  bar  sail  foo  mail  4ail  foobar
+4ail  bar  Document.doc  fail  foo  foobar  hail  mail  rail  sail
 
 $ ls ?ail
-rail  fail  hail  sail  mail  4ail
+4ail  fail  hail  mail  rail  sail
 ```
 
 - `?` correspond à un caractère (`r`, `f`, `h`, `s`, `m`, `4`) : lettres **et chiffres**.
@@ -36,7 +38,7 @@ Contenu : `test.sh`, `file.txt`, `tes1t.txt`, `test2.txt`, `file1.txt`.
 
 ```bash
 $ ls
-test.sh  file.txt  tes1t.txt  test2.txt  file1.txt
+file1.txt  file.txt  tes1t.txt  test2.txt  test.sh
 
 $ ls tes??.txt
 tes1t.txt  test2.txt
@@ -58,7 +60,7 @@ Contenu : `test1-2.txt`, `tes1t.txt`, `test2.txt`, `test3.sh`, `test1.txt`, `fil
 
 ```bash
 $ ls
-test1-2.txt  tes1t.txt  test2.txt  test3.sh  test1.txt  file1.txt
+file1.txt  tes1t.txt  test1-2.txt  test1.txt  test2.txt  test3.sh
 
 $ ls test?.txt
 test1.txt  test2.txt
@@ -80,10 +82,10 @@ Motif `?est.???` : un caractère, puis `est.`, puis une extension d'**exactement
 
 ```bash
 $ ls
-test.txt  vest.txt  test.jpg  file.sh  rest.txt  west.doc
+file.sh  rest.txt  test.jpg  test.txt  vest.txt  west.doc
 
 $ ls ?est.???
-test.txt  vest.txt  test.jpg  rest.txt  west.doc
+rest.txt  test.jpg  test.txt  vest.txt  west.doc
 ```
 
 - `?est` accepte n'importe quel premier caractère (`t`, `v`, `r`, `w`).
@@ -99,10 +101,10 @@ Contenu : `1234`, `abcd`, `kei5`, `some_file.txt`, `x0f4p`, `90c1`, `dir`, `keio
 
 ```bash
 $ ls
-1234  abcd  kei5  some_file.txt  x0f4p  90c1  dir  keio5  touch  x0fp
+1234  90c1  abcd  dir  kei5  keio5  some_file.txt  touch  x0f4p  x0fp
 
 $ ls ????
-1234  abcd  kei5  90c1  x0fp
+1234  90c1  abcd  kei5  x0fp
 ```
 
 - Chacun des quatre `?` correspond à un caractère.

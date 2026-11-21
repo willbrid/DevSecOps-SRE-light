@@ -1,5 +1,7 @@
 # Xargs
 
+> Fichiers d'exemple : [exemples/10-xargs/](exemples/10-xargs/) (lancer les commandes depuis ce répertoire).
+
 `xargs` est un utilitaire GNU qui **transforme des données reçues sur stdin en arguments** pour une autre commande. Au lieu du schéma classique « lire stdin → écrire stdout », `xargs` **collecte les éléments** et les **ajoute comme paramètres** à une commande, ce qui rend les scripts beaucoup plus flexibles.
 
 ### 1. Bases des pipes

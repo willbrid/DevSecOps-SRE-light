@@ -1,5 +1,7 @@
 # awk print
 
+> Fichiers d'exemple : [exemples/2-awk-print/](exemples/2-awk-print/) (lancer les commandes depuis ce répertoire).
+
 Awk est un langage spécialisé pour le **traitement de texte**. Ce contenu présente sa **syntaxe**, la structure **motif → action** et l'instruction **`print`** pour extraire et formater des données.
 
 ### 1. Syntaxe générale

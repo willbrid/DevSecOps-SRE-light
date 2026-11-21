@@ -1,5 +1,7 @@
 # Stdout et stderr
 
+> Fichiers d'exemple : [exemples/2-stdout-stderr/](exemples/2-stdout-stderr/) (lancer les commandes depuis ce répertoire).
+
 La sortie d'un programme est un **flux de données** qui circule comme dans un tuyau vers le terminal. Savoir **capturer, séparer et rediriger** ces flux est essentiel pour diagnostiquer les problèmes et écrire des scripts fiables.
 
 ### 1. stdout vs stderr : les bases
@@ -8,13 +10,14 @@ Une commande comme `ls` écrit ses résultats normaux sur la **sortie standard (
 
 ```bash
 $ ls
-Documents  noshebang.sh  test.sh
+Documents  file.txt  noshebang.sh  test.sh
 
 $ ls -l
-total 8
--rw-rw-r-- 1 ubuntu ubuntu 0 Mar 12 17:14 Documents
+total 12
+-rw-rw-r-- 1 ubuntu ubuntu  0 Mar 12 17:14 Documents
+-rw-rw-r-- 1 ubuntu ubuntu 20 Mar 12 17:14 file.txt
 -rwxrwxr-x 1 ubuntu ubuntu 46 Mar  4 08:54 noshebang.sh
--rw-rw-r-- 1 ubuntu ubuntu 1 Mar 12 17:14 test.sh
+-rw-rw-r-- 1 ubuntu ubuntu  1 Mar 12 17:14 test.sh
 ```
 
 Avec une option invalide, le message part sur la **sortie d'erreur (stderr)** :
@@ -34,15 +37,15 @@ Certaines commandes n'affichent **rien** quand tout va bien, comme `mv` (sauf en
 ```bash
 $ mv file.txt renamedfile.txt      # aucune sortie stdout par défaut
 
-$ mv -v file.txt renamedfile.txt
-file.txt -> renamedfile.txt
+$ mv -v renamedfile.txt file.txt   # mode verbeux (on remet le nom d'origine)
+renamed 'renamedfile.txt' -> 'file.txt'
 ```
 
 En cas d'échec, `mv` écrit sur stderr :
 
 ```bash
-$ mv file.txt file2.txt
-mv: cannot stat 'file.txt': No such file or directory
+$ mv missing.txt file2.txt
+mv: cannot stat 'missing.txt': No such file or directory
 ```
 
 > Pour savoir si une commande silencieuse a réussi : `echo $?` (0 = succès).
@@ -113,12 +116,17 @@ $ ls > stdout.txt 2> stderr.txt
 
 $ cat stdout.txt
 Documents
+file.txt
 noshebang.sh
+stderr.txt
+stdout.txt
 test.sh
 
 $ cat stderr.txt
 # vide : aucune erreur
 ```
+
+> `stdout.txt` et `stderr.txt` apparaissent dans la liste : le shell **crée les fichiers de redirection avant** de lancer `ls`.
 
 ### 3. Fusionner les flux (et l'importance de l'ordre)
 

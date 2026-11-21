@@ -1,0 +1,5 @@
+2026-11-21 08:00:01 info: service started
+2026-11-21 08:05:12 error: connection refused
+2026-11-21 08:06:40 info: retrying connection
+2026-11-21 08:07:03 error: timeout after 30s
+2026-11-21 08:10:00 info: connection established

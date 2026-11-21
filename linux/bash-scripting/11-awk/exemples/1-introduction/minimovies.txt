@@ -1,0 +1,5 @@
+     a  b  c  d  e
+1    y  n  y  n  y
+2	 n  n   n y  y
+3  y n  y	 y  n
+4    n  y  y  n  n

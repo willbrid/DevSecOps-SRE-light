@@ -1,5 +1,7 @@
 # awk option files
 
+> Fichiers d'exemple : [exemples/6-awk-option-files/](exemples/6-awk-option-files/) (lancer les commandes depuis ce répertoire).
+
 Beaucoup de programmes awk sont tapés directement en ligne de commande pour des tâches rapides. Pour des scripts **plus longs** ou **réutilisables**, il vaut mieux les stocker dans des **fichiers** : plus faciles à **lire**, **tester**, **versionner** et **maintenir**.
 
 ### 1. Deux façons de lancer « Hello, World! »
@@ -180,7 +182,7 @@ Les deux affichent les champs 2 et 3 (prénom et nom) pour un fichier délimité
 
 ```bash
 $ ./separator.sh < employees.txt
-Kriti Shrestha
+Kriti Shreshtha
 Rajasekar Vasudevan
 Debbie Miller
 Enrique Rivera
@@ -190,7 +192,7 @@ Mark Crocker
 Jing Ma
 
 $ awk -f separator.awk < employees.txt
-Kriti Shrestha
+Kriti Shreshtha
 Rajasekar Vasudevan
 ...
 ```

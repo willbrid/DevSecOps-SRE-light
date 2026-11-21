@@ -1,5 +1,7 @@
 # Introduction
 
+> Fichiers d'exemple : [exemples/1-introduction/](exemples/1-introduction/) (lancer les commandes depuis ce répertoire).
+
 Un flux est la **circulation de données entre processus**, comme de l'eau dans un tuyau. De même qu'on dévie une rivière avec des vannes, on redirige les flux dans le shell grâce aux **opérateurs de redirection** et aux **pipes**.
 
 Maîtriser les flux est indispensable pour des scripts robustes : capturer la sortie d'une commande, gérer les erreurs, enchaîner des commandes.

@@ -1,5 +1,7 @@
 # Scriptflow
 
+> Fichiers d'exemple : [exemples/2-scriptflow/](exemples/2-scriptflow/) (lancer les commandes depuis ce répertoire).
+
 ## A- Introduction
 
 ### 1. Cycle de vie d'un script shell
@@ -227,6 +229,7 @@ exit 0
 Sans fichier `.conf` → valeur par défaut :
 
 ```bash
+$ rm .conf          # on supprime le .conf de l'exemple v1
 $ ./conf_read-v2.sh
 Bob
 ```

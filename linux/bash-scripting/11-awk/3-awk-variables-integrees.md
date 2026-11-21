@@ -1,5 +1,7 @@
 # Variables intégrées
 
+> Fichiers d'exemple : [exemples/3-awk-variables-integrees/](exemples/3-awk-variables-integrees/) (lancer les commandes depuis ce répertoire).
+
 Ce contenu montre comment utiliser les **variables intégrées** d'awk pour analyser et manipuler efficacement du texte :
 - les variables **positionnelles** (`$1`, `$2`…) ;
 - **`NR`** (numéro d'enregistrement) ;
@@ -66,11 +68,17 @@ awk '{ print NR, $1, $4 }' size.txt
 
 ```text
 1 Filesystem Avail
-2 udev       1.8G
-3 tmpfs      356M
-4 /dev/sda1  9.3G
-...
+2 udev 1.8G
+3 tmpfs 356M
+4 /dev/sda1 9.3G
+5 tmpfs 1.8G
+6 tmpfs 5.0M
+7 tmpfs 1.8G
+8 /dev/sdb1 360G
+9 tmpfs 366M
 ```
+
+(`print` sépare les champs par un **seul** espace, `OFS` : l'alignement des colonnes de `df -h` n'est pas conservé.)
 
 Afficher uniquement l'espace disponible de la **8ᵉ ligne** :
 
@@ -135,7 +143,11 @@ awk '{ print NR, NF }' size.txt
 2 6
 3 6
 4 6
-...
+5 6
+6 6
+7 6
+8 6
+9 6
 ```
 
 Avec du texte :
@@ -147,7 +159,13 @@ awk '{ print "Line", NR, "has", NF, "fields" }' size.txt
 ```text
 Line 1 has 7 fields
 Line 2 has 6 fields
-...
+Line 3 has 6 fields
+Line 4 has 6 fields
+Line 5 has 6 fields
+Line 6 has 6 fields
+Line 7 has 6 fields
+Line 8 has 6 fields
+Line 9 has 6 fields
 ```
 
 ### 5. `$NF` : le dernier champ
@@ -163,7 +181,11 @@ on
 /dev
 /run
 /
-...
+/dev/shm
+/run/lock
+/sys/fs/cgroup
+/data
+/run/user/1000
 ```
 
 (1ʳᵉ ligne : `on`, à cause de « Mounted on ».)
@@ -185,7 +207,12 @@ awk '{ print FILENAME, $1 }' size.txt
 size.txt Filesystem
 size.txt udev
 size.txt tmpfs
-...
+size.txt /dev/sda1
+size.txt tmpfs
+size.txt tmpfs
+size.txt tmpfs
+size.txt /dev/sdb1
+size.txt tmpfs
 ```
 
 Via un **pipe**, `FILENAME` est vide :

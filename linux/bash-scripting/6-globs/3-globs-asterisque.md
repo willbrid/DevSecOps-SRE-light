@@ -1,5 +1,7 @@
 # Globs : astérisque
 
+> Fichiers d'exemple : [exemples/3-globs-asterisque/](exemples/3-globs-asterisque/) : un sous-répertoire `exemple-N` par exemple du cours (lancer les commandes depuis ce sous-répertoire).
+
 L'astérisque (`*`) est un joker très puissant des shells Unix (et de nombreux langages) : il correspond à **n'importe quelle suite de caractères, y compris aucune**. Dans les globs de chemins, il permet de sélectionner des fichiers selon un **préfixe**, une **extension** ou une **sous-chaîne** quelconque.
 
 Le maîtriser permet d'accélérer les opérations sur les fichiers, d'automatiser des tâches et de gagner en efficacité en ligne de commande.
@@ -33,14 +35,14 @@ Ici, `grep` reçoit le motif `*.txt` tel quel au lieu de la liste des fichiers.
 
 ```bash
 $ ls
-report.txt  report.docx  report.pdf  image1.jpg  backup2.tar.gz  1.log2.log
+1.log2.log  backup2.tar.gz  image1.jpg  report.docx  report.pdf  report.txt
 ```
 
 Lister tous les fichiers commençant par `report.`, quelle que soit l'extension :
 
 ```bash
 $ ls report.*
-report.txt  report.docx  report.pdf
+report.docx  report.pdf  report.txt
 ```
 
 - `report.` est pris **littéralement** (point compris).
@@ -52,14 +54,14 @@ report.txt  report.docx  report.pdf
 
 ```bash
 $ ls
-report.py   report.pdf   notes.docx   notes.pdf   image1.jpg   config.pdf   log2.log
+config.pdf  image1.jpg  log2.log  notes.docx  notes.pdf  report.pdf  report.py
 ```
 
 Lister uniquement les PDF :
 
 ```bash
 $ ls *.pdf
-report.pdf  notes.pdf  config.pdf
+config.pdf  notes.pdf  report.pdf
 ```
 
 - `*` correspond à n'importe quel nom avant l'extension.
@@ -71,7 +73,7 @@ report.pdf  notes.pdf  config.pdf
 
 ```bash
 $ ls
-notes.pdf   image1.jpg   image2.jpeg   image3.png   script.sh   backup1.tar.gz
+backup1.tar.gz  image1.jpg  image2.jpeg  image3.png  notes.pdf  script.sh
 ```
 
 Sélectionner tous les fichiers commençant par `image`, quelle que soit l'extension :

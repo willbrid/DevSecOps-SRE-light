@@ -1,5 +1,7 @@
 # Input
 
+> Fichiers d'exemple : [exemples/5-input/](exemples/5-input/) (lancer les commandes depuis ce répertoire).
+
 En scripting shell, l'**entrée** (`Input`) désigne toute donnée fournie à un programme ou au shell, soit **interactivement** (clavier/terminal), soit **non interactivement** (depuis un autre programme ou un fichier). Unix expose les E/S sous forme de **descripteurs de fichiers numérotés** :
 
 | fd | Nom | Usage typique |

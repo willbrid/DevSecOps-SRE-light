@@ -1,5 +1,7 @@
 # Exemple
 
+> Fichiers d'exemple : [exemples/7-exemple/](exemples/7-exemple/) (lancer les commandes depuis ce répertoire).
+
 ```bash
 #!/usr/bin/env bash
 declare -a lunch_options

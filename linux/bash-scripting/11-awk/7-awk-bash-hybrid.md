@@ -1,5 +1,7 @@
 # awk bash hybride
 
+> Fichiers d'exemple : [exemples/7-awk-bash-hybrid/](exemples/7-awk-bash-hybrid/) (lancer les commandes depuis ce répertoire).
+
 Ce contenu montre comment **combiner awk et Bash** pour traiter des fichiers texte délimités. On compare un script **awk pur** à un **hybride Bash/awk**, puis on construit progressivement un **outil réutilisable d'analyse des salaires**.
 
 ### 1. Pourquoi des hybrides Bash-awk ?

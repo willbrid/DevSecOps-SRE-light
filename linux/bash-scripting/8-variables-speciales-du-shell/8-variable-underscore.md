@@ -1,5 +1,7 @@
 # Variable $_
 
+> Fichiers d'exemple : [exemples/8-variable-underscore/](exemples/8-variable-underscore/) (lancer les commandes depuis ce répertoire).
+
 La variable spéciale **`$_`** contient le **dernier argument de la commande précédente**. Très pratique en session interactive comme dans les scripts pour éviter de **retaper** des arguments longs ou dynamiques.
 
 ### 1. Pourquoi utiliser `$_` ?

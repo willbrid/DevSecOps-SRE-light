@@ -1,5 +1,7 @@
 # Globs combinés
 
+> Fichiers d'exemple : [exemples/5-globs-combines/](exemples/5-globs-combines/) : un sous-répertoire `exemple-N` par exemple du cours. Les noms invalides sous Windows (`file.` de l'exemple 1, fichiers des exemples 5 et 6 contenant `*`, `?`, `\`) ne sont pas versionnés : les générer avec `./creer-fichiers-speciaux.sh`.
+
 Ce contenu combine `?`, `*` et l'**échappement** pour faire correspondre des noms de fichiers complexes, **sans recourir aux expressions régulières**.
 
 Rappel des opérateurs :
@@ -59,13 +61,13 @@ file_2_b.doc  ✅
 
 ```bash
 $ ls file_*.___
-file_1.txt  file_2.doc  file_2_b.doc
+ls: cannot access 'file_*.___': No such file or directory
 ```
 
 > Correction : `_` n'est **pas** un joker, c'est un caractère littéral. `file_*.___` chercherait une extension composée de trois underscores et ne trouverait rien. Le glob correct, cohérent avec l'étape 4, est :
 > ```bash
 > $ ls file_*.???
-> file_1.txt  file_2.doc  file_2_b.doc
+> file_1.txt  file_2_b.doc  file_2.doc
 > ```
 > `file_1_a.sh` est exclu car son extension (`sh`) n'a que 2 caractères.
 
@@ -86,7 +88,7 @@ invoice3.xlsx  ✅
 
 ```bash
 $ ls *.????
-memo1.docx  invoice3.xlsx
+invoice3.xlsx  memo1.docx
 ```
 
 > Attention : `*.????` correspond aussi à `archive.tar.gzip` ou `notes.2026` (seule la partie après le **dernier** point compte… ou n'importe quel point suivi de 4 caractères en fin de nom).
@@ -138,13 +140,13 @@ La leçon indique de quoter le motif :
 
 ```bash
 $ ls '?\*a*.*'
-R*al.py  f*a*il.txt  S*ail.txt  m*a?i*l.sh
+ls: cannot access '?\*a*.*': No such file or directory
 ```
 
 > Correction : avec des **guillemets simples**, le shell ne fait **aucune** expansion : `ls` reçoit la chaîne littérale `?\*a*.*` et cherche un fichier portant exactement ce nom → erreur *No such file or directory*. Le glob doit rester **non quoté**, seul le `*` littéral est échappé :
 > ```bash
 > $ ls ?\*a*.*
-> R*al.py  S*ail.txt  f*a*il.txt  m*a?i*l.sh
+> f*a*il.txt  m*a?i*l.sh  R*al.py  S*ail.txt
 > ```
 > - `4ai*l.txt` exclu : le 2ᵉ caractère est `a`, pas `*`.
 > - `hail.doc` exclu : pas de `*`.
@@ -168,7 +170,7 @@ rep1.txt              ❌
 
 ```bash
 $ ls '*\\?*'
-file5\?xt  file_1234567\?890?xt  docA\?.docx
+ls: cannot access '*\\?*': No such file or directory
 ```
 
 > Correction (deux problèmes) :
@@ -178,7 +180,7 @@ file5\?xt  file_1234567\?890?xt  docA\?.docx
 > Glob correct pour la séquence littérale `\?` :
 > ```bash
 > $ ls *\\\?*
-> docA\?.docx  file5\?xt  file_1234567\?890?xt
+> docA\?.docx  file_1234567\?890?xt  file5\?xt
 > ```
 > (`\\` = antislash littéral, `\?` = point d'interrogation littéral.)
 > Variante plus lisible : quoter **uniquement** la partie littérale, laisser les jokers dehors :

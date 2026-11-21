@@ -1,5 +1,7 @@
 # Pipes
 
+> Fichiers d'exemple : [exemples/7-pipes/](exemples/7-pipes/) (lancer les commandes depuis ce répertoire).
+
 En Bash, les **pipes** permettent d'envoyer la sortie d'une commande vers une autre, pour construire des traitements puissants **sans fichiers intermédiaires**. Deux types principaux :
 
 | Type | Symbole / commande | Description |

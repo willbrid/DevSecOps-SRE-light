@@ -1,0 +1,5 @@
+2026-11-21 08:00:01 INFO  Application started
+2026-11-21 08:02:13 ERROR Unable to connect to database
+2026-11-21 08:02:14 INFO  Retrying in 5s
+2026-11-21 08:02:19 ERROR Connection timeout
+2026-11-21 08:03:00 INFO  Connected to database

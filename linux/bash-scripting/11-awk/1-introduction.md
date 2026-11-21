@@ -1,5 +1,7 @@
 # Introduction
 
+> Fichiers d'exemple : [exemples/1-introduction/](exemples/1-introduction/) (lancer les commandes depuis ce répertoire).
+
 **Awk** est un **langage spécialisé** (*domain-specific language*) pour le **traitement de texte**. Qu'il s'agisse de trouver une place libre dans une salle de cinéma ou d'analyser des statistiques système, sa syntaxe orientée **champs** et ses **variables intégrées** facilitent le **filtrage**, la **transformation** et la **mise en forme** de texte structuré.
 
 ### 1. Pourquoi utiliser awk ?
@@ -11,7 +13,7 @@
 
 ### 2. Champs et enregistrements
 
-Exemple : un plan de salle stocké dans `minimovies.txt`, où **`Y`** = place **occupée** et **`N`** = place **libre**. Awk considère :
+Exemple : un plan de salle stocké dans `minimovies.txt`, où **`y`** = place **occupée** et **`n`** = place **libre**. Awk considère :
 - chaque **ligne** comme un **enregistrement** (*record*) ;
 - chaque élément séparé par des espaces comme un **champ** (*field*).
 

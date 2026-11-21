@@ -1,0 +1,4 @@
+file
+content
+to demonstrate
+xargs functionality

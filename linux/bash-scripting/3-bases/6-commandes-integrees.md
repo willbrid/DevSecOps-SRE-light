@@ -1,5 +1,7 @@
 # Commandes intégrées
 
+> Fichiers d'exemple : [exemples/6-commandes-integrees/](exemples/6-commandes-integrees/) (lancer les commandes depuis ce répertoire).
+
 Chaque fois qu'un script appelle un **binaire externe**, le shell crée (*fork*) un nouveau processus, ce qui ajoute de la **latence** et consomme du **CPU/de la mémoire**. Bash limite ce coût grâce aux **commandes intégrées** (built-ins), qui s'exécutent **dans le processus du shell lui-même**. Les privilégier accélère nettement les scripts et réduit la consommation de ressources.
 
 ### 1. L'analogie du chef
@@ -18,7 +20,7 @@ Le shell est un **chef en cuisine**. S'il déléguait chaque petite tâche (épl
 
 ```bash
 $ ls
-file1.txt  file2.txt
+file1.txt  file2.txt  file.txt
 
 $ echo "Hello, world!"
 Hello, world!

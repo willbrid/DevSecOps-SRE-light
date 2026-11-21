@@ -1,5 +1,7 @@
 # Pipefail
 
+> Fichiers d'exemple : [exemples/8-pipefail/](exemples/8-pipefail/) (lancer les commandes depuis ce répertoire).
+
 Ce contenu explique comment les shells gèrent les **pipelines**, pourquoi certaines **erreurs peuvent être masquées**, et comment forcer un arrêt anticipé avec **`set -o pipefail`**, avec les bonnes pratiques de scripting robuste.
 
 ### 1. Fonctionnement d'un pipeline
@@ -125,6 +127,7 @@ exit 0
 Exécution :
 
 ```bash
+$ rm file.txt       # sinon la 1re redirection échoue aussi (noclobber)
 $ ./set-pipefail3.sh
 ./set-pipefail3.sh: line 6: file.txt: cannot overwrite existing file
 sort: cannot read: somefile.txt: No such file or directory
